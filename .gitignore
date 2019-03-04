@@ -1,3 +1,7 @@
+# Weka folder
+weka-3-8-3/
+logs/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

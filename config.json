@@ -1,17 +1,26 @@
 {
+    "weka_jar_path": "/home/path/.../weka.jar",
     "classifiers": [
         {
-            "name": "J26",
+            "class_name": "weka.classifiers.trees.J48",
             "args": {
-                "--data": "asdf",
-                "-t": 125
+                "-B": "",
+                "-Q": "42"
+            }
+        },
+        {
+            "class_name": "weka.classifiers.trees.J48",
+            "args": {
+                "-U": "",
+                "-Q": "69"
             }
         }
     ],
     "datasets": {
         "root_folder": "/home/example/",
         "names": [
-            "example.arf", "example_2.arf"
+            "example.arf",
+            "example_2.arf"
         ]
     }
 }

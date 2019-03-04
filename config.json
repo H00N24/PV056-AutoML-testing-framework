@@ -1,0 +1,17 @@
+{
+    "classifiers": [
+        {
+            "name": "J26",
+            "args": {
+                "--data": "asdf",
+                "-t": 125
+            }
+        }
+    ],
+    "datasets": {
+        "root_folder": "/home/example/",
+        "names": [
+            "example.arf", "example_2.arf"
+        ]
+    }
+}

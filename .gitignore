@@ -1,6 +1,12 @@
-# Weka folder
+# Weka folder & logs
 weka-3-8-3/
 logs/
+
+# Data files
+*.data
+*.names
+*.arff
+.vscode/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,12 +1,16 @@
-import pandas as pd
+from __future__ import absolute_import
+
 import os
 import re
-import numpy as np
-from typing import Iterable, List, Dict, Any
+from typing import Any, Dict, Iterable, List
+
 import arff
-from outlier_detection import DETECTORS
-from sklearn.preprocessing import OneHotEncoder
+import numpy as np
+import pandas as pd
 from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import OneHotEncoder
+
+from outlier_detection import DETECTORS
 
 
 class DataFrameArff(pd.DataFrame):

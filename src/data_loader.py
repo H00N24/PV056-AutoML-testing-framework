@@ -1,7 +1,6 @@
 from __future__ import absolute_import
 
 import os
-import re
 from typing import Any, Dict, Iterable, List
 
 import arff
@@ -78,19 +77,15 @@ class DataFrameArff(pd.DataFrame):
 
 
 class DataLoader:
-    data_reg = re.compile(r".*\.(arff|data)$")
-
     def __init__(self, data_paths: Iterable[str]):
-        self._data_paths: List[str] = []
+        self.file_paths: List[str] = []
         for path in data_paths:
             if os.path.isdir(path):
-                files = (
-                    x for x in os.listdir(path) if self.data_reg.match(x) is not None
-                )
+                files = (x for x in os.listdir(path) if x.endswith(".arff"))
                 for file_name in files:
-                    self._data_paths.append(path + file_name)
-            elif os.path.isfile(path) and self.data_reg.match(path) is not None:
-                self._data_paths.append(path)
+                    self.file_paths.append(path + file_name)
+            elif os.path.isfile(path) and path.endswith(".arff"):
+                self.file_paths.append(path)
 
     @staticmethod
     def _load_data_file(file_path: str):
@@ -103,7 +98,7 @@ class DataLoader:
             return DataFrameArff(data)
 
     def load_files(self):
-        for file_path in self._data_paths:
+        for file_path in self.file_paths:
             if file_path.endswith(".arff"):
                 yield self._load_arff_file(file_path)
 

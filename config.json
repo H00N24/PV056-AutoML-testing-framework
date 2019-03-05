@@ -19,8 +19,8 @@
     "datasets": {
         "root_folder": "/home/example/",
         "names": [
-            "example.arf",
-            "example_2.arf"
+            "example.arff",
+            "example_2.arff"
         ]
     }
 }

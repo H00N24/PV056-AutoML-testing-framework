@@ -1,4 +1,5 @@
-from pv056_2019.utils import get_datetime_now_str, get_clf_name
+from pv056_2019.utils import get_datetime_now_str, get_clf_name,\
+    yield_classifiers
 import subprocess
 import copy
 import json
@@ -17,6 +18,7 @@ class ClassifierManager:
             raise IOError(
                 "Input weka.jar file, '{0}' does not exist.".format(self.weka_jar_path)
             )
+        self.run_folder = ""
 
     @staticmethod
     def _save_stds(log_folder, output, errors):
@@ -52,17 +54,28 @@ class ClassifierManager:
         rc = p.returncode
         return output, err, rc
 
-    def prepare_log_folders(self, clf_class, dataset_path):
-        # Create folder names
+    def create_run_folder(self):
+        run_folder_name = get_datetime_now_str() + "_run"
+        folder = os.path.join(self.log_folder, run_folder_name)
+        os.makedirs(folder, exist_ok=True)
+        self.run_folder = folder
+
+    def create_clf_folder(self, clf_class, dataset_path):
         dataset_name, _ = os.path.splitext(os.path.basename(dataset_path))
         clf_name = get_clf_name(clf_class)
-        run_folder_name = get_datetime_now_str() + "_run"
         clf_folder_name = get_datetime_now_str() + "_" + clf_name + "_" + dataset_name
 
         # Create folders
-        folder = os.path.join(self.log_folder, run_folder_name, clf_folder_name)
+        folder = os.path.join(self.run_folder, clf_folder_name)
         os.makedirs(folder, exist_ok=True)
-        return folder, clf_name
+        return folder
+
+    def run(self, classifiers, dataset_paths):
+        # Run all classifiers with all datasets
+        self.create_run_folder()
+        for clf_name, clf_args in yield_classifiers(classifiers):
+            for dataset_path in dataset_paths:
+                self.run_weka_classifier(clf_name, clf_args, dataset_path)
 
     def run_weka_classifier(self, clf_class, clf_args, dataset_path):
         # Check dataset path
@@ -70,7 +83,7 @@ class ClassifierManager:
             raise IOError("Input dataset '{0}' does not exist.".format(dataset_path))
 
         # Prepare output folders
-        log_folder, clf_name = self.prepare_log_folders(clf_class, dataset_path)
+        log_folder = self.create_clf_folder(clf_class, dataset_path)
 
         # Check clf_args
         if "-t" in clf_args or "-x" in clf_args:

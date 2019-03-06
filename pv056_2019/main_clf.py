@@ -1,7 +1,7 @@
 import argparse
 import os
 from pv056_2019.classifiers import ClassifierManager
-from pv056_2019.utils import load_config_clf, load_config_data, yield_classifiers
+from pv056_2019.utils import load_config_clf, load_config_data
 
 
 def _valid_config_path(path):
@@ -36,8 +36,4 @@ weka_jar_path, classifiers = load_config_clf(args.config_clf)
 dataset_paths = load_config_data(args.config_data)
 
 clf_man = ClassifierManager(LOGS_FOLDER, weka_jar_path)
-
-# Run all classifiers with all datasets
-for clf_name, clf_args in yield_classifiers(classifiers):
-    for dataset_path in dataset_paths:
-        clf_man.run_weka_classifier(clf_name, clf_args, dataset_path)
+clf_man.run(classifiers, dataset_paths)

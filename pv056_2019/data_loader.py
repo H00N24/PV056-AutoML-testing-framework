@@ -9,7 +9,7 @@ import pandas as pd
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder
 
-from outlier_detection import DETECTORS
+from pv056_2019.outlier_detection import DETECTORS
 
 
 class DataFrameArff(pd.DataFrame):

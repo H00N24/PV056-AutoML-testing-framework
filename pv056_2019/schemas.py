@@ -1,6 +1,6 @@
 from pydantic import BaseModel, validator
 from typing import List, Dict, Union
-from outlier_detection import DETECTORS
+from pv056_2019.outlier_detection import DETECTORS
 
 
 class OutlierDataSchema(BaseModel):

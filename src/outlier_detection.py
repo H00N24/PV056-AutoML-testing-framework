@@ -1,10 +1,13 @@
 from __future__ import absolute_import
 
-import pandas as pd
 import numpy as np
+import pandas as pd
+from typing import Any, Dict
+from sklearn.ensemble import IsolationForest
 from sklearn.neighbors import LocalOutlierFactor, NearestNeighbors
 
-DETECTORS = []
+
+DETECTORS: Dict[str, Any] = {}
 
 
 class AbstractDetector:
@@ -17,7 +20,7 @@ class AbstractDetector:
 
 
 def detector(cls):
-    DETECTORS.append(cls)
+    DETECTORS.update({cls.name: cls})
     return cls
 
 
@@ -27,9 +30,11 @@ class LOF(AbstractDetector):
     data_type = "REAL"
 
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        bin_dataframe = dataframe._binarize_categorical_values()
+
         self.clf = LocalOutlierFactor(contamination="auto")
-        self.clf.fit(dataframe.values)
-        self.values = self.clf._decision_function(dataframe.values)
+        self.clf.fit(bin_dataframe.values)
+        self.values = self.clf._decision_function(bin_dataframe.values)
         return self
 
 
@@ -39,8 +44,24 @@ class NN(AbstractDetector):
     data_type = "REAL"
 
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        bin_dataframe = dataframe._binarize_categorical_values()
+
         self.clf = NearestNeighbors(n_neighbors=20)
-        self.clf.fit(dataframe.values)
+        self.clf.fit(bin_dataframe.values)
         distances, _ = self.clf.kneighbors()
         self.values = np.mean(distances, axis=1)
+        return self
+
+
+@detector
+class IsoForest(AbstractDetector):
+    name = "IsolationForest"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        bin_dataframe = dataframe._binarize_categorical_values()
+
+        self.clf = IsolationForest()
+        self.clf.fit(bin_dataframe.values)
+        self.values = self.clf.decision_function(bin_dataframe.values)
         return self

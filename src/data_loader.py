@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
 import os
-from typing import Any, Dict, Iterable, List
+from typing import Any, Dict, Iterable, List, Union
 
 import arff
 import numpy as np
@@ -27,6 +27,12 @@ class DataFrameArff(pd.DataFrame):
         data = self._arff_data
         data.update({"data": self.replace(np.nan, None).values.tolist()})
         return arff.dumps(data)
+
+    def arff_dump(self, file_path: str):
+        with open(file_path, "w") as output_file:
+            data = self._arff_data
+            data.update({"data": self.replace(np.nan, None).values.tolist()})
+            arff.dump(data, output_file)
 
     def _binarize_categorical_values(self) -> pd.DataFrame:
         encoded_dataframe = pd.DataFrame()
@@ -59,13 +65,13 @@ class DataFrameArff(pd.DataFrame):
 
         return encoded_dataframe
 
-    def apply_outlier_detectors(self):
-        dataframe = self._binarize_categorical_values()
+    def apply_outlier_detectors(
+        self, detectors: Dict[str, Dict[str, Union[str, int, float]]]
+    ):
         results = []
-        for detector in DETECTORS:
-            results.append(
-                detector().compute_scores(dataframe, dataframe[dataframe.columns[-1]])
-            )
+        for name, settings in detectors.items():
+            detector = DETECTORS[name](**settings)
+            results.append(detector.compute_scores(self, self[self.columns[-1]]))
 
         for detector in results:
             self.insert(
@@ -74,6 +80,8 @@ class DataFrameArff(pd.DataFrame):
             self._arff_data["attributes"].insert(
                 -1, (detector.name, detector.data_type)
             )
+
+        return self
 
 
 class DataLoader:
@@ -99,10 +107,4 @@ class DataLoader:
 
     def load_files(self):
         for file_path in self.file_paths:
-            if file_path.endswith(".arff"):
-                yield self._load_arff_file(file_path)
-
-
-if __name__ == "__main__":
-    a = DataLoader("../data/")
-    dataframe = a._load_arff_file("../data/anneal.arff")
+            yield self._load_arff_file(file_path)

@@ -1,21 +1,20 @@
-from data_loader import DataLoader
 from datetime import datetime
 import json
-import os
 
 
-#*********************************************************
+# *********************************************************
 # Utils for classifiers
-#*********************************************************
+# *********************************************************
 
-DATETIME_FORMAT = '%Y-%m-%d_%H-%M-%S'
+DATETIME_FORMAT = "%Y-%m-%d_%H-%M-%S"
+
 
 def load_config_clf(config_path):
-    with open(config_path, 'r') as conf_f:
+    with open(config_path, "r") as conf_f:
         config = json.load(conf_f)
     try:
-        weka_jar_path = config['weka_jar_path']
-        classifiers = config['classifiers']
+        weka_jar_path = config["weka_jar_path"]
+        classifiers = config["classifiers"]
     except KeyError as err:
         raise KeyError("Parameter {0} is missing in config file.".format(err))
 
@@ -31,16 +30,18 @@ def load_config_data(config_path):
     return [
         "weka-3-8-3/data/diabetes.arff",
         "weka-3-8-3/data/hypothyroid.arff",
-        "weka-3-8-3/data/ionosphere.arff"
+        "weka-3-8-3/data/ionosphere.arff",
     ]
 
 
 def yield_classifiers(classifiers):
     for clf in classifiers:
-        if 'class_name' not in clf:
-            raise KeyError("Parameter \'{0}\' is missing in config file.".format('class_name'))
-        clf_name = clf['class_name']
-        clf_args = clf['args'] if 'args' in clf else list()
+        if "class_name" not in clf:
+            raise KeyError(
+                "Parameter '{0}' is missing in config file.".format("class_name")
+            )
+        clf_name = clf["class_name"]
+        clf_args = clf["args"] if "args" in clf else list()
         yield clf_name, clf_args
 
 
@@ -51,8 +52,9 @@ def get_datetime_now_str():
 
 
 def get_clf_name(clf_class):
-    return clf_class.split('.')[-1]
+    return clf_class.split(".")[-1]
 
-#*********************************************************
+
+# *********************************************************
 # Other utils
-#*********************************************************
+# *********************************************************

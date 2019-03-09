@@ -106,6 +106,8 @@ optional arguments:
 | **NearestNeighbors** | Nearest Neighbors | [docs](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.NearestNeighbors.html) |
 | **IsolationForest** | Isolation Forest | [docs](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html)
 
+* New methods for outlier detection coming soon!
+
 ### Run weka classifiers
 To run a weka classifier using this framework, first setup virtual environment, install required modules and download weka tool.
 1) Activate your virtual Python environment with this project.

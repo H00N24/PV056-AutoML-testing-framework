@@ -1,5 +1,5 @@
 from pv056_2019.utils import get_datetime_now_str, get_clf_name,\
-    yield_classifiers, calculate_dataset_hash
+    yield_classifiers
 import subprocess
 import copy
 import json
@@ -20,12 +20,13 @@ class ClassifierManager:
 
     def __init__(self, log_folder, weka_jar_path):
         self.log_folder = log_folder
+        if not os.path.isdir(self.log_folder):
+            os.mkdir(self.log_folder)
         self.weka_jar_path = weka_jar_path
         if not os.path.exists(self.weka_jar_path):
             raise IOError(
                 "Input weka.jar file, '{0}' does not exist.".format(self.weka_jar_path)
             )
-        self.run_folder = ""
 
     @staticmethod
     def _save_stds(stdout_file_path, stderr_file_path, output, errors, rc):
@@ -45,8 +46,10 @@ class ClassifierManager:
             f.write(
                 json.dumps(
                     {
-                        "class_name": clf_class,
-                        "args": clf_args,
+                        "model_config":{
+                            "class_name": clf_class,
+                            "args": clf_args,
+                        },
                         "ad_config": json_str
                     },
                     indent=4,
@@ -69,6 +72,7 @@ class ClassifierManager:
         rc = p.returncode
         return output.decode('UTF-8'), err.decode('UTF-8'), rc
 
+    """
     def create_run_folder(self):
         run_folder_name = get_datetime_now_str() + "_run"
         folder = os.path.join(self.log_folder, run_folder_name)
@@ -82,10 +86,11 @@ class ClassifierManager:
         folder = os.path.join(self.run_folder, hash_md5)
         os.makedirs(folder, exist_ok=True)
         return folder
+    """
 
     def run(self, classifiers, dataset_tuples):
         # Run all classifiers with all datasets
-        self.create_run_folder()
+        #self.create_run_folder()
         for clf_name, clf_args in yield_classifiers(classifiers):
             for dataset_tuple in dataset_tuples:
                 self.run_weka_classifier(clf_name, clf_args, dataset_tuple)
@@ -99,7 +104,7 @@ class ClassifierManager:
             raise IOError("Input dataset '{0}' does not exist.".format(dataset_path))
 
         # Prepare output folders
-        log_folder = self.create_hash_folder(dataset_path, dataset_conf_path)
+        #log_folder = self.create_hash_folder(dataset_path, dataset_conf_path)
 
         # Check clf_args
         if "-t" in clf_args or "-x" in clf_args:
@@ -108,12 +113,12 @@ class ClassifierManager:
         # Create log_file names
         rand_int = random.randint(0, 1000)
         file_prefix = get_datetime_now_str() + "_" +\
-            str(rand_int) + "_" + get_clf_name(clf_class) + "_"
+            str(rand_int) + "_" + get_clf_name(clf_class)
 
-        predict_file_path = os.path.join(log_folder, file_prefix + 'predict.csv')
-        config_file_path = os.path.join(log_folder, file_prefix + 'config.json')
-        stdout_file_path = os.path.join(log_folder, file_prefix + 'stdout.txt')
-        stderr_file_path = os.path.join(log_folder, file_prefix + 'stderr.txt')
+        predict_file_path = os.path.join(self.log_folder, file_prefix + '.csv')
+        config_file_path = os.path.join(self.log_folder, file_prefix + '.json')
+        #stdout_file_path = os.path.join(log_folder, file_prefix + 'stdout.txt')
+        #stderr_file_path = os.path.join(log_folder, file_prefix + 'stderr.txt')
 
         # Prepare arguments for classifier
         run_args = []
@@ -151,7 +156,7 @@ class ClassifierManager:
         output, err, rc = self.run_subprocess(run_args)
 
         # Save weka outputs, errors and model configuration
-        self._save_stds(stdout_file_path, stderr_file_path,
-                        output, err, rc)
+        #self._save_stds(stdout_file_path, stderr_file_path,
+        #                output, err, rc)
         self._save_model_config(config_file_path, dataset_conf_path,
                                 clf_class, clf_args)

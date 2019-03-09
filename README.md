@@ -205,3 +205,4 @@ $ source venv/bin/activate # venv/bin/activate.fish # for fish shell
 ```
 
 For generating `requirements.txt` we are using pip-compile from [pip-tools](https://github.com/jazzband/pip-tools).
+For keeping your packages updated, use `pip-sync requirements.txt requirements-dev.txt`.

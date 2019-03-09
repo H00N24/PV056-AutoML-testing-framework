@@ -1,0 +1,21 @@
+{
+    "weka_jar_path": "weka-3-8-3/weka.jar",
+    "classifiers": [
+        {
+            "class_name": "weka.classifiers.trees.J48",
+            "args": [
+                "-C", 0.25,
+                "-M", 2
+            ]
+        },
+        {
+            "class_name": "weka.classifiers.trees.J48",
+            "args": [
+                "-C", 0.35,
+            ]
+        },
+        {
+            "class_name": "weka.classifiers.bayes.BayesNet"
+        }
+    ]
+}

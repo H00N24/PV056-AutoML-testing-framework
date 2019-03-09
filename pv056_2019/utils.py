@@ -1,7 +1,5 @@
 from datetime import datetime
 import json
-import os
-import hashlib
 
 
 # *********************************************************
@@ -30,9 +28,9 @@ def load_config_data(config_path):
     return DataLoader(config).file_paths
     """
     return [
-        ("weka-3-8-3/data/diabetes.arff", 'config_data.json'),
-        ("weka-3-8-3/data/hypothyroid.arff", 'config_data.json'),
-        ("weka-3-8-3/data/ionosphere.arff", 'config_clf_example.json'),
+        ("weka-3-8-3/data/diabetes.arff", "config_data.json"),
+        ("weka-3-8-3/data/hypothyroid.arff", "config_data.json"),
+        ("weka-3-8-3/data/ionosphere.arff", "config_clf_example.json"),
     ]
 
 

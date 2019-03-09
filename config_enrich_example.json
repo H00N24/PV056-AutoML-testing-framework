@@ -1,0 +1,9 @@
+{
+    "data_paths": [
+        "data/"
+    ],
+    "output_dir": "enriched_datasets/",
+    "detectors": {
+        "LOF": {}
+    }
+}

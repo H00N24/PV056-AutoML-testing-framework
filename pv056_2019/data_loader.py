@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 
 import os
+import warnings
 from typing import Any, Dict, Iterable, List, Union
 
 import arff
@@ -10,6 +11,8 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder
 
 from pv056_2019.outlier_detection import DETECTORS
+
+warnings.simplefilter(action="ignore", category=UserWarning)
 
 
 class DataFrameArff(pd.DataFrame):
@@ -80,6 +83,10 @@ class DataFrameArff(pd.DataFrame):
             self._arff_data["attributes"].insert(
                 -1, (detector.name, detector.data_type)
             )
+
+        if "INDEX" not in self.columns:
+            self.insert(loc=0, column="INDEX", value=self.index.values)
+            self._arff_data["attributes"].insert(0, ("INDEX", "REAL"))
 
         return self
 

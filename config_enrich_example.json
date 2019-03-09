@@ -4,6 +4,15 @@
     ],
     "output_dir": "enriched_datasets/",
     "detectors": {
-        "LOF": {}
+        "LOF": {
+            "contamination": "auto"
+        },
+        "NearestNeighbors": {
+            "n_neighbors": 20
+        },
+        "IsolationForest": {
+            "behaviour": "new",
+            "contamination": "auto"
+        }
     }
 }

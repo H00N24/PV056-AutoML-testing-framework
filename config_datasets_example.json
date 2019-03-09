@@ -1,6 +1,26 @@
 [
   [
-    "enriched_datasets/optdigits_c7eab9f8d1c441f4f34c148c9ebf0881.arff",
-    "enriched_datasets/c7eab9f8d1c441f4f34c148c9ebf0881.json"
+    "enriched_datasets/optdigits_ed1a08e3e98d5c9974fa03c57b826de0.arff",
+    "enriched_datasets/ed1a08e3e98d5c9974fa03c57b826de0.json"
+  ],
+  [
+    "enriched_datasets/cylinder-bands_ed1a08e3e98d5c9974fa03c57b826de0.arff",
+    "enriched_datasets/ed1a08e3e98d5c9974fa03c57b826de0.json"
+  ],
+  [
+    "enriched_datasets/satimage_ed1a08e3e98d5c9974fa03c57b826de0.arff",
+    "enriched_datasets/ed1a08e3e98d5c9974fa03c57b826de0.json"
+  ],
+  [
+    "enriched_datasets/balance-scale_ed1a08e3e98d5c9974fa03c57b826de0.arff",
+    "enriched_datasets/ed1a08e3e98d5c9974fa03c57b826de0.json"
+  ],
+  [
+    "enriched_datasets/cmc_ed1a08e3e98d5c9974fa03c57b826de0.arff",
+    "enriched_datasets/ed1a08e3e98d5c9974fa03c57b826de0.json"
+  ],
+  [
+    "enriched_datasets/mfeat_ed1a08e3e98d5c9974fa03c57b826de0.arff",
+    "enriched_datasets/ed1a08e3e98d5c9974fa03c57b826de0.json"
   ]
 ]

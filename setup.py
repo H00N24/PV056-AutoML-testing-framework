@@ -12,7 +12,6 @@ setup(
     packages=find_packages(include=["pv056_2019", "pv056_2019.*"]),
     include_package_data=True,
     install_requires=["pandas", "numpy", "liac-arff", "sklearn", "pydantic"],
-    entry_points={"console_scripts": ["enrich-data=pv056_2019.enrich_data:main"]},
+    entry_points={"console_scripts": ["pv056-enrich-data=pv056_2019.enrich_data:main"]},
     zip_safe=False,
 )
-

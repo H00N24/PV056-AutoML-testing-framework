@@ -102,6 +102,8 @@ class DataLoader:
             elif os.path.isfile(path) and path.endswith(".arff"):
                 self.file_paths.append(path)
 
+        self.file_paths = sorted(self.file_paths)
+
     @staticmethod
     def _load_data_file(file_path: str):
         raise NotImplementedError()

@@ -1,5 +1,7 @@
 from datetime import datetime
 import json
+import os
+import hashlib
 
 
 # *********************************************************
@@ -28,9 +30,9 @@ def load_config_data(config_path):
     return DataLoader(config).file_paths
     """
     return [
-        "weka-3-8-3/data/diabetes.arff",
-        "weka-3-8-3/data/hypothyroid.arff",
-        "weka-3-8-3/data/ionosphere.arff",
+        ("weka-3-8-3/data/diabetes.arff", 'config.json'),
+        ("weka-3-8-3/data/hypothyroid.arff", 'config.json'),
+        ("weka-3-8-3/data/ionosphere.arff", 'config_data.json'),
     ]
 
 
@@ -58,3 +60,12 @@ def get_clf_name(clf_class):
 # *********************************************************
 # Other utils
 # *********************************************************
+
+def calculate_dataset_hash(dataset_path, dataset_conf_path):
+    with open(dataset_conf_path, 'r') as cf:
+        json_str = json.dumps(json.load(cf), sort_keys=True,
+                              separators=(',', ':'))
+    file_name = os.path.basename(dataset_path)
+    final_str = json_str + file_name
+    hash_md5 = hashlib.md5(final_str.encode()).hexdigest()
+    return hash_md5

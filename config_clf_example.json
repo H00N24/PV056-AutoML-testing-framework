@@ -1,5 +1,5 @@
 {
-    "output_folder": "logs/output/",
+    "output_folder": "clf_outputs/",
     "weka_jar_path": "weka-3-8-3/weka.jar",
     "classifiers": [
         {

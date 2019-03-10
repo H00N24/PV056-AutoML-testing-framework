@@ -111,8 +111,8 @@ optional arguments:
 ### Run weka classifiers
 To run a weka classifier using this framework, first setup virtual environment, install required modules and download weka tool.
 1) Activate your virtual Python environment with this project.
-2) Generate `config_data.json` configuration file using `pv056-enrich-data` (See [Enrich data](#enriching-data-with-outlier-detection-methods))
-3) Create a `config_clf.json` file, with weka classifiers and their configuration (See [Config file for weka classifiers](#example-of-config-file-for-weka-classifiers)
+2) Generate `config_datasets_example.json` configuration file using `pv056-enrich-data` (See [Enrich data](#enriching-data-with-outlier-detection-methods))
+3) Create a `config_clf_example.json` file, with weka classifiers and their configuration (See [Config file for weka classifiers](#example-of-config-file-for-weka-classifiers))
 5) Run `pv056-run-clf` script, see command below
 
 ```
@@ -154,7 +154,7 @@ optional arguments:
 
 ```json
 {
-    "output_folder": "logs/",
+    "output_folder": "clf_outputs/",
     "weka_jar_path": "weka-3-8-3/weka.jar",
     "classifiers": [
         {

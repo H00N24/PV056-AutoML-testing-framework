@@ -36,7 +36,25 @@ def yield_classifiers(classifiers):
             )
         clf_name = clf["class_name"]
         clf_args = clf["args"] if "args" in clf else list()
-        yield clf_name, clf_args
+        clf_filters = clf["filters"] if "filters" in clf else list()
+
+        if clf_filters:
+            for one_filter in clf_filters:
+                print(one_filter)
+                if "name" not in one_filter:
+                    raise KeyError(
+                        "Parameter '{0}' is missing in filters in config file.".format(
+                            "name"
+                        )
+                    )
+                if "args" not in one_filter:
+                    raise KeyError(
+                        "Parameter '{0}' is missing in filters in config file.".format(
+                            "args"
+                        )
+                    )
+
+        yield clf_name, clf_args, clf_filters
 
 
 def get_datetime_now_str():
@@ -52,14 +70,3 @@ def get_clf_name(clf_class):
 # *********************************************************
 # Other utils
 # *********************************************************
-
-"""
-def calculate_dataset_hash(dataset_path, dataset_conf_path):
-    with open(dataset_conf_path, 'r') as cf:
-        json_str = json.dumps(json.load(cf), sort_keys=True,
-                              separators=(',', ':'))
-    file_name = os.path.basename(dataset_path)
-    final_str = json_str + file_name
-    hash_md5 = hashlib.md5(final_str.encode()).hexdigest()
-    return hash_md5
-"""

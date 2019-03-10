@@ -1,10 +1,10 @@
 import copy
 import json
 import os
-import random
 import subprocess
+import hashlib
 
-from pv056_2019.utils import get_clf_name, get_datetime_now_str, yield_classifiers
+from pv056_2019.utils import get_clf_name, yield_classifiers
 
 
 class ClassifierManager:
@@ -37,21 +37,28 @@ class ClassifierManager:
             f.write(errors)
 
     @staticmethod
-    def _save_model_config(config_file_path, dataset_conf_path, clf_class, clf_args):
+    def _create_final_config_file(dataset_conf_path, clf_class, clf_args, filters):
         with open(dataset_conf_path, "r") as f:
             json_str = json.load(f)
 
+        final_config = json.dumps(
+            {
+                "model_config": {
+                    "class_name": clf_class,
+                    "args": clf_args,
+                    "filters": filters,
+                },
+                "ad_config": json_str,
+            },
+            indent=4,
+            separators=(",", ":"),
+        )
+        return final_config
+
+    @staticmethod
+    def _save_model_config(config_file_path, config_data):
         with open(config_file_path, "w") as f:
-            f.write(
-                json.dumps(
-                    {
-                        "model_config": {"class_name": clf_class, "args": clf_args},
-                        "ad_config": json_str,
-                    },
-                    indent=4,
-                    separators=(",", ":"),
-                )
-            )
+            f.write(config_data)
 
     @staticmethod
     def _print_run_info(clf_class, run_args):
@@ -87,11 +94,11 @@ class ClassifierManager:
     def run(self, classifiers, dataset_tuples):
         # Run all classifiers with all datasets
         # self.create_run_folder()
-        for clf_name, clf_args in yield_classifiers(classifiers):
+        for clf_name, clf_args, clf_filters in yield_classifiers(classifiers):
             for dataset_tuple in dataset_tuples:
-                self.run_weka_classifier(clf_name, clf_args, dataset_tuple)
+                self.run_weka_classifier(clf_name, clf_args, clf_filters, dataset_tuple)
 
-    def run_weka_classifier(self, clf_class, clf_args, dataset_tuple):
+    def run_weka_classifier(self, clf_class, clf_args, clf_filters, dataset_tuple):
         dataset_path = dataset_tuple[0]
         dataset_conf_path = dataset_tuple[1]
 
@@ -111,15 +118,30 @@ class ClassifierManager:
                 return
 
         # Create log_file names
-        rand_int = random.randint(0, 1000)
+        final_config_str = self._create_final_config_file(
+            dataset_conf_path, clf_class, clf_args, clf_filters
+        )
+        hash_md5 = hashlib.md5(final_config_str.encode()).hexdigest()
+
+        dataset_name = os.path.basename(dataset_path).split("_")[0]
+        clf_name = get_clf_name(clf_class)
+
+        predict_file_path = os.path.join(
+            self.log_folder, dataset_name + "_" + clf_name + "_" + hash_md5 + ".csv"
+        )
+        config_file_path = os.path.join(
+            self.log_folder, clf_name + "_" + hash_md5 + ".json"
+        )
+
+        """
         file_prefix = (
             get_datetime_now_str() + "_" + str(rand_int) + "_" + get_clf_name(clf_class)
         )
-
         predict_file_path = os.path.join(self.log_folder, file_prefix + ".csv")
         config_file_path = os.path.join(self.log_folder, file_prefix + ".json")
-        # stdout_file_path = os.path.join(log_folder, file_prefix + 'stdout.txt')
-        # stderr_file_path = os.path.join(log_folder, file_prefix + 'stderr.txt')
+        stdout_file_path = os.path.join(log_folder, file_prefix + 'stdout.txt')
+        stderr_file_path = os.path.join(log_folder, file_prefix + 'stderr.txt')
+        """
 
         # Prepare arguments for classifier
         run_args = []
@@ -127,14 +149,19 @@ class ClassifierManager:
         run_args += ["-x", "5"]  # x-folds for cross-validation
         run_args += [
             "-classifications",
-            "weka.classifiers.evaluation.output.prediction.CSV -file {0} -suppress".format(
+            "weka.classifiers.evaluation.output.prediction.CSV -p first -file {0} -suppress".format(
                 predict_file_path
             ),
         ]
-        run_args += [
-            "-F",
-            "weka.filters.unsupervised.attribute.RemoveByName -E ^INDEX$",
-        ]
+
+        # Add Weka filters
+        str_filters = '-F "weka.filters.unsupervised.attribute.RemoveByName -E ^INDEX$"'
+        for one_filter in clf_filters:
+            str_filters += '-F "{0} {1}"'.format(
+                one_filter["name"], " ".join(one_filter["args"])
+            )
+        run_args += ["-F", "weka.filters.MultiFilter {0}".format(str_filters)]
+
         run_args += ["-S", "1"]  # Seed
         run_args += ["-W", clf_class]
         if clf_args:
@@ -159,6 +186,4 @@ class ClassifierManager:
         # Save weka outputs, errors and model configuration
         # self._save_stds(stdout_file_path, stderr_file_path,
         #                output, err, rc)
-        self._save_model_config(
-            config_file_path, dataset_conf_path, clf_class, clf_args
-        )
+        self._save_model_config(config_file_path, final_config_str)

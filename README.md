@@ -144,13 +144,17 @@ optional arguments:
     * list of classifiers which you want to run
     * you can run an arbitrary number of classifiers, even same classifier with different configuration
     * list of [weka classifiers](http://weka.sourceforge.net/doc.dev/weka/classifiers/Classifier.html)
-* *class_name*
-    * name of weka classifier class
-* *args*
-    * optional value
-    * list of arguments for specific classifier
-    * you can find all arguments for specific classifier using weka command: ```$ java -cp weka.jar weka.classifiers.trees.J48 --help``` or in [weka documentation](http://weka.sourceforge.net/doc.dev/weka/classifiers/trees/J48.html)
-    * you can find more information about Weka-CLI in the section below [How to work with Weka 3](#how-to-work-with-Weka-3), but I don't think you need that for using this tool.
+    * *class_name*
+        * name of weka classifier class
+    * *args*
+        * optional value
+        * list of arguments for specific classifier
+        * you can find all arguments for specific classifier using weka command: ```$ java -cp weka.jar weka.classifiers.trees.J48 --help``` or in [weka documentation](http://weka.sourceforge.net/doc.dev/weka/classifiers/trees/J48.html)
+        * you can find more information about Weka-CLI in the section below [How to work with Weka 3](#how-to-work-with-Weka-3), but I don't think you need that for using this tool.
+    * *filters*
+        * optional value
+        * you can use any filter from Weka
+        * you have to specify name of filter and arguments for it
 
 ```json
 {
@@ -162,6 +166,14 @@ optional arguments:
             "args": [
                 "-C", 0.25,
                 "-M", 2
+            ],
+            "filters": [
+                {
+                    "name": "weka.filters.unsupervised.attribute.RemoveByName",
+                    "args": [
+                        "-E", "^size$"
+                    ]
+                }
             ]
         },
         {
@@ -175,6 +187,7 @@ optional arguments:
         }
     ]
 }
+
 ```
 
 ## How to work with Weka 3

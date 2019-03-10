@@ -21,7 +21,7 @@ class ClassifierManager:
     def __init__(self, log_folder, weka_jar_path):
         self.log_folder = log_folder
         if not os.path.isdir(self.log_folder):
-            os.mkdir(self.log_folder)
+            os.makedirs(self.log_folder, exist_ok=True)
         self.weka_jar_path = weka_jar_path
         if not os.path.exists(self.weka_jar_path):
             raise IOError(
@@ -103,8 +103,12 @@ class ClassifierManager:
         # log_folder = self.create_hash_folder(dataset_path, dataset_conf_path)
 
         # Check clf_args
-        if "-t" in clf_args or "-x" in clf_args:
-            print("Settings '-t', '-x' will be overwritten.")
+        depressed_args = ["-t", "-x", "-S", "-F", "-W", "-classifications"]
+        for arg in clf_args:
+            if arg in depressed_args:
+                print("Please remove '{0}' from your config file.".format(arg))
+                print("Skipping...")
+                return
 
         # Create log_file names
         rand_int = random.randint(0, 1000)

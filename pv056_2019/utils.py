@@ -13,25 +13,19 @@ def load_config_clf(config_path):
     with open(config_path, "r") as conf_f:
         config = json.load(conf_f)
     try:
+        output_folder = config["output_folder"]
         weka_jar_path = config["weka_jar_path"]
         classifiers = config["classifiers"]
     except KeyError as err:
         raise KeyError("Parameter {0} is missing in config file.".format(err))
 
-    return weka_jar_path, classifiers
+    return output_folder, weka_jar_path, classifiers
 
 
 def load_config_data(config_path):
-    """
-    with open(config_path, 'r') as conf_f:
-        config = json.load(conf_f)
-    return DataLoader(config).file_paths
-    """
-    return [
-        ("weka-3-8-3/data/diabetes.arff", "config_data.json"),
-        ("weka-3-8-3/data/hypothyroid.arff", "config_data.json"),
-        ("weka-3-8-3/data/ionosphere.arff", "config_clf_example.json"),
-    ]
+    with open(config_path, "r") as conf_f:
+        config_str = json.load(conf_f)
+    return config_str
 
 
 def yield_classifiers(classifiers):

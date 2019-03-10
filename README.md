@@ -62,7 +62,7 @@ optional arguments:
   --config-file CONFIG_FILE, -c CONFIG_FILE
                         JSON configuration
   --datasets-config-file DATASETS_CONFIG_FILE, -d DATASETS_CONFIG_FILE
-                        Filename of datasets config
+                        Filename of output datasets config
 ```
 
 #### Example usage
@@ -132,10 +132,12 @@ optional arguments:
 
 #### Example usage
 ```
-(venv)$ pv056-run-clf --config-clf config_clf.json --config_data config_data.json
+(venv)$ pv056-run-clf --config-clf config_clf_example.json --config-data config_datasets_example.json
 ```
 
 #### Example of config file for weka classifiers
+* *output_folder*
+    * path to output folder, where outputs from your classifiers will be saved
 * *weka_jar_path*
     * path to a weka.jar file
 * *classifiers*
@@ -152,6 +154,7 @@ optional arguments:
 
 ```json
 {
+    "output_folder": "logs/",
     "weka_jar_path": "weka-3-8-3/weka.jar",
     "classifiers": [
         {

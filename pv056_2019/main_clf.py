@@ -14,8 +14,6 @@ def _valid_config_path(path):
 
 
 def main():
-    LOGS_FOLDER = "logs/"
-
     parser = argparse.ArgumentParser(description="PV056-AutoML-testing-framework")
     parser.add_argument(
         "-cc",
@@ -33,10 +31,10 @@ def main():
     )
     args = parser.parse_args()
 
-    weka_jar_path, classifiers = load_config_clf(args.config_clf)
+    logs_folder, weka_jar_path, classifiers = load_config_clf(args.config_clf)
     dataset_paths = load_config_data(args.config_data)
 
-    clf_man = ClassifierManager(LOGS_FOLDER, weka_jar_path)
+    clf_man = ClassifierManager(logs_folder, weka_jar_path)
     clf_man.run(classifiers, dataset_paths)
 
 

@@ -23,7 +23,7 @@ def main():
         "--datasets-config-file",
         "-d",
         required=True,
-        help="Filename of datasets config",
+        help="Filename of output datasets config",
     )
 
     args = vars(parser.parse_args())

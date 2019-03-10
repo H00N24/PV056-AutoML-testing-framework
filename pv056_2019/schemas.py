@@ -5,7 +5,7 @@ from pv056_2019.outlier_detection import DETECTORS
 
 class OutlierDataSchema(BaseModel):
     data_paths: List[str]
-    detectors: Dict[str, Dict[str, Union[str, int, float]]] = {
+    detectors: Dict[str, Dict[str, Union[float, str]]] = {
         x: {} for x in DETECTORS.keys()
     }
     output_dir: str

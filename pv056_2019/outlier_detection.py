@@ -16,6 +16,9 @@ class AbstractDetector:
     data_type: str
     values: np.array
 
+    def __init__(self, **settings):
+        self.settings = settings
+
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
         raise NotImplementedError()
 
@@ -33,7 +36,7 @@ class LOF(AbstractDetector):
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
         bin_dataframe = dataframe._binarize_categorical_values()
 
-        self.clf = LocalOutlierFactor(contamination="auto")
+        self.clf = LocalOutlierFactor(**self.settings)
         self.clf.fit(bin_dataframe.values)
         self.values = self.clf._decision_function(bin_dataframe.values)
         return self
@@ -46,8 +49,9 @@ class NN(AbstractDetector):
 
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
         bin_dataframe = dataframe._binarize_categorical_values()
-
-        self.clf = NearestNeighbors(n_neighbors=20)
+        if "n_neighbors" in self.settings:
+            self.settings["n_neighbors"] = int(self.settings["n_neighbors"])
+        self.clf = NearestNeighbors(**self.settings)
         self.clf.fit(bin_dataframe.values)
         distances, _ = self.clf.kneighbors()
         self.values = np.mean(distances, axis=1)
@@ -62,7 +66,7 @@ class IsoForest(AbstractDetector):
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
         bin_dataframe = dataframe._binarize_categorical_values()
 
-        self.clf = IsolationForest()
+        self.clf = IsolationForest(**self.settings)
         self.clf.fit(bin_dataframe.values)
         self.values = self.clf.decision_function(bin_dataframe.values)
         return self

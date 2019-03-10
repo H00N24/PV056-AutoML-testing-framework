@@ -69,3 +69,31 @@ class IsoForest(AbstractDetector):
         self.clf.fit(bin_dataframe.values)
         self.values = self.clf.decision_function(bin_dataframe.values)
         return self
+
+
+@detector
+class F2(AbstractDetector):
+    name = "F2"
+    data_type = "REAL"
+    values = []
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        class_column = dataframe[dataframe.columns[-1]]
+        classes_list = class_column.unique()
+
+        class1 = dataframe[dataframe[class_column.name] == classes_list[0]]
+        class2 = dataframe[dataframe[class_column.name] == classes_list[1]]
+
+        bin_dataframe = dataframe._binarize_categorical_values()
+        for index in range(len(bin_dataframe.columns)):
+            print(len(bin_dataframe.columns))
+            class1_column = class1[class1.columns[index]]
+            class2_column = class2[class2.columns[index]]
+            f2_result = (
+                    min(class1_column.max(), class2_column.max()) -
+                    max(class1_column.min(), class2_column.min()) /
+                    max(class1_column.max(), class2_column.max()) -
+                    min(class1_column.min(), class2_column.min()))
+            self.values.append(f2_result)
+
+        return self

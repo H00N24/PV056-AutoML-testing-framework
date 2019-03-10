@@ -127,14 +127,11 @@ class ClassifierManager:
         run_args += ["-x", "5"]  # x-folds for cross-validation
         run_args += [
             "-classifications",
-            "weka.classifiers.evaluation.output.prediction.CSV -file {0} -suppress".format(
+            "weka.classifiers.evaluation.output.prediction.CSV -p 1 -file {0} -suppress".format(
                 predict_file_path
             ),
         ]
-        run_args += [
-            "-F",
-            "weka.filters.unsupervised.attribute.RemoveByName -E ^INDEX$",
-        ]
+        run_args += ["-F", "weka.filters.unsupervised.attribute.RemoveByName -E ^ID$"]
         run_args += ["-S", "1"]  # Seed
         run_args += ["-W", clf_class]
         if clf_args:

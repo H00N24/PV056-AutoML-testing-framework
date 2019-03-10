@@ -31,7 +31,9 @@ def main():
     with open(args["config_file"]) as json_file:
         conf = OutlierDataSchema(**json.load(json_file))
 
-    hex_name = md5(json.dumps(conf.detectors).encode("UTF-8")).hexdigest()
+    hex_name = md5(
+        json.dumps(conf.detectors, sort_keys=True).encode("UTF-8")
+    ).hexdigest()
 
     ol_config_path = os.path.join(conf.output_dir, hex_name) + ".json"
 

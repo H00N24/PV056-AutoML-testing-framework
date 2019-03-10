@@ -7,7 +7,7 @@
  
 ## Installation guide 
 ### Prerequisites
-- Python version >=3.6
+- Python version >=3.6 (including python3-dev, python3-wheel)
 - [Weka](https://www.cs.waikato.ac.nz/ml/weka/)
 
 ### Installation to python virtual env (recommended)

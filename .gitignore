@@ -116,4 +116,4 @@ venv.bak/
 .mypy_cache/
 
 # jetbrains
-.idea/workspace.xml
+.idea/*

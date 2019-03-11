@@ -98,6 +98,16 @@ optional arguments:
     }
 }
 ```
+To run it without any outlier detection methods use the config below.
+```json
+{
+    "data_paths": [
+        "data/"
+    ],
+    "output_dir": "enriched_datasets/",
+    "detectors": {}
+}
+```
 
 #### Outlier detector names and parameters:
 | Name | Full name | Parameters |

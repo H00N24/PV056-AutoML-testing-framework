@@ -44,6 +44,7 @@ $ git lfs pull
 
 ## Usage
 If you have chosen to install this tester in the virtual environment, you must activate it to proceed.
+* *Pipeline:* enrich data -> run classifiers -> (optional) statistics
 
 ### Enriching data with outlier detection methods
 This step enriches datasets with new values from all outlier methods specified in a configuration file and adds a new column "INDEX" which we need for weka. This column is not used for classification. It also generates a configuration file (`datasets-config-file`), which contains paths to the new datasets for the second part of this framework.
@@ -201,10 +202,10 @@ optional arguments:
 ```
 
 ### Count accuracy
-To count accuracy simply run `pv056-statistics` script.
+To count accuracy simply run `pv056-statistics` script. In the future, we will Precision and Recall.
 ```
 pv056-pv056-statistics --help
-usage: pv056-pv056-statistics [-h] --results-dir RESULTS_DIR [--pattern PATTERN]
+usage: pv056-statistics [-h] --results-dir RESULTS_DIR [--pattern PATTERN]
 
 Script for counting basic statistic (Accuracy, )
 
@@ -225,7 +226,6 @@ teachingAssistant J48 81498a187313e89f240c8ead4557906b.csv
 teachingAssistant J48 9f0cf2e85982a05ecf632ee428274ec3.csv
          Accuracy: 0.5166
 ```
-
 
 ## How to work with Weka 3
 * Download Weka from https://www.cs.waikato.ac.nz/ml/weka/downloading.html

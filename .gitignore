@@ -112,3 +112,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# jetbrains
+pv056_2019/.idea/workspace.xml

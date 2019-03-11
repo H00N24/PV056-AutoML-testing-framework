@@ -83,3 +83,18 @@ class F2(AbstractDetector):
         self.clf = F2Metric()
         self.values = self.clf.compute_values(df=bin_dataframe, classes=classes)
         return self
+
+
+@detector
+class T2(AbstractDetector):
+    name = "T2"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        bin_dataframe = dataframe._binarize_categorical_values()
+
+        samples_count = len(bin_dataframe.index)
+        features_count = len(bin_dataframe.columns)
+        self.values = samples_count / features_count
+        return self
+

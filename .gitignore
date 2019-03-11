@@ -5,6 +5,7 @@ logs/
 # Data files
 *.json
 *.data
+*.csv
 *.names
 *.arff
 .vscode/*

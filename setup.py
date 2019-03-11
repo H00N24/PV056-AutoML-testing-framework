@@ -15,6 +15,7 @@ setup(
         "console_scripts": [
             "pv056-enrich-data=pv056_2019.enrich_data:main",
             "pv056-run-clf=pv056_2019.main_clf:main",
+            "pv056-statistics=pv056_2019.statistics:main",
         ]
     },
     zip_safe=False,

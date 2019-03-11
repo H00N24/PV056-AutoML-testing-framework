@@ -202,7 +202,7 @@ optional arguments:
 ```
 
 ### Count accuracy
-To count accuracy simply run `pv056-statistics` script. In the future, we will Precision and Recall.
+To count accuracy simply run `pv056-statistics` script. In the future, we will add Precision and Recall.
 ```
 pv056-pv056-statistics --help
 usage: pv056-statistics [-h] --results-dir RESULTS_DIR [--pattern PATTERN]

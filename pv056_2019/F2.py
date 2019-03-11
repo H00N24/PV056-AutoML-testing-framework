@@ -35,8 +35,12 @@ class F2Metric:
     @staticmethod
     def _f2_step(class_extremes):
         return (
-            (min(class_extremes[0].max, class_extremes[1].max) -
-            max(class_extremes[0].min, class_extremes[1].min)) /
-            (max(class_extremes[0].max, class_extremes[1].max) -
-            min(class_extremes[0].min, class_extremes[1].min))
+            (
+                min(class_extremes[0].max, class_extremes[1].max) -
+                max(class_extremes[0].min, class_extremes[1].min)
+            ) /
+            (
+                max(class_extremes[0].max, class_extremes[1].max) -
+                min(class_extremes[0].min, class_extremes[1].min)
+            )
         )

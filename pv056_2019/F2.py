@@ -8,7 +8,8 @@ Extremes = namedtuple('Extremes', 'min max')
 
 class F2Metric:
 
-    def compute_values(self, df, classes):
+    @staticmethod
+    def compute_values(df, classes):
         classes_list = np.unique(classes)
         class_instance_indexes = [df.loc[classes == cl].index for cl in classes_list]
         class_instances = [
@@ -27,14 +28,15 @@ class F2Metric:
                 for cl in range(len(classes_list))
             ]
 
-            result *= self._f2_step(class_extremes=class_extremes)
+            result *= F2Metric._f2_step(class_extremes=class_extremes)
 
         return result
 
-    def _f2_step(self, class_extremes):
+    @staticmethod
+    def _f2_step(class_extremes):
         return (
-            min(class_extremes[0].max, class_extremes[1].max) -
-            max(class_extremes[0].min, class_extremes[1].min) /
-            max(class_extremes[0].max, class_extremes[1].max) -
-            min(class_extremes[0].min, class_extremes[1].min)
+            (min(class_extremes[0].max, class_extremes[1].max) -
+            max(class_extremes[0].min, class_extremes[1].min)) /
+            (max(class_extremes[0].max, class_extremes[1].max) -
+            min(class_extremes[0].min, class_extremes[1].min))
         )

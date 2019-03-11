@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 
 import os
+import warnings
 from typing import Any, Dict, Iterable, List, Union
 
 import arff
@@ -10,6 +11,8 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder
 
 from pv056_2019.outlier_detection import DETECTORS
+
+warnings.simplefilter(action="ignore", category=UserWarning)
 
 
 class DataFrameArff(pd.DataFrame):
@@ -47,12 +50,30 @@ class DataFrameArff(pd.DataFrame):
                     [[attr], values], names=["0", "1"]
                 )
             elif values.lower() in {"numeric", "real", "integer"}:
-                imputer = SimpleImputer()  # XXX settings
+                imputer = SimpleImputer(
+                    missing_values=np.nan, strategy="mean"
+                )  # XXX settings
+
+                real_values = self[attr].values
+                if real_values.dtype == np.dtype("O"):
+                    imputer = imputer.set_params(
+                        missing_values=None, strategy="constant", fill_value=0
+                    )
+
                 transformed_data = imputer.fit_transform(
-                    self[attr].values.reshape(-1, 1)
+                    real_values.reshape(-1, 1)
                 ).reshape(-1, 1)
                 columns_index = pd.MultiIndex.from_product(
                     [[attr], [values]], names=["0", "1"]
+                )
+            elif values.lower() == "string":
+                imputer = SimpleImputer(missing_values=None, strategy="most_frequent")
+                imp_data = imputer.fit_transform(
+                    self[attr].values.reshape(-1, 1)
+                ).reshape(-1, 1)
+                transformed_data = enc.transform(imp_data).toarray()
+                columns_index = pd.MultiIndex.from_product(
+                    [[attr], range(transformed_data.shape[1])], names=["0", "1"]
                 )
             else:
                 raise ValueError(attr, values)
@@ -81,6 +102,10 @@ class DataFrameArff(pd.DataFrame):
                 -1, (detector.name, detector.data_type)
             )
 
+        if "ID" not in self.columns:
+            self.insert(loc=0, column="ID", value=self.index.values)
+            self._arff_data["attributes"].insert(0, ("ID", "NUMERIC"))
+
         return self
 
 
@@ -91,9 +116,11 @@ class DataLoader:
             if os.path.isdir(path):
                 files = (x for x in os.listdir(path) if x.endswith(".arff"))
                 for file_name in files:
-                    self.file_paths.append(path + file_name)
+                    self.file_paths.append(os.path.join(path, file_name))
             elif os.path.isfile(path) and path.endswith(".arff"):
                 self.file_paths.append(path)
+
+        self.file_paths = sorted(self.file_paths, key=lambda x: os.path.getsize(x))
 
     @staticmethod
     def _load_data_file(file_path: str):

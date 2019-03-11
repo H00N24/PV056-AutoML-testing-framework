@@ -8,10 +8,15 @@ setup(
     author="Robert Kolcun, Ondrej Kurak",
     author_email="487564@mail.muni.cz, okurak@mail.muni.cz",
     license="MIT",
-    # package_dir={"pv056_2019": "src"},
     packages=find_packages(include=["pv056_2019", "pv056_2019.*"]),
     include_package_data=True,
     install_requires=["pandas", "numpy", "liac-arff", "sklearn", "pydantic"],
-    entry_points={"console_scripts": ["pv056-enrich-data=pv056_2019.enrich_data:main"]},
+    entry_points={
+        "console_scripts": [
+            "pv056-enrich-data=pv056_2019.enrich_data:main",
+            "pv056-run-clf=pv056_2019.main_clf:main",
+            "pv056-statistics=pv056_2019.statistics:main",
+        ]
+    },
     zip_safe=False,
 )

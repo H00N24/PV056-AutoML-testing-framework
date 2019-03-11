@@ -1,0 +1,30 @@
+{
+    "output_folder": "clf_outputs/",
+    "weka_jar_path": "weka-3-8-3/weka.jar",
+    "classifiers": [
+        {
+            "class_name": "weka.classifiers.trees.J48",
+            "args": [
+                "-C", 0.25,
+                "-M", 2
+            ],
+            "filters": [
+                {
+                    "name": "weka.filters.unsupervised.attribute.RemoveByName",
+                    "args": [
+                        "-E", "^size$"
+                    ]
+                }
+            ]
+        },
+        {
+            "class_name": "weka.classifiers.trees.J48",
+            "args": [
+                "-C", 0.35
+            ]
+        },
+        {
+            "class_name": "weka.classifiers.bayes.BayesNet"
+        }
+    ]
+}

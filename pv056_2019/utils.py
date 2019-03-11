@@ -13,25 +13,19 @@ def load_config_clf(config_path):
     with open(config_path, "r") as conf_f:
         config = json.load(conf_f)
     try:
+        output_folder = config["output_folder"]
         weka_jar_path = config["weka_jar_path"]
         classifiers = config["classifiers"]
     except KeyError as err:
         raise KeyError("Parameter {0} is missing in config file.".format(err))
 
-    return weka_jar_path, classifiers
+    return output_folder, weka_jar_path, classifiers
 
 
 def load_config_data(config_path):
-    """
-    with open(config_path, 'r') as conf_f:
-        config = json.load(conf_f)
-    return DataLoader(config).file_paths
-    """
-    return [
-        "weka-3-8-3/data/diabetes.arff",
-        "weka-3-8-3/data/hypothyroid.arff",
-        "weka-3-8-3/data/ionosphere.arff",
-    ]
+    with open(config_path, "r") as conf_f:
+        config_str = json.load(conf_f)
+    return config_str
 
 
 def yield_classifiers(classifiers):
@@ -42,7 +36,25 @@ def yield_classifiers(classifiers):
             )
         clf_name = clf["class_name"]
         clf_args = clf["args"] if "args" in clf else list()
-        yield clf_name, clf_args
+        clf_filters = clf["filters"] if "filters" in clf else list()
+
+        if clf_filters:
+            for one_filter in clf_filters:
+                print(one_filter)
+                if "name" not in one_filter:
+                    raise KeyError(
+                        "Parameter '{0}' is missing in filters in config file.".format(
+                            "name"
+                        )
+                    )
+                if "args" not in one_filter:
+                    raise KeyError(
+                        "Parameter '{0}' is missing in filters in config file.".format(
+                            "args"
+                        )
+                    )
+
+        yield clf_name, clf_args, clf_filters
 
 
 def get_datetime_now_str():

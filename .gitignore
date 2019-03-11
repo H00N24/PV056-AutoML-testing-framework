@@ -3,7 +3,9 @@ weka-3-8-3/
 logs/
 
 # Data files
+*.json
 *.data
+*.csv
 *.names
 *.arff
 .vscode/*

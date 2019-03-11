@@ -44,6 +44,7 @@ $ git lfs pull
 
 ## Usage
 If you have chosen to install this tester in the virtual environment, you must activate it to proceed.
+* *Pipeline:* enrich data -> run classifiers -> (optional) statistics
 
 ### Enriching data with outlier detection methods
 This step enriches datasets with new values from all outlier methods specified in a configuration file and adds a new column "INDEX" which we need for weka. This column is not used for classification. It also generates a configuration file (`datasets-config-file`), which contains paths to the new datasets for the second part of this framework.
@@ -96,6 +97,16 @@ optional arguments:
             "contamination": "auto"
         }
     }
+}
+```
+To run it without any outlier detection methods use the config below.
+```json
+{
+    "data_paths": [
+        "data/"
+    ],
+    "output_dir": "enriched_datasets/",
+    "detectors": {}
 }
 ```
 
@@ -188,6 +199,32 @@ optional arguments:
     ]
 }
 
+```
+
+### Count accuracy
+To count accuracy simply run `pv056-statistics` script. In the future, we will add Precision and Recall.
+```
+pv056-pv056-statistics --help
+usage: pv056-statistics [-h] --results-dir RESULTS_DIR [--pattern PATTERN]
+
+Script for counting basic statistic (Accuracy, )
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --results-dir RESULTS_DIR, -r RESULTS_DIR
+                        Directory with results in .csv
+  --pattern PATTERN, -p PATTERN
+                        Regex for filename (Python regex)
+```
+#### Example
+```
+(venv)$ pv056-pv056-statistics -r clf_outputs/ -p "teaching.*"
+teachingAssistant BayesNet 3e408e23621de037f4751689311eb00d.csv
+         Accuracy: 0.9073
+teachingAssistant J48 81498a187313e89f240c8ead4557906b.csv
+         Accuracy: 0.5232
+teachingAssistant J48 9f0cf2e85982a05ecf632ee428274ec3.csv
+         Accuracy: 0.5166
 ```
 
 ## How to work with Weka 3

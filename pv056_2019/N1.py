@@ -9,7 +9,7 @@ import numpy as np
 
 
 class N1Metric:
-    def findFraction(self, df):
+    def findFraction(self, df, classes):
         # num_instances = len(df.values[:, :-1])
         # print(num_instances)
 
@@ -21,15 +21,14 @@ class N1Metric:
         #            df.values[:, :-1][i], df.values[:, :-1][j]
         #        )
 
-        distances = np.triu(pairwise_distances(df.values[:, :-1]))
+        distances = np.triu(pairwise_distances(df.values))
         mst = minimum_spanning_tree(distances)
         vertices = [0] * len(df)
 
         for x in np.dstack(mst.nonzero())[0]:
-            if df.iloc[:, -1][x[0]] != df.iloc[:, -1][x[1]]:
+            if classes[x[0]] != classes[x[1]]:
                 vertices[x[0]] = 1
                 vertices[x[1]] = 1
-        print(vertices)
         return sum(vertices) / len(vertices)
 
 

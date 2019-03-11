@@ -6,6 +6,7 @@ from typing import Any, Dict
 from sklearn.ensemble import IsolationForest
 from sklearn.neighbors import LocalOutlierFactor, NearestNeighbors
 from N1 import N1Metric
+from N2 import N2Metric
 
 
 DETECTORS: Dict[str, Any] = {}
@@ -54,7 +55,9 @@ class NN(AbstractDetector):
         self.clf = NearestNeighbors(**self.settings)
         self.clf.fit(bin_dataframe.values)
         distances, _ = self.clf.kneighbors()
+        print(distances)
         self.values = np.mean(distances, axis=1)
+        print(self.values)
         return self
 
 
@@ -81,5 +84,18 @@ class N1(AbstractDetector):
         bin_dataframe = dataframe._binarize_categorical_values()
 
         self.clf = N1Metric()
-        self.values = self.clf.findFraction(bin_dataframe)
+        self.values = self.clf.findFraction(bin_dataframe, classes)
+        return self
+
+
+@detector
+class N2(AbstractDetector):
+    name = "N2"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        bin_dataframe = dataframe._binarize_categorical_values()
+
+        self.clf = N2Metric()
+        self.values = self.clf.findFraction(bin_dataframe, classes)
         return self

@@ -6,6 +6,7 @@ from typing import Any, Dict
 from sklearn.ensemble import IsolationForest
 from sklearn.neighbors import LocalOutlierFactor, NearestNeighbors
 from .F2 import F2Metric
+from .T1 import T1Metric
 
 
 DETECTORS: Dict[str, Any] = {}
@@ -82,6 +83,19 @@ class F2(AbstractDetector):
 
         self.clf = F2Metric()
         self.values = self.clf.compute_values(df=bin_dataframe, classes=classes)
+        return self
+
+
+@detector
+class T1(AbstractDetector):
+    name = "T1"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        bin_dataframe = dataframe._binarize_categorical_values()
+
+        self.clf = T1Metric()
+        self.values = self.clf.compute_values(df=bin_dataframe)
         return self
 
 

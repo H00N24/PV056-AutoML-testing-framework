@@ -204,7 +204,7 @@ optional arguments:
 ### Count accuracy
 To count accuracy simply run `pv056-statistics` script. In the future, we will add Precision and Recall.
 ```
-pv056-pv056-statistics --help
+(venv)$ pv056-statistics --help
 usage: pv056-statistics [-h] --results-dir RESULTS_DIR [--pattern PATTERN]
 
 Script for counting basic statistic (Accuracy, )
@@ -218,7 +218,7 @@ optional arguments:
 ```
 #### Example
 ```
-(venv)$ pv056-pv056-statistics -r clf_outputs/ -p "teaching.*"
+(venv)$ pv056-statistics -r clf_outputs/ -p "teaching.*"
 teachingAssistant BayesNet 3e408e23621de037f4751689311eb00d.csv
          Accuracy: 0.9073
 teachingAssistant J48 81498a187313e89f240c8ead4557906b.csv

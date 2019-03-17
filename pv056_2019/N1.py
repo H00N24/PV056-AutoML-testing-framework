@@ -13,6 +13,7 @@ class N1Metric:
             if classes[x[0]] != classes[x[1]]:
                 vertices[x[0]] = 1
                 vertices[x[1]] = 1
+
         return sum(vertices) / len(vertices)
 
 

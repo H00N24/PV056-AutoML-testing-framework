@@ -7,7 +7,8 @@ from sklearn.ensemble import IsolationForest
 from sklearn.neighbors import LocalOutlierFactor, NearestNeighbors
 from N1 import N1Metric
 from N2 import N2Metric
-
+from CL import CLMetric
+from CLD import CLDMetric
 
 DETECTORS: Dict[str, Any] = {}
 
@@ -98,4 +99,28 @@ class N2(AbstractDetector):
 
         self.clf = N2Metric()
         self.values = self.clf.findFraction(bin_dataframe, classes)
+        return self
+
+
+@detector
+class CL(AbstractDetector):
+    name = "Class likelihood"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+
+        self.clf = CLMetric()
+        self.values = self.clf.findLikelihood(dataframe, classes)
+        return self
+
+
+@detector
+class CLD(AbstractDetector):
+    name = "Class likelihood difference"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+
+        self.clf = CLDMetric()
+        self.values = self.clf.findLikelihood(dataframe, classes)
         return self

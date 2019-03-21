@@ -1,4 +1,4 @@
-# from scipy.stats import gaussian_kde
+from sklearn.neighbors import KernelDensity
 import numpy as np
 
 
@@ -13,14 +13,20 @@ class CLMetric:
             class_df = df_without_class.loc[classes == x]
 
             counter = 0
-            for cl in class_df:
+            for attr in class_df:
+                vals = class_df[attr]
                 if str(class_df.dtypes[counter]) == "float64":
-                    # gs = gaussian_kde(np.array(class_df[cl]))
-                    pass
+                    kde = KernelDensity(bandwidth=1.0, kernel="gaussian")
+                    kde.fit(vals[:, None])
+                    probs = np.exp(kde.score_samples(vals[:, None]))
+                    for index, prob in zip(
+                        [index for index, _ in vals.iteritems()], probs
+                    ):
+                        likelihood[index] *= prob
                 else:
-                    counts = dict(zip(*np.unique(class_df[cl], return_counts=True)))
-                    length = len(class_df[cl])
-                    for index, row in class_df[cl].iteritems():
+                    counts = dict(zip(*np.unique(vals, return_counts=True)))
+                    length = len(vals)
+                    for index, row in vals.iteritems():
                         likelihood[index] *= counts[row] / length
                 counter += 1
         return likelihood

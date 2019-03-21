@@ -133,5 +133,9 @@ class DataLoader:
             return DataFrameArff(data)
 
     def load_files(self):
+        if not self.file_paths:
+            raise RuntimeError(
+                "No .arff detected. Please specify a correct path and unzip data file."
+            )
         for file_path in self.file_paths:
             yield self._load_arff_file(file_path)

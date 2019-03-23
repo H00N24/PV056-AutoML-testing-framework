@@ -1,4 +1,4 @@
-# from scipy.stats import gaussian_kde
+from sklearn.neighbors import KernelDensity
 import numpy as np
 
 
@@ -14,17 +14,23 @@ class CLDMetric:
 
             counter = 0
             class_probs_cal = {}
-            for cl in class_df:
+            for attr in class_df:
+                vals = class_df[attr]
                 if str(class_df.dtypes[counter]) == "float64":
-                    # gs = gaussian_kde(np.array(class_df[cl]))
-                    # class_probs_cal[cl] = (True, counts, length)
-                    pass
+                    kde = KernelDensity(kernel="gaussian")
+                    kde.fit(vals[:, None])
+                    probs = np.exp(kde.score_samples(vals[:, None]))
+                    for index, prob in zip(
+                        [index for index, _ in vals.iteritems()], probs
+                    ):
+                        likelihood[index] *= prob
+                    class_probs_cal[attr] = ("continuous", kde)
                 else:
-                    counts = dict(zip(*np.unique(class_df[cl], return_counts=True)))
-                    length = len(class_df[cl])
-                    for index, row in class_df[cl].iteritems():
+                    counts = dict(zip(*np.unique(vals, return_counts=True)))
+                    length = len(vals)
+                    for index, row in vals.iteritems():
                         likelihood[index] *= counts[row] / length
-                    class_probs_cal[cl] = (False, counts, length)
+                    class_probs_cal[attr] = ("discrete", (counts, length))
                 counter += 1
             probs_cal[inst_class] = class_probs_cal
 
@@ -33,22 +39,23 @@ class CLDMetric:
             complement = np.delete(unique_classes, idx)
             likelihood_diff = []
             for complement_class in complement:
-                likelihood_diff_item = [1] * num_instances
-                for idx, val in probs_cal[complement_class].items():
-                    if probs_cal[complement_class][cl][0]:
-                        pass
+                likelihood_diff_item = [1.0] * num_instances
+                for attr, val in probs_cal[complement_class].items():
+                    if val[0] == "continuous":
+                        for index, row in class_df[attr].iteritems():
+                            likelihood_diff_item[index] *= np.exp(val[1].score([[row]]))
                     else:
-                        counts = probs_cal[complement_class][cl][1]
-                        length = probs_cal[complement_class][cl][2]
-                        for index, row in class_df[cl].iteritems():
+                        counts = val[1][0]
+                        length = val[1][1]
+                        for index, row in class_df[attr].iteritems():
                             try:
                                 likelihood_diff_item[index] *= counts[row] / length
                             except KeyError:
                                 likelihood_diff_item[index] = 0
                 likelihood_diff.append(likelihood_diff_item)
             likelihood_diff = np.max(likelihood_diff, axis=0)
-            for cl in class_df:
-                for index, _ in class_df[cl].iteritems():
+            for attr in class_df:
+                for index, _ in class_df[attr].iteritems():
                     likelihood[index] -= likelihood_diff[index]
 
         return likelihood

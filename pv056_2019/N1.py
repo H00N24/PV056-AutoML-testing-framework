@@ -15,11 +15,3 @@ class N1Metric:
                 vertices[x[1]] = 1
 
         return sum(vertices) / len(vertices)
-
-
-# if __name__ == "__main__":
-#    import sys
-#
-#    df = pd.read_csv(sys.argv[1], header=None)
-#    clf = N1Metric()
-#    print(clf.findFraction(df))

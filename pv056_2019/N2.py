@@ -17,7 +17,6 @@ class N2Metric:
         inter_class = []
 
         for cl in range(len(class_instances)):
-            # print(cl)
             for inst in class_instances[cl]:
                 n_neighbors = min(200, num_instances)
 
@@ -46,15 +45,4 @@ class N2Metric:
                         n_neighbors = num_instances
                 intra_class.append(intra_class_dist)
                 inter_class.append(inter_class_dist)
-        # print(inter_class)
-        # print(intra_class)
-
         return np.mean(intra_class) / np.mean(inter_class)
-
-
-# if __name__ == "__main__":
-#    import sys
-#
-#    df = pd.read_csv(sys.argv[1], header=None)
-#    clf = N2Metric()
-#    print(clf.findFraction(df))

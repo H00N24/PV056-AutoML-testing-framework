@@ -56,9 +56,7 @@ class NN(AbstractDetector):
         self.clf = NearestNeighbors(**self.settings)
         self.clf.fit(bin_dataframe.values)
         distances, _ = self.clf.kneighbors()
-        print(distances)
         self.values = np.mean(distances, axis=1)
-        print(self.values)
         return self
 
 
@@ -104,7 +102,7 @@ class N2(AbstractDetector):
 
 @detector
 class CL(AbstractDetector):
-    name = "Class likelihood"
+    name = "ClassLikelihood"
     data_type = "REAL"
 
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
@@ -116,7 +114,7 @@ class CL(AbstractDetector):
 
 @detector
 class CLD(AbstractDetector):
-    name = "Class likelihood difference"
+    name = "ClassLikelihoodDifference"
     data_type = "REAL"
 
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):

@@ -77,7 +77,7 @@ optional arguments:
     * List of directories/filenames of datasets in arff format
 * *output_dir*
     * Directory where generated datasets should be saved
-* *detetors*
+* *detectors*
     * Dictionary "Outlier detector name" : {**parametrs}
 
 ```json

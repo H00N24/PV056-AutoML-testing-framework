@@ -7,6 +7,7 @@ from sklearn.ensemble import IsolationForest
 from sklearn.neighbors import LocalOutlierFactor, NearestNeighbors
 from .F2 import F2Metric
 from .T1 import T1Metric
+from .MV import MVMetric
 
 
 DETECTORS: Dict[str, Any] = {}
@@ -112,3 +113,14 @@ class T2(AbstractDetector):
         self.values = samples_count / features_count
         return self
 
+
+@detector
+class MV(AbstractDetector):
+    name = "MV"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+
+        self.clf = MVMetric()
+        self.values = self.clf.compute_values(classes=classes)
+        return self

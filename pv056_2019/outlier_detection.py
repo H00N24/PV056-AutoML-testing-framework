@@ -8,6 +8,7 @@ from sklearn.neighbors import LocalOutlierFactor, NearestNeighbors
 from .F2 import F2Metric
 from .T1 import T1Metric
 from .MV import MVMetric
+from .CB import CBMetric
 
 
 DETECTORS: Dict[str, Any] = {}
@@ -122,5 +123,17 @@ class MV(AbstractDetector):
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
 
         self.clf = MVMetric()
+        self.values = self.clf.compute_values(classes=classes)
+        return self
+
+
+@detector
+class CB(AbstractDetector):
+    name = "CB"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+
+        self.clf = CBMetric()
         self.values = self.clf.compute_values(classes=classes)
         return self

@@ -11,6 +11,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder
 
 from pv056_2019.outlier_detection import DETECTORS
+from utils import ID_NAME
 
 warnings.simplefilter(action="ignore", category=UserWarning)
 
@@ -102,9 +103,9 @@ class DataFrameArff(pd.DataFrame):
                 -1, (detector.name, detector.data_type)
             )
 
-        if "ID" not in self.columns:
-            self.insert(loc=0, column="ID", value=self.index.values)
-            self._arff_data["attributes"].insert(0, ("ID", "NUMERIC"))
+        if ID_NAME not in self.columns:
+            self.insert(loc=0, column=ID_NAME, value=self.index.values)
+            self._arff_data["attributes"].insert(0, (ID_NAME, "NUMERIC"))
 
         return self
 

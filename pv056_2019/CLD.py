@@ -3,12 +3,26 @@ import numpy as np
 
 
 class CLDMetric:
+    def __init__(self, params):
+        self.params = params
+
     def findLikelihood(self, df, classes):
+
+        # Adjusts dataframe by removing the class column
         df_without_class = df.iloc[:, :-1]
+
+        # Find unique classes
         unique_classes = np.unique(classes)
+
+        # Number of all instances
         num_instances = len(df_without_class)
+
+        # Likelihood difference of the instance belonging to the class
         likelihood = [1] * num_instances
+
         probs_cal = {}
+
+        # Probability of the instance belonging to its class
         for inst_class in unique_classes:
             class_df = df_without_class.loc[classes == inst_class]
 
@@ -17,7 +31,7 @@ class CLDMetric:
             for attr in class_df:
                 vals = class_df[attr]
                 if str(class_df.dtypes[counter]) == "float64":
-                    kde = KernelDensity(kernel="gaussian")
+                    kde = KernelDensity(**self.params)
                     kde.fit(vals[:, None])
                     probs = np.exp(kde.score_samples(vals[:, None]))
                     for index, prob in zip(
@@ -34,6 +48,7 @@ class CLDMetric:
                 counter += 1
             probs_cal[inst_class] = class_probs_cal
 
+        # Probability the instance belonging to the different class
         for idx, inst_class in enumerate(unique_classes):
             class_df = df_without_class.loc[classes == inst_class]
             complement = np.delete(unique_classes, idx)

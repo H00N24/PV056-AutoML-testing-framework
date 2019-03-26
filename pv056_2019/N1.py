@@ -4,9 +4,18 @@ import numpy as np
 
 
 class N1Metric:
+    def __init__(self, params):
+        self.params = params
+
     def findFraction(self, df, classes):
-        distances = np.triu(pairwise_distances(df.values))
+
+        # Upper triangle of distance matrix
+        distances = np.triu(pairwise_distances(df.values, **self.params))
+
+        # Finds minimum spanning tree
         mst = minimum_spanning_tree(distances)
+
+        # Vertices that are connected to the different class
         vertices = [0] * len(df)
 
         for x in np.dstack(mst.nonzero())[0]:

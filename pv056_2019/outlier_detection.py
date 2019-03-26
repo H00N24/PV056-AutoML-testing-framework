@@ -82,7 +82,7 @@ class N1(AbstractDetector):
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
         bin_dataframe = dataframe._binarize_categorical_values()
 
-        self.clf = N1Metric()
+        self.clf = N1Metric(self.settings)
         self.values = self.clf.findFraction(bin_dataframe, classes)
         return self
 
@@ -95,7 +95,7 @@ class N2(AbstractDetector):
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
         bin_dataframe = dataframe._binarize_categorical_values()
 
-        self.clf = N2Metric()
+        self.clf = N2Metric(self.settings)
         self.values = self.clf.findFraction(bin_dataframe, classes)
         return self
 
@@ -107,7 +107,7 @@ class CL(AbstractDetector):
 
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
 
-        self.clf = CLMetric()
+        self.clf = CLMetric(self.settings)
         self.values = self.clf.findLikelihood(dataframe, classes)
         return self
 
@@ -119,6 +119,6 @@ class CLD(AbstractDetector):
 
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
 
-        self.clf = CLDMetric()
+        self.clf = CLDMetric(self.settings)
         self.values = self.clf.findLikelihood(dataframe, classes)
         return self

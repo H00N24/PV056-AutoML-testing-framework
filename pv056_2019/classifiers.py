@@ -4,8 +4,7 @@ import os
 import subprocess
 import hashlib
 
-from pv056_2019.utils import get_clf_name, yield_classifiers
-from utils import ID_NAME
+from pv056_2019.utils import get_clf_name, yield_classifiers, ID_NAME
 
 
 class ClassifierManager:

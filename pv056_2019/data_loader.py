@@ -11,7 +11,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder
 
 from pv056_2019.outlier_detection import DETECTORS
-from utils import ID_NAME
+from pv056_2019.utils import ID_NAME
 
 warnings.simplefilter(action="ignore", category=UserWarning)
 

@@ -69,8 +69,7 @@ class CLDMetric:
                                 likelihood_diff_item[index] = 0
                 likelihood_diff.append(likelihood_diff_item)
             likelihood_diff = np.max(likelihood_diff, axis=0)
-            for attr in class_df:
-                for index, _ in class_df[attr].iteritems():
-                    likelihood[index] -= likelihood_diff[index]
+            for inst in class_df.index.values.tolist():
+                likelihood[inst] -= likelihood_diff[inst]
 
         return likelihood

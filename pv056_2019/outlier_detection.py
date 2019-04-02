@@ -94,3 +94,31 @@ class CLD(AbstractDetector):
         self.clf = CLDMetric(self.settings)
         self.values = self.clf.findLikelihood(dataframe, classes)
         return self
+
+
+"""
+@detector
+class N1(AbstractDetector):
+    name = "N1"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        bin_dataframe = dataframe._binarize_categorical_values()
+
+        self.clf = N1Metric(self.settings)
+        self.values = self.clf.findFraction(bin_dataframe, classes)
+        return self
+
+
+@detector
+class N2(AbstractDetector):
+    name = "N2"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        bin_dataframe = dataframe._binarize_categorical_values()
+
+        self.clf = N2Metric(self.settings)
+        self.values = self.clf.findFraction(bin_dataframe, classes)
+        return self
+"""

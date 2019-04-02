@@ -4,7 +4,11 @@ import numpy as np
 import pandas as pd
 from typing import Any, Dict
 from sklearn.ensemble import IsolationForest
-from sklearn.neighbors import LocalOutlierFactor, NearestNeighbors, KNeighborsClassifier
+from CL import CLMetric
+from CLD import CLDMetric
+from sklearn.neighbors import LocalOutlierFactor, NearestNeighbors
+
+# from sklearn.neighbors import KNeighborsClassifier
 from .F2 import F2Metric
 from .T1 import T1Metric
 from .MV import MVMetric
@@ -70,8 +74,6 @@ class NN(AbstractDetector):
 # k nearest neighbors (using Euclidean
 # distance) for an instance that do not share its target class value
 # TODO possibility of adding k into config file
-
-
 class KDN(AbstractDetector):
     name = "KDN"
     data_type = "REAL"
@@ -200,6 +202,30 @@ class IsoForest(AbstractDetector):
 
 
 @detector
+class CL(AbstractDetector):
+    name = "ClassLikelihood"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+
+        self.clf = CLMetric(self.settings)
+        self.values = self.clf.findLikelihood(dataframe, classes)
+        return self
+
+
+@detector
+class CLD(AbstractDetector):
+    name = "ClassLikelihoodDifference"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+
+        self.clf = CLDMetric(self.settings)
+        self.values = self.clf.findLikelihood(dataframe, classes)
+        return self
+
+
+@detector
 class F2(AbstractDetector):
     name = "F2"
     data_type = "REAL"
@@ -237,6 +263,33 @@ class T2(AbstractDetector):
         features_count = len(bin_dataframe.columns)
         self.values = samples_count / features_count
         return self
+
+
+"""
+@detector
+class N1(AbstractDetector):
+    name = "N1"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        bin_dataframe = dataframe._binarize_categorical_values()
+
+        self.clf = N1Metric(self.settings)
+        self.values = self.clf.findFraction(bin_dataframe, classes)
+        return self
+
+@detector
+class N2(AbstractDetector):
+    name = "N2"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        bin_dataframe = dataframe._binarize_categorical_values()
+
+        self.clf = N2Metric(self.settings)
+        self.values = self.clf.findFraction(bin_dataframe, classes)
+        return self
+"""
 
 
 @detector

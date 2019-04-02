@@ -77,7 +77,7 @@ optional arguments:
     * List of directories/filenames of datasets in arff format
 * *output_dir*
     * Directory where generated datasets should be saved
-* *detetors*
+* *detectors*
     * Dictionary "Outlier detector name" : {**parametrs}
 
 ```json
@@ -122,6 +122,13 @@ To run it without any outlier detection methods use the config below.
 | **T2** | Ave number of points per dimension | -- |
 | **MV** | Minority value | -- |
 | **CB** | Class balance | -- |
+| **IsolationForest** | Isolation Forest | [docs](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html) |
+| **KDN** | K-Disagreeing Neighbors | n_neighbors |
+| **DS** | Disjunct size | -- |
+| **DCP** | Disjunct class percentage | min_impurity_split [docs](https://blog.nelsonliu.me/2016/08/05/gsoc-week-10-scikit-learn-pr-6954-adding-pre-pruning-to-decisiontrees/) |
+| **TD** | Tree Depth with and without prunning | -- |
+| **TDWithPrunning** | Tree Depth with prunning | min_impurity_split |
+
 
 * New methods for outlier detection coming soon!
 

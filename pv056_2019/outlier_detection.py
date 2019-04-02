@@ -4,7 +4,11 @@ import numpy as np
 import pandas as pd
 from typing import Any, Dict
 from sklearn.ensemble import IsolationForest
-from sklearn.neighbors import LocalOutlierFactor, NearestNeighbors
+from sklearn.neighbors import LocalOutlierFactor, NearestNeighbors, KNeighborsClassifier
+from TD import TDMetric
+from DCP import DCPMetric
+from DS import DSMetric
+from KDN import KDNMetric
 
 
 DETECTORS: Dict[str, Any] = {}
@@ -55,6 +59,126 @@ class NN(AbstractDetector):
         distances, _ = self.clf.kneighbors()
         self.values = np.mean(distances, axis=1)
         return self
+
+
+@detector
+# k-Disagreeing neighbors: The percentage of the
+# k nearest neighbors (using Euclidean
+# distance) for an instance that do not share its target class value
+# TODO possibility of adding k into config file
+
+
+class KDN(AbstractDetector):
+    name = "KDN"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        if "n_neighbors" in self.settings:
+            k = int(self.settings["n_neighbors"])
+        bin_dataframe = dataframe._binarize_categorical_values()
+        self.clf = KDNMetric()
+        self.values = self.clf.countKDN(bin_dataframe, classes, k)
+        print("KDN done sucessfully!")
+        return self
+
+
+@detector
+# Disjunct size: The number of instances covered by a disjunct that the investigated instance
+# belongs to divided by the number of instances covered by the largest disjunct in an
+# unpruned decision tree
+class DS(AbstractDetector):
+    name = "DS"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        bin_dataframe = dataframe._binarize_categorical_values()
+        self.clf = DSMetric()
+        self.values = self.clf.countDS(bin_dataframe, classes)
+        print("DS done sucessfully!")
+        return self
+
+
+@detector
+# Disjunct class percentage: The number of instances in a disjunct that have the same class
+# label as the investigated instance divided by the total number of instances in the disjunct in a
+# pruned decision tree
+class DCP(AbstractDetector):
+    name = "DCP"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        if "min_impurity_split" in self.settings:
+            minimum_impurity_split = float(self.settings["min_impurity_split"])
+        bin_dataframe = dataframe._binarize_categorical_values()
+        self.clf = DCPMetric()
+        self.values = self.clf.countDCP(bin_dataframe, classes, minimum_impurity_split)
+        print("DCP done sucessfully!")
+        return self
+
+
+@detector
+# Tree depth: The depth of the leaf node that classifies an instance in an induced decision tree without prunning
+class TD(AbstractDetector):
+    name = "TD"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        bin_dataframe = dataframe._binarize_categorical_values()
+        self.clf = TDMetric()
+        self.values = self.clf.findLeafDepthWithoutPrunning(bin_dataframe, classes)
+        print("TD without prunning done sucessfully!")
+        return self
+
+
+@detector
+# Tree depth: The depth of the leaf node that classifies an instance in an induced decision tree with prunning
+class TDWithPrunning(AbstractDetector):
+    name = "TDWithPrunning"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        if "min_impurity_split" in self.settings:
+            minimum_impurity_split = float(self.settings["min_impurity_split"])
+        bin_dataframe = dataframe._binarize_categorical_values()
+        self.clf = TDMetric()
+        self.values = self.clf.findLeafDepthWithPrunning(
+            bin_dataframe, classes, minimum_impurity_split
+        )
+        print("TD with prunning done sucessfully!")
+        return self
+
+
+# @detector
+# # Error rate of 1NN classifier: Leave-one-out error estimate of 1NN
+# class N3(AbstractDetector):
+#     name = "N3"
+#     data_type = "REAL"
+
+#     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+#         self.sum = 0
+#         self.clf = NearestNeighbors(n_neighbors=1)
+#         classColumnIndex = len(dataframe.columns) - 1
+#         classColumnName = dataframe.columns[classColumnIndex]
+#         neigh = KNeighborsClassifier(n_neighbors=1)
+#         bin_dataframe = dataframe._binarize_categorical_values()
+#         for index, row in dataframe.iterrows():
+#             print("Training " + repr(index) + ". classifier.")
+#             leaveOne = dataframe.index.isin([index])
+#             dataframeMinusOne = (dataframe[~leaveOne]).reset_index(drop=True)
+#             bin_dataframeMinusOne = bin_dataframe[~leaveOne].reset_index(drop=True)
+#             neigh.fit(bin_dataframeMinusOne, dataframeMinusOne[classColumnName])
+#             indices = neigh.kneighbors(
+#                 bin_dataframe[leaveOne], n_neighbors=1, return_distance=False
+#             )
+#             for i in indices:
+#                 if (
+#                     dataframeMinusOne[classColumnName][i[0]]
+#                     != dataframe[classColumnName][index]
+#                 ):
+#                     self.sum += 1
+#         self.values = self.sum / len(dataframe)
+#         print("N3 done sucessfully!")
+#         return self
 
 
 @detector

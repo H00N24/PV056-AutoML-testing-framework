@@ -4,7 +4,7 @@ import os
 import subprocess
 import hashlib
 
-from pv056_2019.utils import get_clf_name, yield_classifiers
+from pv056_2019.utils import get_clf_name, yield_classifiers, ID_NAME
 
 
 class ClassifierManager:
@@ -109,6 +109,7 @@ class ClassifierManager:
         # Prepare output folders
         # log_folder = self.create_hash_folder(dataset_path, dataset_conf_path)
 
+        """
         # Check clf_args
         depressed_args = ["-t", "-x", "-S", "-F", "-W", "-classifications"]
         for arg in clf_args:
@@ -116,6 +117,7 @@ class ClassifierManager:
                 print("Please remove '{0}' from your config file.".format(arg))
                 print("Skipping...")
                 return
+        """
 
         # Create log_file names
         final_config_str = self._create_final_config_file(
@@ -155,7 +157,9 @@ class ClassifierManager:
         ]
 
         # Add Weka filters
-        str_filters = '-F "weka.filters.unsupervised.attribute.RemoveByName -E ^INDEX$"'
+        str_filters = '-F "weka.filters.unsupervised.attribute.RemoveByName -E ^{0}$"'.format(
+            ID_NAME
+        )
         for one_filter in clf_filters:
             str_filters += '-F "{0} {1}"'.format(
                 one_filter["name"], " ".join(one_filter["args"])

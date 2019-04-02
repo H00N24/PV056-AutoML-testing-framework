@@ -31,7 +31,7 @@ $ pip install .
 ### Downloading datasets
 All data files are from [OpenML](https://www.openml.org).
 
-Data files are compressed in `data/openML-datasets.zip`. Because this file is larger than 50mb we are using git lfs (large file storage). You can read the documentation [here](https://git-lfs.github.com).
+Data files are compressed in `data/openML-datasets.zip` (you have to unzip it). Because this file is larger than 50mb we are using git lfs (large file storage). You can read the documentation [here](https://git-lfs.github.com).
 
 #### TL;DR
 Run commands below in the root folder of this repo.
@@ -39,6 +39,7 @@ Run commands below in the root folder of this repo.
 $ sudo apt install git-lfs
 $ git lfs install
 $ git lfs pull
+$ cd data && unzip openML-datasets.zip
 ```
 
 
@@ -76,7 +77,7 @@ optional arguments:
     * List of directories/filenames of datasets in arff format
 * *output_dir*
     * Directory where generated datasets should be saved
-* *detetors*
+* *detectors*
     * Dictionary "Outlier detector name" : {**parametrs}
 
 ```json
@@ -116,6 +117,22 @@ To run it without any outlier detection methods use the config below.
 | **LOF** | Local Outlier Factor | [docs](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.LocalOutlierFactor.html) |
 | **NearestNeighbors** | Nearest Neighbors | [docs](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.NearestNeighbors.html) |
 | **IsolationForest** | Isolation Forest | [docs](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html)
+| **ClassLikelihood** | Class Likelihood | [docs](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KernelDensity.html)
+| **ClassLikelihoodDifference** | Class Likelihood Difference | [docs](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KernelDensity.html)
+| **F2** | Max individual feature efficiency | -- |
+| **F3** | Maximum Individual Feature Efficiency | -- |
+| **F4** | Collective Feature Efficiency | -- |
+| **T1** | Fraction of maximum covering spheres | -- |
+| **T2** | Ave number of points per dimension | -- |
+| **MV** | Minority value | -- |
+| **CB** | Class balance | -- |
+| **IsolationForest** | Isolation Forest | [docs](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html) |
+| **KDN** | K-Disagreeing Neighbors | n_neighbors |
+| **DS** | Disjunct size | -- |
+| **DCP** | Disjunct class percentage | min_impurity_split [docs](https://blog.nelsonliu.me/2016/08/05/gsoc-week-10-scikit-learn-pr-6954-adding-pre-pruning-to-decisiontrees/) |
+| **TD** | Tree Depth with and without prunning | -- |
+| **TDWithPrunning** | Tree Depth with prunning | min_impurity_split |
+
 
 * New methods for outlier detection coming soon!
 
@@ -204,7 +221,7 @@ optional arguments:
 ### Count accuracy
 To count accuracy simply run `pv056-statistics` script. In the future, we will add Precision and Recall.
 ```
-pv056-pv056-statistics --help
+(venv)$ pv056-statistics --help
 usage: pv056-statistics [-h] --results-dir RESULTS_DIR [--pattern PATTERN]
 
 Script for counting basic statistic (Accuracy, )
@@ -218,7 +235,7 @@ optional arguments:
 ```
 #### Example
 ```
-(venv)$ pv056-pv056-statistics -r clf_outputs/ -p "teaching.*"
+(venv)$ pv056-statistics -r clf_outputs/ -p "teaching.*"
 teachingAssistant BayesNet 3e408e23621de037f4751689311eb00d.csv
          Accuracy: 0.9073
 teachingAssistant J48 81498a187313e89f240c8ead4557906b.csv

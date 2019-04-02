@@ -5,6 +5,10 @@ import pandas as pd
 from typing import Any, Dict
 from sklearn.ensemble import IsolationForest
 from sklearn.neighbors import LocalOutlierFactor, NearestNeighbors, KNeighborsClassifier
+from .F2 import F2Metric
+from .T1 import T1Metric
+from .MV import MVMetric
+from .CB import CBMetric
 from TD import TDMetric
 from DCP import DCPMetric
 from DS import DSMetric
@@ -192,4 +196,68 @@ class IsoForest(AbstractDetector):
         self.clf = IsolationForest(**self.settings)
         self.clf.fit(bin_dataframe.values)
         self.values = self.clf.decision_function(bin_dataframe.values)
+        return self
+
+
+@detector
+class F2(AbstractDetector):
+    name = "F2"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        bin_dataframe = dataframe._binarize_categorical_values()
+
+        self.clf = F2Metric()
+        self.values = self.clf.compute_values(df=bin_dataframe, classes=classes)
+        return self
+
+
+@detector
+class T1(AbstractDetector):
+    name = "T1"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        bin_dataframe = dataframe._binarize_categorical_values()
+
+        self.clf = T1Metric()
+        self.values = self.clf.compute_values(df=bin_dataframe)
+        return self
+
+
+@detector
+class T2(AbstractDetector):
+    name = "T2"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        bin_dataframe = dataframe._binarize_categorical_values()
+
+        samples_count = len(bin_dataframe.index)
+        features_count = len(bin_dataframe.columns)
+        self.values = samples_count / features_count
+        return self
+
+
+@detector
+class MV(AbstractDetector):
+    name = "MV"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+
+        self.clf = MVMetric()
+        self.values = self.clf.compute_values(classes=classes)
+        return self
+
+
+@detector
+class CB(AbstractDetector):
+    name = "CB"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+
+        self.clf = CBMetric()
+        self.values = self.clf.compute_values(classes=classes)
         return self

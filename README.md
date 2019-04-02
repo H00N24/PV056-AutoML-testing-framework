@@ -116,12 +116,19 @@ To run it without any outlier detection methods use the config below.
 |:----:|:----------:|:----------:|
 | **LOF** | Local Outlier Factor | [docs](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.LocalOutlierFactor.html) |
 | **NearestNeighbors** | Nearest Neighbors | [docs](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.NearestNeighbors.html) |
+| **IsolationForest** | Isolation Forest | [docs](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html)
+| **F2** | Max individual feature efficiency | -- |
+| **T1** | Fraction of maximum covering spheres | -- |
+| **T2** | Ave number of points per dimension | -- |
+| **MV** | Minority value | -- |
+| **CB** | Class balance | -- |
 | **IsolationForest** | Isolation Forest | [docs](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html) |
 | **KDN** | K-Disagreeing Neighbors | n_neighbors |
 | **DS** | Disjunct size | -- |
 | **DCP** | Disjunct class percentage | min_impurity_split [docs](https://blog.nelsonliu.me/2016/08/05/gsoc-week-10-scikit-learn-pr-6954-adding-pre-pruning-to-decisiontrees/) |
 | **TD** | Tree Depth with and without prunning | -- |
 | **TDWithPrunning** | Tree Depth with prunning | min_impurity_split |
+
 
 * New methods for outlier detection coming soon!
 

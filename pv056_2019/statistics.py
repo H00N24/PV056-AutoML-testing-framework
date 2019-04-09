@@ -33,15 +33,15 @@ def main():
     args = vars(parser.parse_args())
 
     files = sorted([x for x in os.listdir(args["results_dir"]) if x.endswith(".csv")])
-
+    print("Dataset", "Classifier", "Configuration", "Accuracy", sep=";")
     for fl in files:
         if not args["pattern"].match(fl):
             continue
-        print(*fl.split("_"))
+        print(*fl.split("_"), sep=";", end=";")
         dataframe = pd.read_csv(os.path.join(args["results_dir"], fl))
         all_results = dataframe.shape[0]
-        accuracy = np.sum(dataframe["actual"] == dataframe["predicted"]) / all_results
-        print("\t Accuracy: {:.4f}".format(accuracy))
+        accuracy = np.sum(dataframe["error"] != "+") / all_results
+        print("{:.6f}".format(accuracy))
 
 
 if __name__ == "__main__":

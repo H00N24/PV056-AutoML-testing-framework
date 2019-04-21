@@ -1,0 +1,9 @@
+{
+  "data_paths": [
+    "data/openML-datasets/car.arff"
+  ],
+  "detectors": {
+    "NearestNeighbors" : {}
+  },
+  "output_dir" : "data/"
+}

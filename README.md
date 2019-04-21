@@ -120,6 +120,8 @@ To run it without any outlier detection methods use the config below.
 | **ClassLikelihood** | Class Likelihood | [docs](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KernelDensity.html)
 | **ClassLikelihoodDifference** | Class Likelihood Difference | [docs](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KernelDensity.html)
 | **F2** | Max individual feature efficiency | -- |
+| **F3** | Maximum Individual Feature Efficiency | -- |
+| **F4** | Collective Feature Efficiency | -- |
 | **T1** | Fraction of maximum covering spheres | -- |
 | **T2** | Ave number of points per dimension | -- |
 | **MV** | Minority value | -- |

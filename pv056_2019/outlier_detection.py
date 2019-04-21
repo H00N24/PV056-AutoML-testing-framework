@@ -4,8 +4,8 @@ import numpy as np
 import pandas as pd
 from typing import Any, Dict
 from sklearn.ensemble import IsolationForest
-from CL import CLMetric
-from CLD import CLDMetric
+from pv056_2019.CL import CLMetric
+from pv056_2019.CLD import CLDMetric
 from sklearn.neighbors import LocalOutlierFactor, NearestNeighbors
 
 # from sklearn.neighbors import KNeighborsClassifier
@@ -13,11 +13,11 @@ from .F2 import F2Metric
 from .T1 import T1Metric
 from .MV import MVMetric
 from .CB import CBMetric
-from TD import TDMetric
-from DCP import DCPMetric
-from DS import DSMetric
-from KDN import KDNMetric
-from AutoEncoder import AutoEncoder
+from pv056_2019.TD import TDMetric
+from pv056_2019.DCP import DCPMetric
+from pv056_2019.DS import DSMetric
+from pv056_2019.KDN import KDNMetric
+from pv056_2019.AutoEncoder import AutoEncoder
 
 
 DETECTORS: Dict[str, Any] = {}
@@ -203,6 +203,37 @@ class IsoForest(AbstractDetector):
 
 
 @detector
+class F3(AbstractDetector):
+    name = "F3"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        bin_dataframe = dataframe._binarize_categorical_values()
+        classes = list(set(bin_dataframe.iloc[:, -1].values))
+        num_rows = bin_dataframe.shape[0]
+        max_ratios_arr = []
+        df1 = bin_dataframe.loc[bin_dataframe.iloc[:, -1] == classes[0]]
+        df2 = bin_dataframe.loc[bin_dataframe.iloc[:, -1] == classes[1]]
+        df1.drop(df1.columns[len(df1.columns) - 1], axis=1, inplace=True)
+        df2.drop(df2.columns[len(df2.columns) - 1], axis=1, inplace=True)
+
+        for col in df1:
+            overlap_min = max(df1[col].min(), df2[col].min())
+            overlap_max = min(df1[col].max(), df2[col].max())
+            num_overlaps = len(
+                bin_dataframe[
+                    (bin_dataframe[col] <= overlap_max)
+                    & (bin_dataframe[col] >= overlap_min)
+                ]
+            )
+            ratio = (num_rows - num_overlaps) / num_rows
+            max_ratios_arr.append(ratio)
+
+        self.values = np.array([max(max_ratios_arr)] * bin_dataframe.shape[0])
+        return self
+
+
+@detector
 class CL(AbstractDetector):
     name = "ClassLikelihood"
     data_type = "REAL"
@@ -233,7 +264,6 @@ class F2(AbstractDetector):
 
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
         bin_dataframe = dataframe._binarize_categorical_values()
-
         self.clf = F2Metric()
         self.values = self.clf.compute_values(df=bin_dataframe, classes=classes)
         return self
@@ -246,10 +276,66 @@ class T1(AbstractDetector):
 
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
         bin_dataframe = dataframe._binarize_categorical_values()
-
         self.clf = T1Metric()
         self.values = self.clf.compute_values(df=bin_dataframe)
         return self
+
+
+@detector
+class F4(AbstractDetector):
+    name = "F4"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        bin_dataframe = dataframe._binarize_categorical_values()
+        classes = list(set(bin_dataframe.iloc[:, -1].values))
+        num_rows_initial = bin_dataframe.shape[0]
+
+        while len(bin_dataframe.columns) != 1:  # only class left
+            num_rows = bin_dataframe.shape[0]
+            df1 = bin_dataframe.loc[bin_dataframe.iloc[:, -1] == classes[0]]
+            df2 = bin_dataframe.loc[bin_dataframe.iloc[:, -1] == classes[1]]
+            df1.drop(df1.columns[len(df1.columns) - 1], axis=1, inplace=True)
+            df2.drop(df2.columns[len(df2.columns) - 1], axis=1, inplace=True)
+
+            feature, overlap_min, overlap_max = self.find_best_F3_feature(
+                bin_dataframe, df1, df2, num_rows
+            )
+            bin_dataframe = bin_dataframe.loc[
+                (bin_dataframe[feature] >= overlap_min)
+                & (bin_dataframe[feature] <= overlap_max)
+            ]
+            bin_dataframe.drop(columns=[feature], inplace=True)
+
+        rows_left = bin_dataframe.shape[0]
+        F4_measure = (num_rows_initial - rows_left) / num_rows_initial
+        self.values = np.array([F4_measure] * bin_dataframe.shape[0])
+        return self
+
+    @staticmethod
+    def find_best_F3_feature(bin_dataframe, df1, df2, num_rows):
+        feature = None
+        max_ratio = 0
+        feature_overlap_min = 0
+        feature_overlap_max = 0
+
+        for col in df1:
+            overlap_min = max(df1[col].min(), df2[col].min())
+            overlap_max = min(df1[col].max(), df2[col].max())
+            num_overlaps = len(
+                bin_dataframe[
+                    (bin_dataframe[col] <= overlap_max)
+                    & (bin_dataframe[col] >= overlap_min)
+                ]
+            )
+            ratio = (num_rows - num_overlaps) / num_rows
+            if ratio > max_ratio:
+                feature = col
+                max_ratio = ratio
+                feature_overlap_min = overlap_min
+                feature_overlap_max = overlap_max
+
+        return feature, feature_overlap_min, feature_overlap_max
 
 
 @detector

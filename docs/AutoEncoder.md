@@ -20,6 +20,20 @@ Trains defined Neural Network on the whole dataset and evaulates output for each
 * 1 <= BATCH_SIZE(int) >= SIZE_OF_DATASET, default = 40
 * 1 <= EPOCHS(int), default = 200
 * OPTIMIZER(str) from [keras.optimizers](https://keras.io/optimizers/), default: "keras.optimizers.adam()"
-* LAYERS(str) -- list of number of neurons in the given layers, default = "[20,5,20]" for 3 layers
+* LAYERS(str) -- list of number of neurons in the given hidden layers (does not include input and output), default = "[20,5,20]" for 3 layers
 * ACTIVATION(str) -- name of activation function [activations](https://keras.io/activations/), default = "tanh"
-* LOSS -- name of a loss function for training neural net from [losses](https://keras.io/losses/), default = "mean_squared_error"
+* LOSS(str) -- name of a loss function for training neural net from [losses](https://keras.io/losses/), default = "mean_squared_error"
+
+e.g. 
+```
+"detectors": {
+    "AutoEncoder" : {
+      "batch_size": 40,
+      "epochs": 200,
+      "optimizer": "keras.optimizers.adam()",
+      "layers": "[20,5,20]",
+      "activation": "tanh",
+      "loss": "mean_squared_error"
+    }
+  },
+```

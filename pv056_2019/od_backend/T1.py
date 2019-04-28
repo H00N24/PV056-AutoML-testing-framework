@@ -4,7 +4,6 @@ import scipy.cluster.hierarchy as hcluster
 
 
 class T1Metric:
-
     @staticmethod
     def compute_values(df: pd.DataFrame):
         thresh = 1.5

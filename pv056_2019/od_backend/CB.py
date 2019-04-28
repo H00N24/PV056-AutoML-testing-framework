@@ -2,7 +2,6 @@ import numpy as np
 
 
 class CBMetric:
-
     @staticmethod
     def compute_values(classes: np.array):
         classes_list, counts = np.unique(classes, return_counts=True)

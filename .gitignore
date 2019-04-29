@@ -2,6 +2,9 @@
 weka-3-8-3/
 logs/
 
+# jupyter
+*.ipynb
+
 # Data files
 *.json
 *.data

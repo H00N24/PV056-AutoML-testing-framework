@@ -3,7 +3,7 @@ from __future__ import absolute_import
 import os
 import warnings
 import re
-from typing import Any, Dict, List, Union, Optional
+from typing import Any, Dict, List, Optional
 
 import arff
 import numpy as np
@@ -129,24 +129,6 @@ class DataFrameArff(pd.DataFrame):
         )
 
         return new_frame
-
-    def apply_outlier_detectors(
-        self, detectors: Dict[str, Dict[str, Union[str, int, float]]]
-    ):
-        results = []
-        for name, settings in detectors.items():
-            detector = DETECTORS[name](**settings)
-            results.append(detector.compute_scores(self, self[self.columns[-1]]))
-
-        for detector in results:
-            self.insert(
-                loc=len(self.columns) - 1, column=detector.name, value=detector.values
-            )
-            self._arff_data["attributes"].insert(
-                -1, (detector.name, detector.data_type)
-            )
-
-        return self
 
     def select_by_index(self, index: np.array):
         dataframe = self.iloc[index]

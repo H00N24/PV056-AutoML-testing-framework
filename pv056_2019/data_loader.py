@@ -2,7 +2,8 @@ from __future__ import absolute_import
 
 import os
 import warnings
-from typing import Any, Dict, Iterable, List, Union, Optional
+import re
+from typing import Any, Dict, List, Union, Optional
 
 import arff
 import numpy as np
@@ -11,7 +12,8 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder
 
 from pv056_2019.outlier_detection import DETECTORS
-from pv056_2019.utils import ID_NAME
+from pv056_2019.utils import ID_NAME, OD_VALUE_NAME
+from pv056_2019.schemas import OutlierDetectorSchema
 
 warnings.simplefilter(action="ignore", category=UserWarning)
 
@@ -62,7 +64,9 @@ class DataFrameArff(pd.DataFrame):
                     missing_values=np.nan, strategy="mean"
                 )  # XXX settings
 
-                real_values = self[attr].values
+                real_values = self[attr].values.astype(
+                    float if values.lower() == "real" else int
+                )
                 if real_values.dtype == np.dtype("O"):
                     imputer = imputer.set_params(
                         missing_values=None, strategy="constant", fill_value=0
@@ -100,6 +104,32 @@ class DataFrameArff(pd.DataFrame):
             self._arff_data["attributes"].insert(0, (ID_NAME, "NUMERIC"))
         return self
 
+    def apply_outlier_detector(self, detector_schema: OutlierDetectorSchema):
+        detector = DETECTORS[detector_schema.name](**detector_schema.parameters)
+
+        dataframe_without_id = DataFrameArff(
+            self.loc[:, self.columns != ID_NAME].values,
+            columns=self.columns[self.columns != ID_NAME],
+        )
+        dataframe_without_id._arff_data = {
+            **self._arff_data,
+            "attributes": [x for x in self._arff_data["attributes"] if x[0] != ID_NAME],
+        }
+
+        detector.compute_scores(dataframe_without_id, self[self.columns[-1]])
+
+        new_frame = DataFrameArff(self.values, columns=self.columns)
+        new_frame._arff_data = self._arff_data
+
+        new_frame.insert(
+            loc=len(self.columns) - 1, column=OD_VALUE_NAME, value=detector.values
+        )
+        new_frame._arff_data["attributes"].insert(
+            -1, (OD_VALUE_NAME, detector.data_type)
+        )
+
+        return new_frame
+
     def apply_outlier_detectors(
         self, detectors: Dict[str, Dict[str, Union[str, int, float]]]
     ):
@@ -127,15 +157,23 @@ class DataFrameArff(pd.DataFrame):
 
 
 class DataLoader:
-    def __init__(self, data_paths: Iterable[str]):
+    def __init__(self, data_path: str, regex: str = r".*"):
+        self._reg = re.compile(regex)
         self.file_paths: List[str] = []
-        for path in data_paths:
-            if os.path.isdir(path):
-                files = (x for x in os.listdir(path) if x.endswith(".arff"))
-                for file_name in files:
-                    self.file_paths.append(os.path.join(path, file_name))
-            elif os.path.isfile(path) and path.endswith(".arff"):
-                self.file_paths.append(path)
+        if os.path.isdir(data_path):
+            files = (
+                x
+                for x in os.listdir(data_path)
+                if x.endswith(".arff") and self._reg.match(x)
+            )
+            for file_name in files:
+                self.file_paths.append(os.path.join(data_path, file_name))
+        elif (
+            os.path.isfile(data_path)
+            and data_path.endswith(".arff")
+            and self._reg.match(data_path)
+        ):
+            self.file_paths.append(data_path)
 
         self.file_paths = sorted(self.file_paths, key=lambda x: os.path.getsize(x))
 

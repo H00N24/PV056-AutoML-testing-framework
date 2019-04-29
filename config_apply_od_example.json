@@ -1,0 +1,20 @@
+{
+    "train_split_dir": "data/train_split/",
+    "test_split_dir": "data/test_split/",
+    "train_od_dir": "data/train_od/",
+    "od_methods": [
+        {
+            "name": "IsolationForest",
+            "parameters": {
+                "contamination": "auto",
+                "behaviour": "new"
+            }
+        },
+        {
+            "name": "LOF",
+            "parameters": {
+                "contamination": "auto"
+            }
+        }
+    ]
+}

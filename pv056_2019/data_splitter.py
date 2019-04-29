@@ -26,7 +26,7 @@ def main():
     with open(args["config_file"]) as json_file:
         conf = SplitterSchema(**json.load(json_file))
 
-    data_loader = DataLoader(conf.data_paths)
+    data_loader = DataLoader(conf.data_path)
 
     datasets_output = []
     for dataframe in data_loader.load_files():

@@ -8,6 +8,7 @@ import json
 
 DATETIME_FORMAT = "%Y-%m-%d_%H-%M-%S"
 ID_NAME = "ID"
+OD_VALUE_NAME = "OD_VALUE"
 
 
 def load_config_clf(config_path):

@@ -41,7 +41,7 @@ def main():
         json.dump(conf.detectors, ol_config)
 
     datasets_config: List[Tuple[str, str]] = []
-    data_loader = DataLoader(conf.data_paths)
+    data_loader = DataLoader(conf.data_path)
     for dataframe in data_loader.load_files():
         try:
             print("Processing:", dataframe._arff_data["relation"], flush=True)

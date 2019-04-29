@@ -15,6 +15,7 @@ setup(
         "console_scripts": [
             "pv056-enrich-data=pv056_2019.enrich_data:main",
             "pv056-split-data=pv056_2019.data_splitter:main",
+            "pv056-apply-od-methods=pv056_2019.apply_od_methods:main",
             "pv056-run-clf=pv056_2019.main_clf:main",
             "pv056-statistics=pv056_2019.statistics:main",
         ]

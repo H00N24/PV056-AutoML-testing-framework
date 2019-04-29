@@ -33,6 +33,20 @@ class ODStepConfigSchema(TrainTestSplitSchema):
     train_od_dir: str
 
 
+class RemoveOutliersConfigSchema(BaseModel):
+    test_split_dir: str
+    train_od_dir: str
+    percentage: int
+    train_removed_dir: str
+
+    @validator("percentage")
+    def percentage_validator(cls, value):
+        if value >= 100 or value < 0:
+            raise ValueError("Percentage of removed outliers must be between 0 and 100")
+
+        return value
+
+
 class OutlierDataSchema(BaseModel):
     data_paths: List[str]
     output_dir: str

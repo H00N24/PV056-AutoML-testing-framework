@@ -38,7 +38,7 @@ def main():
     try:
         for od_settings in conf.od_methods:
             hex_name = md5(od_settings.json(sort_keys=True).encode("UTF-8")).hexdigest()
-            print("Applying", od_settings.name, "(" + hex_name + ")")
+            print("Applying", od_settings.name, "(" + hex_name + ")", flush=True)
             config_save_path = os.path.join(conf.train_od_dir, hex_name + ".json")
             with open(config_save_path, "w") as out_config:
                 out_config.write(od_settings.json(sort_keys=True))
@@ -49,7 +49,7 @@ def main():
                 od_frame = dataframe.apply_outlier_detector(od_settings)
 
                 file_basename = os.path.basename(train_file_path)
-                print("   ", file_basename)
+                print("   ", file_basename, flush=True)
                 file_name = file_basename.replace(
                     "_train.arff", "_" + hex_name + "_train.arff"
                 )

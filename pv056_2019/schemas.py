@@ -3,12 +3,18 @@ from typing import List, Dict, Union
 from pv056_2019.outlier_detection import DETECTORS
 
 
+class SplitterSchema(BaseModel):
+    data_paths: List[str]
+    train_split_dir: str
+    test_split_dir: str
+
+
 class OutlierDataSchema(BaseModel):
     data_paths: List[str]
+    output_dir: str
     detectors: Dict[str, Dict[str, Union[float, str]]] = {
         x: {} for x in DETECTORS.keys()
     }
-    output_dir: str
 
     @validator("detectors", whole=True)
     def supported_detectors(cls, values):

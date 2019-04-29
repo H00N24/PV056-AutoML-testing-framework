@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 import os
 import warnings
-from typing import Any, Dict, Iterable, List, Union
+from typing import Any, Dict, Iterable, List, Union, Optional
 
 import arff
 import numpy as np
@@ -17,20 +17,27 @@ warnings.simplefilter(action="ignore", category=UserWarning)
 
 
 class DataFrameArff(pd.DataFrame):
-    def __init__(self, arff_data: dict):
-        columns = [x[0] for x in arff_data["attributes"]]
+    def __init__(self, *args, **kwargs):
+        arff_data: Optional[dict] = kwargs.pop("arff_data", None)
+        if arff_data is None:
+            super().__init__(*args, **kwargs)
+        else:
+            columns = [x[0] for x in arff_data["attributes"]]
 
-        super().__init__(arff_data["data"], columns=columns)
+            super().__init__(arff_data["data"], columns=columns, **kwargs)
 
-        self._arff_data: Dict[str, Any] = {}
-        for key, item in arff_data.items():
-            if key.lower() != "data":
-                self._arff_data.update({key: item})
+            self._arff_data: Dict[str, Any] = {}
+            for key, item in arff_data.items():
+                if key.lower() != "data":
+                    self._arff_data.update({key: item})
 
-    def arff_dumps(self):
+    def arff_data(self):
         data = self._arff_data
         data.update({"data": self.replace(np.nan, None).values.tolist()})
-        return arff.dumps(data)
+        return data
+
+    def arff_dumps(self):
+        return arff.dumps(self.arff_data())
 
     def arff_dump(self, file_path: str):
         with open(file_path, "w") as output_file:
@@ -87,6 +94,12 @@ class DataFrameArff(pd.DataFrame):
 
         return encoded_dataframe
 
+    def add_index_column(self):
+        if ID_NAME not in self.columns:
+            self.insert(loc=0, column=ID_NAME, value=self.index.values)
+            self._arff_data["attributes"].insert(0, (ID_NAME, "NUMERIC"))
+        return self
+
     def apply_outlier_detectors(
         self, detectors: Dict[str, Dict[str, Union[str, int, float]]]
     ):
@@ -103,11 +116,14 @@ class DataFrameArff(pd.DataFrame):
                 -1, (detector.name, detector.data_type)
             )
 
-        if ID_NAME not in self.columns:
-            self.insert(loc=0, column=ID_NAME, value=self.index.values)
-            self._arff_data["attributes"].insert(0, (ID_NAME, "NUMERIC"))
-
         return self
+
+    def select_by_index(self, index: np.array):
+        dataframe = self.iloc[index]
+        arff_dataframe = DataFrameArff(dataframe.values, columns=self.columns)
+        arff_dataframe._arff_data = self._arff_data
+
+        return arff_dataframe
 
 
 class DataLoader:
@@ -131,7 +147,7 @@ class DataLoader:
     def _load_arff_file(file_path: str) -> DataFrameArff:
         with open(file_path) as arff_file:
             data = arff.load(arff_file)
-            return DataFrameArff(data)
+            return DataFrameArff(arff_data=data)
 
     def load_files(self):
         if not self.file_paths:

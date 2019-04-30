@@ -47,6 +47,10 @@ def main():
                 continue
 
             new_frame = dataframe.select_by_od_quantile(1 - (conf.percentage / 100))
+            new_frame.pop(OD_VALUE_NAME)
+            new_frame._arff_data["attributes"] = [
+                x for x in new_frame._arff_data["attributes"] if x[0] != OD_VALUE_NAME
+            ]
             print("   ", train_file_path)
             name_split = os.path.basename(train_file_path).split("_")
             name_split.insert(-1, "removed-{:03d}".format(conf.percentage))

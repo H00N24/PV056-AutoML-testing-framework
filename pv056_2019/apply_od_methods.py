@@ -1,5 +1,4 @@
 import argparse
-import csv
 import json
 import os
 import sys
@@ -14,12 +13,6 @@ def main():
         description="Apply outlier detection methods to training data"
     )
     parser.add_argument("--config-file", "-c", required=True, help="JSON configuration")
-    parser.add_argument(
-        "--datasets-file",
-        "-d",
-        required=True,
-        help="Filename of output datasets config",
-    )
 
     args = vars(parser.parse_args())
 
@@ -27,13 +20,6 @@ def main():
         conf = ODStepConfigSchema(**json.load(json_file))
 
     train_data_loader = DataLoader(conf.train_split_dir, regex=r".*_train\.arff")
-    test_data_loader = DataLoader(conf.test_split_dir, regex=r".*_test\.arff")
-
-    test_data_dict = {
-        os.path.basename(path).replace("_test.arff", ""): path
-        for path in test_data_loader.file_paths
-    }
-    datasets_output = []
 
     try:
         for od_settings in conf.od_methods:
@@ -57,19 +43,8 @@ def main():
 
                 od_frame.arff_dump(file_save_path)
 
-                datasets_output.append(
-                    [
-                        file_save_path,
-                        test_data_dict[file_basename.replace("_train.arff", "")],
-                        config_save_path,
-                    ]
-                )
     except KeyboardInterrupt:
         print("\nInterupted!", flush=True, file=sys.stderr)
-
-    with open(args["datasets_file"], "w") as datasets_file:
-        writer = csv.writer(datasets_file, delimiter=",")
-        writer.writerows(datasets_output)
 
     print("Done")
 

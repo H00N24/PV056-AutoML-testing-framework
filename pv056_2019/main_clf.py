@@ -1,7 +1,12 @@
 import argparse
+import csv
+import json
 import os
+import subprocess
+from multiprocessing import Process, Queue
+
 from pv056_2019.classifiers import ClassifierManager
-from pv056_2019.utils import load_config_clf, load_config_data
+from pv056_2019.schemas import RunClassifiersCongfigSchema
 
 
 def _valid_config_path(path):
@@ -13,29 +18,53 @@ def _valid_config_path(path):
         return path
 
 
+def weka_worker(queue):
+    while not queue.empty():
+        args = queue.get()
+        message = "\nRunning {}:\n\tTrain: {}\n\tTest:{}\n".format(
+            args[4], args[6], args[8]
+        )
+        print(message, flush=True)
+        subprocess.run(args, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+
 def main():
     parser = argparse.ArgumentParser(description="PV056-AutoML-testing-framework")
     parser.add_argument(
-        "-cc",
+        "-c",
         "--config-clf",
         type=_valid_config_path,
         help="path to classifiers config file",
         required=True,
     )
     parser.add_argument(
-        "-cd",
-        "--config-data",
+        "-d",
+        "--datasets-csv",
         type=_valid_config_path,
-        help="path to datasets config file",
+        help="Path to csv with data files",
         required=True,
     )
     args = parser.parse_args()
 
-    logs_folder, weka_jar_path, classifiers = load_config_clf(args.config_clf)
-    dataset_paths = load_config_data(args.config_data)
+    with open(args.config_clf, "r") as config_file:
+        conf = RunClassifiersCongfigSchema(**json.load(config_file))
 
-    clf_man = ClassifierManager(logs_folder, weka_jar_path)
-    clf_man.run(classifiers, dataset_paths)
+    datasets = []
+    with open(args.datasets_csv, "r") as datasets_csv_file:
+        reader = csv.reader(datasets_csv_file, delimiter=",")
+        datasets = [row for row in reader]
+
+    clf_man = ClassifierManager(conf.output_folder, conf.weka_jar_path)
+
+    queue = Queue()
+    clf_man.fill_queue_and_create_configs(queue, conf.classifiers, datasets)
+
+    pool = [Process(target=weka_worker, args=(queue,)) for _ in range(conf.n_jobs)]
+
+    [process.start() for process in pool]
+    [process.join() for process in pool]
+
+    print("Done")
 
 
 if __name__ == "__main__":

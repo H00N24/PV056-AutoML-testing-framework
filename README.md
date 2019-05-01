@@ -45,69 +45,93 @@ $ cd data && unzip openML-datasets.zip
 
 ## Usage
 If you have chosen to install this tester in the virtual environment, you must activate it to proceed.
-* *Pipeline:* enrich data -> run classifiers -> (optional) statistics
+* *Pipeline 1:* split data -> run classifiers -> (optional) statistics
+* *Pipeline 2 (outlier detection):* split data -> apply outlier detectors -> remove outliers -> run classifiers -> (optional) statistics
 
-### Enriching data with outlier detection methods
-This step enriches datasets with new values from all outlier methods specified in a configuration file and adds a new column "INDEX" which we need for weka. This column is not used for classification. It also generates a configuration file (`datasets-config-file`), which contains paths to the new datasets for the second part of this framework.
 
+### Split data
 ```
-(venv)$ pv056-enrich-data --help
+(venv)$ pv056-split-data --help
+usage: pv056-split-data [-h] --config-file CONFIG_FILE --datasets-file
+                        DATASETS_FILE
 
-usage: pv056-enrich-data [-h] --config-file CONFIG_FILE --datasets-config-file
-                         DATASETS_CONFIG_FILE
-
-Script enriches datasets with new values based on outlier detection methods.
-Available outlier detection methods: LOF, NearestNeighbors, IsolationForest
+Script splits datasets for cross-validation
 
 optional arguments:
   -h, --help            show this help message and exit
   --config-file CONFIG_FILE, -c CONFIG_FILE
                         JSON configuration
-  --datasets-config-file DATASETS_CONFIG_FILE, -d DATASETS_CONFIG_FILE
+  --datasets-file DATASETS_FILE, -d DATASETS_FILE
                         Filename of output datasets config
 ```
-
 #### Example usage
 ```
-(venv)$ pv056-enrich-data -c config_enrich_example.json -d config_datasets_example.json
+(venv)$ pv056-split-data -c config_split_example.json -d datasets.csv
 ```
 
-#### Example of configuration file
-* *data_paths*
-    * List of directories/filenames of datasets in arff format
-* *output_dir*
-    * Directory where generated datasets should be saved
-* *detectors*
-    * Dictionary "Outlier detector name" : {**parametrs}
+#### Example config file
+* *data_path*
+    * Directory with datasets in arff format
+* *train_split_dir*
+    * Directory where generated **train** datasets should be saved
+* *test_split_dir*
+    * Directory where generated **test** datasets should be saved
 
 ```json
 {
-    "data_paths": [
-        "data/"
-    ],
-    "output_dir": "enriched_datasets/",
-    "detectors": {
-        "LOF": {
-            "contamination": "auto"
-        },
-        "NearestNeighbors": {
-            "n_neighbors": 20
-        },
-        "IsolationForest": {
-            "behaviour": "new",
-            "contamination": "auto"
-        }
-    }
+    "data_path": "data/datasets/",
+    "train_split_dir": "data/train_split/",
+    "test_split_dir": "data/test_split/"
 }
 ```
-To run it without any outlier detection methods use the config below.
+
+### Apply outlier detection methods
+```
+(venv)$ pv056-apply-od-methods --help
+usage: pv056-apply-od-methods [-h] --config-file CONFIG_FILE
+
+Apply outlier detection methods to training data
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --config-file CONFIG_FILE, -c CONFIG_FILE
+                        JSON configuration
+```
+#### Example usage
+```
+(venv)$ pv056-apply-od-methods -c config_apply_od_example.json
+```
+
+#### Example config file
+* *train_split_dir*
+    * Directory with splitted **train** datasets
+* *train_od_dir*
+    * Directory where generated **train** datasets with outlier detection values should be saved
+* *od_methods*
+    * List with Outlier detection methods
+    * Outlier detection method schema:
+        * *name* - OD name
+        * *parameters* - Dictionary "parameter_name": "value"
+
 ```json
 {
-    "data_paths": [
-        "data/"
-    ],
-    "output_dir": "enriched_datasets/",
-    "detectors": {}
+    "train_split_dir": "data/train_split/",
+    "train_od_dir": "data/train_od/",
+    "od_methods": [
+        {
+            "name": "IsolationForest",
+            "parameters": {
+                "contamination": "auto",
+                "behaviour": "new"
+            }
+        },
+        {
+            "name": "LOF",
+            "parameters": {
+                "contamination": "auto"
+            }
+        }
+    ]
 }
 ```
 
@@ -138,31 +162,71 @@ To run it without any outlier detection methods use the config below.
 
 * New methods for outlier detection coming soon!
 
+
+### Remove outliers
+```
+(venv)$ pv056-remove-outliers  --help
+usage: pv056-remove-outliers [-h] --config-file CONFIG_FILE --datasets-file
+                             DATASETS_FILE
+
+Removes the percentage of the largest outliers.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --config-file CONFIG_FILE, -c CONFIG_FILE
+                        JSON configuration
+  --datasets-file DATASETS_FILE, -d DATASETS_FILE
+                        Filename of output datasets config
+```
+#### Example usage
+```
+(venv)$ pv056-remove-outliers  -c config_apply_od_example.json -d datasets.csv
+```
+
+#### Example config file
+* *train_od_dir*
+    * generated **train** datasets with outlier detection values
+* *test_split_dir*
+    * Directory with splitted **test** datasets
+* *train_od_dir*
+    * generated **train** datasets with outlier detection values
+* *percentage*
+    * How many of the largest outliers should be removed (0-100)
+```json
+{
+    "test_split_dir": "data/test_split/",
+    "train_od_dir": "data/train_od/",
+    "train_removed_dir": "data/train_removed/",
+    "percentage": 10
+}
+```
+
+
+
 ### Run weka classifiers
 To run a weka classifier using this framework, first setup virtual environment, install required modules and download weka tool.
 1) Activate your virtual Python environment with this project.
-2) Generate `config_datasets_example.json` configuration file using `pv056-enrich-data` (See [Enrich data](#enriching-data-with-outlier-detection-methods))
+2) Generate `datasets.csv` file using `pv056-split-data` or `pv056-remove-outliers` (See [Split data](#split-data) and [Remove outliers](#remove-outliers) )
 3) Create a `config_clf_example.json` file, with weka classifiers and their configuration (See [Config file for weka classifiers](#example-of-config-file-for-weka-classifiers))
 5) Run `pv056-run-clf` script, see command below
 
 ```
 (venv)$ pv056-run-clf --help
-
-usage: pv056-run-clf [-h] -cc CONFIG_CLF -cd CONFIG_DATA
+usage: pv056-run-clf [-h] -c CONFIG_CLF -d DATASETS_CSV
 
 PV056-AutoML-testing-framework
 
 optional arguments:
   -h, --help            show this help message and exit
-  -cc CONFIG_CLF, --config-clf CONFIG_CLF
+  -c CONFIG_CLF, --config-clf CONFIG_CLF
                         path to classifiers config file
-  -cd CONFIG_DATA, --config-data CONFIG_DATA
-                        path to datasets config file
+  -d DATASETS_CSV, --datasets-csv DATASETS_CSV
+                        Path to csv with data files
 ```
 
 #### Example usage
 ```
-(venv)$ pv056-run-clf --config-clf config_clf_example.json --config-data config_datasets_example.json
+(venv)$ pv056-run-clf -c config_clf_example.json -d datasets.csv
 ```
 
 #### Example of config file for weka classifiers
@@ -170,6 +234,8 @@ optional arguments:
     * path to output folder, where outputs from your classifiers will be saved
 * *weka_jar_path*
     * path to a weka.jar file
+* *n_jobs*
+    * number of parallel workers
 * *classifiers*
     * list of classifiers which you want to run
     * you can run an arbitrary number of classifiers, even same classifier with different configuration
@@ -190,18 +256,22 @@ optional arguments:
 {
     "output_folder": "clf_outputs/",
     "weka_jar_path": "weka-3-8-3/weka.jar",
+    "n_jobs": 5,
     "classifiers": [
         {
             "class_name": "weka.classifiers.trees.J48",
             "args": [
-                "-C", 0.25,
-                "-M", 2
+                "-C",
+                0.25,
+                "-M",
+                2
             ],
             "filters": [
                 {
                     "name": "weka.filters.unsupervised.attribute.RemoveByName",
                     "args": [
-                        "-E", "^size$"
+                        "-E",
+                        "^size$"
                     ]
                 }
             ]
@@ -209,7 +279,8 @@ optional arguments:
         {
             "class_name": "weka.classifiers.trees.J48",
             "args": [
-                "-C", 0.35
+                "-C",
+                0.35
             ]
         },
         {
@@ -217,7 +288,6 @@ optional arguments:
         }
     ]
 }
-
 ```
 
 ### Count accuracy

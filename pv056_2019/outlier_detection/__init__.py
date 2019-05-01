@@ -4,20 +4,20 @@ import numpy as np
 import pandas as pd
 from typing import Any, Dict
 from sklearn.ensemble import IsolationForest
-from pv056_2019.CL import CLMetric
-from pv056_2019.CLD import CLDMetric
+from pv056_2019.outlier_detection.CL import CLMetric
+from pv056_2019.outlier_detection.CLD import CLDMetric
 from sklearn.neighbors import LocalOutlierFactor, NearestNeighbors
 
 # from sklearn.neighbors import KNeighborsClassifier
-from .F2 import F2Metric
-from .T1 import T1Metric
-from .MV import MVMetric
-from .CB import CBMetric
-from pv056_2019.TD import TDMetric
-from pv056_2019.DCP import DCPMetric
-from pv056_2019.DS import DSMetric
-from pv056_2019.KDN import KDNMetric
-from pv056_2019.AutoEncoder import AutoEncoder
+from pv056_2019.outlier_detection.F2 import F2Metric
+from pv056_2019.outlier_detection.T1 import T1Metric
+from pv056_2019.outlier_detection.MV import MVMetric
+from pv056_2019.outlier_detection.CB import CBMetric
+from pv056_2019.outlier_detection.TD import TDMetric
+from pv056_2019.outlier_detection.DCP import DCPMetric
+from pv056_2019.outlier_detection.DS import DSMetric
+from pv056_2019.outlier_detection.KDN import KDNMetric
+from pv056_2019.outlier_detection.AutoEncoder import AutoEncoder
 
 
 DETECTORS: Dict[str, Any] = {}

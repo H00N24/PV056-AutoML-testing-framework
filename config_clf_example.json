@@ -1,18 +1,22 @@
 {
     "output_folder": "clf_outputs/",
     "weka_jar_path": "weka-3-8-3/weka.jar",
+    "n_jobs": 5,
     "classifiers": [
         {
             "class_name": "weka.classifiers.trees.J48",
             "args": [
-                "-C", 0.25,
-                "-M", 2
+                "-C",
+                0.25,
+                "-M",
+                2
             ],
             "filters": [
                 {
                     "name": "weka.filters.unsupervised.attribute.RemoveByName",
                     "args": [
-                        "-E", "^size$"
+                        "-E",
+                        "^size$"
                     ]
                 }
             ]
@@ -20,7 +24,8 @@
         {
             "class_name": "weka.classifiers.trees.J48",
             "args": [
-                "-C", 0.35
+                "-C",
+                0.35
             ]
         },
         {

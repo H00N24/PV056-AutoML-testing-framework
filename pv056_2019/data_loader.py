@@ -64,9 +64,7 @@ class DataFrameArff(pd.DataFrame):
                     missing_values=np.nan, strategy="mean"
                 )  # XXX settings
 
-                real_values = self[attr].values.astype(
-                    float if values.lower() == "real" else int
-                )
+                real_values = self[attr].values.astype(float)
                 if real_values.dtype == np.dtype("O"):
                     imputer = imputer.set_params(
                         missing_values=None, strategy="constant", fill_value=0

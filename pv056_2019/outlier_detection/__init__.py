@@ -239,8 +239,10 @@ class CL(AbstractDetector):
 
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
 
+        bin_dataframe = dataframe._binarize_categorical_values()
+
         self.clf = CLMetric(self.settings)
-        self.values = self.clf.findLikelihood(dataframe, classes)
+        self.values = self.clf.findLikelihood(bin_dataframe, classes)
         return self
 
 
@@ -251,8 +253,10 @@ class CLD(AbstractDetector):
 
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
 
+        bin_dataframe = dataframe._binarize_categorical_values()
+
         self.clf = CLDMetric(self.settings)
-        self.values = self.clf.findLikelihood(dataframe, classes)
+        self.values = self.clf.findLikelihood(bin_dataframe, classes)
         return self
 
 

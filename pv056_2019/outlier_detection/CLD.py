@@ -9,7 +9,8 @@ class CLDMetric:
     def findLikelihood(self, df, classes):
 
         # Adjusts dataframe by removing the class column
-        df_without_class = df.iloc[:, :-1]
+        # df_without_class = df.iloc[:, :-1]
+        df_without_class = df
 
         # Find unique classes
         unique_classes = np.unique(classes)
@@ -30,10 +31,12 @@ class CLDMetric:
             class_probs_cal = {}
             for attr in class_df:
                 vals = class_df[attr]
-                if str(class_df.dtypes[counter]) == "float64":
+                if attr[1].lower() in {"numeric", "real", "integer"}:
+
                     kde = KernelDensity(**self.params)
                     kde.fit(vals[:, None])
                     probs = np.exp(kde.score_samples(vals[:, None]))
+
                     for index, prob in zip(
                         [index for index, _ in vals.iteritems()], probs
                     ):
@@ -72,4 +75,5 @@ class CLDMetric:
             for inst in class_df.index.values.tolist():
                 likelihood[inst] -= likelihood_diff[inst]
 
-        return likelihood
+        # return likelihood
+        return 1 - np.array(likelihood)

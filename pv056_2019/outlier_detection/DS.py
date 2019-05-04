@@ -22,7 +22,7 @@ class DSMetric:
         # count fraction for every instance
         for leafIndex in leafsIndexes:
             values = np.append(
-                values, np.full((1, 1), (leafs[leafIndex] - 1) / biggestDisjunct)
+                values, np.full((1, 1), ((leafs[leafIndex] - 1) / biggestDisjunct) * -1)
             )
 
         return values

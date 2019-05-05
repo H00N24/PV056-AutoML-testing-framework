@@ -31,7 +31,7 @@ $ pip install .
 ### Downloading datasets
 All data files are from [OpenML](https://www.openml.org).
 
-Data files are compressed in `data/openML-datasets.zip` (you have to unzip it). Because this file is larger than 50mb we are using git lfs (large file storage). You can read the documentation [here](https://git-lfs.github.com).
+Data files are compressed in `data/datasets/openML-datasets.zip` (you have to unzip it). Because this file is larger than 50mb we are using git lfs (large file storage). You can read the documentation [here](https://git-lfs.github.com).
 
 #### TL;DR
 Run commands below in the root folder of this repo.
@@ -178,16 +178,16 @@ optional arguments:
 ```
 #### Example usage
 ```
-(venv)$ pv056-remove-outliers  -c config_apply_od_example.json -d datasets.csv
+(venv)$ pv056-remove-outliers  -c config_remove_outliers_example.json -d datasets.csv
 ```
 
 #### Example config file
-* *train_od_dir*
-    * generated **train** datasets with outlier detection values
 * *test_split_dir*
     * Directory with splitted **test** datasets
 * *train_od_dir*
     * generated **train** datasets with outlier detection values
+* *train_removed_dir*
+    * Directory where train data with **removed** outliers should be saved
 * *percentage*
     * How many of the largest outliers should be removed (0-100)
 ```json

@@ -1,6 +1,7 @@
 import json
 import os
 import hashlib
+import re
 from multiprocessing import Queue
 from pv056_2019.utils import ID_NAME, OD_VALUE_NAME
 
@@ -30,13 +31,18 @@ class ClassifierManager:
                 "Input weka.jar file, '{0}' does not exist.".format(self.weka_jar_path)
             )
 
+        self._regex_removed = re.compile(r"_removed-\d{3}")
+
     @staticmethod
     def _create_final_config_file(dataset_conf_path, classifier):
-        with open(dataset_conf_path, "r") as f:
-            json_str = json.load(f)
+        if not dataset_conf_path:
+            json_config = {}
+        else:
+            with open(dataset_conf_path, "r") as f:
+                json_config = json.load(f)
 
         final_config = json.dumps(
-            {"model_config": classifier.dict(), "ad_config": json_str},
+            {"model_config": classifier.dict(), "ad_config": json_config},
             indent=4,
             separators=(",", ":"),
         )
@@ -63,7 +69,14 @@ class ClassifierManager:
             final_config_str = self._create_final_config_file(conf_path, classifier)
             hash_md5 = hashlib.md5(final_config_str.encode()).hexdigest()
 
-            dataset_name = os.path.basename(train_path).split("_")[:2]
+            basename = os.path.basename(train_path)
+            dataset_name = basename.split("_")[:2]
+
+            removed_arr = self._regex_removed.findall(basename)
+            if removed_arr:
+                removed_str = removed_arr[0]
+            else:
+                removed_str = ""
 
             predict_file_path = os.path.join(
                 self.log_folder,
@@ -72,6 +85,7 @@ class ClassifierManager:
                 + classifier.name
                 + "_"
                 + hash_md5
+                + removed_str
                 + ".csv",
             )
             config_file_path = os.path.join(

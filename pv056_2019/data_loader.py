@@ -32,6 +32,7 @@ class DataFrameArff(pd.DataFrame):
             for key, item in arff_data.items():
                 if key.lower() != "data":
                     self._arff_data.update({key: item})
+            self._arff_data["relation"] = self._arff_data["relation"].replace("_", "-")
 
     def arff_data(self):
         data = self._arff_data
@@ -65,14 +66,13 @@ class DataFrameArff(pd.DataFrame):
                 )  # XXX settings
 
                 real_values = self[attr].values.astype(float)
-                if real_values.dtype == np.dtype("O"):
-                    imputer = imputer.set_params(
-                        missing_values=None, strategy="constant", fill_value=0
-                    )
 
-                transformed_data = imputer.fit_transform(
-                    real_values.reshape(-1, 1)
-                ).reshape(-1, 1)
+                if not np.isnan(real_values).all():
+                    transformed_data = imputer.fit_transform(
+                        real_values.reshape(-1, 1)
+                    ).reshape(-1, 1)
+                else:
+                    transformed_data = np.zeros(real_values.reshape(-1, 1).shape)
                 columns_index = pd.MultiIndex.from_product(
                     [[attr], [values]], names=["0", "1"]
                 )

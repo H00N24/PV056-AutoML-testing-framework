@@ -31,7 +31,7 @@ $ pip install .
 ### Downloading datasets
 All data files are from [OpenML](https://www.openml.org).
 
-Data files are compressed in `data/openML-datasets.zip` (you have to unzip it). Because this file is larger than 50mb we are using git lfs (large file storage). You can read the documentation [here](https://git-lfs.github.com).
+Data files are compressed in `data/datasets/openML-datasets.zip` (you have to unzip it). Because this file is larger than 50mb we are using git lfs (large file storage). You can read the documentation [here](https://git-lfs.github.com).
 
 #### TL;DR
 Run commands below in the root folder of this repo.
@@ -50,6 +50,10 @@ If you have chosen to install this tester in the virtual environment, you must a
 
 
 ### Split data
+Because we want to cross-validate every classifier, we need to split data into the five train-test tuples.  Before this was a part of weka classifiers, jet now, because we want to work with training datasets we need to do it manually.
+
+For this purpose, we have the `pv056-split-data`. As specified in its configuration file (see `config_split_example.json`) it will split datasets into five train-test tuples and generates CSV (`datasets.csv`) file which can be used for classification without any changes to the training splits.
+
 ```
 (venv)$ pv056-split-data --help
 usage: pv056-split-data [-h] --config-file CONFIG_FILE --datasets-file
@@ -86,6 +90,7 @@ optional arguments:
 ```
 
 ### Apply outlier detection methods
+To apply outlier detection methods to all training splits, we have the `pv056-apply-od-methods`. This script takes all the training splits from the `train_split_dir` (it will only take files which basename ends with `_train.arff`) and adds a column with outlier detection value. It will generate new training file for every outlier detection method!
 ```
 (venv)$ pv056-apply-od-methods --help
 usage: pv056-apply-od-methods [-h] --config-file CONFIG_FILE
@@ -164,6 +169,7 @@ optional arguments:
 
 
 ### Remove outliers
+As the name suggests, this script will remove the biggest outliers from each training split with outlier detection value. Based on his configuration it will generate CSV file (`datasets.csv`) which can be then used for running the weka classifiers.
 ```
 (venv)$ pv056-remove-outliers  --help
 usage: pv056-remove-outliers [-h] --config-file CONFIG_FILE --datasets-file
@@ -180,18 +186,18 @@ optional arguments:
 ```
 #### Example usage
 ```
-(venv)$ pv056-remove-outliers  -c config_apply_od_example.json -d datasets.csv
+(venv)$ pv056-remove-outliers  -c config_remove_outliers_example.json -d datasets.csv
 ```
 
 #### Example config file
-* *train_od_dir*
-    * generated **train** datasets with outlier detection values
 * *test_split_dir*
     * Directory with splitted **test** datasets
 * *train_od_dir*
     * generated **train** datasets with outlier detection values
+* *train_removed_dir*
+    * Directory where train data with **removed** outliers should be saved
 * *percentage*
-    * How many of the largest outliers should be removed (0-100)
+    * How many percents of the largest outliers should be removed (0-100)
 ```json
 {
     "test_split_dir": "data/test_split/",
@@ -291,10 +297,11 @@ optional arguments:
 ```
 
 ### Count accuracy
-To count accuracy simply run `pv056-statistics` script. In the future, we will add Precision and Recall.
+To count accuracy simply run `pv056-statistics` script. Script will generate output in csv format (see example below).
 ```
-(venv)$ pv056-statistics --help
+(venv)$ v056-statistics --help
 usage: pv056-statistics [-h] --results-dir RESULTS_DIR [--pattern PATTERN]
+                        [--raw]
 
 Script for counting basic statistic (Accuracy, )
 
@@ -304,16 +311,22 @@ optional arguments:
                         Directory with results in .csv
   --pattern PATTERN, -p PATTERN
                         Regex for filename (Python regex)
+  --raw                 Show raw data (without aggregation by dataset split)
 ```
 #### Example
 ```
-(venv)$ pv056-statistics -r clf_outputs/ -p "teaching.*"
-teachingAssistant BayesNet 3e408e23621de037f4751689311eb00d.csv
-         Accuracy: 0.9073
-teachingAssistant J48 81498a187313e89f240c8ead4557906b.csv
-         Accuracy: 0.5232
-teachingAssistant J48 9f0cf2e85982a05ecf632ee428274ec3.csv
-         Accuracy: 0.5166
+(venv)$ pv056-statistics -r clf_outputs/
+Dataset,Classifier,Configuration,Removed,Accuracy
+hypothyroid,BayesNet,4f420ac13c9dbaf115d0fa591a42c12d,10,0.978527236636394
+hypothyroid,BayesNet,e4703dbfb0fd5afe7abb4d354a9d37f0,0,0.9798549018918967
+kr-vs-kp,BayesNet,4f420ac13c9dbaf115d0fa591a42c12d,10,0.8738986697965571
+kr-vs-kp,BayesNet,e4703dbfb0fd5afe7abb4d354a9d37f0,0,0.877342038341158
+mushroom,BayesNet,4f420ac13c9dbaf115d0fa591a42c12d,10,0.9618412277377795
+mushroom,BayesNet,e4703dbfb0fd5afe7abb4d354a9d37f0,0,0.9613489200454719
+segment,BayesNet,4f420ac13c9dbaf115d0fa591a42c12d,10,0.8943722943722943
+segment,BayesNet,e4703dbfb0fd5afe7abb4d354a9d37f0,0,0.90995670995671
+sick,BayesNet,4f420ac13c9dbaf115d0fa591a42c12d,10,0.9705696769546963
+sick,BayesNet,e4703dbfb0fd5afe7abb4d354a9d37f0,0,0.9713647302685896
 ```
 
 ## How to work with Weka 3

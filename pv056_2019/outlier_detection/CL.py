@@ -9,7 +9,8 @@ class CLMetric:
     def findLikelihood(self, df, classes):
 
         # Adjusts dataframe by removing the class column
-        df_without_class = df.iloc[:, :-1]
+        # df_without_class = df.iloc[:, :-1]
+        df_without_class = df
 
         # Find unique classes
         unique_classes = np.unique(classes)
@@ -33,14 +34,19 @@ class CLMetric:
 
                 # If the attribute is a float it is a continuous variable
                 # so Kernel Density is used to determine probability
-                if str(class_df.dtypes[counter]) == "float64":
+                # if not isinstance(attributes_dict[attr],(list,)) and attributes_dict[attr].lower() in {"numeric", "real", "integer"}:
+
+                if attr[1].lower() in {"numeric", "real", "integer"}:
+
                     kde = KernelDensity(**self.params)
                     kde.fit(vals[:, None])
                     probs = np.exp(kde.score_samples(vals[:, None]))
+
                     for index, prob in zip(
                         [index for index, _ in vals.iteritems()], probs
                     ):
                         likelihood[index] *= prob
+
                 # Otherwise we count the number of occurences
                 else:
                     counts = dict(zip(*np.unique(vals, return_counts=True)))
@@ -48,4 +54,5 @@ class CLMetric:
                     for index, row in vals.iteritems():
                         likelihood[index] *= counts[row] / length
                 counter += 1
-        return likelihood
+        # return likelihood
+        return 1 - np.array(likelihood)

@@ -3,6 +3,7 @@ import csv
 import json
 import os
 import subprocess
+import sys
 from multiprocessing import Process, Queue
 
 from pv056_2019.classifiers import ClassifierManager
@@ -61,8 +62,12 @@ def main():
 
     pool = [Process(target=weka_worker, args=(queue,)) for _ in range(conf.n_jobs)]
 
-    [process.start() for process in pool]
-    [process.join() for process in pool]
+    try:
+        [process.start() for process in pool]
+        [process.join() for process in pool]
+    except KeyboardInterrupt:
+        [process.terminate() for process in pool]
+        print("\nInterupted!", flush=True, file=sys.stderr)
 
     print("Done")
 

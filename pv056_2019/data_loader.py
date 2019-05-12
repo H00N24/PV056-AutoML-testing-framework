@@ -138,7 +138,7 @@ class DataFrameArff(pd.DataFrame):
     def select_by_od_quantile(self, quantile):
         value = self[OD_VALUE_NAME].quantile(q=quantile)
 
-        dataframe = self[self[OD_VALUE_NAME] < value]
+        dataframe = self[self[OD_VALUE_NAME] <= value]
 
         arff_dataframe = DataFrameArff(dataframe.values, columns=self.columns)
         arff_dataframe._arff_data = self._arff_data

@@ -10,7 +10,15 @@ setup(
     license="MIT",
     packages=find_packages(include=["pv056_2019", "pv056_2019.*"]),
     include_package_data=True,
-    install_requires=["pandas", "numpy", "liac-arff", "sklearn", "pydantic"],
+    install_requires=[
+        "pandas",
+        "numpy",
+        "liac-arff",
+        "sklearn",
+        "pydantic",
+        "keras",
+        "tensorflow",
+    ],
     entry_points={
         "console_scripts": [
             "pv056-split-data=pv056_2019.data_splitter:main",

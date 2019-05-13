@@ -17,6 +17,7 @@ from pv056_2019.outlier_detection.TD import TDMetric
 from pv056_2019.outlier_detection.DCP import DCPMetric
 from pv056_2019.outlier_detection.DS import DSMetric
 from pv056_2019.outlier_detection.KDN import KDNMetric
+from pv056_2019.outlier_detection.AutoEncoder import AutoEncoder
 
 
 DETECTORS: Dict[str, Any] = {}
@@ -402,5 +403,17 @@ class CB(AbstractDetector):
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
 
         self.clf = CBMetric()
+        self.values = self.clf.compute_values(classes=classes)
+        return self
+
+
+@detector
+class AE(AbstractDetector):
+    name = "AutoEncoder"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        bin_dataframe = dataframe._binarize_categorical_values()
+        self.clf = AutoEncoder(bin_dataframe, self.settings)
         self.values = self.clf.compute_values(classes=classes)
         return self

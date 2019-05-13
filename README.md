@@ -161,6 +161,8 @@ optional arguments:
 | **DCP** | Disjunct class percentage | min_impurity_split [docs](https://blog.nelsonliu.me/2016/08/05/gsoc-week-10-scikit-learn-pr-6954-adding-pre-pruning-to-decisiontrees/) |
 | **TD** | Tree Depth with and without prunning | -- |
 | **TDWithPrunning** | Tree Depth with prunning | min_impurity_split |
+| **AutoEncoder** | AutoEncoder | [docs](docs/AutoEncoder.md) |
+
 
 
 * New methods for outlier detection coming soon!

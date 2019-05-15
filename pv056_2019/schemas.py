@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 
 from pydantic import BaseModel, validator
 
@@ -36,7 +36,7 @@ class ODStepConfigSchema(BaseModel):
 class RemoveOutliersConfigSchema(BaseModel):
     test_split_dir: str
     train_od_dir: str
-    percentage: int
+    percentage: Union[int, List[int]]
     train_removed_dir: str
 
     @validator("percentage")

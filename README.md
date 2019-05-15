@@ -196,12 +196,17 @@ optional arguments:
     * Directory where train data with **removed** outliers should be saved
 * *percentage*
     * How many percents of the largest outliers should be removed (0-100)
+    * int or List[int]
 ```json
 {
     "test_split_dir": "data/test_split/",
     "train_od_dir": "data/train_od/",
     "train_removed_dir": "data/train_removed/",
-    "percentage": 10
+    "percentage": [
+        5,
+        10,
+        15
+    ]
 }
 ```
 

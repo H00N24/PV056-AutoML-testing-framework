@@ -46,29 +46,38 @@ def main():
                 )
                 continue
 
-            new_frame = dataframe.select_by_od_quantile(1 - (conf.percentage / 100))
-            new_frame.pop(OD_VALUE_NAME)
-            new_frame._arff_data["attributes"] = [
-                x for x in new_frame._arff_data["attributes"] if x[0] != OD_VALUE_NAME
-            ]
-            print("   ", train_file_path)
-            name_split = os.path.basename(train_file_path).split("_")
-            name_split.insert(-1, "removed-{:03d}".format(conf.percentage))
-
-            file_name = "_".join(name_split)
-            file_save_path = os.path.join(conf.train_removed_dir, file_name)
-
-            new_frame.arff_dump(file_save_path)
-
-            datasets_output.append(
-                [
-                    file_save_path,
-                    os.path.join(
-                        conf.test_split_dir, "_".join(name_split[:2]) + "_test.arff"
-                    ),
-                    os.path.join(conf.train_od_dir, name_split[2] + ".json"),
-                ]
+            percentages = (
+                conf.percentage
+                if isinstance(conf.percentage, list)
+                else [conf.percentage]
             )
+
+            for percentage in percentages:
+                new_frame = dataframe.select_by_od_quantile(1 - (percentage / 100))
+                new_frame.pop(OD_VALUE_NAME)
+                new_frame._arff_data["attributes"] = [
+                    x
+                    for x in new_frame._arff_data["attributes"]
+                    if x[0] != OD_VALUE_NAME
+                ]
+                print("   ", train_file_path, "{}%".format(percentage))
+                name_split = os.path.basename(train_file_path).split("_")
+                name_split.insert(-1, "removed-{:03d}".format(percentage))
+
+                file_name = "_".join(name_split)
+                file_save_path = os.path.join(conf.train_removed_dir, file_name)
+
+                new_frame.arff_dump(file_save_path)
+
+                datasets_output.append(
+                    [
+                        file_save_path,
+                        os.path.join(
+                            conf.test_split_dir, "_".join(name_split[:2]) + "_test.arff"
+                        ),
+                        os.path.join(conf.train_od_dir, name_split[2] + ".json"),
+                    ]
+                )
 
     except KeyboardInterrupt:
         print("\nInterupted!", flush=True, file=sys.stderr)

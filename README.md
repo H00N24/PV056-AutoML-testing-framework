@@ -112,6 +112,8 @@ optional arguments:
     * Directory with splitted **train** datasets
 * *train_od_dir*
     * Directory where generated **train** datasets with outlier detection values should be saved
+* *n_jobs*
+    * number of parallel workers
 * *od_methods*
     * List with Outlier detection methods
     * Outlier detection method schema:
@@ -122,6 +124,7 @@ optional arguments:
 {
     "train_split_dir": "data/train_split/",
     "train_od_dir": "data/train_od/",
+    "n_jobs": 2,
     "od_methods": [
         {
             "name": "IsolationForest",
@@ -265,7 +268,7 @@ optional arguments:
 {
     "output_folder": "clf_outputs/",
     "weka_jar_path": "weka-3-8-3/weka.jar",
-    "n_jobs": 5,
+    "n_jobs": 2,
     "classifiers": [
         {
             "class_name": "weka.classifiers.trees.J48",

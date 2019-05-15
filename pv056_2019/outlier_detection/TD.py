@@ -11,7 +11,7 @@ class TDMetric:
         estimator.fit(df, classes)
 
         n_nodes = estimator.tree_.node_count
-        print(n_nodes)
+        # print(n_nodes)
         children_left = estimator.tree_.children_left
         children_right = estimator.tree_.children_right
 
@@ -41,7 +41,7 @@ class TDMetric:
         estimator.fit(df, classes)
 
         n_nodes = estimator.tree_.node_count
-        print(n_nodes)
+        # print(n_nodes)
         children_left = estimator.tree_.children_left
         children_right = estimator.tree_.children_right
 

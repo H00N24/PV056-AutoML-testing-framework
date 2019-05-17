@@ -17,6 +17,7 @@ from pv056_2019.outlier_detection.TD import TDMetric
 from pv056_2019.outlier_detection.DCP import DCPMetric
 from pv056_2019.outlier_detection.DS import DSMetric
 from pv056_2019.outlier_detection.KDN import KDNMetric
+from pv056_2019.outlier_detection.CLOF import CLOFMetric
 
 
 DETECTORS: Dict[str, Any] = {}
@@ -403,4 +404,15 @@ class CB(AbstractDetector):
 
         self.clf = CBMetric()
         self.values = self.clf.compute_values(classes=classes)
+        return self
+
+
+@detector
+class CLOF(AbstractDetector):
+    name = "CLOF"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+        self.clf = CLOFMetric()
+        self.values = self.clf.compute_values(dataframe=dataframe, classes=classes)
         return self

@@ -3,8 +3,12 @@ from sklearn.neighbors import LocalOutlierFactor
 
 
 class CLOFMetric:
-    @staticmethod
-    def compute_values(dataframe, classes):
+
+    def __init__(self, **kwargs):
+        self.alfa = float(kwargs["alfa"]) if ("alfa" in kwargs) else 0.5
+        self.beta = float(kwargs["beta"]) if ("beta" in kwargs) else 0.5
+
+    def compute_values(self, dataframe, classes):
         bin_dataframe = dataframe._binarize_categorical_values()
 
         unique_classes = np.unique(classes)
@@ -44,6 +48,6 @@ class CLOFMetric:
             other_class_value = joined_df_lof[-1]
             df_value = df_lof[index]
 
-            values[index] = row_class_value + 0.5 * (1 / other_class_value) + 0.5 * df_value
+            values[index] = row_class_value + self.alfa * (1 / other_class_value) + 0.5 * df_value
 
         return values

@@ -413,6 +413,6 @@ class CLOF(AbstractDetector):
     data_type = "REAL"
 
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
-        self.clf = CLOFMetric()
+        self.clf = CLOFMetric(**self.settings)
         self.values = self.clf.compute_values(dataframe=dataframe, classes=classes)
         return self

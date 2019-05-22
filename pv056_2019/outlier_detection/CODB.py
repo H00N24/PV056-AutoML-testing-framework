@@ -16,7 +16,12 @@ class CODBMetric:
                     self.weka_jar_path
                 )
             )
-        self.run_args = ["java", "-jar", self.weka_jar_path, "-t"]
+        self.run_args = ["java", "-jar", self.weka_jar_path]
+
+        for item in self.params.items():
+            self.run_args += [item[0], item[1]]
+
+        self.run_args.append("-t")
 
     def compute_values(self, df: pd.DataFrame, classes: np.array):
         fo = tempfile.NamedTemporaryFile()

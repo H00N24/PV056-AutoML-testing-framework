@@ -1,0 +1,12 @@
+{
+    "train_split_dir": "data/our_train_split/",
+    "train_od_dir": "data/codb_train_od/",
+    "od_methods": [
+        {
+            "name": "CODB",
+            "parameters": {
+                "jar_path" : "WEKA-CODB.jar"
+            }
+        }
+    ]
+}

@@ -3,6 +3,7 @@ import os
 import subprocess
 import pandas as pd
 import tempfile
+import re
 
 
 class CODBMetric:
@@ -24,10 +25,21 @@ class CODBMetric:
         self.run_args.append("-t")
 
     def compute_values(self, df: pd.DataFrame, classes: np.array):
+        result = np.array([0.0] * df.shape[0])
         fo = tempfile.NamedTemporaryFile()
         df.arff_dump(fo.name)
-        subprocess.run(self.run_args + [fo.name, "-n", str(df.shape[0])])
-
+        output = subprocess.run(
+            self.run_args + [fo.name, "-n", str(df.shape[0])], capture_output=True
+        )
+        m = re.findall(
+            r"\d+\. \((\d+)\.\).*COF: ([0-9]*\.?[0-9]*)", output.stdout.decode("utf-8")
+        )
+        for index, cof in m:
+            i = int(index)
+            try:
+                val = float(cof)
+            except ValueError:
+                val = np.max(result) + 1
+            result[i] = val
         fo.close()
-
-        return None
+        return np.reciprocal(result)

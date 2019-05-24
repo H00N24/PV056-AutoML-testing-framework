@@ -164,7 +164,36 @@ optional arguments:
 | **DCP** | Disjunct class percentage | min_impurity_split [docs](https://blog.nelsonliu.me/2016/08/05/gsoc-week-10-scikit-learn-pr-6954-adding-pre-pruning-to-decisiontrees/) |
 | **TD** | Tree Depth with and without prunning | -- |
 | **TDWithPrunning** | Tree Depth with prunning | min_impurity_split |
+| **CODB** | CODB | Below |
 
+
+#### CODB
+* path to CODB jar file jar_path, must be defined
+* k nearest neighbors (default = 7) -k "\<int\>"
+* Alpha coeffecient (default = 100) -a "\<double\>"
+* Beta coeffecient (default = 0.1) -b "\<double\>"
+* distance-type (default = motaz.util.EuclidianDataObject) -D "\<String\>"
+* Replace Missing Vaules (default = false) -r 
+* Remove Missing Vaules (default = false) -m
+
+Example:
+```
+{
+    "train_split_dir": "data/train_split/",
+    "train_od_dir": "data/train_od/",
+    "od_methods": [
+        {
+            "name": "CODB",
+            "parameters": {
+                "jar_path" : "WEKA-CODB.jar",
+                "-k" : "10",
+                "-r" : "",
+                "-m": ""
+            }
+        }
+    ]
+}
+```
 
 * New methods for outlier detection coming soon!
 

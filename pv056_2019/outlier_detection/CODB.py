@@ -42,4 +42,7 @@ class CODBMetric:
                 val = np.max(result) + 1
             result[i] = val
         fo.close()
-        return np.reciprocal(result)
+        if result[0] > 0.0:
+            result = np.reciprocal(result)
+
+        return result

@@ -185,7 +185,7 @@ Example:
         {
             "name": "CODB",
             "parameters": {
-                "jar_path" : "WEKA-CODB.jar",
+                "jar_path" : "data/java/WEKA-CODB.jar",
                 "-k" : "10",
                 "-r" : "",
                 "-m": ""

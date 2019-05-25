@@ -20,9 +20,19 @@ def od_worker(queue: Queue):
             flush=True,
         )
 
-        dataframe = DataLoader._load_arff_file(train_file_path)
-        od_frame = dataframe.apply_outlier_detector(od_settings)
-        od_frame.arff_dump(file_save_path)
+        try:
+            dataframe = DataLoader._load_arff_file(train_file_path)
+            od_frame = dataframe.apply_outlier_detector(od_settings)
+            od_frame.arff_dump(file_save_path)
+        except Exception as exc:
+            print(
+                "Error:\n\t{} {}\n\t".format(
+                    od_settings.name, os.path.basename(train_file_path)
+                ),
+                exc,
+                file=sys.stderr,
+                flush=True,
+            )
 
 
 def main():

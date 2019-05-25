@@ -114,11 +114,10 @@ class DCP(AbstractDetector):
     data_type = "REAL"
 
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
-        if "min_impurity_split" in self.settings:
-            minimum_impurity_split = float(self.settings["min_impurity_split"])
+        min_impurity_split = float(self.settings.get("min_impurity_split", 0.5))
         bin_dataframe = dataframe._binarize_categorical_values()
         self.clf = DCPMetric()
-        self.values = self.clf.countDCP(bin_dataframe, classes, minimum_impurity_split)
+        self.values = self.clf.countDCP(bin_dataframe, classes, min_impurity_split)
         # print("DCP done sucessfully!")
         return self
 
@@ -144,12 +143,11 @@ class TDWithPrunning(AbstractDetector):
     data_type = "REAL"
 
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
-        if "min_impurity_split" in self.settings:
-            minimum_impurity_split = float(self.settings["min_impurity_split"])
+        min_impurity_split = float(self.settings.get("min_impurity_split", 0.5))
         bin_dataframe = dataframe._binarize_categorical_values()
         self.clf = TDMetric()
         self.values = self.clf.findLeafDepthWithPrunning(
-            bin_dataframe, classes, minimum_impurity_split
+            bin_dataframe, classes, min_impurity_split
         )
         # print("TD with prunning done sucessfully!")
         return self

@@ -28,12 +28,10 @@ class CODBMetric:
         result = np.array([0.0] * df.shape[0])
         fo = tempfile.NamedTemporaryFile()
         df.arff_dump(fo.name)
-        output = subprocess.run(
-            self.run_args + [fo.name, "-n", str(df.shape[0])], capture_output=True
+        output = subprocess.getoutput(
+            " ".join(self.run_args + [fo.name, "-n", str(df.shape[0])])
         )
-        m = re.findall(
-            r"\d+\. \((\d+)\.\).*COF: ([0-9]*\.?[0-9]*)", output.stdout.decode("utf-8")
-        )
+        m = re.findall(r"\d+\. \((\d+)\.\).*COF: ([0-9]*\.?[0-9]*)", output)
         for index, cof in m:
             i = int(index)
             try:

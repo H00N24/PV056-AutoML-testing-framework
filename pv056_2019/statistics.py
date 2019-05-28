@@ -98,7 +98,7 @@ def main():
         print(aggregated_frame.to_csv())
     else:
         dataframe = pd.DataFrame(data, columns=headers)
-        print(dataframe.to_csv(index=False))
+        print(dataframe.to_csv(index=False, header=False))
 
 
 if __name__ == "__main__":

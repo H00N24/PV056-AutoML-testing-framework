@@ -59,7 +59,7 @@ class ClassifierManager:
         classifiers: List[ClassifierSchema],
         dataset_tuples: List[List[str]],
     ):
-        for classifier, dataset_tuple in product(classifiers, dataset_tuples):
+        for dataset_tuple, classifier in product(dataset_tuples, classifiers):
             train_path, test_path, conf_path = dataset_tuple
 
             if not os.path.exists(train_path):

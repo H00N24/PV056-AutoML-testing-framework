@@ -53,7 +53,7 @@ def main():
     datasets = []
     with open(args.datasets_csv, "r") as datasets_csv_file:
         reader = csv.reader(datasets_csv_file, delimiter=",")
-        datasets = [row for row in reader]
+        datasets = sorted([row for row in reader], key=lambda x: os.path.getsize(x[0]))
 
     clf_man = ClassifierManager(conf.output_folder, conf.weka_jar_path)
 

@@ -22,11 +22,8 @@ def _valid_config_path(path):
 def weka_worker(queue):
     while not queue.empty():
         args = queue.get()
-        message = "\nRunning {}:\n\tTrain: {}\n\tTest:{}\n".format(
-            args[4], args[6], args[8]
-        )
-        print(message, flush=True)
         subprocess.run(args, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        print(";".join([args[16], args[6], args[8]]), flush=True)
 
 
 def main():

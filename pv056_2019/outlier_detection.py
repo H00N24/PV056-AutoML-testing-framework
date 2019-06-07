@@ -4,8 +4,8 @@ import numpy as np
 import pandas as pd
 from typing import Any, Dict
 from sklearn.ensemble import IsolationForest
-from CL import CLMetric
-from CLD import CLDMetric
+from .CL import CLMetric
+from .CLD import CLDMetric
 from sklearn.neighbors import LocalOutlierFactor, NearestNeighbors
 
 # from sklearn.neighbors import KNeighborsClassifier
@@ -13,10 +13,11 @@ from .F2 import F2Metric
 from .T1 import T1Metric
 from .MV import MVMetric
 from .CB import CBMetric
-from TD import TDMetric
-from DCP import DCPMetric
-from DS import DSMetric
-from KDN import KDNMetric
+from .TD import TDMetric
+from .DCP import DCPMetric
+from .DS import DSMetric
+from .KDN import KDNMetric
+from .COR import CORMetric
 
 
 DETECTORS: Dict[str, Any] = {}
@@ -399,4 +400,15 @@ class CB(AbstractDetector):
 
         self.clf = CBMetric()
         self.values = self.clf.compute_values(classes=classes)
+        return self
+
+
+@detector
+class COR(AbstractDetector):
+    name = "COR"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+
+        self.values = CORMetric.computeCOR(dataframe)
         return self

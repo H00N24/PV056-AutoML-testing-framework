@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 from sklearn.neighbors import LocalOutlierFactor
 
 
@@ -10,7 +11,6 @@ class CLOFMetric:
 
     def compute_values(self, dataframe, classes):
         bin_dataframe = dataframe._binarize_categorical_values()
-
         unique_classes = np.unique(classes)
         class_separated_dataframes = [
             bin_dataframe.loc[classes == cl] for cl in unique_classes
@@ -24,39 +24,26 @@ class CLOFMetric:
         for df in class_separated_dataframes:
             class_separated_lof.append(clf._decision_function(df.values))
 
-        df_counters = [-1 for _ in class_separated_dataframes]
         values = [0] * len(dataframe)
 
         for index, row in dataframe.iterrows():
-
             class_column = dataframe.columns.values[-1]
             row_class_index = np.where(unique_classes == row[class_column])[0][0]
 
-            df_counters[row_class_index] += 1
+            other_classes_dataframes_indexes = list(range(len(class_separated_dataframes)))
+            other_classes_dataframes_indexes.remove(row_class_index)
+            other_classes_dataframe = pd.DataFrame()
+            other_classes_dataframe = other_classes_dataframe.append(
+                [class_separated_dataframes[i] for i in other_classes_dataframes_indexes]
+            )
+            other_classes_dataframe = other_classes_dataframe.append(bin_dataframe.loc[index])
+            other_classes_lof = clf._decision_function(other_classes_dataframe.values)
 
-            other_class_lof_cumulated = 0
-            for i in range(len(class_separated_dataframes)):
+            row_location = class_separated_dataframes[row_class_index].index.get_loc(index)
+            same_lof = class_separated_lof[row_class_index][row_location]
+            other_lof = other_classes_lof[-1]
+            all_lof = df_lof[index]
 
-                if i == row_class_index:
-                    continue
-
-                class_separated_dataframes[i].loc[
-                    class_separated_dataframes[i].index[-1] + 1
-                ] = bin_dataframe.loc[index]
-
-                clf.fit(class_separated_dataframes[i].values)
-                joined_df_lof = clf._decision_function(class_separated_dataframes[i].values)
-
-                class_separated_dataframes[i].drop(
-                    class_separated_dataframes[i].index[-1], inplace=True
-                )
-
-                other_class_lof_cumulated += joined_df_lof[-1]
-
-            row_class_value = class_separated_lof[row_class_index][df_counters[row_class_index]]
-            other_class_value = other_class_lof_cumulated / (len(class_separated_dataframes) - 1)
-            df_value = df_lof[index]
-
-            values[index] = row_class_value + self.alfa * (1 / other_class_value) + 0.5 * df_value
+            values[index] = same_lof + self.alfa * (1 / other_lof) + self.beta * all_lof
 
         return values

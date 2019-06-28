@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 
 from pydantic import BaseModel, validator
 
@@ -31,12 +31,20 @@ class ODStepConfigSchema(BaseModel):
     train_split_dir: str
     od_methods: List[OutlierDetectorSchema]
     train_od_dir: str
+    n_jobs: int = 1
+
+    @validator("n_jobs")
+    def n_jobs_validator(cls, value):
+        if value < 1:
+            raise ValueError("n_jobs must be greater than 0")
+
+        return value
 
 
 class RemoveOutliersConfigSchema(BaseModel):
     test_split_dir: str
     train_od_dir: str
-    percentage: int
+    percentage: Union[int, List[int]]
     train_removed_dir: str
 
     @validator("percentage")
@@ -66,7 +74,7 @@ class RunClassifiersCongfigSchema(BaseModel):
     output_folder: str
     weka_jar_path: str
     classifiers: List[ClassifierSchema]
-    n_jobs: int
+    n_jobs: int = 1
 
     @validator("n_jobs")
     def n_jobs_validator(cls, value):

@@ -21,6 +21,6 @@ class DCPMetric:
                     if classes[index] == classes[leafIndex]:
                         value += 1
             values = np.append(values, np.full((1, 1), (value / suma) * -1))
-            print("Count DCP for " + repr(index) + ". row of data.")
+            # print("Count DCP for " + repr(index) + ". row of data.")
 
         return values

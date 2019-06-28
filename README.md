@@ -112,6 +112,8 @@ optional arguments:
     * Directory with splitted **train** datasets
 * *train_od_dir*
     * Directory where generated **train** datasets with outlier detection values should be saved
+* *n_jobs*
+    * number of parallel workers
 * *od_methods*
     * List with Outlier detection methods
     * Outlier detection method schema:
@@ -122,6 +124,7 @@ optional arguments:
 {
     "train_split_dir": "data/train_split/",
     "train_od_dir": "data/train_od/",
+    "n_jobs": 2,
     "od_methods": [
         {
             "name": "IsolationForest",
@@ -162,8 +165,37 @@ optional arguments:
 | **TD** | Tree Depth with and without prunning | -- |
 | **TDWithPrunning** | Tree Depth with prunning | min_impurity_split |
 | **AutoEncoder** | AutoEncoder | [docs](docs/AutoEncoder.md) |
+| **CODB** | CODB | Below |
 
 
+
+#### CODB
+* path to CODB jar file jar_path, must be defined
+* k nearest neighbors (default = 7) -k "\<int\>"
+* Alpha coeffecient (default = 100) -a "\<double\>"
+* Beta coeffecient (default = 0.1) -b "\<double\>"
+* distance-type (default = motaz.util.EuclidianDataObject) -D "\<String\>"
+* Replace Missing Vaules (default = false) -r 
+* Remove Missing Vaules (default = false) -m
+
+Example:
+```
+{
+    "train_split_dir": "data/train_split/",
+    "train_od_dir": "data/train_od/",
+    "od_methods": [
+        {
+            "name": "CODB",
+            "parameters": {
+                "jar_path" : "data/java/WEKA-CODB.jar",
+                "-k" : "10",
+                "-r" : "",
+                "-m": ""
+            }
+        }
+    ]
+}
+```
 
 * New methods for outlier detection coming soon!
 
@@ -198,12 +230,17 @@ optional arguments:
     * Directory where train data with **removed** outliers should be saved
 * *percentage*
     * How many percents of the largest outliers should be removed (0-100)
+    * int or List[int]
 ```json
 {
     "test_split_dir": "data/test_split/",
     "train_od_dir": "data/train_od/",
     "train_removed_dir": "data/train_removed/",
-    "percentage": 10
+    "percentage": [
+        5,
+        10,
+        15
+    ]
 }
 ```
 
@@ -262,7 +299,7 @@ optional arguments:
 {
     "output_folder": "clf_outputs/",
     "weka_jar_path": "weka-3-8-3/weka.jar",
-    "n_jobs": 5,
+    "n_jobs": 2,
     "classifiers": [
         {
             "class_name": "weka.classifiers.trees.J48",

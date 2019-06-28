@@ -18,6 +18,7 @@ from pv056_2019.outlier_detection.DCP import DCPMetric
 from pv056_2019.outlier_detection.DS import DSMetric
 from pv056_2019.outlier_detection.KDN import KDNMetric
 from pv056_2019.outlier_detection.AutoEncoder import AutoEncoder
+from pv056_2019.outlier_detection.CODB import CODBMetric
 
 
 DETECTORS: Dict[str, Any] = {}
@@ -85,7 +86,7 @@ class KDN(AbstractDetector):
         bin_dataframe = dataframe._binarize_categorical_values()
         self.clf = KDNMetric()
         self.values = self.clf.countKDN(bin_dataframe, classes, k)
-        print("KDN done sucessfully!")
+        # print("KDN done sucessfully!")
         return self
 
 
@@ -101,7 +102,7 @@ class DS(AbstractDetector):
         bin_dataframe = dataframe._binarize_categorical_values()
         self.clf = DSMetric()
         self.values = self.clf.countDS(bin_dataframe, classes)
-        print("DS done sucessfully!")
+        # print("DS done sucessfully!")
         return self
 
 
@@ -114,12 +115,11 @@ class DCP(AbstractDetector):
     data_type = "REAL"
 
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
-        if "min_impurity_split" in self.settings:
-            minimum_impurity_split = float(self.settings["min_impurity_split"])
+        min_impurity_split = float(self.settings.get("min_impurity_split", 0.5))
         bin_dataframe = dataframe._binarize_categorical_values()
         self.clf = DCPMetric()
-        self.values = self.clf.countDCP(bin_dataframe, classes, minimum_impurity_split)
-        print("DCP done sucessfully!")
+        self.values = self.clf.countDCP(bin_dataframe, classes, min_impurity_split)
+        # print("DCP done sucessfully!")
         return self
 
 
@@ -133,7 +133,7 @@ class TD(AbstractDetector):
         bin_dataframe = dataframe._binarize_categorical_values()
         self.clf = TDMetric()
         self.values = self.clf.findLeafDepthWithoutPrunning(bin_dataframe, classes)
-        print("TD without prunning done sucessfully!")
+        # print("TD without prunning done sucessfully!")
         return self
 
 
@@ -144,14 +144,13 @@ class TDWithPrunning(AbstractDetector):
     data_type = "REAL"
 
     def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
-        if "min_impurity_split" in self.settings:
-            minimum_impurity_split = float(self.settings["min_impurity_split"])
+        min_impurity_split = float(self.settings.get("min_impurity_split", 0.5))
         bin_dataframe = dataframe._binarize_categorical_values()
         self.clf = TDMetric()
         self.values = self.clf.findLeafDepthWithPrunning(
-            bin_dataframe, classes, minimum_impurity_split
+            bin_dataframe, classes, min_impurity_split
         )
-        print("TD with prunning done sucessfully!")
+        # print("TD with prunning done sucessfully!")
         return self
 
 
@@ -169,7 +168,7 @@ class TDWithPrunning(AbstractDetector):
 #         neigh = KNeighborsClassifier(n_neighbors=1)
 #         bin_dataframe = dataframe._binarize_categorical_values()
 #         for index, row in dataframe.iterrows():
-#             print("Training " + repr(index) + ". classifier.")
+#             # print("Training " + repr(index) + ". classifier.")
 #             leaveOne = dataframe.index.isin([index])
 #             dataframeMinusOne = (dataframe[~leaveOne]).reset_index(drop=True)
 #             bin_dataframeMinusOne = bin_dataframe[~leaveOne].reset_index(drop=True)
@@ -184,7 +183,7 @@ class TDWithPrunning(AbstractDetector):
 #                 ):
 #                     self.sum += 1
 #         self.values = self.sum / len(dataframe)
-#         print("N3 done sucessfully!")
+#         # print("N3 done sucessfully!")
 #         return self
 
 
@@ -416,4 +415,15 @@ class AE(AbstractDetector):
         bin_dataframe = dataframe._binarize_categorical_values()
         self.clf = AutoEncoder(bin_dataframe, self.settings)
         self.values = self.clf.compute_values(classes=classes)
+        return self
+
+@detector
+class CODB(AbstractDetector):
+    name = "CODB"
+    data_type = "REAL"
+
+    def compute_scores(self, dataframe: pd.DataFrame, classes: np.array):
+
+        self.clf = CODBMetric(self.settings)
+        self.values = self.clf.compute_values(df=dataframe, classes=classes)
         return self

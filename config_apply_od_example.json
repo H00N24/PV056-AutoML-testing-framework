@@ -1,6 +1,7 @@
 {
     "train_split_dir": "data/train_split/",
     "train_od_dir": "data/train_od/",
+    "n_jobs": 2,
     "od_methods": [
         {
             "name": "IsolationForest",

@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 from typing import Any, Dict
 from sklearn.ensemble import IsolationForest
-<<<<<<< HEAD:pv056_2019/outlier_detection.py
 from .CL import CLMetric
 from .CLD import CLDMetric
 from sklearn.neighbors import LocalOutlierFactor, NearestNeighbors
@@ -19,22 +18,6 @@ from .DCP import DCPMetric
 from .DS import DSMetric
 from .KDN import KDNMetric
 from .COR import CORMetric
-=======
-from pv056_2019.outlier_detection.CL import CLMetric
-from pv056_2019.outlier_detection.CLD import CLDMetric
-from sklearn.neighbors import LocalOutlierFactor, NearestNeighbors
-
-# from sklearn.neighbors import KNeighborsClassifier
-from pv056_2019.outlier_detection.F2 import F2Metric
-from pv056_2019.outlier_detection.T1 import T1Metric
-from pv056_2019.outlier_detection.MV import MVMetric
-from pv056_2019.outlier_detection.CB import CBMetric
-from pv056_2019.outlier_detection.TD import TDMetric
-from pv056_2019.outlier_detection.DCP import DCPMetric
-from pv056_2019.outlier_detection.DS import DSMetric
-from pv056_2019.outlier_detection.KDN import KDNMetric
-from pv056_2019.outlier_detection.CODB import CODBMetric
->>>>>>> master:pv056_2019/outlier_detection/__init__.py
 
 
 DETECTORS: Dict[str, Any] = {}

@@ -1,0 +1,5 @@
+{
+    "data_path": "data/datasets/",
+    "train_split_dir": "data/train_split/",
+    "test_split_dir": "data/test_split/"
+}

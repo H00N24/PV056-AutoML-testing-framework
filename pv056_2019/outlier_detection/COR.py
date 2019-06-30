@@ -1,4 +1,3 @@
-import numpy as np
 import pandas as pd
 import rpy2
 import rpy2.robjects as robjects
@@ -9,11 +8,15 @@ class CORMetric:
 
     @staticmethod
     def computeCOR(df):
-        pandas2ri.activate()
-        r_df = pandas2ri.py2ri(df)
-        r.source("../../COR/COR.R")
-        cor = robjects.globalenv['CORWrapper']
-        r_avgRanks = cor(r_df)
-        avgRanks = pandas2ri.ri2py(r_avgRanks)
+        path = "tmpdataset.csv"
+        df.to_csv(path, index=False)
 
-        return avgRanks.values
+        r = robjects.r
+        r_data = robjects.DataFrame.from_csvfile(path)
+        r.source("../COR/COR.R")
+
+        pandas2ri.activate()
+        r_result = r.CORWrapper(r_data)
+        result = pandas2ri.ri2py(r_result)
+
+        return result

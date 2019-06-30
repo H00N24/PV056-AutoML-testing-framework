@@ -4,6 +4,8 @@ import numpy as np
 import pandas as pd
 from typing import Any, Dict
 from sklearn.ensemble import IsolationForest
+
+from pv056_2019.outlier_detection.CODB import CODBMetric
 from .CL import CLMetric
 from .CLD import CLDMetric
 from sklearn.neighbors import LocalOutlierFactor, NearestNeighbors
@@ -414,6 +416,7 @@ class COR(AbstractDetector):
         self.clf = CORMetric()
         self.values = CORMetric.computeCOR(dataframe)
         return self
+
 
 @detector
 class CODB(AbstractDetector):

@@ -1,11 +1,18 @@
 import pandas as pd
 
 
-def fix():
-    df = pd.read_csv(filename, header=False)
+def fixdatasets():
+    filename = "../datasets.csv"
+    df = pd.read_csv(filename, header=None)
     df.to_csv(filename, header=False, index=False)
 
 
+def fixstatistics():
+    filename = "../statistics.csv"
+    df = pd.read_csv(filename)
+    df.to_csv(filename, header=True, index=False)
+
+
 if __name__ == '__main__':
-    filename = "datasets.csv"
-    fix()
+    fixdatasets()
+    #fixstatistics()

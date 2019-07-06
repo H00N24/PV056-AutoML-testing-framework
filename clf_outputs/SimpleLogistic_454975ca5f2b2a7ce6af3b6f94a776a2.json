@@ -1,0 +1,8 @@
+{
+    "model_config":{
+        "class_name":"weka.classifiers.functions.SimpleLogistic",
+        "args":[],
+        "filters":[]
+    },
+    "ad_config":{}
+}

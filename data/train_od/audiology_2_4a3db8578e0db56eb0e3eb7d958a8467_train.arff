@@ -1,0 +1,257 @@
+@RELATION audiology
+
+@ATTRIBUTE ID NUMERIC
+@ATTRIBUTE age_gt_60 {f, t}
+@ATTRIBUTE air {mild, moderate, normal, profound, severe}
+@ATTRIBUTE airBoneGap {f, t}
+@ATTRIBUTE ar_c {absent, elevated, normal}
+@ATTRIBUTE ar_u {absent, elevated, normal}
+@ATTRIBUTE bone {mild, moderate, normal, unmeasured}
+@ATTRIBUTE boneAbnormal {f, t}
+@ATTRIBUTE bser {degraded, normal}
+@ATTRIBUTE history_buzzing {f, t}
+@ATTRIBUTE history_dizziness {f, t}
+@ATTRIBUTE history_fluctuating {f, t}
+@ATTRIBUTE history_fullness {f, t}
+@ATTRIBUTE history_heredity {f, t}
+@ATTRIBUTE history_nausea {f, t}
+@ATTRIBUTE history_noise {f, t}
+@ATTRIBUTE history_recruitment {f, t}
+@ATTRIBUTE history_ringing {f, t}
+@ATTRIBUTE history_roaring {f, t}
+@ATTRIBUTE history_vomiting {f, t}
+@ATTRIBUTE late_wave_poor {f, t}
+@ATTRIBUTE m_at_2k {f, t}
+@ATTRIBUTE m_cond_lt_1k {f, t}
+@ATTRIBUTE m_gt_1k {f, t}
+@ATTRIBUTE m_m_gt_2k {f, t}
+@ATTRIBUTE m_m_sn {f, t}
+@ATTRIBUTE m_m_sn_gt_1k {f, t}
+@ATTRIBUTE m_m_sn_gt_2k {f, t}
+@ATTRIBUTE m_m_sn_gt_500 {f, t}
+@ATTRIBUTE m_p_sn_gt_2k {f, t}
+@ATTRIBUTE m_s_gt_500 {f, t}
+@ATTRIBUTE m_s_sn {f, t}
+@ATTRIBUTE m_s_sn_gt_1k {f, t}
+@ATTRIBUTE m_s_sn_gt_2k {f, t}
+@ATTRIBUTE m_s_sn_gt_3k {f, t}
+@ATTRIBUTE m_s_sn_gt_4k {f, t}
+@ATTRIBUTE m_sn_2_3k {f, t}
+@ATTRIBUTE m_sn_gt_1k {f, t}
+@ATTRIBUTE m_sn_gt_2k {f, t}
+@ATTRIBUTE m_sn_gt_3k {f, t}
+@ATTRIBUTE m_sn_gt_4k {f, t}
+@ATTRIBUTE m_sn_gt_500 {f, t}
+@ATTRIBUTE m_sn_gt_6k {f, t}
+@ATTRIBUTE m_sn_lt_1k {f, t}
+@ATTRIBUTE m_sn_lt_2k {f, t}
+@ATTRIBUTE m_sn_lt_3k {f, t}
+@ATTRIBUTE middle_wave_poor {f, t}
+@ATTRIBUTE mod_gt_4k {f, t}
+@ATTRIBUTE mod_mixed {f, t}
+@ATTRIBUTE mod_s_mixed {f, t}
+@ATTRIBUTE mod_s_sn_gt_500 {f, t}
+@ATTRIBUTE mod_sn {f, t}
+@ATTRIBUTE mod_sn_gt_1k {f, t}
+@ATTRIBUTE mod_sn_gt_2k {f, t}
+@ATTRIBUTE mod_sn_gt_3k {f, t}
+@ATTRIBUTE mod_sn_gt_4k {f, t}
+@ATTRIBUTE mod_sn_gt_500 {f, t}
+@ATTRIBUTE notch_4k {f, t}
+@ATTRIBUTE notch_at_4k {f, t}
+@ATTRIBUTE o_ar_c {absent, elevated, normal}
+@ATTRIBUTE o_ar_u {absent, elevated, normal}
+@ATTRIBUTE s_sn_gt_1k {f, t}
+@ATTRIBUTE s_sn_gt_2k {f, t}
+@ATTRIBUTE s_sn_gt_4k {f, t}
+@ATTRIBUTE speech {good, normal, poor, unmeasured, very_good, very_poor}
+@ATTRIBUTE static_normal {f, t}
+@ATTRIBUTE tymp {a, ad, as, b, c}
+@ATTRIBUTE viith_nerve_signs {f, t}
+@ATTRIBUTE wave_V_delayed {f, t}
+@ATTRIBUTE waveform_ItoV_prolonged {f, t}
+@ATTRIBUTE OD_VALUE REAL
+@ATTRIBUTE class {acoustic_neuroma, bells_palsy, cochlear_age, cochlear_age_and_noise, cochlear_age_plus_poss_menieres, cochlear_noise_and_heredity, cochlear_poss_noise, cochlear_unknown, conductive_discontinuity, conductive_fixation, mixed_cochlear_age_fixation, mixed_cochlear_age_otitis_media, mixed_cochlear_age_s_om, mixed_cochlear_unk_discontinuity, mixed_cochlear_unk_fixation, mixed_cochlear_unk_ser_om, mixed_poss_central_om, mixed_poss_noise_om, normal_ear, otitis_media, poss_central, possible_brainstem_disorder, possible_menieres, retrocochlear_unknown}
+
+@DATA
+1.0,t,mild,f,normal,normal,unmeasured,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,good,t,a,f,f,f,0.44711917916337807,cochlear_age
+3.0,t,mild,f,normal,normal,unmeasured,f,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,t,normal,normal,f,f,f,unmeasured,t,a,f,f,f,0.8871794871794871,cochlear_age_and_noise
+5.0,t,mild,f,normal,normal,unmeasured,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,very_good,t,a,f,f,f,0.3756906077348066,cochlear_age
+7.0,t,mild,f,normal,normal,unmeasured,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,good,t,a,f,f,f,0.44711917916337807,cochlear_age
+8.0,f,normal,f,normal,normal,unmeasured,f,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,normal,normal,f,f,f,normal,t,a,f,f,f,0.7030386740331491,cochlear_poss_noise
+9.0,f,normal,f,normal,normal,unmeasured,f,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,very_good,t,a,f,f,f,0.7030386740331491,cochlear_poss_noise
+10.0,f,moderate,f,absent,absent,mild,f,?,f,f,f,f,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,absent,absent,f,f,f,very_good,t,as,f,f,f,0.7279005524861879,mixed_cochlear_unk_fixation
+12.0,f,normal,f,elevated,absent,normal,f,?,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,elevated,elevated,f,f,f,normal,t,a,f,f,f,0.7376788553259142,cochlear_poss_noise
+13.0,f,normal,f,elevated,elevated,normal,f,?,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,elevated,absent,f,t,f,very_good,t,a,f,f,f,0.7376788553259142,cochlear_poss_noise
+14.0,t,normal,f,normal,normal,unmeasured,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,very_good,t,a,f,f,f,0.5423572744014733,cochlear_age
+15.0,t,normal,f,normal,normal,unmeasured,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,good,t,a,f,f,f,0.5423572744014733,cochlear_age
+16.0,f,normal,f,absent,normal,normal,f,?,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,normal,t,a,f,f,f,0.4530386740331492,normal_ear
+17.0,f,mild,t,absent,absent,mild,f,?,f,f,f,f,f,f,f,f,t,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,normal,f,f,f,normal,t,as,f,f,f,0.6445672191528545,mixed_cochlear_unk_fixation
+18.0,t,mild,f,normal,normal,unmeasured,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.3756906077348066,cochlear_age
+19.0,t,mild,f,normal,normal,unmeasured,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,good,t,a,f,f,f,0.5423572744014733,cochlear_age
+20.0,t,mild,f,absent,elevated,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,elevated,absent,f,f,f,good,t,a,f,f,f,0.8551051051051051,cochlear_age
+21.0,t,moderate,t,elevated,absent,moderate,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,absent,elevated,f,f,f,good,t,as,f,f,f,0.494475138121547,mixed_cochlear_age_fixation
+23.0,f,moderate,t,absent,absent,mild,f,?,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,absent,normal,f,f,f,normal,t,as,f,f,f,0.47790055248618785,mixed_cochlear_unk_fixation
+24.0,t,mild,f,elevated,elevated,unmeasured,f,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,elevated,normal,f,f,f,very_poor,t,a,f,f,f,0.722972972972973,cochlear_age_and_noise
+25.0,t,normal,f,elevated,normal,unmeasured,f,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,elevated,elevated,f,f,f,very_poor,t,as,f,f,f,0.722972972972973,cochlear_age_and_noise
+28.0,t,mild,t,elevated,absent,mild,t,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,elevated,absent,f,f,f,normal,t,as,f,f,f,0.494475138121547,mixed_cochlear_age_fixation
+29.0,t,mild,t,elevated,absent,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,elevated,absent,f,f,f,normal,t,b,f,f,f,0.48895027624309395,mixed_cochlear_age_otitis_media
+30.0,t,mild,f,normal,normal,mild,t,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,good,t,a,f,f,f,0.512054244098443,cochlear_age
+31.0,t,mild,f,normal,normal,mild,t,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,very_good,t,a,f,f,f,0.512054244098443,cochlear_age
+34.0,f,severe,f,normal,normal,mild,t,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,very_good,t,a,f,f,f,0.5305555555555556,cochlear_unknown
+35.0,t,mild,f,elevated,absent,mild,t,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,absent,f,f,f,good,t,a,f,f,f,0.8551051051051051,cochlear_age
+37.0,t,mild,f,normal,normal,mild,t,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,good,t,a,f,f,f,0.512054244098443,cochlear_age
+38.0,f,severe,f,normal,normal,moderate,t,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,very_poor,t,a,f,f,f,0.5305555555555556,cochlear_unknown
+39.0,f,normal,f,elevated,normal,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,elevated,elevated,f,f,f,normal,t,a,f,f,f,0.5684232894177645,normal_ear
+40.0,t,mild,f,normal,normal,mild,t,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,elevated,f,f,f,very_good,t,a,f,f,f,0.512054244098443,cochlear_age
+41.0,t,mild,f,normal,elevated,mild,t,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,elevated,f,f,f,good,t,a,f,f,f,0.512054244098443,cochlear_age
+42.0,f,mild,f,normal,normal,mild,t,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,normal,elevated,f,f,f,very_good,t,a,f,f,f,0.5806623931623932,cochlear_poss_noise
+43.0,f,mild,f,normal,elevated,mild,t,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,normal,normal,f,f,f,normal,t,a,f,f,f,0.5806623931623932,cochlear_poss_noise
+44.0,f,normal,f,normal,normal,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,elevated,f,f,f,normal,t,a,f,f,f,0.5684232894177645,normal_ear
+45.0,f,normal,f,normal,elevated,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.567219152854512,cochlear_unknown
+47.0,t,mild,f,normal,normal,mild,t,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,t,f,normal,t,a,f,f,f,0.8688888888888888,cochlear_age_and_noise
+48.0,f,normal,f,normal,normal,mild,t,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,normal,normal,f,t,f,good,t,a,f,f,f,0.7652777777777777,cochlear_poss_noise
+49.0,f,normal,f,normal,normal,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.7508169934640523,normal_ear
+50.0,f,moderate,f,elevated,elevated,normal,t,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,very_poor,t,a,f,f,f,0.4543650793650794,cochlear_unknown
+51.0,f,normal,f,normal,normal,normal,t,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,normal,elevated,f,f,f,very_good,t,a,f,f,f,0.5972222222222222,cochlear_unknown
+52.0,f,normal,f,normal,elevated,normal,t,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,very_good,t,a,f,f,f,0.4543650793650794,cochlear_unknown
+53.0,f,mild,f,normal,normal,normal,t,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,t,normal,t,a,f,f,f,0.5806623931623932,cochlear_poss_noise
+54.0,f,mild,f,absent,absent,mild,t,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,elevated,normal,f,f,f,very_poor,t,a,f,f,f,0.4972375690607735,acoustic_neuroma
+55.0,f,mild,f,elevated,normal,mild,t,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,normal,t,a,f,f,f,0.6688172043010753,cochlear_unknown
+56.0,f,mild,f,normal,normal,mild,f,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,elevated,normal,f,f,f,normal,t,a,f,f,f,0.7376788553259142,cochlear_poss_noise
+57.0,f,normal,f,elevated,normal,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.6197053406998159,normal_ear
+58.0,f,normal,f,normal,elevated,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,elevated,normal,f,f,f,good,t,a,f,f,f,0.5005524861878453,cochlear_unknown
+59.0,f,normal,f,elevated,elevated,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,t,f,normal,normal,f,f,f,good,t,a,f,f,f,0.48388581952117865,cochlear_unknown
+60.0,f,moderate,t,absent,absent,mild,t,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,normal,f,f,f,very_good,t,b,f,f,f,0.49171270718232046,mixed_cochlear_unk_ser_om
+63.0,f,normal,f,absent,elevated,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,normal,t,a,f,f,f,0.5780386740331491,normal_ear
+64.0,f,severe,t,absent,absent,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,elevated,f,f,f,very_poor,t,ad,f,f,f,0.494475138121547,conductive_discontinuity
+65.0,t,normal,f,normal,normal,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,elevated,f,f,f,good,t,a,f,f,f,0.5423572744014733,cochlear_age
+66.0,t,normal,f,elevated,normal,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,very_good,t,a,f,f,f,0.5423572744014733,cochlear_age
+67.0,f,normal,f,normal,elevated,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,normal,t,a,f,f,f,0.6197053406998159,normal_ear
+68.0,t,mild,f,normal,normal,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.7926634768740032,cochlear_age
+69.0,f,mild,f,elevated,normal,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,elevated,elevated,f,f,f,normal,t,a,f,f,f,0.5005524861878453,cochlear_unknown
+71.0,f,moderate,f,absent,absent,moderate,t,?,t,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,elevated,f,f,f,very_poor,t,a,f,t,f,0.494475138121547,retrocochlear_unknown
+72.0,f,mild,t,absent,absent,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,very_poor,t,as,f,f,f,0.48895027624309395,conductive_fixation
+73.0,f,mild,f,absent,absent,mild,t,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,elevated,f,f,f,normal,t,a,f,f,f,0.6688172043010753,cochlear_unknown
+74.0,f,normal,f,absent,elevated,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,normal,t,a,f,f,f,0.5780386740331491,normal_ear
+75.0,t,moderate,f,normal,normal,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,elevated,f,t,f,very_poor,f,a,f,f,f,0.7926634768740032,cochlear_age
+76.0,t,moderate,f,normal,elevated,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,t,f,very_poor,f,a,f,f,f,0.7926634768740032,cochlear_age
+79.0,f,moderate,t,absent,absent,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,elevated,f,f,f,good,t,ad,f,f,f,0.494475138121547,conductive_discontinuity
+80.0,f,normal,f,elevated,absent,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,elevated,elevated,f,f,f,normal,t,a,f,f,f,0.7530386740331492,normal_ear
+81.0,f,normal,f,elevated,elevated,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,elevated,absent,f,f,f,normal,t,a,f,f,f,0.8257575757575758,cochlear_unknown
+82.0,f,mild,f,normal,normal,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,normal,normal,f,f,f,good,t,a,f,f,f,0.7638888888888888,cochlear_unknown
+83.0,t,mild,f,normal,normal,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,elevated,f,f,f,very_good,f,a,f,f,f,0.7926634768740032,cochlear_age
+84.0,t,mild,f,normal,elevated,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,elevated,f,f,f,poor,t,a,f,f,f,0.7926634768740032,cochlear_age
+86.0,f,normal,f,elevated,normal,normal,f,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,normal,elevated,f,f,f,normal,t,a,f,f,f,0.7376788553259142,cochlear_poss_noise
+87.0,t,mild,f,normal,normal,normal,f,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,f,normal,normal,f,f,f,good,t,a,f,f,f,0.6224677716390423,cochlear_age_and_noise
+88.0,t,mild,f,normal,normal,normal,f,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,f,normal,normal,f,f,f,poor,t,a,f,f,f,0.6224677716390423,cochlear_age_and_noise
+89.0,f,normal,f,elevated,elevated,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,t,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.48388581952117865,cochlear_unknown
+91.0,f,mild,f,absent,normal,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,elevated,absent,f,f,f,good,t,a,f,f,f,0.6688172043010753,cochlear_unknown
+92.0,f,normal,f,elevated,normal,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,absent,f,f,f,normal,t,a,f,f,f,0.5530386740331492,normal_ear
+93.0,t,mild,f,absent,normal,normal,f,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,absent,absent,f,f,f,good,t,a,f,f,f,0.722972972972973,cochlear_age_and_noise
+94.0,t,mild,f,absent,absent,mild,f,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,very_good,t,a,f,f,f,0.722972972972973,cochlear_age_and_noise
+95.0,f,mild,f,elevated,elevated,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,elevated,normal,f,f,f,poor,t,a,f,f,f,0.5005524861878453,cochlear_unknown
+96.0,f,mild,f,elevated,normal,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,elevated,elevated,f,f,f,poor,t,a,f,f,f,0.5005524861878453,cochlear_unknown
+97.0,f,normal,f,absent,normal,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,absent,f,f,f,normal,t,a,f,f,f,0.5530386740331492,normal_ear
+99.0,t,normal,f,elevated,normal,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,elevated,f,f,f,good,t,a,f,f,f,0.5423572744014733,cochlear_age
+101.0,f,normal,f,absent,normal,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,normal,t,a,f,f,f,0.4530386740331492,normal_ear
+102.0,f,mild,f,absent,absent,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,normal,f,f,f,normal,t,a,t,f,f,0.4972375690607735,bells_palsy
+103.0,f,normal,f,normal,normal,mild,f,?,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,elevated,f,t,f,very_good,t,a,f,f,f,0.494475138121547,cochlear_noise_and_heredity
+104.0,f,normal,f,normal,elevated,mild,f,?,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,t,f,good,t,a,f,f,f,0.494475138121547,cochlear_noise_and_heredity
+105.0,f,normal,f,absent,normal,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,normal,t,a,f,f,f,0.7205882352941176,cochlear_unknown
+106.0,f,moderate,t,absent,absent,mild,t,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,very_good,t,b,f,f,f,0.49171270718232046,mixed_cochlear_unk_ser_om
+107.0,f,mild,t,absent,absent,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,normal,t,as,f,f,f,0.47790055248618785,mixed_cochlear_unk_fixation
+108.0,f,moderate,t,absent,absent,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,very_good,t,as,f,f,f,0.7279005524861879,mixed_cochlear_unk_fixation
+110.0,f,mild,f,elevated,normal,mild,t,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,elevated,normal,f,f,f,very_good,t,c,f,f,f,0.494475138121547,mixed_poss_noise_om
+111.0,f,mild,f,elevated,normal,mild,t,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,elevated,normal,f,f,f,poor,t,c,f,f,f,0.494475138121547,mixed_poss_noise_om
+112.0,f,mild,t,absent,absent,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,elevated,f,f,f,normal,t,b,f,f,f,0.494475138121547,otitis_media
+113.0,f,normal,f,absent,elevated,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,normal,t,c,f,f,f,0.494475138121547,otitis_media
+114.0,f,mild,f,elevated,normal,mild,f,?,f,t,t,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,elevated,f,f,f,good,f,a,f,f,f,0.7334254143646408,possible_menieres
+115.0,f,normal,f,normal,elevated,mild,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,elevated,normal,f,f,f,very_good,t,a,f,f,f,0.7030386740331491,normal_ear
+116.0,f,normal,f,normal,normal,mild,f,?,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,f,a,f,f,t,0.48895027624309395,possible_brainstem_disorder
+117.0,f,mild,f,normal,normal,mild,f,?,f,t,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,f,a,f,f,f,0.6500920810313076,possible_menieres
+118.0,f,normal,f,normal,normal,mild,f,?,f,t,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,f,a,f,f,f,0.7166666666666667,cochlear_unknown
+119.0,f,normal,f,normal,normal,mild,f,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,t,normal,normal,f,f,f,normal,t,a,f,f,f,0.5530386740331492,cochlear_poss_noise
+120.0,t,severe,f,normal,normal,mild,f,?,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,very_poor,t,a,f,f,f,0.4972375690607735,cochlear_age_plus_poss_menieres
+121.0,f,mild,f,normal,normal,mild,f,?,f,t,t,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,f,a,f,f,f,0.48342541436464087,possible_menieres
+123.0,t,moderate,f,elevated,normal,unmeasured,f,?,f,f,f,f,f,t,t,f,f,t,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,very_poor,t,a,f,f,f,0.7834254143646409,possible_menieres
+124.0,f,mild,f,normal,normal,unmeasured,f,?,f,t,f,f,f,t,t,f,f,t,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.44732370433305013,cochlear_unknown
+125.0,t,normal,f,normal,normal,unmeasured,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.5423572744014733,cochlear_age
+127.0,f,severe,t,absent,absent,mild,t,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,elevated,f,f,f,poor,t,b,f,f,f,0.6583793738489871,mixed_cochlear_unk_ser_om
+129.0,t,moderate,t,normal,absent,mild,f,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,very_poor,t,b,f,f,f,0.494475138121547,mixed_cochlear_age_s_om
+130.0,t,normal,f,absent,absent,normal,f,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,normal,absent,f,f,f,good,t,a,f,f,f,0.8594771241830066,cochlear_age
+131.0,f,normal,f,normal,normal,unmeasured,f,?,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.40186915887850466,cochlear_unknown
+133.0,f,normal,f,normal,normal,normal,f,?,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,elevated,elevated,f,f,f,very_good,t,a,f,f,f,0.7508169934640523,normal_ear
+134.0,f,mild,f,elevated,elevated,mild,f,?,f,t,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,normal,normal,f,f,f,good,t,a,f,t,f,0.494475138121547,retrocochlear_unknown
+135.0,f,mild,f,absent,absent,normal,f,?,f,t,f,f,f,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,elevated,f,f,f,very_good,t,ad,f,f,f,0.494475138121547,mixed_cochlear_unk_discontinuity
+137.0,f,moderate,t,absent,absent,mild,f,?,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,normal,f,f,f,normal,t,as,f,f,f,0.47790055248618785,mixed_cochlear_unk_fixation
+138.0,f,normal,f,absent,normal,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,very_good,t,a,f,f,f,0.6197053406998159,normal_ear
+140.0,t,normal,f,absent,absent,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,absent,absent,f,f,f,normal,t,c,f,f,f,0.48895027624309395,mixed_cochlear_age_otitis_media
+141.0,t,normal,f,absent,absent,normal,f,?,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,absent,absent,f,f,f,poor,t,b,f,f,f,0.494475138121547,mixed_cochlear_age_s_om
+142.0,f,mild,f,absent,absent,normal,f,normal,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,normal,t,c,f,f,f,0.4972375690607735,mixed_poss_central_om
+143.0,f,normal,f,absent,absent,normal,f,normal,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,poor,t,a,f,f,f,0.4972375690607735,poss_central
+144.0,t,moderate,t,elevated,absent,mild,f,normal,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,elevated,f,f,f,good,t,c,f,f,f,0.6556169429097606,mixed_cochlear_age_otitis_media
+145.0,f,normal,f,normal,normal,unmeasured,f,degraded,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,f,a,f,f,f,0.48895027624309395,possible_brainstem_disorder
+146.0,f,profound,f,normal,normal,unmeasured,t,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.5487179487179488,cochlear_unknown
+148.0,t,mild,f,normal,elevated,mild,t,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,elevated,f,f,f,good,t,a,f,f,f,0.512054244098443,cochlear_age
+149.0,f,mild,f,normal,normal,mild,t,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.5487179487179488,cochlear_unknown
+151.0,f,mild,f,normal,normal,mild,t,degraded,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,t,normal,t,a,f,f,f,0.5806623931623932,cochlear_poss_noise
+152.0,t,mild,f,normal,normal,mild,t,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,poor,t,a,f,f,f,0.5423572744014733,cochlear_age
+153.0,t,mild,f,normal,normal,mild,t,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,good,t,a,f,f,f,0.5423572744014733,cochlear_age
+155.0,t,mild,f,normal,normal,mild,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.7333333333333334,cochlear_age
+157.0,t,normal,f,elevated,normal,mild,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,good,t,a,f,f,f,0.5423572744014733,cochlear_age
+160.0,f,severe,t,absent,absent,normal,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,poor,t,as,f,f,f,0.48895027624309395,conductive_fixation
+163.0,f,mild,f,normal,normal,normal,t,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,normal,normal,f,f,f,good,t,a,f,f,f,0.6987179487179487,cochlear_unknown
+164.0,t,moderate,f,normal,normal,normal,t,degraded,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,elevated,elevated,f,f,f,very_poor,t,a,f,f,f,0.7058011049723757,cochlear_age_and_noise
+165.0,t,mild,f,elevated,elevated,normal,t,degraded,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,very_poor,t,a,f,f,f,0.7058011049723757,cochlear_age_and_noise
+166.0,f,normal,f,normal,normal,normal,f,degraded,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,f,a,f,f,t,0.48895027624309395,possible_brainstem_disorder
+167.0,t,mild,f,normal,normal,normal,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,good,t,a,f,f,f,0.3756906077348066,cochlear_age
+168.0,t,mild,f,normal,normal,normal,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,very_good,t,a,f,f,f,0.3756906077348066,cochlear_age
+169.0,f,normal,f,normal,normal,normal,f,degraded,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,t,normal,normal,f,f,f,normal,t,a,f,f,f,0.5530386740331492,cochlear_poss_noise
+171.0,f,normal,f,normal,elevated,normal,f,degraded,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,normal,normal,f,f,f,normal,t,a,f,f,f,0.4530386740331492,cochlear_poss_noise
+172.0,f,normal,f,normal,normal,normal,f,degraded,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,normal,elevated,f,f,f,normal,t,a,f,f,f,0.4530386740331492,cochlear_poss_noise
+174.0,f,mild,f,normal,normal,mild,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.6153846153846154,cochlear_unknown
+175.0,f,normal,f,normal,normal,mild,f,degraded,f,t,t,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,f,a,f,f,f,0.48342541436464087,possible_menieres
+176.0,t,normal,f,normal,normal,normal,f,degraded,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.7460142935678944,normal_ear
+178.0,f,normal,f,normal,normal,normal,f,degraded,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,t,normal,normal,f,f,f,good,t,a,f,f,f,0.6197053406998159,cochlear_poss_noise
+179.0,t,mild,f,normal,normal,unmeasured,f,degraded,f,f,f,f,f,t,t,f,f,t,t,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,elevated,normal,f,f,f,poor,t,a,f,f,f,0.8047619047619048,cochlear_age_and_noise
+180.0,f,mild,f,normal,normal,unmeasured,f,degraded,f,t,f,f,f,t,t,f,f,t,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.44732370433305013,cochlear_unknown
+181.0,t,normal,f,normal,normal,unmeasured,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.5423572744014733,cochlear_age
+182.0,f,normal,f,normal,normal,normal,f,degraded,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.7460142935678944,normal_ear
+183.0,t,mild,f,normal,normal,normal,f,degraded,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,normal,normal,f,f,f,very_poor,t,a,f,f,f,0.4558011049723757,cochlear_age_and_noise
+184.0,t,mild,f,normal,normal,normal,f,degraded,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,very_poor,t,a,f,f,f,0.4558011049723757,cochlear_age_and_noise
+185.0,t,mild,f,normal,normal,normal,f,degraded,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,normal,normal,f,f,f,very_poor,t,a,f,f,f,0.4558011049723757,cochlear_age_and_noise
+186.0,t,mild,f,normal,normal,normal,f,degraded,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,normal,normal,f,f,f,very_poor,t,a,f,f,f,0.4558011049723757,cochlear_age_and_noise
+187.0,t,mild,f,absent,normal,mild,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,absent,f,f,f,good,t,a,f,f,f,0.8551051051051051,cochlear_age
+188.0,t,mild,f,normal,absent,mild,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,normal,f,f,f,very_good,t,a,f,f,f,0.7090239410681399,cochlear_age
+190.0,t,mild,f,normal,normal,unmeasured,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,elevated,f,f,f,unmeasured,t,a,f,f,f,0.5899763220205209,cochlear_age
+191.0,f,mild,t,absent,absent,mild,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,normal,t,as,f,f,f,0.47790055248618785,mixed_cochlear_unk_fixation
+192.0,f,moderate,t,absent,absent,mild,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,normal,t,as,f,f,f,0.6445672191528545,mixed_cochlear_unk_fixation
+193.0,f,normal,f,normal,normal,unmeasured,f,degraded,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.44732370433305013,cochlear_unknown
+194.0,f,normal,f,normal,normal,unmeasured,f,degraded,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.44732370433305013,cochlear_unknown
+195.0,t,mild,f,normal,normal,mild,t,degraded,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,elevated,f,f,f,good,t,a,f,f,f,0.512054244098443,cochlear_age
+196.0,t,mild,f,normal,elevated,mild,t,degraded,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,good,t,a,f,f,f,0.512054244098443,cochlear_age
+197.0,f,normal,f,normal,normal,unmeasured,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,t,f,normal,normal,f,f,f,good,t,a,f,f,f,0.40186915887850466,cochlear_unknown
+198.0,f,mild,f,normal,normal,unmeasured,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,normal,normal,f,f,f,poor,t,a,f,f,f,0.40186915887850466,cochlear_unknown
+199.0,f,normal,f,normal,normal,unmeasured,f,degraded,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.40186915887850466,cochlear_unknown
+200.0,f,normal,f,normal,normal,unmeasured,f,degraded,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.5685358255451713,cochlear_unknown
+201.0,f,normal,f,normal,elevated,unmeasured,f,degraded,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,normal,elevated,f,f,f,very_good,t,a,f,f,f,0.7863720073664825,cochlear_poss_noise
+202.0,f,normal,f,absent,elevated,normal,f,degraded,f,t,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,normal,t,ad,f,f,f,0.494475138121547,mixed_cochlear_unk_discontinuity
+203.0,t,mild,f,normal,normal,unmeasured,f,degraded,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,very_good,t,a,f,f,f,0.6756906077348066,cochlear_age
+204.0,t,normal,f,normal,normal,unmeasured,f,degraded,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.9214285714285715,cochlear_age
+206.0,f,normal,f,normal,normal,unmeasured,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.5685358255451713,cochlear_unknown
+207.0,f,mild,f,elevated,normal,unmeasured,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,elevated,normal,f,f,f,normal,t,a,f,f,f,0.48388581952117865,cochlear_unknown
+208.0,f,mild,f,elevated,normal,unmeasured,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,elevated,normal,f,f,f,good,t,a,f,f,f,0.48388581952117865,cochlear_unknown
+209.0,t,mild,f,normal,normal,unmeasured,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,poor,t,a,f,f,f,0.3756906077348066,cochlear_age
+210.0,t,mild,f,normal,normal,unmeasured,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,poor,t,a,f,f,f,0.3756906077348066,cochlear_age
+211.0,f,mild,f,absent,elevated,mild,f,degraded,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,normal,t,a,f,f,f,0.8265765765765766,possible_menieres
+213.0,f,mild,f,normal,normal,mild,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,elevated,normal,f,f,f,poor,t,a,f,f,f,0.567219152854512,cochlear_unknown
+214.0,f,severe,t,absent,absent,normal,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,very_poor,t,as,f,f,f,0.48895027624309395,conductive_fixation
+215.0,f,mild,t,absent,absent,normal,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,absent,f,f,f,normal,t,as,f,f,f,0.48895027624309395,conductive_fixation
+218.0,t,normal,f,normal,normal,unmeasured,f,degraded,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,normal,normal,f,f,f,good,t,a,f,f,f,0.8083333333333333,cochlear_age_and_noise
+219.0,t,mild,f,normal,normal,unmeasured,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,elevated,f,f,f,good,t,a,f,f,f,0.5899763220205209,cochlear_age
+221.0,t,mild,f,absent,normal,mild,t,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,normal,absent,f,f,f,very_good,t,a,f,f,f,0.8551051051051051,cochlear_age
+222.0,t,mild,f,normal,absent,mild,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,absent,normal,f,f,f,very_good,t,c,f,f,f,0.7453271028037383,mixed_cochlear_age_otitis_media
+223.0,f,normal,f,normal,normal,unmeasured,f,degraded,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,f,a,f,f,f,0.48895027624309395,possible_brainstem_disorder
+224.0,t,mild,f,normal,normal,unmeasured,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,very_good,t,a,f,f,f,0.6256906077348066,cochlear_age
+225.0,t,normal,f,normal,normal,unmeasured,f,degraded,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,normal,normal,f,f,f,normal,t,a,f,f,f,0.9214285714285715,cochlear_age

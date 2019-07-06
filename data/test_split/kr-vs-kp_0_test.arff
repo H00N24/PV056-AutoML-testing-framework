@@ -1,0 +1,795 @@
+% 1. Title: Chess End-Game -- King+Rook versus King+Pawn on a7
+%    (usually abbreviated KRKPA7).  The pawn on a7 means it is one square
+%    away from queening.  It is the King+Rook's side (white) to move.
+%
+% 2. Sources:
+%     (a) Database originally generated and described by Alen Shapiro.
+%     (b) Donor/Coder: Rob Holte (holte@uottawa.bitnet).  The database
+%         was supplied to Holte by Peter Clark of the Turing Institute
+%         in Glasgow (pete@turing.ac.uk).
+%     (c) Date: 1 August 1989
+%
+% 3. Past Usage:
+%      - Alen D. Shapiro (1983,1987), "Structured Induction in Expert Systems",
+%        Addison-Wesley.  This book is based on Shapiro's Ph.D. thesis (1983)
+%        at the University of Edinburgh entitled "The Role of Structured
+%        Induction in Expert Systems".
+%      - Stephen Muggleton (1987), "Structuring Knowledge by Asking Questions",
+%        pp.218-229 in "Progress in Machine Learning", edited by I. Bratko
+%        and Nada Lavrac, Sigma Press, Wilmslow, England  SK9 5BB.
+%      - Robert C. Holte, Liane Acker, and Bruce W. Porter (1989),
+%        "Concept Learning and the Problem of Small Disjuncts",
+%        Proceedings of IJCAI.  Also available as technical report AI89-106,
+%        Computer Sciences Department, University of Texas at Austin,
+%        Austin, Texas 78712.
+%
+% 4. Relevant Information:
+%       The dataset format is described below.  Note: the format of this
+%     database was modified on 2/26/90 to conform with the format of all
+%     the other databases in the UCI repository of machine learning databases.
+%
+% 5. Number of Instances: 3196 total
+%
+% 6. Number of Attributes: 36
+%
+% 7. Attribute Summaries:
+%     Classes (2):  -- White-can-win ("won") and White-cannot-win ("nowin").
+%           I believe that White is deemed to be unable to win if the Black pawn
+%           can safely advance.
+%     Attributes: see Shapiro's book.
+%
+% 8. Missing Attributes: --  none
+%
+% 9. Class Distribution:
+%     In 1669 of the positions (52%), White can win.
+%     In 1527 of the positions (48%), White cannot win.
+%
+% The format for instances in this database is a sequence of 37 attribute values.
+% Each instance is a board-descriptions for this chess endgame.  The first
+% 36 attributes describe the board.  The last (37th) attribute is the
+% classification: "win" or "nowin".  There are 0 missing values.
+% A typical board-description is
+%
+% f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+%
+% The names of the features do not appear in the board-descriptions.
+% Instead, each feature correponds to a particular position in the
+% feature-value list.  For example, the head of this list is the value
+% for the feature "bkblk".  The following is the list of features, in
+% the order in which their values appear in the feature-value list:
+%
+% [bkblk,bknwy,bkon8,bkona,bkspr,bkxbq,bkxcr,bkxwp,blxwp,bxqsq,cntxt,dsopp,dwipd,
+%  hdchk,katri,mulch,qxmsq,r2ar8,reskd,reskr,rimmx,rkxwp,rxmsq,simpl,skach,skewr,
+%  skrxp,spcop,stlmt,thrsk,wkcti,wkna8,wknck,wkovl,wkpos,wtoeg]
+%
+% In the file, there is one instance (board position) per line.
+%
+%
+% Num Instances:     3196
+% Num Attributes:    37
+% Num Continuous:    0 (Int 0 / Real 0)
+% Num Discrete:      37
+% Missing values:    0 /  0.0%
+%
+%     name                      type enum ints real     missing    distinct  (1)
+%   1 'bkblk'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%   2 'bknwy'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%   3 'bkon8'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%   4 'bkona'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%   5 'bkspr'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%   6 'bkxbq'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%   7 'bkxcr'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%   8 'bkxwp'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%   9 'blxwp'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  10 'bxqsq'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  11 'cntxt'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  12 'dsopp'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  13 'dwipd'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  14 'hdchk'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  15 'katri'                   Enum 100%   0%   0%     0 /  0%     3 /  0%   0%
+%  16 'mulch'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  17 'qxmsq'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  18 'r2ar8'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  19 'reskd'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  20 'reskr'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  21 'rimmx'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  22 'rkxwp'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  23 'rxmsq'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  24 'simpl'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  25 'skach'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  26 'skewr'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  27 'skrxp'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  28 'spcop'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  29 'stlmt'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  30 'thrsk'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  31 'wkcti'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  32 'wkna8'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  33 'wknck'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  34 'wkovl'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  35 'wkpos'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  36 'wtoeg'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%  37 'class'                   Enum 100%   0%   0%     0 /  0%     2 /  0%   0%
+%
+%
+@RELATION kr-vs-kp
+
+@ATTRIBUTE ID NUMERIC
+@ATTRIBUTE bkblk {t, f}
+@ATTRIBUTE bknwy {t, f}
+@ATTRIBUTE bkon8 {t, f}
+@ATTRIBUTE bkona {t, f}
+@ATTRIBUTE bkspr {t, f}
+@ATTRIBUTE bkxbq {t, f}
+@ATTRIBUTE bkxcr {t, f}
+@ATTRIBUTE bkxwp {t, f}
+@ATTRIBUTE blxwp {t, f}
+@ATTRIBUTE bxqsq {t, f}
+@ATTRIBUTE cntxt {t, f}
+@ATTRIBUTE dsopp {t, f}
+@ATTRIBUTE dwipd {g, l}
+@ATTRIBUTE hdchk {t, f}
+@ATTRIBUTE katri {b, n, w}
+@ATTRIBUTE mulch {t, f}
+@ATTRIBUTE qxmsq {t, f}
+@ATTRIBUTE r2ar8 {t, f}
+@ATTRIBUTE reskd {t, f}
+@ATTRIBUTE reskr {t, f}
+@ATTRIBUTE rimmx {t, f}
+@ATTRIBUTE rkxwp {t, f}
+@ATTRIBUTE rxmsq {t, f}
+@ATTRIBUTE simpl {t, f}
+@ATTRIBUTE skach {t, f}
+@ATTRIBUTE skewr {t, f}
+@ATTRIBUTE skrxp {t, f}
+@ATTRIBUTE spcop {t, f}
+@ATTRIBUTE stlmt {t, f}
+@ATTRIBUTE thrsk {t, f}
+@ATTRIBUTE wkcti {t, f}
+@ATTRIBUTE wkna8 {t, f}
+@ATTRIBUTE wknck {t, f}
+@ATTRIBUTE wkovl {t, f}
+@ATTRIBUTE wkpos {t, f}
+@ATTRIBUTE wtoeg {n, t, f}
+@ATTRIBUTE class {won, nowin}
+
+@DATA
+0,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+14,f,f,f,f,t,f,f,f,t,f,t,f,l,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,t,f,f,t,t,n,won
+17,f,f,f,f,t,f,t,f,f,f,t,f,l,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+22,f,f,f,f,f,f,f,f,f,f,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+25,f,f,f,f,f,f,t,f,f,f,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+29,f,f,f,f,f,f,f,f,f,f,t,f,l,f,w,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,t,f,f,t,t,n,won
+30,f,f,f,f,f,f,f,f,f,f,t,f,l,f,w,f,f,t,f,t,f,f,f,t,f,t,f,f,f,f,t,f,f,t,t,n,won
+31,f,f,f,f,f,f,f,f,t,f,t,f,l,f,w,f,f,t,f,f,f,t,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+32,f,f,f,f,f,f,f,f,f,f,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,f,n,won
+43,t,f,f,f,f,f,f,f,f,f,t,f,l,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,t,f,f,f,t,t,n,won
+44,t,f,f,f,t,f,t,f,f,f,t,f,l,f,n,f,f,t,f,t,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+45,t,f,f,f,f,f,f,f,f,f,t,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,t,f,f,t,f,n,won
+48,t,f,f,f,f,f,f,f,f,f,t,f,l,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,t,f,f,t,f,n,won
+51,t,f,f,f,f,f,t,f,f,f,t,f,l,f,b,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+52,t,f,f,f,f,f,f,f,f,f,t,f,l,f,w,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+56,t,f,f,f,f,f,f,f,f,f,t,f,l,f,w,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,f,n,won
+58,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+63,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+67,f,f,f,f,t,f,t,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+69,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,f,t,n,won
+70,f,f,f,f,f,f,f,f,f,f,t,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,n,won
+73,f,f,f,t,t,f,f,f,f,f,t,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,t,f,f,f,t,n,won
+76,f,f,f,f,t,f,f,f,f,f,t,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,n,won
+80,f,f,f,f,f,f,f,f,f,f,t,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,t,f,t,f,f,n,won
+87,f,f,f,f,t,f,t,f,f,f,t,f,l,f,w,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,n,won
+88,f,f,f,f,f,f,f,f,f,f,t,f,l,f,w,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+93,f,f,f,f,f,f,f,f,f,f,t,f,l,f,w,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,f,n,won
+102,f,f,f,f,t,f,t,t,t,f,t,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+108,f,f,f,f,f,f,t,t,t,f,t,f,l,f,w,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+111,f,f,f,f,t,f,t,t,t,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,n,won
+120,f,f,f,t,t,t,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,n,won
+124,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,f,t,n,won
+134,f,f,f,f,f,t,f,f,f,f,t,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,t,f,f,t,t,n,won
+135,f,f,f,f,f,t,f,f,f,f,t,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,t,f,f,f,t,n,won
+139,f,f,f,f,t,t,t,f,f,f,t,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+141,f,f,f,f,f,t,t,f,f,f,t,f,l,f,n,f,f,t,f,t,f,f,f,f,f,t,f,f,f,f,t,f,f,t,t,n,won
+144,f,f,f,f,f,t,f,f,t,f,t,f,l,f,n,f,f,t,f,t,f,t,f,f,f,t,f,f,f,f,t,f,f,t,t,n,won
+149,f,f,f,f,f,t,f,f,t,f,t,f,l,f,n,f,f,t,f,f,f,t,f,t,f,t,f,f,f,f,t,f,f,t,t,n,won
+152,f,f,f,f,f,t,f,f,f,f,t,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,t,f,f,f,f,n,won
+162,f,f,f,f,f,t,f,f,f,f,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,t,f,f,t,t,n,won
+166,f,f,f,f,f,t,t,f,f,f,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+170,f,f,f,f,f,t,f,f,f,f,t,f,l,f,w,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,t,f,f,t,t,n,won
+173,f,f,f,f,f,t,f,f,f,f,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,t,f,f,t,f,n,won
+174,f,f,f,f,f,t,f,f,f,f,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,t,f,f,f,f,n,won
+175,f,f,f,f,f,t,t,f,f,f,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,f,n,won
+176,f,f,f,f,t,t,t,f,f,f,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,f,n,won
+177,f,f,f,f,t,t,t,f,f,f,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,n,won
+178,f,f,f,f,f,t,t,f,t,f,t,f,l,f,w,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,t,f,n,won
+183,t,f,f,f,t,t,f,f,t,f,t,f,l,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+184,t,f,f,f,t,t,t,f,t,f,t,f,l,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+188,t,f,f,f,f,t,f,f,f,f,t,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,t,f,f,t,f,n,won
+192,t,f,f,f,f,t,f,f,f,f,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,t,f,f,t,t,n,won
+194,t,f,f,f,f,t,t,f,f,f,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+196,t,f,f,f,f,t,f,f,f,f,t,f,l,f,b,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+203,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,n,won
+208,f,f,f,f,f,t,t,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,n,won
+211,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,f,t,n,won
+214,f,f,t,f,f,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,n,won
+218,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,f,t,n,won
+229,f,f,f,f,f,t,f,f,f,f,t,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,t,f,t,f,f,n,won
+233,f,f,f,f,f,t,f,f,f,f,t,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,t,f,t,f,f,n,won
+239,f,f,f,f,f,t,t,f,f,f,t,f,l,f,w,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,n,won
+240,f,f,f,f,t,t,t,f,f,f,t,f,l,f,w,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+246,t,f,f,f,t,t,f,f,f,f,t,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,n,won
+251,f,f,f,f,t,t,t,t,t,f,f,f,l,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+254,f,f,f,f,f,t,t,t,t,f,t,f,l,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+256,f,f,f,f,f,t,t,t,t,f,t,f,l,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,t,f,n,won
+257,f,f,f,f,f,t,t,t,t,f,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,n,won
+263,t,f,f,f,f,t,f,f,f,f,t,f,l,f,n,f,f,t,f,f,f,f,t,f,f,t,f,f,f,f,t,f,f,t,t,n,won
+266,f,f,f,f,t,f,t,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,n,won
+270,f,f,f,f,t,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,n,won
+279,f,f,f,f,t,f,t,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,n,won
+282,f,t,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,t,n,won
+289,f,f,f,f,t,f,t,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,n,won
+291,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,f,t,n,won
+296,f,f,f,f,t,f,t,t,t,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,n,won
+298,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,t,t,f,f,f,f,t,t,f,f,f,f,f,f,f,f,f,t,t,n,won
+299,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,n,won
+309,f,f,f,f,f,t,f,f,t,f,f,f,l,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,n,won
+313,f,f,f,f,f,t,t,f,t,f,f,f,l,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,n,won
+314,f,f,f,f,f,t,t,f,t,f,f,f,l,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,t,n,won
+318,f,t,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,n,won
+321,f,f,f,f,f,t,f,f,t,f,f,f,l,f,n,f,f,t,f,f,f,t,f,t,f,f,f,f,f,f,f,f,f,t,t,n,won
+322,f,f,f,f,t,t,t,f,t,f,f,f,l,f,n,f,f,t,f,f,f,t,f,t,f,f,f,f,f,f,f,f,f,t,t,n,won
+324,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,n,won
+325,f,f,f,f,t,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,n,won
+331,f,f,f,f,f,t,t,f,t,f,f,f,l,f,n,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,n,won
+332,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,n,won
+343,f,f,f,f,t,t,t,t,t,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,n,won
+346,f,f,f,f,t,f,t,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+354,f,f,f,f,t,f,f,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+361,f,f,f,f,f,f,f,f,t,f,t,f,g,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+366,f,f,f,f,t,f,t,f,f,f,t,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+368,f,f,f,f,t,f,f,f,t,f,t,f,g,f,n,f,f,t,f,f,f,t,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+370,t,f,f,f,f,f,f,f,f,f,t,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+387,f,f,f,f,f,f,f,f,f,f,t,f,g,f,n,f,t,t,f,f,f,f,t,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+393,f,f,f,t,t,t,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+402,f,f,f,f,f,t,t,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+408,f,f,f,f,t,t,t,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+410,f,f,f,f,f,t,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,f,t,n,won
+411,f,f,f,f,f,t,f,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+414,f,f,f,t,f,t,f,f,f,f,t,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+416,f,f,f,f,t,t,f,f,f,f,t,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+420,f,f,f,t,f,t,f,f,t,f,t,f,g,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+423,f,f,f,f,t,t,t,f,t,f,t,f,g,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+430,f,f,f,f,f,t,f,f,f,f,t,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,f,n,won
+432,f,f,f,f,t,t,t,f,f,f,t,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,f,n,won
+433,f,f,f,f,f,t,f,f,t,f,t,f,g,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,t,f,n,won
+436,f,f,f,f,f,t,t,f,f,f,t,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,f,n,won
+438,f,f,f,f,f,t,f,f,f,f,t,f,g,f,b,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+439,f,f,f,f,t,t,f,f,f,f,t,f,g,f,b,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+442,t,f,f,f,f,t,f,f,f,f,t,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+443,t,f,f,f,f,t,t,f,f,f,t,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+449,t,f,f,f,f,t,f,f,f,f,t,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,f,n,won
+450,t,f,f,f,f,t,f,f,f,f,t,f,g,f,b,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+457,f,f,f,f,f,t,t,t,t,f,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+460,f,f,f,f,f,t,t,t,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+463,f,f,f,f,f,t,t,t,t,f,t,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+468,f,f,f,f,f,t,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,t,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+471,f,f,f,f,f,t,f,f,f,f,t,f,g,f,n,f,f,t,f,f,f,f,t,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+472,f,f,f,f,f,t,f,f,t,f,t,f,g,f,n,f,f,t,f,f,f,t,t,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+478,f,f,f,f,f,f,f,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,n,won
+479,f,f,f,f,t,f,f,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,n,won
+485,f,f,f,f,t,f,f,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,t,f,f,f,f,f,f,f,f,f,t,t,n,won
+486,f,f,f,f,f,f,t,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,t,f,f,f,f,f,f,f,f,f,t,t,n,won
+495,f,f,f,f,t,t,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,n,won
+501,f,f,f,f,f,t,f,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,n,won
+506,f,f,f,f,f,t,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,n,won
+507,f,f,t,f,f,t,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,n,won
+511,f,f,f,f,t,t,t,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,t,f,f,f,f,f,f,f,f,f,t,t,n,won
+527,f,f,f,f,f,f,f,f,f,f,t,t,l,f,w,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+528,f,f,f,f,f,f,f,f,f,f,t,t,l,f,w,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,f,n,won
+532,f,f,f,f,f,t,t,f,f,f,t,t,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,f,n,won
+535,f,f,f,f,f,t,f,f,f,f,f,t,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,n,won
+538,f,f,f,f,f,f,f,f,f,f,f,t,l,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,n,won
+544,f,f,f,f,f,t,f,f,t,f,f,t,l,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,n,won
+547,f,f,f,f,f,f,f,f,f,f,f,t,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+554,f,f,f,f,f,f,f,f,t,f,f,t,g,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,n,won
+555,f,f,f,f,f,f,f,f,f,f,f,t,g,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,n,won
+557,f,f,f,f,f,t,f,f,t,f,f,t,g,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,n,won
+561,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,t,won
+564,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,t,won
+565,f,t,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,t,won
+567,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,f,t,t,won
+568,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,t,won
+572,f,f,f,f,t,f,t,t,t,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,t,won
+578,f,f,f,f,t,t,t,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,t,won
+581,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,f,t,t,won
+582,f,f,f,f,t,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,f,t,t,won
+594,f,f,f,f,f,t,t,t,t,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,t,won
+596,f,f,f,f,t,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,won
+598,f,f,f,f,t,f,t,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,won
+599,f,f,f,f,f,f,f,f,t,f,f,f,l,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,t,won
+601,f,f,f,f,t,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,t,won
+602,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,t,f,f,f,t,t,t,won
+605,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,won
+610,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,t,won
+611,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,won
+612,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,f,t,t,won
+621,f,f,f,f,t,t,t,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,won
+631,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,won
+642,f,f,f,f,t,t,t,t,t,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,won
+654,f,f,f,f,f,t,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,t,won
+670,f,f,f,f,f,f,f,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,t,won
+676,f,f,f,f,f,f,f,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,t,f,f,f,f,f,f,f,f,f,t,t,t,won
+680,f,f,f,f,t,t,t,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,won
+682,f,f,f,f,f,t,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,t,won
+685,f,f,f,f,f,f,f,f,f,f,f,t,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,t,won
+691,f,f,f,f,f,f,f,f,f,f,f,t,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,won
+693,f,f,f,f,f,f,f,f,f,f,f,t,l,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,t,won
+695,f,f,f,f,f,f,f,f,f,f,f,t,l,f,n,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,t,t,won
+700,f,f,f,f,f,f,f,f,f,f,f,t,g,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,won
+705,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,t,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+718,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,t,f,f,t,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+727,f,f,f,f,f,f,f,f,t,f,f,f,l,f,n,f,f,t,f,f,t,t,f,f,f,f,f,f,f,f,f,f,t,t,t,n,won
+729,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,t,f,f,t,f,f,f,f,f,f,f,f,t,t,t,n,won
+734,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,f,t,n,won
+736,f,f,f,f,f,f,f,f,t,f,f,f,l,f,n,f,f,f,f,f,t,t,f,f,f,f,f,f,f,f,f,f,t,t,t,n,won
+746,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,t,f,f,t,f,f,t,f,f,f,f,f,f,f,f,t,t,t,n,won
+755,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,f,t,n,won
+756,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,t,f,f,t,f,f,f,f,f,f,f,f,t,f,t,n,won
+759,f,f,f,f,f,f,f,f,f,f,f,f,g,f,n,f,f,t,f,f,t,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+761,f,f,f,f,f,f,f,f,f,f,f,f,g,f,n,f,f,t,f,f,t,f,f,t,f,t,f,f,f,f,f,f,t,t,t,n,won
+764,f,f,f,f,f,t,f,f,f,f,f,f,g,f,n,f,f,t,f,f,t,f,f,f,f,t,f,f,f,f,f,f,t,t,t,n,won
+776,f,f,f,f,f,t,f,f,f,f,f,f,g,f,n,f,f,t,f,f,t,f,f,t,f,f,f,f,f,f,f,f,t,t,t,n,won
+785,f,f,f,f,f,t,f,f,f,f,f,t,l,f,n,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,t,n,won
+789,f,f,f,f,f,t,f,f,f,f,f,t,g,f,n,f,f,t,f,f,t,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+790,f,f,f,f,f,t,f,f,f,f,f,t,g,f,n,f,f,t,f,f,t,f,f,f,f,t,f,f,f,f,f,f,t,t,t,n,won
+794,f,f,f,f,f,t,f,f,f,f,f,t,g,f,n,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,t,n,won
+798,f,f,f,f,f,f,f,f,t,f,f,f,l,f,n,f,f,t,f,f,t,t,f,t,f,t,f,f,f,f,f,f,t,t,t,t,won
+801,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,t,f,f,f,f,t,f,f,f,f,f,f,t,f,t,t,won
+805,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,t,f,f,t,f,f,f,f,t,f,f,f,f,f,f,f,t,t,t,won
+807,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,t,f,f,t,f,f,t,f,t,f,f,f,f,f,f,f,t,t,t,won
+809,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,t,f,f,f,f,t,f,f,f,f,f,f,f,t,t,t,won
+810,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,t,f,f,f,f,t,f,f,f,f,f,f,t,f,t,t,won
+811,f,f,f,f,t,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,t,f,f,f,f,t,f,f,f,f,f,f,t,f,t,t,won
+812,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,t,f,f,t,f,t,f,f,f,f,f,f,t,f,t,t,won
+831,f,f,f,f,f,f,f,f,f,t,t,f,l,f,w,f,f,t,f,f,t,f,f,t,f,t,f,f,f,f,f,f,t,t,t,n,won
+838,f,f,f,t,t,t,f,f,f,t,f,f,l,f,n,f,f,t,f,f,t,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+840,f,f,f,f,f,t,t,f,f,t,t,f,l,f,n,f,f,t,f,f,t,f,f,f,f,t,f,f,f,f,f,f,t,t,t,n,won
+857,f,f,f,f,t,t,t,f,f,t,f,f,g,f,n,f,f,t,f,f,t,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+862,f,f,f,f,f,t,f,f,f,t,t,f,g,f,n,f,f,t,f,f,t,f,f,f,f,t,f,f,f,f,f,f,t,t,t,n,won
+864,f,f,f,f,f,t,f,f,f,t,t,f,g,f,n,f,f,t,f,f,t,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+867,f,f,f,f,t,f,f,f,f,t,f,f,g,f,n,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,t,t,n,won
+869,f,f,f,f,f,t,f,f,f,t,f,f,g,f,n,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,t,t,n,won
+874,f,f,f,f,f,f,f,f,f,t,f,t,l,f,n,f,f,f,f,f,t,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+879,f,f,f,f,f,f,f,f,f,t,f,f,l,f,n,f,f,f,f,f,t,f,f,f,f,t,f,f,f,f,f,f,f,t,t,t,won
+881,f,f,f,f,f,t,f,f,f,t,f,f,l,f,n,f,f,t,f,f,t,f,f,f,f,t,f,f,f,f,f,f,f,t,t,t,won
+887,f,f,f,f,f,f,f,f,f,t,f,f,l,f,n,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,t,t,won
+889,f,f,f,f,t,f,f,f,f,t,f,f,l,f,n,f,f,t,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,t,t,t,won
+897,f,f,f,f,f,t,f,f,f,t,f,f,l,f,n,f,f,t,f,f,t,f,f,t,f,f,f,f,f,f,f,f,t,t,t,t,won
+900,f,f,f,f,f,f,f,f,f,t,f,f,g,f,n,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,t,t,won
+912,f,f,f,f,t,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,t,f,t,f,n,nowin
+926,f,f,f,f,t,f,t,f,f,f,t,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+930,f,f,f,f,t,f,f,f,t,f,t,f,l,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,t,f,n,nowin
+937,f,f,f,f,f,f,f,f,t,f,t,f,l,f,n,f,f,t,f,f,f,t,f,t,f,t,f,f,f,f,f,f,f,t,f,n,nowin
+940,f,f,f,f,f,f,f,f,t,f,t,f,l,f,n,f,f,t,f,f,f,t,f,t,f,t,f,f,f,f,t,f,f,t,f,n,nowin
+942,f,f,f,f,f,f,f,f,f,f,t,f,l,f,b,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,t,f,f,t,t,n,nowin
+945,f,f,f,f,t,f,t,f,f,f,t,f,l,f,b,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+952,f,f,f,f,t,f,t,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,f,t,n,nowin
+962,f,f,f,f,f,f,t,f,f,f,t,f,l,f,n,f,f,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,t,f,f,n,nowin
+964,f,f,f,f,f,f,t,f,f,f,t,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,t,f,t,f,f,n,nowin
+969,f,f,f,f,t,f,t,f,f,f,t,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,f,f,n,nowin
+976,f,f,f,f,t,f,t,t,t,f,t,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+978,f,f,f,f,t,f,t,t,t,f,t,f,l,f,b,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+990,f,f,f,f,f,t,f,f,f,f,t,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,t,f,t,t,f,n,nowin
+999,t,f,f,f,f,t,t,f,f,f,t,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+1001,f,f,t,f,f,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,f,t,n,nowin
+1003,f,f,f,f,f,t,t,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,f,t,n,nowin
+1010,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+1011,f,f,f,f,t,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+1022,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,n,nowin
+1023,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+1027,f,f,f,t,t,t,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+1032,f,f,f,f,f,t,t,f,f,f,f,f,l,f,n,t,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,t,n,nowin
+1034,f,f,f,f,f,t,f,f,t,f,f,f,l,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+1036,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+1042,f,f,f,f,f,t,t,t,t,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,t,n,nowin
+1044,f,f,f,f,t,t,t,t,t,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,t,n,nowin
+1047,f,f,f,f,f,f,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,t,n,nowin
+1057,f,f,f,f,f,f,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,t,f,t,f,n,nowin
+1068,f,f,f,f,t,f,f,f,t,f,t,f,g,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,t,f,n,nowin
+1089,f,f,f,f,f,f,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,t,f,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+1090,f,f,f,f,f,f,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,t,f,f,t,f,f,f,f,f,f,t,t,t,n,nowin
+1093,f,f,f,f,f,f,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,t,t,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+1097,f,f,f,f,f,f,f,f,f,f,t,f,g,f,b,f,f,t,f,f,f,f,t,f,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+1100,f,f,f,t,t,t,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,t,n,nowin
+1103,f,f,f,f,t,t,t,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,t,t,t,n,nowin
+1105,f,f,t,f,f,t,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,f,t,n,nowin
+1106,f,f,f,t,f,t,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,f,t,n,nowin
+1108,f,f,f,f,t,t,t,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,t,t,n,nowin
+1110,f,f,f,f,t,t,t,t,t,f,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,t,n,nowin
+1116,f,f,f,f,f,f,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+1117,f,f,f,f,t,f,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+1123,f,f,f,f,f,f,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,t,f,f,t,t,t,n,nowin
+1124,f,f,f,f,t,f,t,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+1128,f,f,f,f,t,f,t,t,t,f,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+1133,f,f,f,f,f,t,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+1135,f,f,f,t,t,t,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+1146,f,f,f,f,f,t,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+1151,f,f,f,f,f,f,f,f,f,f,f,t,l,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+1161,f,f,f,f,f,f,f,f,f,f,f,t,g,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+1173,f,f,f,f,f,t,f,f,t,f,f,f,l,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,t,t,t,t,nowin
+1174,f,f,f,f,t,t,t,f,t,f,f,f,l,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,t,t,t,t,nowin
+1178,f,f,f,f,f,t,t,t,t,f,f,f,l,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,t,t,t,t,nowin
+1179,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+1187,f,f,f,f,f,f,f,f,t,f,f,f,l,f,n,f,f,t,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+1190,f,f,f,f,f,f,f,f,t,f,f,f,l,f,n,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+1195,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,t,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,t,t,nowin
+1196,f,f,f,f,t,t,t,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+1200,f,f,f,f,t,t,t,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,t,t,nowin
+1204,f,f,f,f,t,f,t,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,t,t,nowin
+1206,f,f,f,f,f,f,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,t,t,t,nowin
+1211,f,f,f,f,f,t,t,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,t,t,nowin
+1213,f,f,f,f,f,t,f,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,t,t,t,t,nowin
+1220,f,f,f,f,f,f,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+1225,f,f,f,f,f,t,f,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+1226,f,f,f,f,f,t,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+1233,f,f,f,f,f,f,f,f,f,f,f,t,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,t,t,nowin
+1235,f,f,f,f,f,f,f,f,f,f,f,t,g,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+1237,f,f,f,f,f,f,f,f,f,t,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,n,nowin
+1242,f,f,f,f,f,f,f,f,f,t,f,f,l,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,n,nowin
+1251,f,f,f,f,f,f,f,f,f,t,t,f,l,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+1253,f,f,f,f,f,f,f,f,f,t,t,f,l,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,t,f,t,t,t,n,nowin
+1255,f,f,f,f,f,f,f,f,f,t,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,t,t,t,f,n,nowin
+1261,f,f,f,f,f,f,t,f,f,t,t,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+1268,f,f,f,f,f,f,f,f,f,t,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+1270,f,f,f,f,f,f,t,f,f,t,t,f,l,f,b,f,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+1271,f,f,f,f,f,f,f,f,f,t,t,f,l,f,b,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,t,n,nowin
+1272,f,f,f,f,f,f,f,f,f,t,t,f,l,f,b,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,t,f,t,t,t,n,nowin
+1278,f,f,f,f,f,f,f,f,f,t,t,f,l,f,b,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,t,t,n,nowin
+1283,f,t,f,f,f,f,f,f,f,t,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,n,nowin
+1288,f,t,f,f,f,f,f,f,f,t,t,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,n,nowin
+1289,f,t,f,f,f,f,f,f,f,t,t,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+1292,f,f,f,f,f,f,t,t,t,t,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,n,nowin
+1295,f,f,f,f,f,f,t,t,t,t,f,f,l,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,t,n,nowin
+1309,f,f,f,f,f,t,f,f,f,t,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,n,nowin
+1320,f,f,f,f,f,t,f,f,f,t,f,f,l,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,t,t,n,nowin
+1322,f,f,f,f,f,t,f,f,f,t,t,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,t,f,t,t,t,n,nowin
+1323,f,f,f,f,f,t,t,f,f,t,t,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,t,n,nowin
+1334,f,f,f,f,f,t,f,f,f,t,t,f,l,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,t,f,t,t,f,n,nowin
+1336,f,f,f,f,f,t,f,f,f,t,t,f,l,f,b,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+1338,f,f,f,f,f,t,t,f,f,t,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,t,n,nowin
+1340,f,f,f,f,f,t,f,f,f,t,t,f,l,f,w,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+1350,f,t,f,f,f,t,f,f,f,t,t,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,n,nowin
+1352,f,f,f,f,f,t,t,f,f,t,t,f,l,f,w,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,t,n,nowin
+1361,f,f,f,f,f,t,f,t,t,t,t,f,l,f,n,f,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+1374,f,f,f,f,f,t,t,t,t,t,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,t,n,nowin
+1375,f,f,f,f,f,t,f,t,t,t,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,f,n,nowin
+1376,f,f,f,f,f,t,f,t,t,t,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+1381,f,f,f,f,f,f,f,f,f,t,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,n,nowin
+1391,f,f,f,f,f,t,f,f,f,t,f,f,l,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,n,nowin
+1395,f,f,f,f,f,t,f,t,t,t,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,n,nowin
+1397,f,f,f,f,f,t,f,t,t,t,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+1402,f,f,f,f,f,t,f,t,t,t,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,t,n,nowin
+1404,f,f,f,f,t,f,t,f,f,t,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+1423,f,f,f,f,f,f,f,f,f,t,t,f,g,f,b,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+1429,f,f,f,f,f,f,f,f,f,t,t,f,g,f,b,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+1442,f,f,f,f,f,t,t,f,f,t,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+1446,f,f,f,f,f,t,f,f,f,t,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+1450,f,f,f,f,f,t,f,f,f,t,t,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+1456,f,f,f,f,f,t,f,f,f,t,t,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+1459,f,f,t,f,f,t,t,f,f,t,t,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+1461,f,f,f,f,f,t,f,f,f,t,t,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,t,t,n,nowin
+1465,f,f,f,f,f,t,f,f,f,t,t,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+1491,f,f,f,f,t,f,t,f,f,t,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+1498,f,f,f,f,f,t,f,f,f,t,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,n,nowin
+1502,f,f,f,f,f,t,f,f,f,t,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,n,nowin
+1510,f,f,f,f,f,t,f,f,f,t,f,f,g,f,n,f,f,t,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,n,nowin
+1518,f,f,f,f,f,f,f,f,f,t,f,t,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,n,nowin
+1554,f,f,f,f,f,f,f,f,f,t,f,f,l,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,t,nowin
+1556,f,f,f,f,f,f,f,f,f,t,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,nowin
+1558,f,f,f,f,f,f,f,f,f,t,f,f,l,f,n,f,t,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,nowin
+1562,f,f,f,f,t,t,t,f,f,t,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+1563,f,f,f,f,f,t,f,f,f,t,f,f,l,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,t,nowin
+1565,f,f,f,t,f,t,f,f,f,t,f,f,l,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,t,nowin
+1567,f,f,f,f,f,t,f,f,f,t,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,t,nowin
+1572,f,f,f,f,t,f,t,f,f,t,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,t,nowin
+1576,f,f,f,f,t,t,t,f,f,t,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,t,nowin
+1577,f,f,f,f,f,t,f,f,f,t,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,t,nowin
+1580,f,f,f,f,f,t,f,t,t,t,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,t,t,nowin
+1582,f,f,f,f,t,f,t,f,f,t,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,nowin
+1586,f,f,f,f,f,t,f,f,f,t,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,nowin
+1588,f,f,f,f,f,t,f,f,f,t,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,t,nowin
+1590,f,f,f,f,f,f,f,f,f,t,f,t,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,t,nowin
+1606,t,f,f,f,f,f,f,f,f,f,t,f,g,f,b,f,f,t,f,f,f,f,f,t,f,t,f,f,f,t,f,f,f,t,t,n,won
+1613,t,f,f,f,t,f,f,f,t,f,t,f,g,f,b,f,f,f,f,f,f,t,f,t,f,t,f,f,f,f,f,f,f,f,f,n,won
+1614,t,t,f,f,f,f,f,f,f,f,t,f,g,f,b,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,n,won
+1618,f,f,f,f,f,f,f,f,f,f,t,f,g,f,n,f,t,t,f,f,f,f,t,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+1620,f,f,f,f,t,t,t,f,t,f,t,f,g,f,b,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+1621,t,f,t,f,f,t,f,f,f,f,t,f,g,f,b,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,n,won
+1626,t,f,f,f,t,t,t,f,t,f,t,f,g,f,b,f,f,t,f,f,f,t,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+1647,f,f,f,t,f,t,t,t,t,f,t,f,g,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,n,won
+1653,f,f,f,f,t,f,t,t,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,n,won
+1657,f,f,t,f,t,t,t,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,n,won
+1662,f,f,f,f,t,t,t,t,t,f,f,f,g,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,n,won
+1675,t,f,f,f,f,f,f,f,f,f,t,f,l,f,n,f,f,t,f,f,f,f,f,t,t,t,f,f,f,f,t,f,f,t,f,n,won
+1697,f,t,f,f,f,f,f,f,f,f,t,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,t,f,t,t,f,n,won
+1703,f,f,f,f,f,f,t,f,f,f,t,f,l,f,w,f,f,f,f,t,f,f,f,f,f,t,f,f,f,f,t,f,f,f,f,n,won
+1710,f,f,f,f,f,f,f,f,t,f,t,f,l,f,w,f,f,f,f,t,f,t,f,t,f,t,f,f,f,f,t,f,f,t,t,n,won
+1711,f,f,f,f,f,f,f,f,t,f,t,f,l,f,n,f,f,f,f,t,f,t,f,t,f,t,f,f,f,f,t,f,f,f,t,n,won
+1725,t,t,f,f,f,f,f,f,f,f,f,f,l,f,b,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,t,f,f,f,n,won
+1726,f,f,f,f,f,f,f,f,f,f,t,f,l,f,n,f,t,f,f,f,f,f,f,t,f,t,f,f,f,f,t,f,t,f,f,n,won
+1727,f,f,f,f,f,f,f,f,f,f,t,f,l,f,n,f,t,f,f,f,f,f,f,f,f,t,f,f,f,f,t,f,t,f,f,n,won
+1729,f,f,f,f,t,f,t,t,t,f,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,f,n,won
+1732,f,f,f,f,f,f,t,t,t,f,t,f,l,f,w,f,f,t,f,f,f,t,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+1736,t,f,f,f,f,f,t,t,t,f,t,f,l,f,n,f,f,t,f,t,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+1738,f,f,f,f,f,f,t,t,t,f,t,f,l,f,w,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,f,n,won
+1739,f,f,f,f,f,f,t,t,t,f,t,f,l,f,w,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,n,won
+1754,f,t,f,f,f,t,f,f,f,f,t,f,l,f,w,t,f,t,f,t,f,f,f,f,f,t,f,f,f,f,t,f,f,t,f,n,won
+1765,f,f,f,f,f,t,f,f,t,f,t,f,l,f,w,f,f,t,f,t,f,t,f,f,f,t,f,f,f,f,t,f,f,t,t,n,won
+1767,f,f,f,t,f,t,f,f,t,f,t,f,l,f,n,f,f,t,f,t,f,t,f,f,f,t,f,f,f,f,t,f,f,t,t,n,won
+1775,t,f,f,f,t,t,t,f,t,f,t,f,l,f,b,f,f,t,f,f,f,t,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+1778,t,f,f,f,t,t,t,f,t,f,t,f,l,f,b,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+1779,t,f,f,f,f,t,f,f,f,f,t,f,l,f,w,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,t,f,f,t,f,n,won
+1780,t,f,f,f,f,t,f,f,f,f,t,f,l,f,n,f,f,t,f,t,f,f,f,t,f,t,f,f,f,f,t,f,f,t,f,n,won
+1789,f,f,f,f,f,t,f,f,f,f,t,f,l,f,n,f,f,f,t,f,f,f,f,t,f,t,f,f,f,f,t,f,t,f,f,n,won
+1795,f,t,f,f,f,t,f,f,f,f,t,f,l,f,w,f,f,f,f,t,f,f,f,t,f,t,f,f,f,f,t,f,f,f,f,n,won
+1800,f,f,f,f,f,t,t,f,f,f,t,f,l,f,n,f,f,f,f,t,f,f,f,t,f,t,f,f,f,f,t,f,f,f,f,n,won
+1801,f,f,f,f,f,t,t,f,f,f,t,f,l,f,w,f,f,f,f,t,f,f,f,t,f,t,f,f,f,f,t,f,f,f,f,n,won
+1812,f,f,f,f,f,t,f,f,f,f,t,f,l,f,w,f,f,f,f,t,f,f,f,t,f,t,f,f,f,f,t,f,f,f,t,n,won
+1813,f,f,f,t,f,t,f,f,f,f,t,f,l,f,w,f,f,f,f,t,f,f,f,t,f,t,f,f,f,f,t,f,f,f,t,n,won
+1815,f,f,f,t,f,t,f,f,f,f,t,f,l,f,w,f,f,f,t,t,f,f,f,t,f,t,f,f,f,f,t,f,f,f,t,n,won
+1822,f,f,f,f,f,t,f,f,f,f,t,f,l,f,w,f,f,f,f,t,f,f,f,f,f,t,f,f,f,f,t,f,f,t,t,n,won
+1831,f,f,f,f,f,t,t,t,t,f,t,f,l,f,w,f,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,n,won
+1835,f,f,f,f,f,t,t,t,t,f,t,f,l,f,w,f,f,t,f,t,f,t,f,f,f,t,f,f,f,f,t,f,f,t,f,n,won
+1847,t,f,f,f,t,t,t,t,t,f,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,f,n,won
+1850,t,f,f,f,t,t,t,t,t,f,t,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,n,won
+1861,t,f,f,f,t,t,t,t,t,f,t,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,n,won
+1867,t,f,f,f,f,t,f,f,f,f,t,f,l,f,n,f,t,t,f,f,f,f,t,f,f,t,f,f,f,f,t,f,f,t,t,n,won
+1889,f,f,f,f,f,f,t,t,t,f,t,t,l,f,w,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,t,f,n,won
+1894,f,f,f,f,f,f,f,f,f,f,t,t,l,f,n,f,t,t,f,f,f,f,t,t,f,t,f,f,f,f,t,f,f,t,t,n,won
+1896,f,f,f,f,f,f,f,f,t,f,t,t,l,f,n,f,t,t,f,t,f,t,t,t,f,t,f,f,f,f,t,f,f,t,t,n,won
+1907,f,f,f,f,f,t,t,f,f,f,t,t,l,f,w,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,f,n,won
+1909,f,f,f,f,f,t,t,f,f,f,t,t,l,f,w,f,t,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,won
+1914,f,f,f,f,f,t,t,f,t,f,t,t,l,f,n,f,f,t,f,t,f,t,t,f,f,t,f,f,f,f,f,f,f,t,f,n,won
+1916,f,f,f,f,f,t,t,f,f,f,t,t,l,f,n,f,f,f,f,t,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,n,won
+1924,f,f,f,f,t,f,f,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,t,f,f,f,f,f,f,f,f,f,t,t,t,won
+1927,f,f,f,f,t,f,t,t,t,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,t,t,t,won
+1936,f,f,t,f,t,t,t,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,won
+1945,f,f,f,f,t,t,t,t,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,t,won
+1948,f,f,f,f,t,t,t,t,t,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,t,won
+1949,f,f,f,t,t,t,t,t,t,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,t,won
+1951,f,t,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,t,t,won
+1952,f,f,f,f,t,f,t,t,t,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,won
+1954,f,t,t,f,f,t,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,won
+1966,f,f,f,f,t,t,t,f,t,f,f,f,l,f,n,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,f,f,t,t,won
+1973,f,f,f,t,t,t,t,t,t,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,won
+1977,f,f,f,f,f,f,f,f,f,f,f,t,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,t,f,f,f,f,t,t,won
+1991,f,f,f,t,f,t,f,f,f,t,t,f,g,f,n,f,f,t,f,f,t,f,f,f,f,t,f,f,f,f,f,f,t,t,t,n,won
+1995,f,f,f,f,t,t,t,t,t,t,f,f,g,f,n,f,f,t,f,f,t,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,won
+1999,f,f,f,f,t,t,t,t,t,t,f,f,g,f,n,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,t,t,n,won
+2002,f,f,f,f,f,f,f,f,f,t,t,f,l,f,w,f,f,t,f,t,t,f,f,t,f,t,f,f,f,f,t,f,t,t,f,n,won
+2009,f,f,f,f,f,f,f,f,f,t,t,f,l,f,n,f,f,t,f,t,t,f,f,t,f,t,f,f,f,f,t,f,t,t,t,n,won
+2013,f,f,f,f,f,f,f,f,f,t,t,f,l,f,w,f,f,t,f,t,t,f,f,f,f,t,f,f,f,f,t,f,t,t,t,n,won
+2015,f,t,f,f,f,f,f,f,f,t,t,f,l,f,w,f,f,f,f,t,t,f,f,t,f,t,f,f,f,f,t,f,t,t,f,n,won
+2018,f,f,f,f,f,f,f,f,f,t,f,f,l,f,w,f,f,f,f,t,t,f,f,t,f,t,f,f,f,f,f,t,t,f,f,n,won
+2020,f,f,f,t,f,f,f,f,f,t,f,f,l,f,w,f,f,f,f,t,t,f,f,f,f,t,f,f,f,f,f,t,t,f,f,n,won
+2022,f,f,f,f,f,f,f,f,f,t,t,f,l,f,w,f,f,f,f,t,t,f,f,t,f,t,f,f,f,f,t,f,t,f,t,n,won
+2030,f,f,f,f,f,f,t,t,t,t,f,f,l,f,w,f,f,f,f,f,t,f,f,t,f,t,f,f,f,f,f,t,t,f,f,n,won
+2033,f,f,f,f,f,t,f,f,f,t,t,f,l,f,w,f,f,t,f,f,t,f,f,t,f,t,f,f,f,f,t,f,t,t,f,n,won
+2044,f,f,f,f,f,t,f,f,f,t,t,f,l,f,n,f,f,t,f,t,t,f,f,f,f,t,f,f,f,f,t,f,t,t,t,n,won
+2057,f,f,f,f,f,f,f,f,f,t,t,t,g,f,n,f,t,t,f,f,t,f,t,f,f,t,f,f,f,f,f,f,t,t,t,n,won
+2063,f,f,f,f,f,f,f,f,f,t,t,t,l,f,w,f,f,t,f,f,t,f,f,f,f,t,f,f,f,f,f,f,t,t,t,n,won
+2064,f,f,f,t,f,f,t,t,t,t,f,t,l,f,w,f,f,f,f,f,t,f,f,f,f,t,f,f,f,f,f,t,t,f,f,n,won
+2066,f,f,f,f,f,t,t,f,f,t,t,t,l,f,w,f,f,f,f,f,t,f,f,f,f,t,f,f,f,f,f,f,t,f,t,n,won
+2073,f,f,f,f,t,f,f,f,f,t,f,f,g,f,n,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,won
+2080,f,f,f,f,t,t,f,f,f,t,f,f,g,f,n,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,t,t,won
+2084,f,f,f,t,t,t,f,f,f,t,f,f,g,f,n,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,won
+2089,f,t,f,f,f,f,f,f,f,t,f,f,l,f,n,f,f,f,f,f,t,f,f,t,f,f,f,f,f,f,f,f,t,f,t,t,won
+2090,f,f,f,f,t,f,f,f,f,t,f,f,l,f,n,f,f,f,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,won
+2096,f,f,f,f,f,f,f,f,f,t,f,f,l,f,n,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,f,f,t,f,t,t,won
+2111,f,t,f,f,f,t,f,f,f,t,f,f,l,f,n,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,f,t,t,won
+2117,f,f,f,t,t,t,t,t,t,t,f,f,l,f,n,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,won
+2121,f,f,f,f,f,t,f,f,f,t,f,t,g,f,n,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,t,t,won
+2124,f,f,f,f,f,f,f,f,f,t,f,t,l,f,n,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,won
+2131,f,f,f,f,f,f,f,f,f,t,f,t,l,f,n,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,won
+2132,f,f,f,f,f,t,f,f,f,t,f,t,l,f,n,f,f,t,f,f,t,f,f,t,f,f,f,f,f,f,f,f,t,t,t,t,won
+2134,f,f,f,f,f,f,f,f,f,f,f,f,g,f,n,f,f,t,f,f,t,f,f,t,f,f,f,f,f,t,f,f,t,t,t,n,won
+2144,f,f,f,f,f,f,f,f,t,f,t,f,l,f,n,f,f,t,f,t,t,t,f,f,f,t,f,f,f,f,t,f,t,t,f,n,won
+2153,f,f,f,f,t,f,f,f,t,f,t,f,l,f,w,f,f,t,f,f,t,t,f,t,f,t,f,f,f,f,t,f,f,t,t,n,won
+2159,f,f,f,f,f,f,f,f,f,f,t,f,l,f,n,f,f,f,f,f,t,f,f,t,f,t,f,f,f,f,t,f,t,f,f,n,won
+2163,f,f,f,f,f,f,f,f,f,f,t,f,l,f,w,f,f,f,f,t,t,f,f,t,f,t,f,f,f,f,t,f,f,f,f,n,won
+2174,f,f,f,f,t,f,f,f,f,f,t,f,l,f,n,f,f,f,f,f,t,f,f,f,f,t,f,f,f,f,t,f,t,f,f,n,won
+2183,f,f,f,t,t,f,f,f,f,f,t,f,l,f,w,f,f,f,f,t,t,f,f,f,f,t,f,f,f,f,t,f,f,f,f,n,won
+2185,f,f,f,f,t,f,f,f,t,f,t,f,l,f,n,f,f,f,f,t,t,t,f,f,f,t,f,f,f,f,t,f,t,t,f,n,won
+2186,f,t,f,f,f,f,f,f,t,f,t,f,l,f,n,f,f,f,f,t,t,t,f,f,f,t,t,f,f,t,t,f,t,f,f,n,won
+2189,f,t,f,f,t,f,f,f,t,f,t,f,l,f,n,t,f,f,f,t,t,t,f,f,f,t,f,f,f,t,t,f,t,f,f,n,won
+2206,f,t,f,f,f,f,f,f,t,f,t,f,l,f,w,t,f,f,f,t,t,t,f,t,f,t,f,f,f,f,t,f,f,f,t,n,won
+2208,f,f,f,f,f,f,f,f,f,f,t,f,l,f,w,f,f,f,f,t,t,f,f,f,f,t,f,f,f,f,t,f,f,f,t,n,won
+2211,f,f,f,f,t,f,f,f,f,f,t,f,l,f,w,f,f,f,f,t,t,f,f,f,f,t,f,f,f,f,t,f,f,f,t,n,won
+2222,f,f,f,f,f,t,f,f,t,f,t,f,l,f,w,f,f,t,f,t,t,t,f,f,f,t,f,f,f,f,t,f,f,t,f,n,won
+2225,f,f,f,f,f,t,f,f,t,f,t,f,l,f,w,f,f,t,f,t,t,t,f,f,f,t,f,f,f,f,t,f,f,t,t,n,won
+2226,t,f,f,f,t,t,f,f,t,f,t,f,l,f,n,f,f,t,f,f,t,t,f,f,f,t,f,f,f,f,t,f,t,t,f,n,won
+2233,f,f,f,f,f,t,f,f,f,f,t,f,l,f,n,f,f,f,f,f,t,f,f,f,f,t,f,f,f,f,t,f,t,f,f,n,won
+2240,f,t,f,t,f,t,f,f,t,f,t,f,l,f,n,f,f,f,f,t,t,t,f,f,f,t,t,f,f,t,t,f,t,f,f,n,won
+2241,f,t,f,t,f,t,f,f,t,f,t,f,l,f,n,t,f,f,f,t,t,t,f,f,f,t,t,f,f,t,t,f,t,f,f,n,won
+2245,f,f,f,f,f,t,f,f,f,f,t,f,l,f,w,f,f,f,f,t,t,f,f,f,f,t,f,f,f,f,t,f,f,f,t,n,won
+2252,t,f,f,t,f,t,f,f,f,f,t,f,l,f,w,f,f,f,f,f,t,f,f,t,f,t,f,f,f,f,t,f,t,f,f,n,won
+2259,t,f,f,f,t,t,f,f,f,f,t,f,l,f,w,f,f,f,f,f,t,f,f,f,f,t,f,f,f,f,t,f,f,f,t,n,won
+2269,f,f,f,t,t,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,t,n,won
+2270,f,t,f,f,f,t,f,f,t,f,f,f,l,f,n,f,f,f,f,f,t,t,f,f,f,f,f,f,f,f,f,f,f,f,t,n,won
+2291,f,f,f,f,f,f,f,f,t,f,f,f,l,f,n,f,f,f,f,f,t,t,f,f,f,t,f,f,f,f,f,f,t,t,t,t,won
+2292,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,t,f,f,t,f,t,f,f,f,t,f,f,t,f,t,t,won
+2299,f,f,f,f,f,t,f,f,t,f,f,f,l,f,n,f,f,f,f,f,t,t,f,f,f,t,f,f,f,f,f,f,t,t,t,t,won
+2307,f,t,f,f,f,f,f,f,t,f,f,f,l,f,n,f,f,f,f,f,t,t,f,t,f,f,f,f,f,f,f,f,t,f,t,t,won
+2310,f,t,f,f,f,f,f,f,t,f,f,f,l,f,n,t,f,f,f,f,t,t,f,t,f,f,f,f,f,t,f,f,t,f,t,t,won
+2312,f,t,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,t,t,t,t,won
+2315,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,f,f,t,f,t,t,won
+2333,f,f,f,t,f,t,f,f,f,f,f,f,l,f,n,f,f,f,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,won
+2334,f,f,f,f,t,t,t,f,f,f,f,f,l,f,n,f,f,f,f,f,t,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,won
+2355,f,f,f,f,f,f,f,f,f,f,f,t,l,f,n,f,f,f,f,f,t,f,f,f,f,t,t,f,f,t,f,f,t,f,t,t,won
+2359,f,f,f,f,f,f,f,f,t,f,f,t,l,f,n,f,f,t,f,f,t,t,f,f,f,f,f,f,f,f,f,f,t,t,t,t,won
+2374,f,f,f,f,t,f,t,t,t,t,t,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+2377,f,f,t,f,f,f,t,t,t,t,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,n,nowin
+2380,f,f,f,f,t,f,t,t,t,t,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,f,t,n,nowin
+2384,f,f,f,f,t,f,t,t,t,t,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,t,n,nowin
+2394,t,f,f,f,t,f,t,t,t,t,t,f,g,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,n,nowin
+2396,t,f,t,f,f,f,t,t,t,t,t,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,t,f,f,f,f,f,t,f,t,n,nowin
+2403,t,f,t,f,t,f,t,t,t,t,t,f,g,f,b,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,n,nowin
+2408,f,f,f,f,f,f,f,f,f,t,f,f,g,f,n,f,t,t,f,f,f,f,t,f,f,t,f,f,f,f,f,f,t,t,t,n,nowin
+2409,f,f,f,f,f,f,f,f,f,t,f,f,g,f,n,f,t,t,f,f,f,f,t,f,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+2410,f,f,f,f,f,f,t,t,t,t,f,f,g,f,n,f,f,t,f,f,f,f,t,f,f,t,f,f,f,f,f,t,t,t,f,n,nowin
+2411,f,f,f,t,f,t,f,f,f,t,t,f,g,f,b,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+2414,f,f,t,f,t,t,t,f,f,t,t,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+2421,f,f,f,t,t,t,t,t,t,t,t,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+2422,f,f,f,t,t,t,t,t,t,t,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+2426,f,f,f,f,f,t,f,f,f,t,f,f,g,f,n,f,t,t,f,f,f,f,t,f,f,t,f,f,f,f,f,f,t,t,t,n,nowin
+2436,f,f,f,f,t,f,t,t,t,t,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,t,n,nowin
+2438,f,f,f,f,f,f,f,f,f,t,f,f,g,f,n,f,t,t,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,n,nowin
+2443,f,f,f,f,f,f,f,f,f,t,t,f,l,f,b,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,t,f,t,t,f,n,nowin
+2446,f,f,f,f,f,f,f,f,f,t,t,f,l,f,b,f,f,t,f,t,f,f,f,f,f,t,f,f,f,f,t,f,t,t,f,n,nowin
+2458,f,t,f,f,f,f,f,f,f,t,t,f,l,f,n,t,f,t,f,t,f,f,f,f,f,t,f,f,f,f,t,f,t,t,f,n,nowin
+2460,f,f,f,f,f,f,f,f,f,t,f,f,l,f,n,f,f,t,f,t,f,f,f,t,f,t,f,f,f,f,f,t,f,t,f,n,nowin
+2462,f,f,f,f,f,f,t,f,f,t,f,f,l,f,n,f,f,t,f,t,f,f,f,t,f,t,f,f,f,f,f,t,f,t,f,n,nowin
+2463,f,t,f,f,f,f,f,f,f,t,f,f,l,f,n,t,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,t,f,t,f,n,nowin
+2474,f,t,f,f,f,f,f,f,f,t,t,f,l,f,n,f,f,f,f,t,f,f,f,f,f,t,f,f,f,f,t,f,t,f,t,n,nowin
+2483,f,f,f,f,f,f,t,t,t,t,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+2486,f,f,f,f,t,f,t,t,t,t,t,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+2487,f,f,f,f,t,f,t,t,t,t,t,f,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+2493,t,f,t,f,f,f,t,t,t,t,t,f,l,f,b,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,n,nowin
+2499,t,f,f,f,f,f,t,t,t,t,t,f,l,f,n,t,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,t,f,f,n,nowin
+2505,t,f,f,f,t,f,t,t,t,t,t,f,l,f,n,f,f,t,f,t,f,t,f,f,f,t,f,f,f,f,f,f,t,f,f,n,nowin
+2510,t,f,f,f,t,f,t,t,t,t,t,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,n,nowin
+2513,t,f,f,f,f,f,t,t,t,t,t,f,l,f,w,f,f,t,f,t,f,f,f,f,f,t,f,f,f,f,t,f,f,f,f,n,nowin
+2515,t,f,f,f,t,f,t,t,t,t,t,f,l,f,w,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,n,nowin
+2529,f,f,t,f,f,f,t,t,t,t,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,f,t,n,nowin
+2533,f,f,t,f,t,f,t,t,t,t,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,n,nowin
+2534,f,f,f,t,t,f,t,t,t,t,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,n,nowin
+2540,t,f,t,f,f,f,t,t,t,t,t,f,l,f,w,f,f,f,f,t,f,f,f,t,f,t,f,f,f,f,f,f,t,f,f,n,nowin
+2547,t,f,f,t,f,f,t,t,t,t,t,f,l,f,n,t,f,f,f,t,f,f,f,t,f,t,f,f,f,f,f,f,t,f,f,n,nowin
+2553,t,f,f,f,t,f,t,t,t,t,t,f,l,f,w,f,f,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,n,nowin
+2561,t,f,f,f,t,f,t,t,t,t,t,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,n,nowin
+2563,t,f,f,f,t,f,t,t,t,t,t,f,l,f,w,f,f,f,f,t,f,f,f,f,f,t,f,f,f,f,t,f,f,f,t,n,nowin
+2567,f,t,f,t,f,t,f,f,f,t,t,f,l,f,b,t,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+2574,f,f,f,f,t,t,t,f,f,t,t,f,l,f,w,f,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+2577,f,t,f,t,f,t,f,f,f,t,t,f,l,f,n,f,f,f,f,t,f,f,f,t,f,t,f,f,f,f,t,f,t,f,t,n,nowin
+2584,f,f,f,f,f,t,f,t,t,t,t,f,l,f,n,f,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+2590,f,f,f,f,f,t,f,t,t,t,t,f,l,f,w,f,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,t,f,n,nowin
+2596,f,f,f,f,t,t,f,t,t,t,t,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,f,f,n,nowin
+2600,f,f,f,f,t,t,f,t,t,t,t,f,l,f,n,f,f,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,n,nowin
+2605,f,f,f,f,t,f,t,t,t,t,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,t,n,nowin
+2609,f,f,f,f,t,f,t,t,t,t,f,f,l,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,f,t,n,nowin
+2611,f,f,f,t,f,f,t,t,t,t,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,f,t,n,nowin
+2620,f,f,f,f,f,f,f,f,f,t,t,t,g,f,n,f,f,t,f,f,f,f,t,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+2624,f,f,f,f,f,f,t,t,t,t,t,t,g,f,n,f,f,t,f,f,f,f,t,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+2629,f,t,f,f,f,f,f,f,f,t,f,t,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,n,nowin
+2630,f,f,f,f,f,f,t,t,t,t,t,t,l,f,w,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+2632,f,f,f,f,f,f,t,t,t,t,t,t,l,f,n,f,t,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+2633,f,f,f,f,f,f,f,f,f,t,t,t,l,f,n,f,f,t,f,f,f,f,t,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+2635,f,f,f,f,f,f,t,t,t,t,t,t,l,f,n,f,f,t,f,f,f,f,t,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+2636,f,f,f,f,f,f,t,t,t,t,f,t,l,f,n,f,f,t,f,f,f,f,t,f,f,t,f,f,f,f,f,t,t,t,f,n,nowin
+2641,f,f,f,f,f,t,t,f,f,t,t,t,l,f,n,f,t,t,f,t,f,f,t,f,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+2645,f,f,t,f,f,f,t,t,t,t,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,t,nowin
+2646,f,f,f,t,f,f,t,t,t,t,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,t,nowin
+2661,f,f,f,t,t,f,t,t,t,t,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,nowin
+2662,f,f,f,t,t,f,t,t,t,t,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,t,t,nowin
+2666,f,f,f,f,t,f,t,t,t,t,f,f,g,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,nowin
+2668,f,f,t,t,t,f,t,t,t,t,f,f,g,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,f,t,t,nowin
+2692,f,t,f,f,f,f,f,f,f,t,f,f,l,f,n,t,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,nowin
+2696,f,f,f,t,f,f,t,t,t,t,f,f,l,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,nowin
+2698,f,f,f,f,t,f,t,t,t,t,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+2707,f,f,t,f,f,f,t,t,t,t,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,f,t,t,nowin
+2710,f,f,f,t,t,f,t,t,t,t,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,f,t,t,nowin
+2714,f,f,f,t,t,f,t,t,t,t,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,nowin
+2722,f,t,f,f,f,t,f,f,f,t,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,nowin
+2727,f,f,f,f,t,t,f,t,t,t,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,t,f,f,f,f,f,t,t,t,t,nowin
+2728,f,f,f,f,t,t,f,t,t,t,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,t,f,f,t,f,f,t,t,t,t,nowin
+2739,f,t,f,f,f,f,f,f,f,t,f,t,l,f,n,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,t,nowin
+2744,f,f,f,f,t,f,f,f,t,f,t,f,g,f,b,f,f,t,f,f,f,t,f,t,f,t,f,f,f,f,f,f,f,t,f,n,nowin
+2750,f,f,f,f,f,f,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,t,t,f,t,f,n,nowin
+2751,f,f,f,f,f,f,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,t,f,t,f,t,f,n,nowin
+2759,t,f,f,f,f,f,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,t,f,t,f,t,f,n,nowin
+2760,f,f,f,f,t,f,t,t,t,f,t,f,g,f,b,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+2762,f,f,f,f,t,f,t,t,t,f,t,f,g,f,b,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,t,t,n,nowin
+2770,t,f,t,f,f,f,f,f,f,f,t,f,g,t,b,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,f,n,nowin
+2772,t,f,f,t,f,f,f,f,f,f,t,f,g,t,b,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,n,nowin
+2782,t,f,t,f,f,t,t,f,f,f,t,f,g,f,b,f,f,t,f,f,f,f,f,t,f,t,t,f,f,f,f,f,t,f,t,n,nowin
+2786,f,f,f,t,t,t,t,t,t,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,f,t,n,nowin
+2787,f,f,f,f,t,t,t,t,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,t,t,t,n,nowin
+2791,f,f,f,f,f,f,f,f,f,f,f,f,g,f,n,t,f,t,f,f,f,f,f,t,f,f,f,f,f,t,f,f,t,t,t,n,nowin
+2800,f,f,f,f,t,t,t,t,t,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+2803,f,f,f,f,t,t,t,t,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+2804,f,f,f,f,t,t,t,t,t,f,f,f,g,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,f,t,n,nowin
+2809,f,f,f,f,t,f,f,f,f,f,f,f,l,f,b,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,t,f,t,f,n,nowin
+2825,f,f,f,f,f,f,f,f,t,f,t,f,l,f,n,f,f,t,f,t,f,t,f,f,f,t,f,f,f,f,t,f,t,t,f,n,nowin
+2834,t,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,t,t,f,t,f,n,nowin
+2838,t,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,t,t,f,t,f,n,nowin
+2841,f,f,f,f,f,f,f,f,f,f,t,f,l,f,n,f,f,f,f,t,f,f,f,t,f,t,t,f,f,f,t,f,t,t,f,n,nowin
+2847,f,f,f,f,f,f,f,f,f,f,t,f,l,f,n,f,f,f,f,t,f,f,f,t,f,t,f,f,f,f,t,f,f,f,f,n,nowin
+2852,f,f,f,f,f,f,f,f,f,f,t,f,l,f,n,f,f,f,f,t,f,f,f,f,f,t,t,f,f,f,t,f,t,t,f,n,nowin
+2856,f,f,f,f,f,f,f,f,f,f,t,f,l,f,n,f,f,f,f,t,f,f,f,f,f,t,f,f,f,f,t,f,f,f,f,n,nowin
+2858,f,f,f,t,t,f,f,f,f,f,t,f,l,f,n,f,f,f,f,t,f,f,f,f,f,t,f,f,f,f,t,f,f,f,f,n,nowin
+2865,f,f,f,f,t,f,f,f,t,f,f,f,l,f,n,f,f,f,f,t,f,t,f,t,f,t,f,f,f,f,t,t,f,t,f,n,nowin
+2874,f,f,f,f,f,f,t,t,t,f,t,f,l,f,n,f,f,t,f,t,f,f,f,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+2877,f,f,f,f,f,f,t,t,t,f,t,f,l,f,n,f,f,t,f,t,f,t,f,f,f,t,f,f,f,f,t,f,t,t,f,n,nowin
+2882,f,f,f,f,f,f,t,t,t,f,t,f,l,f,n,f,f,f,f,f,f,f,f,f,f,t,f,f,f,f,t,f,t,f,f,n,nowin
+2883,f,f,f,f,f,f,f,f,f,f,t,f,l,f,n,f,t,t,f,f,f,f,t,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+2891,t,f,f,f,f,f,f,f,f,f,t,f,l,f,b,f,f,t,f,f,f,f,f,t,f,t,f,t,f,t,f,f,f,t,f,n,nowin
+2902,f,f,f,f,t,t,t,f,f,f,t,f,l,f,n,t,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,f,f,n,nowin
+2903,f,f,f,f,f,t,t,f,f,f,t,f,l,f,n,t,f,t,f,t,f,f,f,f,f,t,f,f,f,f,t,f,t,f,f,n,nowin
+2905,f,f,f,f,f,t,t,f,t,f,t,f,l,f,n,f,f,t,f,t,f,t,f,f,f,t,f,f,f,f,t,f,t,t,f,n,nowin
+2909,t,f,f,t,f,t,f,f,f,f,t,f,l,f,b,f,f,t,f,f,f,f,f,f,f,t,t,f,f,f,t,f,t,f,t,n,nowin
+2913,t,f,t,f,f,t,t,f,f,f,t,f,l,f,n,f,f,t,f,f,f,f,f,t,f,t,t,f,f,f,f,f,t,f,t,n,nowin
+2916,f,t,f,f,f,t,f,f,f,f,t,f,l,f,n,t,f,f,f,f,f,f,f,t,f,t,f,f,f,f,t,f,t,f,f,n,nowin
+2932,t,f,t,f,f,t,f,f,f,f,t,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,t,f,t,f,f,n,nowin
+2934,t,f,t,f,f,t,t,f,f,f,t,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,f,f,n,nowin
+2936,t,f,t,f,f,t,f,f,f,f,t,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,t,f,f,f,t,f,t,f,t,n,nowin
+2944,f,f,f,f,f,t,t,t,t,f,t,f,l,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+2949,t,f,f,t,t,t,t,t,t,f,t,f,l,f,b,f,f,t,f,f,f,f,f,t,f,t,t,f,f,f,f,f,t,f,t,n,nowin
+2950,t,f,f,f,t,t,t,t,t,f,t,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+2957,t,f,f,t,t,t,t,t,t,f,t,f,l,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,f,f,n,nowin
+2961,t,f,f,t,t,t,t,t,t,f,t,f,l,f,w,f,f,f,f,f,f,f,f,t,f,t,t,f,f,f,f,f,t,f,t,n,nowin
+2962,t,f,f,f,f,t,f,f,f,f,t,f,l,f,n,f,f,t,f,f,f,f,t,f,f,t,f,f,f,f,f,f,t,t,f,n,nowin
+2964,f,f,f,f,t,f,t,t,t,f,f,f,l,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+2966,f,f,f,f,t,f,t,t,t,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,t,n,nowin
+2972,f,f,f,f,t,t,t,f,t,f,f,f,l,f,n,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,f,t,n,nowin
+2975,f,f,f,f,t,t,t,t,t,f,f,f,l,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,t,n,nowin
+2978,f,f,f,f,f,f,f,f,f,f,t,t,g,f,n,f,f,t,f,f,f,f,t,t,f,t,f,f,f,f,f,f,f,t,f,n,nowin
+2979,f,f,f,f,f,f,f,f,f,f,t,t,g,f,n,f,f,t,f,f,f,f,t,f,f,t,f,f,f,f,f,f,f,t,f,n,nowin
+2999,f,f,f,f,f,f,f,f,f,f,t,t,l,f,n,f,f,f,f,t,f,f,t,f,f,t,f,f,f,f,t,f,f,f,f,n,nowin
+3010,f,f,f,f,t,f,t,t,t,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,t,t,t,nowin
+3018,f,f,f,t,t,t,f,f,f,f,f,f,g,f,n,f,f,f,f,f,f,f,f,t,f,t,f,f,f,f,f,f,t,f,t,t,nowin
+3019,f,f,f,t,t,t,f,f,f,f,f,f,g,f,n,f,f,f,f,f,f,f,f,t,f,t,t,f,f,f,f,f,t,f,t,t,nowin
+3023,f,f,f,f,f,t,t,t,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,t,t,t,t,nowin
+3024,f,f,f,f,t,t,t,t,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,t,t,t,t,nowin
+3026,f,f,f,f,t,f,f,f,f,f,f,f,g,f,n,f,f,t,f,f,f,f,f,t,f,f,t,f,f,f,f,f,t,t,t,t,nowin
+3028,f,f,f,f,f,f,f,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+3031,f,f,f,f,f,f,t,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+3032,f,f,f,f,f,f,t,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,t,f,f,t,f,f,f,f,f,t,t,t,t,nowin
+3035,f,f,f,f,f,f,f,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,f,t,f,f,f,f,f,t,t,t,t,nowin
+3039,f,f,f,f,t,f,t,t,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+3040,f,f,f,f,t,f,t,t,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+3042,f,f,f,f,f,t,f,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+3047,f,f,f,f,t,t,f,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+3048,f,f,f,t,t,t,f,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+3050,f,f,f,t,t,t,f,f,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,f,t,f,f,f,f,f,t,t,t,t,nowin
+3057,f,f,f,f,t,t,t,t,t,f,f,f,g,f,n,f,f,t,f,f,f,t,f,f,f,f,t,f,f,f,f,f,t,t,t,t,nowin
+3059,f,f,f,f,t,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,t,t,f,f,t,f,f,t,t,t,t,nowin
+3070,f,f,f,t,t,t,f,f,f,f,f,f,l,f,n,t,f,f,f,f,f,f,f,t,f,t,t,f,f,f,f,f,t,f,t,t,nowin
+3078,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,t,f,t,f,f,f,f,f,t,f,f,t,f,f,f,f,f,t,t,t,t,nowin
+3081,f,f,f,f,t,f,f,f,f,f,f,f,l,f,n,f,f,t,f,f,f,f,f,f,f,f,t,f,f,t,f,f,t,t,t,t,nowin
+3084,f,f,f,f,f,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,t,f,f,t,f,t,t,nowin
+3094,f,f,f,f,t,f,f,f,f,f,f,f,l,f,n,f,f,f,f,f,f,f,f,f,f,f,t,f,f,t,f,f,t,f,t,t,nowin
+3107,f,t,f,f,f,t,f,f,f,f,f,f,l,f,n,t,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,t,t,nowin
+3110,f,f,f,f,f,t,t,f,f,f,f,f,l,f,n,t,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,t,t,nowin
+3114,f,f,f,f,t,t,t,f,t,f,f,f,l,f,n,f,f,t,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+3115,f,f,f,f,f,t,f,f,f,f,f,f,l,f,n,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,f,t,t,nowin
+3123,f,f,f,f,f,t,f,f,t,f,f,f,l,f,n,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,f,t,t,nowin
+3131,f,f,f,f,t,t,t,t,t,f,f,f,l,f,n,t,f,t,f,f,f,f,f,f,f,f,f,f,f,f,f,f,t,f,t,t,nowin
+3136,f,f,f,t,t,t,t,t,t,f,f,f,l,f,n,f,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,f,t,t,nowin
+3140,f,f,f,f,f,f,f,f,t,f,f,t,g,f,n,f,f,t,f,f,f,t,f,f,f,t,f,f,f,f,f,f,t,t,t,t,nowin
+3147,f,f,f,f,f,f,f,f,t,f,f,t,l,f,n,f,f,t,f,f,f,t,f,t,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+3149,f,t,f,f,f,f,f,f,f,f,f,t,l,f,n,t,f,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,t,t,t,t,nowin
+3152,f,f,f,f,f,t,f,f,t,f,f,t,l,f,n,f,f,f,f,f,f,t,f,f,f,f,f,f,f,f,f,f,t,f,t,t,nowin
+3175,f,f,f,f,f,f,t,f,f,f,f,f,l,f,b,f,f,t,f,f,f,f,t,f,f,t,f,f,t,f,f,t,f,t,f,n,nowin
+3179,f,f,f,f,f,f,t,f,f,f,f,t,g,f,n,f,f,t,f,t,f,f,t,f,f,t,f,f,t,f,f,t,f,t,f,n,nowin
+3185,f,f,f,f,t,f,t,f,t,f,f,t,l,f,n,f,f,f,f,f,f,t,f,f,f,t,f,f,t,f,f,t,f,t,f,n,nowin
+3188,f,f,f,t,f,f,t,t,t,f,f,t,l,f,w,f,f,t,f,f,f,t,f,f,f,t,f,f,t,f,f,t,f,t,f,n,nowin
+3191,t,f,f,f,f,f,t,f,f,f,f,t,l,f,b,f,f,t,f,f,f,f,t,t,f,t,f,f,t,f,f,t,f,t,f,n,nowin

@@ -1,0 +1,13 @@
+{
+    "model_config":{
+        "class_name":"weka.classifiers.lazy.KStar",
+        "args":[],
+        "filters":[]
+    },
+    "ad_config":{
+        "name":"COR",
+        "parameters":{
+            "ranking":"max"
+        }
+    }
+}

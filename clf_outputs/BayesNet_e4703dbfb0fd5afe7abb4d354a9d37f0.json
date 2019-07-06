@@ -1,0 +1,8 @@
+{
+    "model_config":{
+        "class_name":"weka.classifiers.bayes.BayesNet",
+        "args":[],
+        "filters":[]
+    },
+    "ad_config":{}
+}

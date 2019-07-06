@@ -1,0 +1,44 @@
+inst#,actual,predicted,error,prediction,ID
+1,3:'vehic wind float',1:build wind float,+,0.538,1
+2,3:'vehic wind float',2:build wind non-float,+,0.446,14
+3,1:'build wind float',1:build wind float,,0.556,20
+4,2:'build wind non-float',2:build wind non-float,,0.543,21
+5,2:'build wind non-float',2:build wind non-float,,0.411,37
+6,1:'build wind float',1:build wind float,,0.528,48
+7,1:'build wind float',1:build wind float,,0.538,50
+8,1:'build wind float',1:build wind float,,0.564,52
+9,7:headlamps,7:headlamps,,0.605,54
+10,1:'build wind float',1:build wind float,,0.521,57
+11,3:'vehic wind float',1:build wind float,+,0.557,58
+12,1:'build wind float',1:build wind float,,0.606,63
+13,2:'build wind non-float',1:build wind float,+,0.52,71
+14,1:'build wind float',1:build wind float,,0.565,74
+15,1:'build wind float',1:build wind float,,0.461,87
+16,1:'build wind float',1:build wind float,,0.552,88
+17,1:'build wind float',1:build wind float,,0.548,92
+18,2:'build wind non-float',1:build wind float,+,0.564,99
+19,7:headlamps,7:headlamps,,0.673,102
+20,7:headlamps,7:headlamps,,0.783,103
+21,2:'build wind non-float',1:build wind float,+,0.409,106
+22,7:headlamps,7:headlamps,,0.685,107
+23,2:'build wind non-float',2:build wind non-float,,0.534,116
+24,1:'build wind float',1:build wind float,,0.466,121
+25,1:'build wind float',1:build wind float,,0.561,129
+26,2:'build wind non-float',1:build wind float,+,0.493,130
+27,2:'build wind non-float',1:build wind float,+,0.565,149
+28,1:'build wind float',1:build wind float,,0.558,151
+29,5:containers,2:build wind non-float,+,0.506,157
+30,2:'build wind non-float',2:build wind non-float,,0.486,160
+31,7:headlamps,7:headlamps,,0.674,169
+32,1:'build wind float',1:build wind float,,0.438,174
+33,1:'build wind float',1:build wind float,,0.535,177
+34,6:tableware,7:headlamps,+,0.375,179
+35,1:'build wind float',1:build wind float,,0.443,187
+36,3:'vehic wind float',1:build wind float,+,0.484,188
+37,2:'build wind non-float',1:build wind float,+,0.503,196
+38,1:'build wind float',1:build wind float,,0.494,201
+39,3:'vehic wind float',1:build wind float,+,0.403,202
+40,7:headlamps,7:headlamps,,0.608,206
+41,2:'build wind non-float',2:build wind non-float,,0.426,210
+42,6:tableware,2:build wind non-float,+,0.423,213
+

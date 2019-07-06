@@ -1,0 +1,14 @@
+{
+    "model_config":{
+        "class_name":"weka.classifiers.trees.J48",
+        "args":[
+            "-M",
+            "1"
+        ],
+        "filters":[]
+    },
+    "ad_config":{
+        "name":"COR",
+        "parameters":{}
+    }
+}

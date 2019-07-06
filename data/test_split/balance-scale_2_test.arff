@@ -1,0 +1,193 @@
+% 1. Title: Balance Scale Weight & Distance Database
+%
+% 2. Source Information:
+%    (a) Source: Generated to model psychological experiments reported
+% 		by Siegler, R. S. (1976).  Three Aspects of Cognitive
+% 		Development.  Cognitive Psychology, 8, 481-520.
+%    (b) Donor: Tim Hume (hume@ics.uci.edu)
+%    (c) Date: 22 April 1994
+%
+% 3. Past Usage: (possibly different formats of this data)
+%   - Publications
+% 	1. Klahr, D., & Siegler, R.S. (1978).  The Representation of
+% 	   Children's Knowledge.  In H. W. Reese & L. P. Lipsitt (Eds.),
+% 	   Advances in Child Development and Behavior, pp. 61-116.  New
+% 	   York: Academic Press
+% 	2. Langley,P. (1987).  A General Theory of Discrimination
+% 	   Learning.  In D. Klahr, P. Langley, & R. Neches (Eds.),
+% 	   Production System Models of Learning and Development, pp.
+% 	   99-161. Cambridge, MA: MIT Press
+% 	3. Newell, A. (1990).  Unified Theories of Cognition.
+% 	   Cambridge, MA: Harvard University Press
+% 	4. McClelland, J.L. (1988).  Parallel Distibuted Processing:
+% 	   Implications for Cognition and Development.  Technical
+% 	   Report AIP-47, Department of Psychology, Carnegie-Mellon
+% 	   University
+% 	5. Shultz, T., Mareschal, D., & Schmidt, W. (1994).  Modeling
+% 	   Cognitive Development on Balance Scale Phenomena. Machine
+% 	   Learning, Vol. 16, pp. 59-88.
+%
+% 4. Relevant Information:
+% 	This data set was generated to model psychological
+% 	experimental results.  Each example is classified as having the
+% 	balance scale tip to the right, tip to the left, or be
+% 	balanced.  The attributes are the left weight, the left
+% 	distance, the right weight, and the right distance.  The
+% 	correct way to find the class is the greater of
+% 	(left-distance * left-weight) and (right-distance *
+% 	right-weight).  If they are equal, it is balanced.
+%
+% 5. Number of Instances: 625 (49 balanced, 288 left, 288 right)
+%
+% 6. Number of Attributes: 4 (numeric) + class name = 5
+%
+% 7. Attribute Information:
+% 	1. Class Name: 3 (L, B, R)
+% 	2. Left-Weight: 5 (1, 2, 3, 4, 5)
+% 	3. Left-Distance: 5 (1, 2, 3, 4, 5)
+% 	4. Right-Weight: 5 (1, 2, 3, 4, 5)
+% 	5. Right-Distance: 5 (1, 2, 3, 4, 5)
+%
+% 8. Missing Attribute Values:
+% 	none
+%
+% 9. Class Distribution:
+%   1. 46.08 percent are L
+%   2. 07.84 percent are B
+%   3. 46.08 percent are R
+%
+@RELATION balance-scale
+
+@ATTRIBUTE ID NUMERIC
+@ATTRIBUTE left-weight REAL
+@ATTRIBUTE left-distance REAL
+@ATTRIBUTE right-weight REAL
+@ATTRIBUTE right-distance REAL
+@ATTRIBUTE class {L, B, R}
+
+@DATA
+3,1.0,1.0,1.0,4.0,R
+5,1.0,1.0,2.0,1.0,R
+8,1.0,1.0,2.0,4.0,R
+16,1.0,1.0,4.0,2.0,R
+17,1.0,1.0,4.0,3.0,R
+19,1.0,1.0,4.0,5.0,R
+25,1.0,2.0,1.0,1.0,L
+26,1.0,2.0,1.0,2.0,B
+36,1.0,2.0,3.0,2.0,R
+37,1.0,2.0,3.0,3.0,R
+45,1.0,2.0,5.0,1.0,R
+48,1.0,2.0,5.0,4.0,R
+50,1.0,3.0,1.0,1.0,L
+57,1.0,3.0,2.0,3.0,R
+59,1.0,3.0,2.0,5.0,R
+67,1.0,3.0,4.0,3.0,R
+74,1.0,3.0,5.0,5.0,R
+94,1.0,4.0,4.0,5.0,R
+103,1.0,5.0,1.0,4.0,L
+111,1.0,5.0,3.0,2.0,R
+113,1.0,5.0,3.0,4.0,R
+119,1.0,5.0,4.0,5.0,R
+124,1.0,5.0,5.0,5.0,R
+126,2.0,1.0,1.0,2.0,B
+139,2.0,1.0,3.0,5.0,R
+141,2.0,1.0,4.0,2.0,R
+149,2.0,1.0,5.0,5.0,R
+150,2.0,2.0,1.0,1.0,L
+152,2.0,2.0,1.0,3.0,L
+154,2.0,2.0,1.0,5.0,R
+157,2.0,2.0,2.0,3.0,R
+162,2.0,2.0,3.0,3.0,R
+168,2.0,2.0,4.0,4.0,R
+172,2.0,2.0,5.0,3.0,R
+173,2.0,2.0,5.0,4.0,R
+175,2.0,3.0,1.0,1.0,L
+180,2.0,3.0,2.0,1.0,L
+185,2.0,3.0,3.0,1.0,L
+190,2.0,3.0,4.0,1.0,L
+193,2.0,3.0,4.0,4.0,R
+194,2.0,3.0,4.0,5.0,R
+207,2.0,4.0,2.0,3.0,L
+222,2.0,4.0,5.0,3.0,R
+225,2.0,5.0,1.0,1.0,L
+226,2.0,5.0,1.0,2.0,L
+229,2.0,5.0,1.0,5.0,L
+237,2.0,5.0,3.0,3.0,L
+245,2.0,5.0,5.0,1.0,L
+253,3.0,1.0,1.0,4.0,R
+255,3.0,1.0,2.0,1.0,L
+262,3.0,1.0,3.0,3.0,R
+263,3.0,1.0,3.0,4.0,R
+266,3.0,1.0,4.0,2.0,R
+280,3.0,2.0,2.0,1.0,L
+297,3.0,2.0,5.0,3.0,R
+303,3.0,3.0,1.0,4.0,L
+309,3.0,3.0,2.0,5.0,R
+316,3.0,3.0,4.0,2.0,L
+319,3.0,3.0,4.0,5.0,R
+322,3.0,3.0,5.0,3.0,R
+327,3.0,4.0,1.0,3.0,L
+328,3.0,4.0,1.0,4.0,L
+331,3.0,4.0,2.0,2.0,L
+338,3.0,4.0,3.0,4.0,B
+346,3.0,4.0,5.0,2.0,L
+349,3.0,4.0,5.0,5.0,R
+352,3.0,5.0,1.0,3.0,L
+353,3.0,5.0,1.0,4.0,L
+354,3.0,5.0,1.0,5.0,L
+355,3.0,5.0,2.0,1.0,L
+356,3.0,5.0,2.0,2.0,L
+361,3.0,5.0,3.0,2.0,L
+362,3.0,5.0,3.0,3.0,L
+365,3.0,5.0,4.0,1.0,L
+370,3.0,5.0,5.0,1.0,L
+375,4.0,1.0,1.0,1.0,L
+377,4.0,1.0,1.0,3.0,L
+383,4.0,1.0,2.0,4.0,R
+393,4.0,1.0,4.0,4.0,R
+396,4.0,1.0,5.0,2.0,R
+404,4.0,2.0,1.0,5.0,L
+409,4.0,2.0,2.0,5.0,R
+411,4.0,2.0,3.0,2.0,L
+422,4.0,2.0,5.0,3.0,R
+423,4.0,2.0,5.0,4.0,R
+425,4.0,3.0,1.0,1.0,L
+426,4.0,3.0,1.0,2.0,L
+433,4.0,3.0,2.0,4.0,L
+462,4.0,4.0,3.0,3.0,L
+465,4.0,4.0,4.0,1.0,L
+467,4.0,4.0,4.0,3.0,L
+472,4.0,4.0,5.0,3.0,L
+478,4.0,5.0,1.0,4.0,L
+481,4.0,5.0,2.0,2.0,L
+490,4.0,5.0,4.0,1.0,L
+493,4.0,5.0,4.0,4.0,L
+505,5.0,1.0,2.0,1.0,L
+507,5.0,1.0,2.0,3.0,R
+518,5.0,1.0,4.0,4.0,R
+519,5.0,1.0,4.0,5.0,R
+523,5.0,1.0,5.0,4.0,R
+525,5.0,2.0,1.0,1.0,L
+529,5.0,2.0,1.0,5.0,L
+530,5.0,2.0,2.0,1.0,L
+531,5.0,2.0,2.0,2.0,L
+532,5.0,2.0,2.0,3.0,L
+537,5.0,2.0,3.0,3.0,L
+538,5.0,2.0,3.0,4.0,R
+539,5.0,2.0,3.0,5.0,R
+547,5.0,2.0,5.0,3.0,R
+551,5.0,3.0,1.0,2.0,L
+569,5.0,3.0,4.0,5.0,R
+574,5.0,3.0,5.0,5.0,R
+586,5.0,4.0,3.0,2.0,L
+589,5.0,4.0,3.0,5.0,L
+596,5.0,4.0,5.0,2.0,L
+597,5.0,4.0,5.0,3.0,L
+598,5.0,4.0,5.0,4.0,B
+601,5.0,5.0,1.0,2.0,L
+602,5.0,5.0,1.0,3.0,L
+603,5.0,5.0,1.0,4.0,L
+605,5.0,5.0,2.0,1.0,L
+611,5.0,5.0,3.0,2.0,L
+613,5.0,5.0,3.0,4.0,L
+615,5.0,5.0,4.0,1.0,L

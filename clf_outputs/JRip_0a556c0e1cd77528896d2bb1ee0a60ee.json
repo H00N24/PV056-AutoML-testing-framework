@@ -1,0 +1,11 @@
+{
+    "model_config":{
+        "class_name":"weka.classifiers.rules.JRip",
+        "args":[
+            "-N",
+            "2"
+        ],
+        "filters":[]
+    },
+    "ad_config":{}
+}

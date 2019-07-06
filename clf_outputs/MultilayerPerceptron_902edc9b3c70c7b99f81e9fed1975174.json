@@ -1,0 +1,26 @@
+{
+    "model_config":{
+        "class_name":"weka.classifiers.functions.MultilayerPerceptron",
+        "args":[
+            "-H",
+            "100",
+            "-N",
+            "100",
+            "-L",
+            "0.1",
+            "-V",
+            "20",
+            "-E",
+            "10"
+        ],
+        "filters":[]
+    },
+    "ad_config":{
+        "name":"COR",
+        "parameters":{
+            "alpha":0,
+            "beta":1,
+            "ranking":"sum"
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "model_config":{
+        "class_name":"weka.classifiers.rules.OneR",
+        "args":[
+            "-B",
+            "8"
+        ],
+        "filters":[]
+    },
+    "ad_config":{}
+}

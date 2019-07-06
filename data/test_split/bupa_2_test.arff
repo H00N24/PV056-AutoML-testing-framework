@@ -1,0 +1,135 @@
+% %  The DIABETES data sets in this directory are provided for use in 1994
+% %  AI in Medicine symposium submissions.  Permission is granted to use the
+% %  data sets for other research purposes as long as appropriate credit is
+% %  given as to the source (AIM-94 data set provided by Michael Kahn, MD, PhD,
+% %  Washington University, St. Louis, MO).
+% %
+% %
+% %  Index:
+% %  ------
+% %
+% %  * Data-Codes: a listing of the codes used in the data sets.
+% %
+% %  * Domain-Description: This file describes the basic physiology and patho-
+% %  physiology of diabetes mellitus and its treatment.
+% %
+% %  * data-[01-70]: data sets covering several weeks' to months' worth of
+% %  outpatient care on 70 patients.  An additional 10 sets will be made
+% %  available two weeks prior to the symposium for interested parties.  Please
+% %  contact the organizers if you would like to obtain these data sets.
+% %
+% %
+% %  Methods:
+% %  --------
+% %
+% %  You do not need to use all the data in order to participate.  Use any
+% %  subset of the available data from either the ICU data set or the diabetes
+% %  data set.  Furthermore, do not feel constrained if your methods cannot
+% %  be applied directly to these data sets.  We will consider submissions
+% %  on related (i.e., clinical data interpretation) topics.  If in doubt,
+% %  consult with us via e-mail at <aim-94@camis.stanford.edu>.
+% %
+% %
+% %  The 'Matchmaker' Service:
+% %  -------------------------
+% %
+% %  We realize that an accurate interpretation of clinical data requires
+% %  a thorough understanding of the physiological principles and clinical
+% %  issues involved.  We also realize that many AIM researchers do not
+% %  have convenient access to medical expertise, and that a symposium
+% %  focusing on a clinical theme may catch several parties at a disadvantage.
+% %  Conversely, some clinical researchers may be interested in participating
+% %  but may not have collaborators on the computer science end of the field.
+% %  To offset such disadvantages, we will provide a simple 'Matchmaker'
+% %  service for AIM-94.  The purpose of this service is to establish a medium
+% %  by which researchers can seek collaborators of complementary background
+% %  and interests for AIM-94 participation and beyond.
+% %
+% %  If you are interested in participating in this program, send a
+% %  one-paragraph description of your background, research interests, and the
+% %  type of collaboration you are pursuing to <aim-94@camis.stanford.edu> by
+% %  September 20th.  We will collate these entries and distribute the whole
+% %  list to all participants of the program.  It will be the participants'
+% %  responsibility to contact others to discuss and establish collaborative
+% %  efforts; AIM-94 organizers will solely act as mediators.
+@RELATION bupa
+
+@ATTRIBUTE ID NUMERIC
+@ATTRIBUTE V1 NUMERIC
+@ATTRIBUTE V2 NUMERIC
+@ATTRIBUTE V3 NUMERIC
+@ATTRIBUTE V4 NUMERIC
+@ATTRIBUTE V5 NUMERIC
+@ATTRIBUTE V6 NUMERIC
+@ATTRIBUTE Class {1, 2}
+
+@DATA
+2,86.0,54.0,33.0,16.0,54.0,0.0,2
+23,96.0,68.0,18.0,19.0,19.0,0.5,1
+29,87.0,41.0,31.0,19.0,16.0,0.5,1
+37,79.0,39.0,14.0,19.0,9.0,0.5,2
+38,85.0,85.0,25.0,26.0,30.0,0.5,2
+44,85.0,65.0,25.0,14.0,18.0,0.5,2
+65,89.0,77.0,26.0,20.0,19.0,1.0,1
+67,85.0,51.0,26.0,24.0,23.0,1.0,2
+68,103.0,75.0,19.0,30.0,13.0,1.0,2
+70,90.0,63.0,29.0,23.0,57.0,2.0,1
+74,86.0,54.0,20.0,21.0,16.0,2.0,1
+83,94.0,58.0,21.0,18.0,26.0,2.0,2
+85,94.0,58.0,21.0,18.0,26.0,2.0,2
+86,88.0,47.0,33.0,26.0,29.0,2.0,2
+96,81.0,61.0,32.0,37.0,53.0,3.0,2
+97,89.0,89.0,23.0,18.0,104.0,3.0,2
+107,91.0,109.0,33.0,15.0,18.0,4.0,1
+112,87.0,42.0,26.0,23.0,17.0,4.0,2
+115,86.0,67.0,11.0,15.0,8.0,4.0,2
+117,85.0,60.0,17.0,21.0,14.0,4.0,2
+120,96.0,55.0,48.0,39.0,42.0,4.0,2
+122,90.0,134.0,14.0,20.0,14.0,4.0,2
+125,90.0,67.0,10.0,16.0,16.0,4.0,2
+127,91.0,55.0,28.0,28.0,82.0,4.0,2
+129,90.0,74.0,19.0,14.0,22.0,4.0,2
+133,97.0,44.0,113.0,45.0,150.0,5.0,2
+144,95.0,50.0,13.0,14.0,15.0,6.0,1
+146,96.0,70.0,70.0,26.0,36.0,6.0,1
+154,100.0,60.0,29.0,23.0,76.0,6.0,2
+155,98.0,43.0,35.0,23.0,69.0,6.0,2
+163,92.0,76.0,31.0,28.0,41.0,6.0,2
+164,88.0,55.0,19.0,17.0,14.0,6.0,2
+168,93.0,84.0,58.0,47.0,62.0,7.0,2
+177,93.0,59.0,17.0,20.0,14.0,8.0,2
+182,92.0,77.0,86.0,41.0,31.0,10.0,1
+184,98.0,57.0,31.0,34.0,73.0,10.0,2
+185,95.0,80.0,50.0,64.0,55.0,10.0,2
+186,92.0,108.0,53.0,33.0,94.0,12.0,2
+196,82.0,48.0,27.0,15.0,12.0,0.5,1
+199,88.0,94.0,26.0,18.0,8.0,0.5,1
+203,86.0,79.0,37.0,28.0,14.0,0.5,1
+211,78.0,69.0,24.0,18.0,31.0,0.5,1
+227,86.0,78.0,52.0,29.0,62.0,0.5,2
+228,82.0,74.0,38.0,28.0,48.0,0.5,2
+233,94.0,75.0,20.0,25.0,38.0,0.5,2
+234,83.0,68.0,17.0,20.0,71.0,0.5,2
+237,92.0,65.0,25.0,20.0,31.0,0.5,2
+247,91.0,60.0,32.0,14.0,8.0,1.0,1
+249,90.0,63.0,45.0,24.0,85.0,1.0,2
+253,93.0,59.0,41.0,30.0,48.0,1.0,2
+262,98.0,58.0,33.0,21.0,28.0,2.0,1
+266,88.0,85.0,14.0,15.0,10.0,2.0,2
+274,91.0,64.0,21.0,17.0,26.0,3.0,2
+275,88.0,47.0,35.0,26.0,33.0,3.0,2
+277,85.0,58.0,83.0,49.0,51.0,3.0,2
+279,98.0,50.0,27.0,25.0,53.0,4.0,2
+286,93.0,45.0,11.0,14.0,21.0,4.0,2
+291,87.0,45.0,19.0,13.0,16.0,4.0,2
+292,91.0,68.0,14.0,20.0,19.0,4.0,2
+297,89.0,72.0,33.0,27.0,55.0,4.0,2
+298,95.0,59.0,23.0,18.0,19.0,4.0,2
+310,92.0,53.0,51.0,33.0,92.0,6.0,1
+312,93.0,43.0,11.0,16.0,54.0,6.0,1
+317,92.0,80.0,10.0,26.0,20.0,6.0,1
+318,96.0,74.0,27.0,25.0,43.0,6.0,2
+321,91.0,46.0,30.0,24.0,39.0,7.0,2
+325,91.0,52.0,76.0,32.0,24.0,8.0,1
+328,98.0,123.0,28.0,24.0,31.0,8.0,1
+332,100.0,83.0,25.0,24.0,28.0,8.0,2

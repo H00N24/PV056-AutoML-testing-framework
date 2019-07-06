@@ -1,0 +1,18 @@
+{
+    "model_config":{
+        "class_name":"weka.classifiers.rules.OneR",
+        "args":[
+            "-B",
+            "8"
+        ],
+        "filters":[]
+    },
+    "ad_config":{
+        "name":"COR",
+        "parameters":{
+            "alpha":0.5,
+            "beta":1,
+            "ranking":"sum"
+        }
+    }
+}

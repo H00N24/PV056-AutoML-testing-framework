@@ -1,0 +1,12 @@
+{
+    "model_config":{
+        "class_name":"weka.classifiers.trees.J48",
+        "args":[
+            "-M",
+            "2",
+            "-R"
+        ],
+        "filters":[]
+    },
+    "ad_config":{}
+}

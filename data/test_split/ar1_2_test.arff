@@ -1,0 +1,85 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%
+% This is a PROMISE Software Engineering Repository data set made publicly
+% available in order to encourage repeatable, refutable, verifiable, and/or
+% improvable predictive models of software engineering.
+%
+% If you publish material based on PROMISE data sets then, please follow
+% the acknowledgment guidelines posted on the PROMISE repository web page
+% http://promise.site.uottowa.ca/SERepository.
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% --Title: AR1 /Software Defect Prediction
+% --Date: February, 4th, 2009
+% --Data from a Turkish white-goods manufacturer
+% --Donated by: Software Research Laboratory (Softlab),
+%              Bogazici University, Istanbul, Turkey
+% --Website: http://softlab.boun.edu.tr
+% --Contact address: ayse.tosun@boun.edu.tr, bener@boun.edu.tr
+%
+% --Description:
+% Embedded software in a white-goods product.
+% Implemented in C.
+% Consists of 121 modules (9 defective / 112 defect-free)
+% 29 static code attributes (McCabe, Halstead and LOC measures) and 1 defect information(false/true)
+% Function/method level static code attributes are collected using
+% Prest Metrics Extraction and Analysis Tool [1].
+% [1] Prest Metrics Extraction and Analysis Tool, available at http://softlab.boun.edu.tr/?q=resources&i=tools.
+@RELATION ar1
+
+@ATTRIBUTE ID NUMERIC
+@ATTRIBUTE total_loc NUMERIC
+@ATTRIBUTE blank_loc NUMERIC
+@ATTRIBUTE comment_loc NUMERIC
+@ATTRIBUTE code_and_comment_loc NUMERIC
+@ATTRIBUTE executable_loc NUMERIC
+@ATTRIBUTE unique_operands NUMERIC
+@ATTRIBUTE unique_operators NUMERIC
+@ATTRIBUTE total_operands NUMERIC
+@ATTRIBUTE total_operators NUMERIC
+@ATTRIBUTE halstead_vocabulary NUMERIC
+@ATTRIBUTE halstead_length NUMERIC
+@ATTRIBUTE halstead_volume NUMERIC
+@ATTRIBUTE halstead_level NUMERIC
+@ATTRIBUTE halstead_difficulty NUMERIC
+@ATTRIBUTE halstead_effort NUMERIC
+@ATTRIBUTE halstead_error NUMERIC
+@ATTRIBUTE halstead_time NUMERIC
+@ATTRIBUTE branch_count NUMERIC
+@ATTRIBUTE decision_count NUMERIC
+@ATTRIBUTE call_pairs NUMERIC
+@ATTRIBUTE condition_count NUMERIC
+@ATTRIBUTE multiple_condition_count NUMERIC
+@ATTRIBUTE cyclomatic_complexity NUMERIC
+@ATTRIBUTE cyclomatic_density NUMERIC
+@ATTRIBUTE decision_density NUMERIC
+@ATTRIBUTE design_complexity NUMERIC
+@ATTRIBUTE design_density NUMERIC
+@ATTRIBUTE normalized_cyclomatic_complexity NUMERIC
+@ATTRIBUTE formal_parameters NUMERIC
+@ATTRIBUTE defects {false, true}
+
+@DATA
+3,30.0,0.0,11.0,0.0,19.0,16.0,18.0,50.0,70.0,34.0,120.0,423.0,0.04,25.0,10575.0,0.14,587.5,20.0,10.0,1.0,9.0,2.0,9.0,0.47,1.11,1.0,0.11,0.3,0.0,true
+6,22.0,0.0,5.0,0.0,17.0,15.0,9.0,38.0,50.0,24.0,88.0,279.0,0.09,11.11,3100.0,0.09,172.22,16.0,8.0,0.0,8.0,4.0,5.0,0.29,1.0,0.0,0.0,0.23,0.0,false
+7,32.0,0.0,10.0,0.0,22.0,19.0,9.0,26.0,46.0,28.0,72.0,239.0,0.16,6.25,1493.75,0.08,82.99,16.0,8.0,3.0,8.0,2.0,7.0,0.32,1.0,3.0,0.43,0.22,0.0,false
+8,14.0,0.0,5.0,0.0,9.0,13.0,8.0,22.0,30.0,21.0,52.0,158.0,0.15,6.67,1053.33,0.05,58.52,4.0,2.0,3.0,2.0,1.0,2.0,0.22,1.0,3.0,1.5,0.14,0.0,false
+13,45.0,0.0,16.0,0.0,29.0,22.0,11.0,40.0,65.0,33.0,105.0,367.0,0.1,10.0,3670.0,0.12,203.89,18.0,9.0,4.0,9.0,2.0,7.0,0.24,1.0,4.0,0.57,0.16,0.0,false
+16,10.0,0.0,1.0,0.0,9.0,9.0,11.0,17.0,29.0,20.0,46.0,137.0,0.1,10.0,1370.0,0.05,76.11,2.0,1.0,3.0,0.0,0.0,2.0,0.22,0.0,3.0,1.5,0.2,1.0,false
+17,9.0,0.0,2.0,0.0,7.0,6.0,7.0,9.0,18.0,13.0,27.0,69.0,0.19,5.26,363.16,0.02,20.18,4.0,2.0,2.0,2.0,1.0,2.0,0.29,1.0,2.0,1.0,0.22,0.0,false
+19,6.0,0.0,0.0,0.0,6.0,9.0,9.0,22.0,32.0,18.0,54.0,156.0,0.09,11.11,1733.33,0.05,96.3,0.0,0.0,0.0,0.0,0.0,1.0,0.17,0.0,0.0,0.0,0.17,1.0,false
+27,21.0,0.0,0.0,0.0,21.0,12.0,6.0,13.0,26.0,18.0,39.0,112.0,0.31,3.23,361.29,0.04,20.07,10.0,5.0,0.0,5.0,1.0,4.0,0.19,1.0,0.0,0.0,0.19,1.0,false
+34,3.0,0.0,0.0,0.0,3.0,3.0,5.0,4.0,6.0,8.0,10.0,20.0,0.3,3.33,66.67,0.01,3.7,0.0,0.0,0.0,0.0,0.0,1.0,0.33,0.0,0.0,0.0,0.33,1.0,false
+35,3.0,0.0,0.0,0.0,3.0,4.0,5.0,5.0,6.0,9.0,11.0,24.0,0.32,3.13,75.0,0.01,4.17,0.0,0.0,0.0,0.0,0.0,1.0,0.33,0.0,0.0,0.0,0.33,1.0,false
+38,11.0,0.0,1.0,0.0,10.0,9.0,12.0,17.0,25.0,21.0,42.0,127.0,0.09,11.11,1411.11,0.04,78.4,4.0,2.0,0.0,1.0,0.0,3.0,0.3,2.0,0.0,0.0,0.27,0.0,true
+39,35.0,0.0,29.0,0.0,6.0,31.0,7.0,35.0,40.0,38.0,75.0,272.0,0.25,4.0,1088.0,0.09,60.44,0.0,0.0,5.0,0.0,0.0,1.0,0.17,0.0,5.0,5.0,0.03,0.0,false
+43,21.0,0.0,5.0,0.0,16.0,17.0,11.0,40.0,50.0,28.0,90.0,299.0,0.08,12.5,3737.5,0.1,207.64,4.0,2.0,6.0,0.0,0.0,3.0,0.19,0.0,6.0,2.0,0.14,0.0,false
+49,19.0,1.0,4.0,0.0,14.0,10.0,8.0,15.0,27.0,18.0,42.0,121.0,0.17,5.88,711.76,0.04,39.54,4.0,2.0,5.0,1.0,0.0,3.0,0.21,2.0,5.0,1.67,0.16,0.0,false
+66,27.0,0.0,10.0,0.0,17.0,15.0,9.0,36.0,48.0,24.0,84.0,266.0,0.09,11.11,2955.56,0.09,164.2,8.0,4.0,5.0,4.0,1.0,4.0,0.24,1.0,5.0,1.25,0.15,0.0,false
+67,31.0,0.0,11.0,0.0,20.0,17.0,8.0,46.0,66.0,25.0,112.0,360.0,0.09,11.11,4000.0,0.12,222.22,8.0,4.0,12.0,0.0,0.0,5.0,0.25,0.0,12.0,2.4,0.16,0.0,false
+72,34.0,0.0,5.0,0.0,29.0,18.0,11.0,35.0,58.0,29.0,93.0,313.0,0.09,11.11,3477.78,0.1,193.21,22.0,11.0,0.0,11.0,1.0,10.0,0.34,1.0,0.0,0.0,0.29,0.0,false
+83,60.0,0.0,8.0,0.0,52.0,26.0,16.0,70.0,113.0,42.0,183.0,683.0,0.05,20.0,13660.0,0.23,758.89,38.0,19.0,9.0,19.0,4.0,15.0,0.29,1.0,9.0,0.6,0.25,1.0,false
+84,48.0,0.0,7.0,0.0,41.0,22.0,11.0,51.0,84.0,33.0,135.0,472.0,0.08,12.5,5900.0,0.16,327.78,30.0,15.0,0.0,15.0,1.0,14.0,0.34,1.0,0.0,0.0,0.29,0.0,false
+93,6.0,0.0,0.0,0.0,6.0,6.0,6.0,6.0,11.0,12.0,17.0,42.0,0.33,3.03,127.27,0.01,7.07,4.0,2.0,1.0,2.0,1.0,2.0,0.33,1.0,1.0,0.5,0.33,0.0,false
+96,40.0,0.0,6.0,0.0,34.0,19.0,11.0,42.0,70.0,30.0,112.0,380.0,0.08,12.5,4750.0,0.13,263.89,24.0,12.0,0.0,12.0,1.0,11.0,0.32,1.0,0.0,0.0,0.28,0.0,false
+101,6.0,0.0,0.0,0.0,6.0,6.0,6.0,6.0,11.0,12.0,17.0,42.0,0.33,3.03,127.27,0.01,7.07,4.0,2.0,1.0,2.0,1.0,2.0,0.33,1.0,1.0,0.5,0.33,0.0,false
+114,2.0,0.0,0.0,0.0,2.0,1.0,2.0,1.0,3.0,3.0,4.0,4.0,1.0,1.0,4.0,0.0,0.22,0.0,0.0,0.0,0.0,0.0,1.0,0.5,0.0,0.0,0.0,0.5,0.0,false

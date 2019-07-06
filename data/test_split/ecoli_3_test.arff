@@ -1,0 +1,158 @@
+%
+% 1. Title: Protein Localization Sites
+%
+%
+% 2. Creator and Maintainer:
+% 	     Kenta Nakai
+%              Institue of Molecular and Cellular Biology
+% 	     Osaka, University
+% 	     1-3 Yamada-oka, Suita 565 Japan
+% 	     nakai@imcb.osaka-u.ac.jp
+%              http://www.imcb.osaka-u.ac.jp/nakai/psort.html
+%    Donor: Paul Horton (paulh@cs.berkeley.edu)
+%    Date:  September, 1996
+%    See also: yeast database
+%
+% 3. Past Usage.
+% Reference: "A Probablistic Classification System for Predicting the Cellular
+%            Localization Sites of Proteins", Paul Horton & Kenta Nakai,
+%            Intelligent Systems in Molecular Biology, 109-115.
+% 	   St. Louis, USA 1996.
+% Results: 81% for E.coli with an ad hoc structured
+% 	 probability model. Also similar accuracy for Binary Decision Tree and
+% 	 Bayesian Classifier methods applied by the same authors in
+% 	 unpublished results.
+%
+% Predicted Attribute: Localization site of protein. ( non-numeric ).
+%
+%
+% 4. The references below describe a predecessor to this dataset and its
+% development. They also give results (not cross-validated) for classification
+% by a rule-based expert system with that version of the dataset.
+%
+% Reference: "Expert Sytem for Predicting Protein Localization Sites in
+%            Gram-Negative Bacteria", Kenta Nakai & Minoru Kanehisa,
+%            PROTEINS: Structure, Function, and Genetics 11:95-110, 1991.
+%
+% Reference: "A Knowledge Base for Predicting Protein Localization Sites in
+% 	   Eukaryotic Cells", Kenta Nakai & Minoru Kanehisa,
+% 	   Genomics 14:897-911, 1992.
+%
+%
+% 5. Number of Instances:  336 for the E.coli dataset and
+%
+%
+% 6. Number of Attributes.
+%          for E.coli dataset:  8 ( 7 predictive, 1 name )
+% 	
+% 7. Attribute Information.
+%
+%   1.  Sequence Name: Accession number for the SWISS-PROT database
+%   2.  mcg: McGeoch's method for signal sequence recognition.
+%   3.  gvh: von Heijne's method for signal sequence recognition.
+%   4.  lip: von Heijne's Signal Peptidase II consensus sequence score.
+%            Binary attribute.
+%   5.  chg: Presence of charge on N-terminus of predicted lipoproteins.
+% 	   Binary attribute.
+%   6.  aac: score of discriminant analysis of the amino acid content of
+% 	   outer membrane and periplasmic proteins.
+%   7. alm1: score of the ALOM membrane spanning region prediction program.
+%   8. alm2: score of ALOM program after excluding putative cleavable signal
+% 	   regions from the sequence.
+%
+% NOTE - the sequence name has been removed
+%
+% 8. Missing Attribute Values: None.
+%
+%
+% 9. Class Distribution. The class is the localization site. Please see Nakai &
+% 		       Kanehisa referenced above for more details.
+%
+%   cp  (cytoplasm)                                    143
+%   im  (inner membrane without signal sequence)        77
+%   pp  (perisplasm)                                    52
+%   imU (inner membrane, uncleavable signal sequence)   35
+%   om  (outer membrane)                                20
+%   omL (outer membrane lipoprotein)                     5
+%   imL (inner membrane lipoprotein)                     2
+%   imS (inner membrane, cleavable signal sequence)      2
+@RELATION ecoli
+
+@ATTRIBUTE ID NUMERIC
+@ATTRIBUTE mcg NUMERIC
+@ATTRIBUTE gvh NUMERIC
+@ATTRIBUTE lip NUMERIC
+@ATTRIBUTE chg NUMERIC
+@ATTRIBUTE aac NUMERIC
+@ATTRIBUTE alm1 NUMERIC
+@ATTRIBUTE alm2 NUMERIC
+@ATTRIBUTE class {cp, im, pp, imU, om, omL, imL, imS}
+
+@DATA
+0,0.49,0.29,0.48,0.5,0.56,0.24,0.35,cp
+4,0.23,0.32,0.48,0.5,0.55,0.25,0.35,cp
+8,0.2,0.44,0.48,0.5,0.46,0.51,0.57,cp
+11,0.25,0.48,0.48,0.5,0.44,0.17,0.29,cp
+14,0.22,0.43,0.48,0.5,0.48,0.16,0.28,cp
+26,0.25,0.4,0.48,0.5,0.47,0.33,0.42,cp
+27,0.21,0.51,0.48,0.5,0.5,0.32,0.41,cp
+32,0.56,0.51,0.48,0.5,0.34,0.37,0.46,cp
+36,0.29,0.52,0.48,0.5,0.42,0.29,0.39,cp
+40,0.33,0.45,0.48,0.5,0.52,0.32,0.41,cp
+41,0.3,0.37,0.48,0.5,0.59,0.41,0.49,cp
+47,0.43,0.4,0.48,0.5,0.39,0.28,0.39,cp
+51,0.29,0.3,0.48,0.5,0.45,0.03,0.17,cp
+61,0.52,0.36,0.48,0.5,0.41,0.28,0.38,cp
+62,0.36,0.41,0.48,0.5,0.48,0.47,0.54,cp
+64,0.47,0.29,0.48,0.5,0.51,0.33,0.43,cp
+89,0.53,0.42,0.48,0.5,0.16,0.29,0.39,cp
+95,0.64,0.76,0.48,0.5,0.45,0.35,0.38,cp
+98,0.65,0.55,0.48,0.5,0.34,0.37,0.28,cp
+100,0.38,0.4,0.48,0.5,0.63,0.25,0.35,cp
+103,0.33,0.47,0.48,0.5,0.53,0.18,0.29,cp
+122,0.17,0.39,0.48,0.5,0.53,0.3,0.39,cp
+123,0.04,0.31,0.48,0.5,0.41,0.29,0.39,cp
+128,0.23,0.34,0.48,0.5,0.43,0.26,0.37,cp
+131,0.39,0.31,0.48,0.5,0.38,0.34,0.43,cp
+135,0.36,0.42,0.48,0.5,0.53,0.32,0.41,cp
+136,0.3,0.37,0.48,0.5,0.43,0.18,0.3,cp
+138,0.4,0.41,0.48,0.5,0.55,0.22,0.33,cp
+141,0.27,0.42,0.48,0.5,0.37,0.38,0.43,cp
+150,0.27,0.35,0.48,0.5,0.51,0.77,0.79,im
+156,0.73,0.36,0.48,0.5,0.53,0.91,0.92,im
+162,0.72,0.46,0.48,0.5,0.51,0.66,0.7,im
+171,0.74,0.44,0.48,0.5,0.55,0.88,0.89,im
+178,0.83,0.37,0.48,0.5,0.61,0.71,0.74,im
+192,0.41,0.51,0.48,0.5,0.53,0.75,0.78,im
+200,0.58,0.55,0.48,0.5,0.57,0.7,0.74,im
+204,0.31,0.44,0.48,0.5,0.5,0.79,0.82,im
+206,0.48,0.49,0.48,0.5,0.52,0.77,0.71,im
+213,0.36,0.45,0.48,0.5,0.38,0.79,0.17,im
+215,0.1,0.49,0.48,0.5,0.41,0.67,0.21,im
+216,0.3,0.51,0.48,0.5,0.42,0.61,0.34,im
+218,0.63,0.75,0.48,0.5,0.64,0.73,0.66,im
+230,0.75,0.37,0.48,0.5,0.64,0.7,0.74,imU
+233,0.66,0.48,0.48,0.5,0.54,0.7,0.74,imU
+242,0.86,0.39,0.48,0.5,0.59,0.89,0.9,imU
+248,0.64,0.45,0.48,0.5,0.67,0.61,0.66,imU
+250,0.73,0.26,0.48,0.5,0.57,0.75,0.78,imU
+258,0.78,0.44,0.48,0.5,0.45,0.73,0.68,imU
+262,0.61,0.75,0.48,0.5,0.51,0.33,0.33,om
+274,0.6,0.76,1.0,0.5,0.77,0.59,0.52,om
+278,0.68,0.63,0.48,0.5,0.73,0.4,0.3,om
+280,0.66,0.49,1.0,0.5,0.54,0.56,0.36,omL
+287,0.73,0.78,0.48,0.5,0.58,0.51,0.31,pp
+288,0.65,0.57,0.48,0.5,0.47,0.47,0.51,pp
+289,0.72,0.86,0.48,0.5,0.17,0.55,0.21,pp
+292,0.67,0.61,0.48,0.5,0.51,0.37,0.38,pp
+297,0.67,0.81,0.48,0.5,0.25,0.42,0.25,pp
+300,0.32,0.39,0.48,0.5,0.53,0.28,0.38,pp
+301,0.7,0.64,0.48,0.5,0.47,0.51,0.47,pp
+305,0.63,0.83,0.48,0.5,0.4,0.39,0.19,pp
+315,0.69,0.8,0.48,0.5,0.46,0.57,0.26,pp
+317,0.63,0.8,0.48,0.5,0.46,0.31,0.29,pp
+319,0.69,0.59,0.48,0.5,0.46,0.44,0.52,pp
+320,0.68,0.67,0.48,0.5,0.49,0.4,0.34,pp
+321,0.64,0.78,0.48,0.5,0.5,0.36,0.38,pp
+329,0.69,0.65,0.48,0.5,0.63,0.48,0.41,pp
+332,0.71,0.57,0.48,0.5,0.48,0.35,0.32,pp

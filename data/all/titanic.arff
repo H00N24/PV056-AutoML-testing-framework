@@ -1,0 +1,1326 @@
+@RELATION titanic
+
+@ATTRIBUTE pclass NUMERIC
+@ATTRIBUTE sex {female, male}
+@ATTRIBUTE age NUMERIC
+@ATTRIBUTE sibsp NUMERIC
+@ATTRIBUTE parch NUMERIC
+@ATTRIBUTE ticket STRING
+@ATTRIBUTE fare NUMERIC
+@ATTRIBUTE cabin STRING
+@ATTRIBUTE embarked {C, Q, S}
+@ATTRIBUTE boat STRING
+@ATTRIBUTE body NUMERIC
+@ATTRIBUTE home.dest STRING
+@ATTRIBUTE survived {0, 1}
+
+@DATA
+1.0,female,29.0,0.0,0.0,'24160',211.3375,B5,S,2,?,'St Louis MO',1
+1.0,male,0.9167,1.0,2.0,'113781',151.55,'C22 C26',S,11,?,'Montreal PQ / Chesterville',1
+1.0,female,2.0,1.0,2.0,'113781',151.55,'C22 C26',S,?,?,'Montreal PQ / Chesterville',0
+1.0,male,30.0,1.0,2.0,'113781',151.55,'C22 C26',S,?,135.0,'Montreal PQ / Chesterville',0
+1.0,female,25.0,1.0,2.0,'113781',151.55,'C22 C26',S,?,?,'Montreal PQ / Chesterville',0
+1.0,male,48.0,0.0,0.0,'19952',26.55,E12,S,3,?,'New York NY',1
+1.0,female,63.0,1.0,0.0,'13502',77.9583,D7,S,10,?,'Hudson NY',1
+1.0,male,39.0,0.0,0.0,'112050',0.0,A36,S,?,?,'Belfast NI',0
+1.0,female,53.0,2.0,0.0,'11769',51.4792,C101,S,D,?,'Bayside Queens',1
+1.0,male,71.0,0.0,0.0,'PC 17609',49.5042,?,C,?,22.0,'Montevideo Uruguay',0
+1.0,male,47.0,1.0,0.0,'PC 17757',227.525,'C62 C64',C,?,124.0,'New York NY',0
+1.0,female,18.0,1.0,0.0,'PC 17757',227.525,'C62 C64',C,4,?,'New York NY',1
+1.0,female,24.0,0.0,0.0,'PC 17477',69.3,B35,C,9,?,'Paris France',1
+1.0,female,26.0,0.0,0.0,'19877',78.85,?,S,6,?,?,1
+1.0,male,80.0,0.0,0.0,'27042',30.0,A23,S,B,?,'Hessle Yorks',1
+1.0,male,?,0.0,0.0,'PC 17318',25.925,?,S,?,?,'New York NY',0
+1.0,male,24.0,0.0,1.0,'PC 17558',247.5208,'B58 B60',C,?,?,'Montreal PQ',0
+1.0,female,50.0,0.0,1.0,'PC 17558',247.5208,'B58 B60',C,6,?,'Montreal PQ',1
+1.0,female,32.0,0.0,0.0,'11813',76.2917,D15,C,8,?,?,1
+1.0,male,36.0,0.0,0.0,'13050',75.2417,C6,C,A,?,'Winnipeg MN',0
+1.0,male,37.0,1.0,1.0,'11751',52.5542,D35,S,5,?,'New York NY',1
+1.0,female,47.0,1.0,1.0,'11751',52.5542,D35,S,5,?,'New York NY',1
+1.0,male,26.0,0.0,0.0,'111369',30.0,C148,C,5,?,'New York NY',1
+1.0,female,42.0,0.0,0.0,'PC 17757',227.525,?,C,4,?,?,1
+1.0,female,29.0,0.0,0.0,'PC 17483',221.7792,C97,S,8,?,?,1
+1.0,male,25.0,0.0,0.0,'13905',26.0,?,C,?,148.0,'San Francisco CA',0
+1.0,male,25.0,1.0,0.0,'11967',91.0792,B49,C,7,?,'Dowagiac MI',1
+1.0,female,19.0,1.0,0.0,'11967',91.0792,B49,C,7,?,'Dowagiac MI',1
+1.0,female,35.0,0.0,0.0,'PC 17760',135.6333,C99,S,8,?,?,1
+1.0,male,28.0,0.0,0.0,'110564',26.55,C52,S,D,?,'Stockholm Sweden / Washington',1
+1.0,male,45.0,0.0,0.0,'113784',35.5,T,S,?,?,'Trenton NJ',0
+1.0,male,40.0,0.0,0.0,'112277',31.0,A31,C,7,?,'Glen Ridge NJ',1
+1.0,female,30.0,0.0,0.0,'36928',164.8667,C7,S,8,?,'Youngstown OH',1
+1.0,female,58.0,0.0,0.0,'113783',26.55,C103,S,8,?,'Birkdale England Cleveland',1
+1.0,male,42.0,0.0,0.0,'110489',26.55,D22,S,?,?,'London / Winnipeg MB',0
+1.0,female,45.0,0.0,0.0,'PC 17608',262.375,?,C,4,?,'Cooperstown NY',1
+1.0,female,22.0,0.0,1.0,'113505',55.0,E33,S,6,?,'St Leonards-on-Sea England Ohio',1
+1.0,male,?,0.0,0.0,'111427',26.55,?,S,9,?,'Los Angeles CA',1
+1.0,male,41.0,0.0,0.0,'113054',30.5,A21,S,?,?,'Pomeroy WA',0
+1.0,male,48.0,0.0,0.0,'PC 17591',50.4958,B10,C,?,208.0,'Omaha NE',0
+1.0,male,?,0.0,0.0,'112379',39.6,?,C,?,?,'Philadelphia PA',0
+1.0,female,44.0,0.0,0.0,'PC 17610',27.7208,B4,C,6,?,'Denver CO',1
+1.0,female,59.0,2.0,0.0,'11769',51.4792,C101,S,D,?,'Belmont MA',1
+1.0,female,60.0,0.0,0.0,'11813',76.2917,D15,C,8,?,'Philadelphia PA',1
+1.0,female,41.0,0.0,0.0,'16966',134.5,E40,C,3,?,?,1
+1.0,male,45.0,0.0,0.0,'113050',26.55,B38,S,?,?,'Washington DC',0
+1.0,male,?,0.0,0.0,'113798',31.0,?,S,?,?,?,0
+1.0,male,42.0,0.0,0.0,'PC 17476',26.2875,E24,S,5,?,'New York NY',1
+1.0,female,53.0,0.0,0.0,'PC 17606',27.4458,?,C,6,?,'Washington DC',1
+1.0,male,36.0,0.0,1.0,'PC 17755',512.3292,'B51 B53 B55',C,3,?,'Austria-Hungary / Germantown Philadelphia',1
+1.0,female,58.0,0.0,1.0,'PC 17755',512.3292,'B51 B53 B55',C,3,?,'Germantown Philadelphia',1
+1.0,male,33.0,0.0,0.0,'695',5.0,'B51 B53 B55',S,?,?,'New York NY',0
+1.0,male,28.0,0.0,0.0,'113059',47.1,?,S,?,?,'Montevideo Uruguay',0
+1.0,male,17.0,0.0,0.0,'113059',47.1,?,S,?,?,'Montevideo Uruguay',0
+1.0,male,11.0,1.0,2.0,'113760',120.0,'B96 B98',S,4,?,'Bryn Mawr PA',1
+1.0,female,14.0,1.0,2.0,'113760',120.0,'B96 B98',S,4,?,'Bryn Mawr PA',1
+1.0,male,36.0,1.0,2.0,'113760',120.0,'B96 B98',S,C,?,'Bryn Mawr PA',1
+1.0,female,36.0,1.0,2.0,'113760',120.0,'B96 B98',S,4,?,'Bryn Mawr PA',1
+1.0,male,49.0,0.0,0.0,'19924',26.0,?,S,?,?,'Ascot Berkshire / Rochester',0
+1.0,female,?,0.0,0.0,'17770',27.7208,?,C,5,?,'New York NY',1
+1.0,male,36.0,1.0,0.0,'19877',78.85,C46,S,?,172.0,'Little Onn Hall Staffs',0
+1.0,female,76.0,1.0,0.0,'19877',78.85,C46,S,6,?,'Little Onn Hall Staffs',1
+1.0,male,46.0,1.0,0.0,'W.E.P. 5734',61.175,E31,S,?,?,'Amenia ND',0
+1.0,female,47.0,1.0,0.0,'W.E.P. 5734',61.175,E31,S,4,?,'Amenia ND',1
+1.0,male,27.0,1.0,0.0,'113806',53.1,E8,S,5,?,'New York NY / Ithaca',1
+1.0,female,33.0,1.0,0.0,'113806',53.1,E8,S,5,?,'New York NY / Ithaca',1
+1.0,female,36.0,0.0,0.0,'PC 17608',262.375,B61,C,4,?,?,1
+1.0,female,30.0,0.0,0.0,'110152',86.5,B77,S,8,?,'London England',1
+1.0,male,45.0,0.0,0.0,'PC 17594',29.7,A9,C,7,?,'Paris France',1
+1.0,female,?,0.0,1.0,'113505',55.0,E33,S,6,?,'St Leonards-on-Sea England Ohio',1
+1.0,male,?,0.0,0.0,'112051',0.0,?,S,?,?,'Liverpool England / Belfast',0
+1.0,male,27.0,1.0,0.0,'13508',136.7792,C89,C,?,?,'Los Angeles CA',0
+1.0,female,26.0,1.0,0.0,'13508',136.7792,C89,C,4,?,'Los Angeles CA',1
+1.0,female,22.0,0.0,0.0,'113781',151.55,?,S,11,?,?,1
+1.0,male,?,0.0,0.0,'110465',52.0,A14,S,?,?,'Stoughton MA',0
+1.0,male,47.0,0.0,0.0,'5727',25.5875,E58,S,?,?,'Victoria BC',0
+1.0,female,39.0,1.0,1.0,'PC 17756',83.1583,E49,C,14,?,'Lakewood NJ',1
+1.0,male,37.0,1.0,1.0,'PC 17756',83.1583,E52,C,?,?,'Lakewood NJ',0
+1.0,female,64.0,0.0,2.0,'PC 17756',83.1583,E45,C,14,?,'Lakewood NJ',1
+1.0,female,55.0,2.0,0.0,'11770',25.7,C101,S,2,?,'New York NY',1
+1.0,male,?,0.0,0.0,'113791',26.55,?,S,?,?,'Roachdale IN',0
+1.0,male,70.0,1.0,1.0,'WE/P 5735',71.0,B22,S,?,269.0,'Milwaukee WI',0
+1.0,female,36.0,0.0,2.0,'WE/P 5735',71.0,B22,S,7,?,'Milwaukee WI',1
+1.0,female,64.0,1.0,1.0,'112901',26.55,B26,S,7,?,'Milwaukee WI',1
+1.0,male,39.0,1.0,0.0,'PC 17599',71.2833,C85,C,?,?,'New York NY',0
+1.0,female,38.0,1.0,0.0,'PC 17599',71.2833,C85,C,4,?,'New York NY',1
+1.0,male,51.0,0.0,0.0,'113055',26.55,E17,S,'5 9',?,'Lima Peru',1
+1.0,male,27.0,0.0,0.0,'113804',30.5,?,S,3,?,'Philadelphia PA',1
+1.0,female,33.0,0.0,0.0,'113781',151.55,?,S,8,?,?,1
+1.0,male,31.0,1.0,0.0,'F.C. 12750',52.0,B71,S,?,?,'Montreal PQ',0
+1.0,female,27.0,1.0,2.0,'F.C. 12750',52.0,B71,S,3,?,'Montreal PQ',1
+1.0,male,31.0,1.0,0.0,'17474',57.0,B20,S,3,?,'Calgary AB',1
+1.0,female,17.0,1.0,0.0,'17474',57.0,B20,S,3,?,'Calgary AB',1
+1.0,male,53.0,1.0,1.0,'33638',81.8583,A34,S,13,?,'San Francisco CA',1
+1.0,male,4.0,0.0,2.0,'33638',81.8583,A34,S,5,?,'San Francisco CA',1
+1.0,female,54.0,1.0,1.0,'33638',81.8583,A34,S,5,?,'San Francisco CA',1
+1.0,male,50.0,1.0,0.0,'PC 17761',106.425,C86,C,?,62.0,'Deephaven MN / Cedar Rapids',0
+1.0,female,27.0,1.0,1.0,'PC 17558',247.5208,'B58 B60',C,6,?,'Montreal PQ',1
+1.0,female,48.0,1.0,0.0,'PC 17761',106.425,C86,C,2,?,'Deephaven MN / Cedar Rapids',1
+1.0,female,48.0,1.0,0.0,'11755',39.6,A16,C,1,?,'London / Paris',1
+1.0,male,49.0,1.0,0.0,'PC 17485',56.9292,A20,C,1,?,'London / Paris',1
+1.0,male,39.0,0.0,0.0,'PC 17580',29.7,A18,C,?,133.0,'Philadelphia PA',0
+1.0,female,23.0,0.0,1.0,'11767',83.1583,C54,C,7,?,'Mt Airy Philadelphia',1
+1.0,female,38.0,0.0,0.0,'PC 17757',227.525,C45,C,4,?,'New York NY',1
+1.0,female,54.0,1.0,0.0,'36947',78.2667,D20,C,4,?,'Brookline MA',1
+1.0,female,36.0,0.0,0.0,'PC 17531',31.6792,A29,C,?,?,'New York NY',0
+1.0,male,?,0.0,0.0,'PC 17483',221.7792,C95,S,?,?,?,0
+1.0,female,?,0.0,0.0,'PC 17598',31.6833,?,S,7,?,'New York NY',1
+1.0,female,?,0.0,0.0,'17421',110.8833,?,C,4,?,?,1
+1.0,male,36.0,0.0,0.0,'PC 17474',26.3875,E25,S,5,?,'Brooklyn NY',1
+1.0,male,30.0,0.0,0.0,'113051',27.75,C111,C,?,?,'New York NY',0
+1.0,female,24.0,3.0,2.0,'19950',263.0,'C23 C25 C27',S,10,?,'Winnipeg MB',1
+1.0,female,28.0,3.0,2.0,'19950',263.0,'C23 C25 C27',S,10,?,'Winnipeg MB',1
+1.0,female,23.0,3.0,2.0,'19950',263.0,'C23 C25 C27',S,10,?,'Winnipeg MB',1
+1.0,male,19.0,3.0,2.0,'19950',263.0,'C23 C25 C27',S,?,?,'Winnipeg MB',0
+1.0,male,64.0,1.0,4.0,'19950',263.0,'C23 C25 C27',S,?,?,'Winnipeg MB',0
+1.0,female,60.0,1.0,4.0,'19950',263.0,'C23 C25 C27',S,10,?,'Winnipeg MB',1
+1.0,female,30.0,0.0,0.0,'PC 17485',56.9292,E36,C,1,?,?,1
+1.0,male,?,0.0,0.0,'113778',26.55,D34,S,?,?,'Westcliff-on-Sea Essex',0
+1.0,male,50.0,2.0,0.0,'PC 17611',133.65,?,S,5,?,'New York NY',1
+1.0,male,43.0,1.0,0.0,'17765',27.7208,D40,C,5,?,'New York NY',1
+1.0,female,?,1.0,0.0,'PC 17611',133.65,?,S,5,?,'New York NY',1
+1.0,female,22.0,0.0,2.0,'13568',49.5,B39,C,5,?,'Zurich Switzerland',1
+1.0,male,60.0,1.0,1.0,'13567',79.2,B41,C,5,?,'Zurich Switzerland',1
+1.0,female,48.0,1.0,1.0,'13567',79.2,B41,C,5,?,'Zurich Switzerland',1
+1.0,male,?,0.0,0.0,'112058',0.0,B102,S,?,?,?,0
+1.0,male,37.0,1.0,0.0,'113803',53.1,C123,S,?,?,'Scituate MA',0
+1.0,female,35.0,1.0,0.0,'113803',53.1,C123,S,D,?,'Scituate MA',1
+1.0,male,47.0,0.0,0.0,'111320',38.5,E63,S,?,275.0,'St Anne\'s-on-Sea Lancashire',0
+1.0,female,35.0,0.0,0.0,'113503',211.5,C130,C,4,?,?,1
+1.0,female,22.0,0.0,1.0,'112378',59.4,?,C,7,?,'New York NY',1
+1.0,female,45.0,0.0,1.0,'112378',59.4,?,C,7,?,'New York NY',1
+1.0,male,24.0,0.0,0.0,'PC 17593',79.2,B86,C,?,?,?,0
+1.0,male,49.0,1.0,0.0,'17453',89.1042,C92,C,5,?,'Paris France / New York',1
+1.0,female,?,1.0,0.0,'17453',89.1042,C92,C,5,?,'Paris France / New York',1
+1.0,male,71.0,0.0,0.0,'PC 17754',34.6542,A5,C,?,?,'New York NY',0
+1.0,male,53.0,0.0,0.0,'113780',28.5,C51,C,B,?,'Washington DC',1
+1.0,female,19.0,0.0,0.0,'112053',30.0,B42,S,3,?,'Greenwich CT',1
+1.0,male,38.0,0.0,1.0,'PC 17582',153.4625,C91,S,?,147.0,'Winnipeg MB',0
+1.0,female,58.0,0.0,1.0,'PC 17582',153.4625,C125,S,3,?,'Greenwich CT',1
+1.0,male,23.0,0.0,1.0,'PC 17759',63.3583,'D10 D12',C,7,?,'New York NY',1
+1.0,female,45.0,0.0,1.0,'PC 17759',63.3583,'D10 D12',C,7,?,'New York NY',1
+1.0,male,46.0,0.0,0.0,'PC 17593',79.2,'B82 B84',C,?,?,'New York NY',0
+1.0,male,25.0,1.0,0.0,'11765',55.4417,E50,C,5,?,'Brooklyn NY',1
+1.0,female,25.0,1.0,0.0,'11765',55.4417,E50,C,5,?,'Brooklyn NY',1
+1.0,male,48.0,1.0,0.0,'PC 17572',76.7292,D33,C,3,?,'New York NY',1
+1.0,female,49.0,1.0,0.0,'PC 17572',76.7292,D33,C,3,?,'New York NY',1
+1.0,male,?,0.0,0.0,'113796',42.4,?,S,?,?,?,0
+1.0,male,45.0,1.0,0.0,'36973',83.475,C83,S,?,?,'New York NY',0
+1.0,female,35.0,1.0,0.0,'36973',83.475,C83,S,D,?,'New York NY',1
+1.0,male,40.0,0.0,0.0,'112059',0.0,B94,S,?,110.0,?,0
+1.0,male,27.0,0.0,0.0,'PC 17572',76.7292,D49,C,3,?,?,1
+1.0,male,?,0.0,0.0,'16988',30.0,D45,S,3,?,'Kingston Surrey',1
+1.0,female,24.0,0.0,0.0,'11767',83.1583,C54,C,7,?,'New York NY',1
+1.0,male,55.0,1.0,1.0,'12749',93.5,B69,S,?,307.0,'Montreal PQ',0
+1.0,female,52.0,1.0,1.0,'12749',93.5,B69,S,3,?,'Montreal PQ',1
+1.0,male,42.0,0.0,0.0,'113038',42.5,B11,S,?,?,'London / Middlesex',0
+1.0,male,?,0.0,0.0,'17463',51.8625,E46,S,?,?,'Brighton MA',0
+1.0,male,55.0,0.0,0.0,'680',50.0,C39,S,?,?,'London / Birmingham',0
+1.0,female,16.0,0.0,1.0,'111361',57.9792,B18,C,4,?,'Chicago IL',1
+1.0,female,44.0,0.0,1.0,'111361',57.9792,B18,C,4,?,'Chicago IL',1
+1.0,female,51.0,1.0,0.0,'13502',77.9583,D11,S,10,?,'Hudson NY',1
+1.0,male,42.0,1.0,0.0,'113789',52.0,?,S,?,38.0,'New York NY',0
+1.0,female,35.0,1.0,0.0,'113789',52.0,?,S,8,?,'New York NY',1
+1.0,male,35.0,0.0,0.0,'111426',26.55,?,C,15,?,'Indianapolis IN',1
+1.0,male,38.0,1.0,0.0,'19943',90.0,C93,S,D,?,'New York NY / Stamford CT',1
+1.0,male,?,0.0,0.0,'PC 17600',30.6958,?,C,14,?,'New York NY',0
+1.0,female,35.0,1.0,0.0,'19943',90.0,C93,S,D,?,'New York NY / Stamford CT',1
+1.0,female,38.0,0.0,0.0,'113572',80.0,B28,?,6,?,?,1
+1.0,female,50.0,0.0,0.0,'PC 17595',28.7125,C49,C,?,?,'Paris France New York',0
+1.0,male,49.0,0.0,0.0,'112058',0.0,'B52 B54 B56',S,C,?,'Liverpool',1
+1.0,male,46.0,0.0,0.0,'694',26.0,?,S,?,80.0,'Bennington VT',0
+1.0,male,50.0,0.0,0.0,'113044',26.0,E60,S,?,?,'London',0
+1.0,male,32.5,0.0,0.0,'113503',211.5,C132,C,?,45.0,?,0
+1.0,male,58.0,0.0,0.0,'11771',29.7,B37,C,?,258.0,'Buffalo NY',0
+1.0,male,41.0,1.0,0.0,'17464',51.8625,D21,S,?,?,'Southington / Noank CT',0
+1.0,female,?,1.0,0.0,'17464',51.8625,D21,S,8,?,'Southington / Noank CT',1
+1.0,male,42.0,1.0,0.0,'11753',52.5542,D19,S,5,?,'Boston MA',1
+1.0,female,45.0,1.0,0.0,'11753',52.5542,D19,S,5,?,'Boston MA',1
+1.0,male,?,0.0,0.0,'113028',26.55,C124,S,?,?,'Portland OR',0
+1.0,female,39.0,0.0,0.0,'24160',211.3375,?,S,2,?,?,1
+1.0,female,49.0,0.0,0.0,'17465',25.9292,D17,S,8,?,'New York NY',1
+1.0,female,30.0,0.0,0.0,'PC 17761',106.425,?,C,2,?,?,1
+1.0,male,35.0,0.0,0.0,'PC 17755',512.3292,B101,C,3,?,?,1
+1.0,male,?,0.0,0.0,'PC 17612',27.7208,?,C,?,?,'Chicago IL',0
+1.0,male,42.0,0.0,0.0,'17475',26.55,?,S,?,?,'Stockholm Sweden',0
+1.0,female,55.0,0.0,0.0,'112377',27.7208,?,C,6,?,'Stockholm Sweden',1
+1.0,female,16.0,0.0,1.0,'PC 17592',39.4,D28,S,9,?,'Paris France',1
+1.0,female,51.0,0.0,1.0,'PC 17592',39.4,D28,S,9,?,'Paris France',1
+1.0,male,29.0,0.0,0.0,'113501',30.0,D6,S,?,126.0,'Springfield MA',0
+1.0,female,21.0,0.0,0.0,'13502',77.9583,D9,S,10,?,'Hudson NY',1
+1.0,male,30.0,0.0,0.0,'113801',45.5,?,S,?,?,'London / New York NY',0
+1.0,female,58.0,0.0,0.0,'PC 17569',146.5208,B80,C,?,?,?,1
+1.0,female,15.0,0.0,1.0,'24160',211.3375,B5,S,2,?,'St Louis MO',1
+1.0,male,30.0,0.0,0.0,'110469',26.0,C106,S,?,?,'Brockton MA',0
+1.0,female,16.0,0.0,0.0,'110152',86.5,B79,S,8,?,?,1
+1.0,male,?,0.0,0.0,'11774',29.7,C47,C,7,?,'Paris France',1
+1.0,male,19.0,1.0,0.0,'113773',53.1,D30,S,?,?,'New York NY',0
+1.0,female,18.0,1.0,0.0,'113773',53.1,D30,S,10,?,'New York NY',1
+1.0,female,24.0,0.0,0.0,'PC 17482',49.5042,C90,C,6,?,'Belgium Montreal PQ',1
+1.0,male,46.0,0.0,0.0,'13050',75.2417,C6,C,?,292.0,'Vancouver BC',0
+1.0,male,54.0,0.0,0.0,'17463',51.8625,E46,S,?,175.0,'Dorchester MA',0
+1.0,male,36.0,0.0,0.0,'PC 17473',26.2875,E25,S,7,?,'Philadelphia PA',1
+1.0,male,28.0,1.0,0.0,'PC 17604',82.1708,?,C,?,?,'New York NY',0
+1.0,female,?,1.0,0.0,'PC 17604',82.1708,?,C,6,?,'New York NY',1
+1.0,male,65.0,0.0,0.0,'13509',26.55,E38,S,?,249.0,'East Bridgewater MA',0
+1.0,male,44.0,2.0,0.0,'19928',90.0,C78,Q,?,230.0,'Fond du Lac WI',0
+1.0,female,33.0,1.0,0.0,'19928',90.0,C78,Q,14,?,'Green Bay WI',1
+1.0,female,37.0,1.0,0.0,'19928',90.0,C78,Q,14,?,'Fond du Lac WI',1
+1.0,male,30.0,1.0,0.0,'13236',57.75,C78,C,11,?,'New York NY',1
+1.0,male,55.0,0.0,0.0,'113787',30.5,C30,S,?,?,'Montreal PQ',0
+1.0,male,47.0,0.0,0.0,'113796',42.4,?,S,?,?,'Washington DC',0
+1.0,male,37.0,0.0,1.0,'PC 17596',29.7,C118,C,?,?,'Brooklyn NY',0
+1.0,female,31.0,1.0,0.0,'35273',113.275,D36,C,6,?,'Lexington MA',1
+1.0,female,23.0,1.0,0.0,'35273',113.275,D36,C,6,?,'Lexington MA',1
+1.0,male,58.0,0.0,2.0,'35273',113.275,D48,C,?,122.0,'Lexington MA',0
+1.0,female,19.0,0.0,2.0,'11752',26.2833,D47,S,5,?,'New York NY',1
+1.0,male,64.0,0.0,0.0,'693',26.0,?,S,?,263.0,'Isle of Wight England',0
+1.0,female,39.0,0.0,0.0,'PC 17758',108.9,C105,C,8,?,?,1
+1.0,male,?,0.0,0.0,'F.C. 12998',25.7417,?,C,7,?,'Paris France',1
+1.0,female,22.0,0.0,1.0,'113509',61.9792,B36,C,5,?,'Providence RI',1
+1.0,male,65.0,0.0,1.0,'113509',61.9792,B30,C,?,234.0,'Providence RI',0
+1.0,male,28.5,0.0,0.0,'PC 17562',27.7208,D43,C,?,189.0,'?Havana Cuba',0
+1.0,male,?,0.0,0.0,'112052',0.0,?,S,?,?,'Belfast',0
+1.0,male,45.5,0.0,0.0,'113043',28.5,C124,S,?,166.0,'Surbiton Hill Surrey',0
+1.0,male,23.0,0.0,0.0,'12749',93.5,B24,S,?,?,'Montreal PQ',0
+1.0,male,29.0,1.0,0.0,'113776',66.6,C2,S,?,?,'Isleworth England',0
+1.0,female,22.0,1.0,0.0,'113776',66.6,C2,S,8,?,'Isleworth England',1
+1.0,male,18.0,1.0,0.0,'PC 17758',108.9,C65,C,?,?,'Madrid Spain',0
+1.0,female,17.0,1.0,0.0,'PC 17758',108.9,C65,C,8,?,'Madrid Spain',1
+1.0,female,30.0,0.0,0.0,'12749',93.5,B73,S,3,?,?,1
+1.0,male,52.0,0.0,0.0,'113786',30.5,C104,S,6,?,'Toronto ON',1
+1.0,male,47.0,0.0,0.0,'110465',52.0,C110,S,?,207.0,'Worcester MA',0
+1.0,female,56.0,0.0,1.0,'11767',83.1583,C50,C,7,?,'Mt Airy Philadelphia',1
+1.0,male,38.0,0.0,0.0,'19972',0.0,?,S,?,?,'Rotterdam Netherlands',0
+1.0,male,?,0.0,0.0,'PC 17607',39.6,?,S,A,?,'Paris / New York NY',1
+1.0,male,22.0,0.0,0.0,'PC 17760',135.6333,?,C,?,232.0,?,0
+1.0,male,?,0.0,0.0,'PC 17757',227.525,?,C,?,?,?,0
+1.0,female,43.0,0.0,1.0,'24160',211.3375,B3,S,2,?,'St Louis MO',1
+1.0,male,31.0,0.0,0.0,'PC 17590',50.4958,A24,S,?,?,'Trenton NJ',0
+1.0,male,45.0,0.0,0.0,'111428',26.55,?,S,9,?,'New York NY',1
+1.0,male,?,0.0,0.0,'113767',50.0,A32,S,?,?,'Seattle WA',0
+1.0,female,33.0,0.0,0.0,'PC 17613',27.7208,A11,C,11,?,'Paris France',1
+1.0,male,46.0,0.0,0.0,'PC 17585',79.2,?,C,?,16.0,'New York NY',0
+1.0,male,36.0,0.0,0.0,'13049',40.125,A10,C,?,?,'Winnipeg MB',0
+1.0,female,33.0,0.0,0.0,'110152',86.5,B77,S,8,?,'London Vancouver BC',1
+1.0,male,55.0,1.0,0.0,'PC 17603',59.4,?,C,?,?,'New York NY',0
+1.0,female,54.0,1.0,0.0,'PC 17603',59.4,?,C,6,?,'New York NY',1
+1.0,male,33.0,0.0,0.0,'113790',26.55,?,S,?,109.0,'London',0
+1.0,male,13.0,2.0,2.0,'PC 17608',262.375,'B57 B59 B63 B66',C,4,?,'Haverford PA / Cooperstown',1
+1.0,female,18.0,2.0,2.0,'PC 17608',262.375,'B57 B59 B63 B66',C,4,?,'Haverford PA / Cooperstown',1
+1.0,female,21.0,2.0,2.0,'PC 17608',262.375,'B57 B59 B63 B66',C,4,?,'Haverford PA / Cooperstown',1
+1.0,male,61.0,1.0,3.0,'PC 17608',262.375,'B57 B59 B63 B66',C,?,?,'Haverford PA / Cooperstown',0
+1.0,female,48.0,1.0,3.0,'PC 17608',262.375,'B57 B59 B63 B66',C,4,?,'Haverford PA / Cooperstown',1
+1.0,male,?,0.0,0.0,'19988',30.5,C106,S,3,?,'Manchester England',1
+1.0,female,24.0,0.0,0.0,'PC 17477',69.3,B35,C,9,?,?,1
+1.0,male,?,0.0,0.0,'111163',26.0,?,S,1,?,'New York NY',1
+1.0,female,35.0,1.0,0.0,'13236',57.75,C28,C,11,?,'New York NY',1
+1.0,female,30.0,0.0,0.0,'113798',31.0,?,C,4,?,?,1
+1.0,male,34.0,0.0,0.0,'113794',26.55,?,S,7,?,'New York NY',1
+1.0,female,40.0,0.0,0.0,'PC 17582',153.4625,C125,S,3,?,'New York NY / Greenwich CT',1
+1.0,male,35.0,0.0,0.0,'PC 17475',26.2875,E24,S,5,?,'St Louis MO',1
+1.0,male,50.0,1.0,0.0,'13507',55.9,E44,S,?,?,'Duluth MN',0
+1.0,female,39.0,1.0,0.0,'13507',55.9,E44,S,11,?,'Duluth MN',1
+1.0,male,56.0,0.0,0.0,'13213',35.5,A26,C,3,?,'Basel Switzerland',1
+1.0,male,28.0,0.0,0.0,'113788',35.5,A6,S,7,?,'New Britain CT',1
+1.0,male,56.0,0.0,0.0,'113792',26.55,?,S,?,?,'New York NY',0
+1.0,male,56.0,0.0,0.0,'17764',30.6958,A7,C,?,?,'St James Long Island',0
+1.0,male,24.0,1.0,0.0,'13695',60.0,C31,S,?,?,'Huntington WV',0
+1.0,male,?,0.0,0.0,'113056',26.0,A19,S,?,?,'Streatham Surrey',0
+1.0,female,18.0,1.0,0.0,'13695',60.0,C31,S,6,?,'Huntington WV',1
+1.0,male,24.0,1.0,0.0,'21228',82.2667,B45,S,7,?,'Minneapolis MN',1
+1.0,female,23.0,1.0,0.0,'21228',82.2667,B45,S,7,?,'Minneapolis MN',1
+1.0,male,6.0,0.0,2.0,'16966',134.5,E34,C,3,?,'Tuxedo Park NY',1
+1.0,male,45.0,1.0,1.0,'16966',134.5,E34,C,3,?,'Tuxedo Park NY',1
+1.0,female,40.0,1.0,1.0,'16966',134.5,E34,C,3,?,'Tuxedo Park NY',1
+1.0,male,57.0,1.0,0.0,'PC 17569',146.5208,B78,C,?,?,'Paris France',0
+1.0,female,?,1.0,0.0,'PC 17569',146.5208,B78,C,6,?,'Paris France',1
+1.0,male,32.0,0.0,0.0,'13214',30.5,B50,C,3,?,'Basel Switzerland',1
+1.0,male,62.0,0.0,0.0,'113514',26.55,C87,S,?,?,'Wimbledon Park London / Hayling Island',0
+1.0,male,54.0,1.0,0.0,'11778',55.4417,C116,C,1,?,'Newark NJ',1
+1.0,female,43.0,1.0,0.0,'11778',55.4417,C116,C,5,?,'Newark NJ',1
+1.0,female,52.0,1.0,0.0,'36947',78.2667,D20,C,4,?,'Haverford PA',1
+1.0,male,?,0.0,0.0,'PC 17605',27.7208,?,C,?,?,'Gallipolis Ohio / ? Paris / New York',0
+1.0,female,62.0,0.0,0.0,'113572',80.0,B28,?,6,?,'Cincinatti OH',1
+1.0,male,67.0,1.0,0.0,'PC 17483',221.7792,'C55 C57',S,?,96.0,'New York NY',0
+1.0,female,63.0,1.0,0.0,'PC 17483',221.7792,'C55 C57',S,?,?,'New York NY',0
+1.0,male,61.0,0.0,0.0,'36963',32.3208,D50,S,?,46.0,'Haddenfield NJ',0
+1.0,female,48.0,0.0,0.0,'17466',25.9292,D17,S,8,?,'Brooklyn NY',1
+1.0,female,18.0,0.0,2.0,'110413',79.65,E68,S,8,?,'New York NY',1
+1.0,male,52.0,1.0,1.0,'110413',79.65,E67,S,?,?,'New York NY',0
+1.0,female,39.0,1.0,1.0,'110413',79.65,E67,S,8,?,'New York NY',1
+1.0,male,48.0,1.0,0.0,'19996',52.0,C126,S,'5 7',?,'London / East Orange NJ',1
+1.0,female,?,1.0,0.0,'19996',52.0,C126,S,'5 7',?,'London / East Orange NJ',1
+1.0,male,49.0,1.0,1.0,'17421',110.8833,C68,C,?,?,'Haverford PA',0
+1.0,male,17.0,0.0,2.0,'17421',110.8833,C70,C,B,?,'Haverford PA',1
+1.0,female,39.0,1.0,1.0,'17421',110.8833,C68,C,4,?,'Haverford PA',1
+1.0,female,?,0.0,0.0,'PC 17585',79.2,?,C,D,?,'New York NY',1
+1.0,male,31.0,0.0,0.0,'2543',28.5375,C53,C,7,?,'Albany NY',1
+1.0,male,40.0,0.0,0.0,'PC 17601',27.7208,?,C,?,?,'Mexico City Mexico',0
+1.0,male,61.0,0.0,0.0,'111240',33.5,B19,S,?,245.0,'Brooklyn NY',0
+1.0,male,47.0,0.0,0.0,'36967',34.0208,D46,S,?,?,'East Orange NJ',0
+1.0,female,35.0,0.0,0.0,'PC 17755',512.3292,?,C,3,?,?,1
+1.0,male,64.0,1.0,0.0,'110813',75.25,D37,C,?,?,'Portland OR',0
+1.0,female,60.0,1.0,0.0,'110813',75.25,D37,C,5,?,'Portland OR',1
+1.0,male,60.0,0.0,0.0,'113800',26.55,?,S,?,?,'England Salt Lake City Utah',0
+1.0,male,54.0,0.0,1.0,'35281',77.2875,D26,S,?,?,'Brunswick ME',0
+1.0,male,21.0,0.0,1.0,'35281',77.2875,D26,S,?,169.0,'Brunswick ME',0
+1.0,female,55.0,0.0,0.0,'PC 17760',135.6333,C32,C,8,?,'New York NY / Briarcliff Manor NY',1
+1.0,female,31.0,0.0,2.0,'36928',164.8667,C7,S,8,?,'Youngstown OH',1
+1.0,male,57.0,1.0,1.0,'36928',164.8667,?,S,?,?,'Youngstown OH',0
+1.0,female,45.0,1.0,1.0,'36928',164.8667,?,S,8,?,'Youngstown OH',1
+1.0,male,50.0,1.0,1.0,'113503',211.5,C80,C,?,?,'Elkins Park PA',0
+1.0,male,27.0,0.0,2.0,'113503',211.5,C82,C,?,?,'Elkins Park PA',0
+1.0,female,50.0,1.0,1.0,'113503',211.5,C80,C,4,?,'Elkins Park PA',1
+1.0,female,21.0,0.0,0.0,'113795',26.55,?,S,'8 10',?,'Duluth MN',1
+1.0,male,51.0,0.0,1.0,'PC 17597',61.3792,?,C,?,?,'Geneva Switzerland / Radnor',0
+1.0,male,21.0,0.0,1.0,'PC 17597',61.3792,?,C,A,?,'Geneva Switzerland / Radnor',1
+1.0,male,?,0.0,0.0,'113510',35.0,C128,S,?,?,'London England',0
+1.0,female,31.0,0.0,0.0,'16966',134.5,'E39 E41',C,3,?,?,1
+1.0,male,?,0.0,0.0,'19947',35.5,C52,S,D,?,'London England',1
+1.0,male,62.0,0.0,0.0,'113807',26.55,?,S,?,?,'Halifax NS',0
+1.0,female,36.0,0.0,0.0,'PC 17760',135.6333,C32,C,8,?,'New York NY / Washington',1
+2.0,male,30.0,1.0,0.0,'P/PP 3381',24.0,?,C,?,?,'Russia New York NY',0
+2.0,female,28.0,1.0,0.0,'P/PP 3381',24.0,?,C,10,?,'Russia New York NY',1
+2.0,male,30.0,0.0,0.0,'248744',13.0,?,S,?,?,'Bryn Mawr PA',0
+2.0,male,18.0,0.0,0.0,'231945',11.5,?,S,?,?,'Buenos Aires Argentina / New Jersey',0
+2.0,male,25.0,0.0,0.0,'C.A. 34050',10.5,?,S,?,?,'Cornwall England Houghton',0
+2.0,male,34.0,1.0,0.0,'226875',26.0,?,S,?,?,'Warwick England',0
+2.0,female,36.0,1.0,0.0,'226875',26.0,?,S,11,?,'Warwick England',1
+2.0,male,57.0,0.0,0.0,'244346',13.0,?,S,?,?,'West Hoboken NJ',0
+2.0,male,18.0,0.0,0.0,'29108',11.5,?,S,?,?,'Penzance Cornwall / Akron',0
+2.0,male,23.0,0.0,0.0,'C.A. 31030',10.5,?,S,?,?,'Guernsey',0
+2.0,female,36.0,0.0,0.0,'28551',13.0,D,S,10,?,'Bristol Avon / Jacksonville',1
+2.0,male,28.0,0.0,0.0,'C.A./SOTON 34068',10.5,?,S,?,?,'Plymouth Dorset / Houghton',0
+2.0,male,51.0,0.0,0.0,'S.O.P. 1166',12.525,?,S,?,174.0,'Jacksonville FL',0
+2.0,male,32.0,1.0,0.0,'2908',26.0,?,S,13,?,'Norwich / New York NY',1
+2.0,female,19.0,1.0,0.0,'2908',26.0,?,S,13,?,'Norwich / New York NY',1
+2.0,male,28.0,0.0,0.0,'244358',26.0,?,S,?,?,'England',0
+2.0,male,1.0,2.0,1.0,'230136',39.0,F4,S,11,?,'Guntur India / Benton Harbour',1
+2.0,female,4.0,2.0,1.0,'230136',39.0,F4,S,11,?,'Guntur India / Benton Harbour',1
+2.0,female,12.0,2.0,1.0,'230136',39.0,F4,S,13,?,'Guntur India / Benton Harbour',1
+2.0,female,36.0,0.0,3.0,'230136',39.0,F4,S,11,?,'Guntur India / Benton Harbour',1
+2.0,male,34.0,0.0,0.0,'248698',13.0,D56,S,13,?,'London',1
+2.0,female,19.0,0.0,0.0,'28404',13.0,?,S,12,?,'Rochester NY',1
+2.0,male,23.0,0.0,0.0,'28425',13.0,?,S,?,?,'St Ives Cornwall / Calumet',0
+2.0,male,26.0,0.0,0.0,'237670',13.0,?,S,?,?,'Elmira NY / Orange',0
+2.0,male,42.0,0.0,0.0,'211535',13.0,?,S,?,?,'London',0
+2.0,male,27.0,0.0,0.0,'220367',13.0,?,S,?,?,'Lake Arthur Chavez County',0
+2.0,female,24.0,0.0,0.0,'248733',13.0,F33,S,11,?,'London / Montreal PQ',1
+2.0,female,15.0,0.0,2.0,'29750',39.0,?,S,14,?,'Cape Town South Africa / Seattle',1
+2.0,male,60.0,1.0,1.0,'29750',39.0,?,S,?,?,'Cape Town South Africa / Seattle',0
+2.0,female,40.0,1.0,1.0,'29750',39.0,?,S,14,?,'Cape Town South Africa / Seattle',1
+2.0,female,20.0,1.0,0.0,'236853',26.0,?,S,12,?,'Skara Sweden / Rockford',1
+2.0,male,25.0,1.0,0.0,'236853',26.0,?,S,?,?,'Skara Sweden / Rockford',0
+2.0,female,36.0,0.0,0.0,'27849',13.0,?,S,9,?,'Sittingbourne England / San Diego',1
+2.0,male,25.0,0.0,0.0,'234686',13.0,?,S,?,97.0,'Southsea Hants',0
+2.0,male,42.0,0.0,0.0,'244310',13.0,?,S,?,?,'London',0
+2.0,female,42.0,0.0,0.0,'236852',13.0,?,S,?,?,'New York NY',1
+2.0,male,0.8333,0.0,2.0,'248738',29.0,?,S,13,?,'Bangkok Thailand / Roseville',1
+2.0,male,26.0,1.0,1.0,'248738',29.0,?,S,13,?,'Bangkok Thailand / Roseville',1
+2.0,female,22.0,1.0,1.0,'248738',29.0,?,S,13,?,'Bangkok Thailand / Roseville',1
+2.0,female,35.0,0.0,0.0,'F.C.C. 13528',21.0,?,S,14,?,'Mamaroneck NY',1
+2.0,male,?,0.0,0.0,'239853',0.0,?,S,?,?,'Belfast',0
+2.0,male,19.0,0.0,0.0,'28424',13.0,?,S,?,18.0,'St Ives Cornwall / Calumet',0
+2.0,female,44.0,1.0,0.0,'244252',26.0,?,S,?,?,'London',0
+2.0,male,54.0,1.0,0.0,'244252',26.0,?,S,?,?,'London',0
+2.0,male,52.0,0.0,0.0,'248731',13.5,?,S,?,130.0,'Bronx NY',0
+2.0,male,37.0,1.0,0.0,'SC/AH 29037',26.0,?,S,?,17.0,'Cornwall / Spokane WA',0
+2.0,female,29.0,1.0,0.0,'SC/AH 29037',26.0,?,S,?,?,'Cornwall / Spokane WA',0
+2.0,female,25.0,1.0,1.0,'237789',30.0,?,S,12,?,'London',1
+2.0,female,45.0,0.0,2.0,'237789',30.0,?,S,12,?,'London',1
+2.0,male,29.0,1.0,0.0,'2003',26.0,?,S,?,?,'England / San Francisco CA',0
+2.0,female,28.0,1.0,0.0,'2003',26.0,?,S,14,?,'England / San Francisco CA',1
+2.0,male,29.0,0.0,0.0,'W./C. 14263',10.5,?,S,?,?,'Hartford Huntingdonshire',0
+2.0,male,28.0,0.0,0.0,'248740',13.0,?,S,?,?,'Helsinki Finland Ashtabula',0
+2.0,male,24.0,0.0,0.0,'28034',10.5,?,S,9,?,'London / Fort Byron NY',1
+2.0,female,8.0,0.0,2.0,'C.A. 31921',26.25,?,S,14,?,'Bishopstoke Hants / Fayette Valley',1
+2.0,male,31.0,1.0,1.0,'C.A. 31921',26.25,?,S,?,?,'Bishopstoke Hants / Fayette Valley',0
+2.0,female,31.0,1.0,1.0,'C.A. 31921',26.25,?,S,14,?,'Bishopstoke Hants / Fayette Valley',1
+2.0,female,22.0,0.0,0.0,'W./C. 14266',10.5,F33,S,14,?,'Pennsylvania',1
+2.0,female,30.0,0.0,0.0,'237249',13.0,?,S,?,?,'Provo UT',0
+2.0,female,?,0.0,0.0,'F.C.C. 13534',21.0,?,S,?,?,'Upper Burma India Pittsburgh',0
+2.0,male,21.0,0.0,0.0,'29107',11.5,?,S,?,?,'Penzance Cornwall / Akron',0
+2.0,male,?,0.0,0.0,'239853',0.0,?,S,?,?,'Belfast',0
+2.0,male,8.0,1.0,1.0,'C.A. 33112',36.75,?,S,14,?,'St Ives Cornwall / Hancock',1
+2.0,male,18.0,0.0,0.0,'S.O.C. 14879',73.5,?,S,?,?,'Lyndhurst England',0
+2.0,female,48.0,0.0,2.0,'C.A. 33112',36.75,?,S,14,?,'St Ives Cornwall / Hancock',1
+2.0,female,28.0,0.0,0.0,'237668',13.0,?,S,13,?,'London / Staten Island NY',1
+2.0,male,32.0,0.0,0.0,'244360',13.0,?,S,?,?,'Portugal / Sau Paulo Brazil',0
+2.0,male,17.0,0.0,0.0,'S.O.C. 14879',73.5,?,S,?,?,?,0
+2.0,male,29.0,1.0,0.0,'SC/PARIS 2167',27.7208,?,C,?,295.0,'Lucca Italy / California',0
+2.0,female,24.0,1.0,0.0,'SC/PARIS 2167',27.7208,?,C,12,?,'Lucca Italy / California',1
+2.0,male,25.0,0.0,0.0,'C.A. 31029',31.5,?,S,?,?,'Guernsey / Elizabeth NJ',0
+2.0,male,18.0,0.0,0.0,'S.O.C. 14879',73.5,?,S,?,?,'New Forest England',0
+2.0,female,18.0,0.0,1.0,'231919',23.0,?,S,?,?,'Southampton',1
+2.0,female,34.0,0.0,1.0,'231919',23.0,?,S,?,?,'Southampton',1
+2.0,male,54.0,0.0,0.0,'28403',26.0,?,S,?,?,'Holley NY',0
+2.0,male,8.0,0.0,2.0,'28220',32.5,?,S,10,?,'Greenport NY',1
+2.0,male,42.0,1.0,1.0,'28220',32.5,?,S,?,?,'Greenport NY',0
+2.0,female,34.0,1.0,1.0,'28220',32.5,?,S,10,?,'Greenport NY',1
+2.0,female,27.0,1.0,0.0,'SC/PARIS 2149',13.8583,?,C,12,?,'Barcelona Spain / Havana',1
+2.0,female,30.0,1.0,0.0,'SC/PARIS 2148',13.8583,?,C,12,?,'Barcelona Spain / Havana',1
+2.0,male,23.0,0.0,0.0,'29751',13.0,?,S,?,?,'England / Detroit MI',0
+2.0,male,21.0,0.0,0.0,'236854',13.0,?,S,?,?,'Goteborg Sweden / Rockford',0
+2.0,male,18.0,0.0,0.0,'236171',13.0,?,S,?,?,'Oslo Norway Bayonne',0
+2.0,male,40.0,1.0,0.0,'2926',26.0,?,S,?,286.0,'England / Philadelphia PA',0
+2.0,female,29.0,1.0,0.0,'2926',26.0,?,S,16,?,?,1
+2.0,male,18.0,0.0,0.0,'C.A. 15185',10.5,?,S,?,?,'Cornwall / Houghton MI',0
+2.0,male,36.0,0.0,0.0,'229236',13.0,?,S,?,236.0,'Rochester NY',0
+2.0,male,?,0.0,0.0,'239854',0.0,?,S,?,?,'Belfast',0
+2.0,female,38.0,0.0,0.0,'237671',13.0,?,S,?,?,'Janjgir India / Pennsylvania',0
+2.0,male,35.0,0.0,0.0,'239865',26.0,?,S,?,322.0,'Liverpool / Montreal PQ',0
+2.0,male,38.0,1.0,0.0,'28664',21.0,?,S,?,?,'Cornwall / Clear Creek CO',0
+2.0,male,34.0,1.0,0.0,'28664',21.0,?,S,?,?,'Cornwall / Clear Creek CO',0
+2.0,female,34.0,0.0,0.0,'243880',13.0,?,S,12,?,'Brooklyn NY',1
+2.0,male,16.0,0.0,0.0,'239865',26.0,?,S,?,?,'Liverpool / Montreal PQ',0
+2.0,male,26.0,0.0,0.0,'31028',10.5,?,S,?,?,'Guernsey / Elizabeth NJ',0
+2.0,male,47.0,0.0,0.0,'C.A. 30769',10.5,?,S,?,?,'Cornwall',0
+2.0,male,21.0,1.0,0.0,'28133',11.5,?,S,?,?,'Cornwall / Camden NJ',0
+2.0,male,21.0,1.0,0.0,'28134',11.5,?,S,?,?,'Cornwall / Camden NJ',0
+2.0,male,24.0,0.0,0.0,'248726',13.5,?,S,?,297.0,'West Kensington London',0
+2.0,male,24.0,0.0,0.0,'233866',13.0,?,S,?,155.0,'Clevedon England',0
+2.0,male,34.0,0.0,0.0,'12233',13.0,?,S,?,?,'Vancouver BC',0
+2.0,male,30.0,0.0,0.0,'250646',13.0,?,S,?,305.0,?,0
+2.0,male,52.0,0.0,0.0,'250647',13.0,?,S,?,19.0,'Bronx NY',0
+2.0,male,30.0,0.0,0.0,'250653',13.0,?,S,?,75.0,'Auburn NY',0
+2.0,male,0.6667,1.0,1.0,'250649',14.5,?,S,4,?,'Detroit MI',1
+2.0,female,24.0,0.0,2.0,'250649',14.5,?,S,4,?,'Detroit MI',1
+2.0,male,44.0,0.0,0.0,'248746',13.0,?,S,?,35.0,'Seattle WA / Toledo',0
+2.0,female,6.0,0.0,1.0,'248727',33.0,?,S,11,?,'Denmark Hill Surrey / Chicago',1
+2.0,male,28.0,0.0,1.0,'248727',33.0,?,S,?,?,'Denmark Hill Surrey / Chicago',0
+2.0,male,62.0,0.0,0.0,'S.W./PP 752',10.5,?,S,15,?,'London',1
+2.0,male,30.0,0.0,0.0,'W/C 14208',10.5,?,S,?,?,'Walthamstow England',0
+2.0,female,7.0,0.0,2.0,'F.C.C. 13529',26.25,?,S,14,?,'Ilford Essex / Winnipeg',1
+2.0,male,43.0,1.0,1.0,'F.C.C. 13529',26.25,?,S,?,?,'Ilford Essex / Winnipeg',0
+2.0,female,45.0,1.0,1.0,'F.C.C. 13529',26.25,?,S,14,?,'Ilford Essex / Winnipeg',1
+2.0,female,24.0,1.0,2.0,'220845',65.0,?,S,9,?,'Somerset / Bernardsville NJ',1
+2.0,female,24.0,1.0,2.0,'220845',65.0,?,S,9,?,'Somerset / Bernardsville NJ',1
+2.0,male,49.0,1.0,2.0,'220845',65.0,?,S,?,?,'Somerset / Bernardsville NJ',0
+2.0,female,48.0,1.0,2.0,'220845',65.0,?,S,9,?,'Somerset / Bernardsville NJ',1
+2.0,female,55.0,0.0,0.0,'248706',16.0,?,S,13,?,'India / Rapid City SD',1
+2.0,male,24.0,2.0,0.0,'S.O.C. 14879',73.5,?,S,?,?,'West Hampstead London / Neepawa',0
+2.0,male,32.0,2.0,0.0,'S.O.C. 14879',73.5,?,S,?,256.0,'West Hampstead London / Neepawa',0
+2.0,male,21.0,2.0,0.0,'S.O.C. 14879',73.5,?,S,?,?,'West Hampstead London / Neepawa',0
+2.0,female,18.0,1.0,1.0,'250650',13.0,?,S,?,?,'Kontiolahti Finland / Detroit',0
+2.0,female,20.0,2.0,1.0,'29105',23.0,?,S,4,?,'Cornwall / Akron OH',1
+2.0,male,23.0,2.0,1.0,'29104',11.5,?,S,?,?,'Cornwall / Akron OH',0
+2.0,male,36.0,0.0,0.0,'242963',13.0,?,S,?,?,'Devonport England',0
+2.0,female,54.0,1.0,3.0,'29105',23.0,?,S,4,?,'Cornwall / Akron OH',1
+2.0,male,50.0,0.0,0.0,'250643',13.0,?,S,?,149.0,'Southampton',0
+2.0,male,44.0,1.0,0.0,'26707',26.0,?,S,?,?,'England / Sacramento CA',0
+2.0,female,29.0,1.0,0.0,'26707',26.0,?,S,10,?,'England / Sacramento CA',1
+2.0,male,21.0,0.0,0.0,'S.O.C. 14879',73.5,?,S,?,?,'New Forest England',0
+2.0,male,42.0,0.0,0.0,'237798',13.0,?,S,10,?,'Tokyo Japan',1
+2.0,male,63.0,1.0,0.0,'24065',26.0,?,S,?,?,'Swindon England',0
+2.0,female,60.0,1.0,0.0,'24065',26.0,?,S,?,?,'Swindon England',0
+2.0,male,33.0,0.0,0.0,'SCO/W 1585',12.275,?,S,?,?,'Philadelphia PA',0
+2.0,female,17.0,0.0,0.0,'SO/C 14885',10.5,?,S,?,?,'Guernsey',1
+2.0,male,42.0,1.0,0.0,'243847',27.0,?,S,?,?,'London',0
+2.0,female,24.0,2.0,1.0,'243847',27.0,?,S,12,?,'London',1
+2.0,male,47.0,0.0,0.0,'237565',15.0,?,S,?,?,'North Evington England',0
+2.0,male,24.0,2.0,0.0,'C.A. 31029',31.5,?,S,?,?,'Guernsey / Elizabeth NJ',0
+2.0,male,22.0,2.0,0.0,'C.A. 31029',31.5,?,S,?,?,'Guernsey / Elizabeth NJ',0
+2.0,male,32.0,0.0,0.0,'C.A. 33111',10.5,?,S,?,?,'St Ives Cornwall / Houghton',0
+2.0,female,23.0,0.0,0.0,'SC/AH Basle 541',13.7917,D,C,11,?,'New York NY',1
+2.0,male,34.0,1.0,0.0,'244367',26.0,?,S,?,283.0,'Moscow / Bronx NY',0
+2.0,female,24.0,1.0,0.0,'244367',26.0,?,S,12,?,'Moscow / Bronx NY',1
+2.0,female,22.0,0.0,0.0,'F.C.C. 13534',21.0,?,S,?,?,'India / Pittsburgh PA',0
+2.0,female,?,0.0,0.0,'226593',12.35,E101,Q,10,?,'Harrisburg PA',1
+2.0,male,35.0,0.0,0.0,'233734',12.35,?,Q,?,?,?,0
+2.0,female,45.0,0.0,0.0,'223596',13.5,?,S,9,?,'London / New York NY',1
+2.0,male,57.0,0.0,0.0,'219533',12.35,?,Q,?,?,'Glasgow / Bangor ME',0
+2.0,male,?,0.0,0.0,'239855',0.0,?,S,?,?,'Belfast',0
+2.0,male,31.0,0.0,0.0,'C.A. 18723',10.5,?,S,?,165.0,'Sweden / Arlington NJ',0
+2.0,female,26.0,1.0,1.0,'250651',26.0,?,S,?,?,'Minneapolis MN',0
+2.0,male,30.0,1.0,1.0,'250651',26.0,?,S,?,?,'Minneapolis MN',0
+2.0,male,?,0.0,0.0,'240261',10.7083,?,Q,?,?,?,0
+2.0,female,1.0,1.0,2.0,'SC/Paris 2123',41.5792,?,C,14,?,'Paris / Haiti',1
+2.0,female,3.0,1.0,2.0,'SC/Paris 2123',41.5792,?,C,14,?,'Paris / Haiti',1
+2.0,male,25.0,1.0,2.0,'SC/Paris 2123',41.5792,?,C,?,?,'Paris / Haiti',0
+2.0,female,22.0,1.0,2.0,'SC/Paris 2123',41.5792,?,C,14,?,'Paris / Haiti',1
+2.0,female,17.0,0.0,0.0,'SC 1748',12.0,?,C,12,?,'Berne Switzerland / Central City',1
+2.0,female,?,0.0,0.0,'248727',33.0,?,S,11,?,'London / Chicago IL',1
+2.0,female,34.0,0.0,0.0,'C.A. 34260',10.5,F33,S,14,?,'Chicago IL',1
+2.0,male,36.0,0.0,0.0,'SC/Paris 2163',12.875,D,C,?,?,'Montreal PQ',0
+2.0,male,24.0,0.0,0.0,'C.A. 29566',10.5,?,S,?,108.0,?,0
+2.0,male,61.0,0.0,0.0,'235509',12.35,?,Q,?,?,?,0
+2.0,male,50.0,1.0,0.0,'SC/AH 3085',26.0,?,S,?,121.0,'Weston-Super-Mare Somerset',0
+2.0,female,42.0,1.0,0.0,'SC/AH 3085',26.0,?,S,?,?,'Weston-Super-Mare Somerset',1
+2.0,female,57.0,0.0,0.0,'S.O./P.P. 3',10.5,E77,S,?,52.0,'Southampton / New York NY',0
+2.0,male,?,0.0,0.0,'237735',15.0458,D,C,?,?,'Paris',0
+2.0,male,1.0,0.0,2.0,'S.C./PARIS 2079',37.0042,?,C,10,?,'Paris / Montreal PQ',1
+2.0,male,31.0,1.0,1.0,'S.C./PARIS 2079',37.0042,?,C,?,?,'Paris / Montreal PQ',0
+2.0,female,24.0,1.0,1.0,'S.C./PARIS 2079',37.0042,?,C,10,?,'Paris / Montreal PQ',1
+2.0,male,?,0.0,0.0,'SC/A.3 2861',15.5792,?,C,?,?,'New York NY',0
+2.0,male,30.0,0.0,0.0,'28228',13.0,?,S,?,?,'St Austall Cornwall',0
+2.0,male,40.0,0.0,0.0,'239059',16.0,?,S,?,?,'Weston-Super-Mare / Moose Jaw SK',0
+2.0,male,32.0,0.0,0.0,'237216',13.5,?,S,?,209.0,'Sydney Australia',0
+2.0,male,30.0,0.0,0.0,'233478',13.0,?,S,?,?,'Sarnia ON',0
+2.0,male,46.0,0.0,0.0,'28403',26.0,?,S,?,?,'Rochester NY',0
+2.0,female,13.0,0.0,1.0,'250644',19.5,?,S,14,?,'England / Bennington VT',1
+2.0,female,41.0,0.0,1.0,'250644',19.5,?,S,14,?,'England / Bennington VT',1
+2.0,male,19.0,0.0,0.0,'SW/PP 751',10.5,?,S,B,?,'Chelsea London',1
+2.0,male,39.0,0.0,0.0,'248723',13.0,?,S,?,?,'Harrow-on-the-Hill Middlesex',0
+2.0,male,48.0,0.0,0.0,'234360',13.0,?,S,?,271.0,'Copenhagen Denmark',0
+2.0,male,70.0,0.0,0.0,'C.A. 24580',10.5,?,S,?,?,'Guernsey / Montclair NJ and/or Toledo',0
+2.0,male,27.0,0.0,0.0,'211536',13.0,?,S,?,?,'Worcester MA',0
+2.0,male,54.0,0.0,0.0,'29011',14.0,?,S,?,?,'Frankfort KY',0
+2.0,male,39.0,0.0,0.0,'250655',26.0,?,S,?,?,?,0
+2.0,male,16.0,0.0,0.0,'S.O./P.P. 3',10.5,?,S,?,?,'Halesworth England',0
+2.0,male,62.0,0.0,0.0,'240276',9.6875,?,Q,?,?,'Cambridge MA',0
+2.0,male,32.5,1.0,0.0,'237736',30.0708,?,C,?,43.0,'New York NY',0
+2.0,female,14.0,1.0,0.0,'237736',30.0708,?,C,?,?,'New York NY',1
+2.0,male,2.0,1.0,1.0,'230080',26.0,F2,S,D,?,'Nice France',1
+2.0,male,3.0,1.0,1.0,'230080',26.0,F2,S,D,?,'Nice France',1
+2.0,male,36.5,0.0,2.0,'230080',26.0,F2,S,?,15.0,'Nice France',0
+2.0,male,26.0,0.0,0.0,'244368',13.0,F2,S,?,?,'Boston MA',0
+2.0,male,19.0,1.0,1.0,'C.A. 33112',36.75,?,S,?,101.0,'Cornwall / Hancock MI',0
+2.0,male,28.0,0.0,0.0,'218629',13.5,?,S,?,287.0,'Glasgow',0
+2.0,male,20.0,0.0,0.0,'SC/PARIS 2166',13.8625,D38,C,7,?,'Cologne Germany',1
+2.0,female,29.0,0.0,0.0,'C.A. 29395',10.5,F33,S,11,?,'Folkstone Kent / New York',1
+2.0,male,39.0,0.0,0.0,'28213',13.0,?,S,?,?,'Middleburg Heights OH',0
+2.0,male,22.0,0.0,0.0,'W./C. 14260',10.5,?,S,13,?,'Pondersend England / New Durham',1
+2.0,male,?,0.0,0.0,'SC/PARIS 2146',13.8625,?,C,9,?,'Spain / Havana Cuba',1
+2.0,male,23.0,0.0,0.0,'244278',10.5,?,S,?,?,'Hamilton ON',0
+2.0,male,29.0,0.0,0.0,'SC/PARIS 2147',13.8583,?,C,9,?,'Spain / Havana Cuba',1
+2.0,male,28.0,0.0,0.0,'SC 14888',10.5,?,S,?,?,'St Andrews Guernsey',0
+2.0,male,?,0.0,0.0,'239853',0.0,?,S,?,?,'Belfast',0
+2.0,female,50.0,0.0,1.0,'230433',26.0,?,S,12,?,'Woodford County KY',1
+2.0,male,19.0,0.0,0.0,'28665',10.5,?,S,?,?,'Gunnislake England / Butte',0
+2.0,male,?,0.0,0.0,'SC/PARIS 2131',15.05,?,C,?,?,?,0
+2.0,male,41.0,0.0,0.0,'237393',13.0,?,S,?,?,?,0
+2.0,female,21.0,0.0,1.0,'S.O./P.P. 2',21.0,?,S,12,?,'Ilfracombe Devon',1
+2.0,female,19.0,0.0,0.0,'250655',26.0,?,S,11,?,'Worcester England',1
+2.0,male,43.0,0.0,1.0,'S.O./P.P. 2',21.0,?,S,?,?,'Ilfracombe Devon',0
+2.0,female,32.0,0.0,0.0,'234604',13.0,?,S,9,?,'Russia',1
+2.0,male,34.0,0.0,0.0,'250647',13.0,?,S,?,?,'Denmark / New York NY',0
+2.0,male,30.0,0.0,0.0,'C.A. 34644',12.7375,?,C,14,?,'Milford NH',1
+2.0,male,27.0,0.0,0.0,'SC/PARIS 2168',15.0333,?,C,?,?,'Paris',0
+2.0,female,2.0,1.0,1.0,'26360',26.0,?,S,11,?,'Plymouth Devon / Detroit',1
+2.0,female,8.0,1.0,1.0,'26360',26.0,?,S,11,?,'Plymouth Devon / Detroit',1
+2.0,female,33.0,0.0,2.0,'26360',26.0,?,S,11,?,'Plymouth Devon / Detroit',1
+2.0,male,36.0,0.0,0.0,'C.A. 17248',10.5,?,S,?,?,'Brighton Sussex',0
+2.0,male,34.0,1.0,0.0,'31027',21.0,?,S,12,?,'Elizabeth NJ',0
+2.0,female,30.0,3.0,0.0,'31027',21.0,?,S,?,?,'Elizabeth NJ',1
+2.0,female,28.0,0.0,0.0,'230434',13.0,?,S,9,?,'Spain',1
+2.0,male,23.0,0.0,0.0,'SC/PARIS 2133',15.0458,?,C,?,?,'Paris / Montreal PQ',0
+2.0,male,0.8333,1.0,1.0,'29106',18.75,?,S,4,?,'Cornwall / Akron OH',1
+2.0,male,3.0,1.0,1.0,'29106',18.75,?,S,4,?,'Cornwall / Akron OH',1
+2.0,female,24.0,2.0,3.0,'29106',18.75,?,S,4,?,'Cornwall / Akron OH',1
+2.0,female,50.0,0.0,0.0,'W./C. 14258',10.5,?,S,13,?,'London England / Marietta',1
+2.0,male,19.0,0.0,0.0,'28004',10.5,?,S,?,?,?,0
+2.0,female,21.0,0.0,0.0,'C.A. 31026',10.5,?,S,12,?,'Guernsey / Wilmington DE',1
+2.0,male,26.0,0.0,0.0,'248659',13.0,?,S,?,?,'Newark NJ',0
+2.0,male,25.0,0.0,0.0,'244361',13.0,?,S,?,?,'Liverpool',0
+2.0,male,27.0,0.0,0.0,'244358',26.0,?,S,?,?,'Hornsey England',0
+2.0,female,25.0,0.0,1.0,'230433',26.0,?,S,12,?,'Deer Lodge MT',1
+2.0,female,18.0,0.0,2.0,'250652',13.0,?,S,16,?,'Finland / Minneapolis MN',1
+2.0,female,20.0,0.0,0.0,'C.A. 33112',36.75,?,S,11,?,'Cornwall / Hancock MI',1
+2.0,female,30.0,0.0,0.0,'250648',13.0,?,S,10,?,'Finland / Washington DC',1
+2.0,male,59.0,0.0,0.0,'237442',13.5,?,S,?,?,'Sault St Marie ON',0
+2.0,female,30.0,0.0,0.0,'234818',12.35,?,Q,13,?,'Halifax NS',1
+2.0,male,35.0,0.0,0.0,'28206',10.5,?,S,?,?,'Cornwall',0
+2.0,female,40.0,0.0,0.0,'31418',13.0,?,S,9,?,?,1
+2.0,male,25.0,0.0,0.0,'C.A. 29178',13.0,?,S,?,?,'Cornwall / Houghton MI',0
+2.0,male,41.0,0.0,0.0,'237734',15.0458,?,C,?,?,'New York NY',0
+2.0,male,25.0,0.0,0.0,'F.C.C. 13540',10.5,?,S,?,81.0,'Catford Kent / Detroit',0
+2.0,male,18.5,0.0,0.0,'248734',13.0,F,S,?,294.0,?,0
+2.0,male,14.0,0.0,0.0,'220845',65.0,?,S,?,?,'Somerset / Bernardsville NJ',0
+2.0,female,50.0,0.0,0.0,'F.C.C. 13531',10.5,?,S,9,?,'Indianapolis IN',1
+2.0,male,23.0,0.0,0.0,'233639',13.0,?,S,?,?,?,0
+2.0,female,28.0,0.0,0.0,'240929',12.65,?,S,?,?,'Columbus OH',1
+2.0,female,27.0,0.0,0.0,'34218',10.5,E101,S,16,?,'Bath England / Massachusetts',1
+2.0,male,29.0,1.0,0.0,'11668',21.0,?,S,?,?,'Plymouth England',0
+2.0,female,27.0,1.0,0.0,'11668',21.0,?,S,?,?,'Plymouth England',0
+2.0,male,40.0,0.0,0.0,'28221',13.0,?,S,?,?,'Barre Co Washington',0
+2.0,female,31.0,0.0,0.0,'F.C.C. 13528',21.0,?,S,14,?,'Mamaroneck NY',1
+2.0,male,30.0,1.0,0.0,'CA 31352',21.0,?,S,?,?,'Bristol England / New Britain',0
+2.0,male,23.0,1.0,0.0,'28666',10.5,?,S,?,?,?,0
+2.0,female,31.0,0.0,0.0,'CA 31352',21.0,?,S,10,?,'Bristol England / New Britain',1
+2.0,male,?,0.0,0.0,'239856',0.0,?,S,?,?,'Belfast',0
+2.0,female,12.0,0.0,0.0,'C.A. 33595',15.75,?,S,9,?,'Aberdeen / Portland OR',1
+2.0,female,40.0,0.0,0.0,'C.A. 33595',15.75,?,S,9,?,'Aberdeen / Portland OR',1
+2.0,female,32.5,0.0,0.0,'27267',13.0,E101,S,12,?,'England / Hartford CT',1
+2.0,male,27.0,1.0,0.0,'228414',26.0,?,S,?,293.0,'Bromsgrove England / Montreal',0
+2.0,female,29.0,1.0,0.0,'228414',26.0,?,S,10,?,'Bromsgrove England / Montreal',1
+2.0,male,2.0,1.0,1.0,'29103',23.0,?,S,14,?,'Cornwall / Akron OH',1
+2.0,female,4.0,1.0,1.0,'29103',23.0,?,S,14,?,'Cornwall / Akron OH',1
+2.0,female,29.0,0.0,2.0,'29103',23.0,?,S,14,?,'Cornwall / Akron OH',1
+2.0,female,0.9167,1.0,2.0,'C.A. 34651',27.75,?,S,10,?,'Bournmouth England',1
+2.0,female,5.0,1.0,2.0,'C.A. 34651',27.75,?,S,10,?,'Bournmouth England',1
+2.0,male,36.0,1.0,2.0,'C.A. 34651',27.75,?,S,?,?,'Bournmouth England',0
+2.0,female,33.0,1.0,2.0,'C.A. 34651',27.75,?,S,10,?,'Bournmouth England',1
+2.0,male,66.0,0.0,0.0,'C.A. 24579',10.5,?,S,?,?,'Guernsey England / Edgewood',0
+2.0,male,?,0.0,0.0,'SC/PARIS 2159',12.875,?,S,?,?,?,0
+2.0,male,31.0,0.0,0.0,'244270',13.0,?,S,9,?,'London England',1
+2.0,male,?,0.0,0.0,'244373',13.0,?,S,14,?,'Harrow England',1
+2.0,female,26.0,0.0,0.0,'220844',13.5,?,S,9,?,'Yoevil England / Cottage Grove',1
+2.0,female,24.0,0.0,0.0,'248747',13.0,?,S,?,?,'Paris',0
+3.0,male,42.0,0.0,0.0,'C.A. 5547',7.55,?,S,?,?,?,0
+3.0,male,13.0,0.0,2.0,'C.A. 2673',20.25,?,S,?,?,'East Providence RI',0
+3.0,male,16.0,1.0,1.0,'C.A. 2673',20.25,?,S,?,190.0,'East Providence RI',0
+3.0,female,35.0,1.0,1.0,'C.A. 2673',20.25,?,S,A,?,'East Providence RI',1
+3.0,female,16.0,0.0,0.0,'348125',7.65,?,S,16,?,'Norway Los Angeles CA',1
+3.0,male,25.0,0.0,0.0,'348122',7.65,'F G63',S,A,?,'Perkins County SD',1
+3.0,male,20.0,0.0,0.0,'SOTON/O2 3101284',7.925,?,S,15,?,'Taalintehdas Finland Hoboken',1
+3.0,female,18.0,0.0,0.0,'2657',7.2292,?,C,C,?,'Greensburg PA',1
+3.0,male,30.0,0.0,0.0,'C 7076',7.25,?,S,?,72.0,'Asarum Sweden Brooklyn',0
+3.0,male,26.0,0.0,0.0,'341826',08.05,?,S,?,103.0,'Bournemouth England',0
+3.0,female,40.0,1.0,0.0,'7546',9.475,?,S,?,?,'Sweden Akeley MN',0
+3.0,male,0.8333,0.0,1.0,'392091',9.35,?,S,11,?,'London England Norfolk',1
+3.0,female,18.0,0.0,1.0,'392091',9.35,?,S,13,?,'London England Norfolk',1
+3.0,male,26.0,0.0,0.0,'2699',18.7875,?,C,15,?,'Syria Fredericksburg VA',1
+3.0,male,26.0,0.0,0.0,'3474',7.8875,?,S,?,?,'England Albion NY',0
+3.0,male,20.0,0.0,0.0,'SOTON/O2 3101287',7.925,?,S,?,?,'Salo Finland Astoria',0
+3.0,male,24.0,0.0,0.0,'SOTON/O.Q. 3101311',07.05,?,S,?,?,?,0
+3.0,male,25.0,0.0,0.0,'SOTON/O.Q. 3101312',07.05,?,S,?,79.0,'Argentina',0
+3.0,male,35.0,0.0,0.0,'373450',08.05,?,S,?,?,'Lower Clapton Middlesex or Erdington',0
+3.0,male,18.0,0.0,0.0,'2223',8.3,?,S,?,259.0,'Windsor England New York',0
+3.0,male,32.0,0.0,0.0,'C 4001',22.525,?,S,?,260.0,'Bergen Norway',0
+3.0,female,19.0,1.0,0.0,'350046',7.8542,?,S,16,?,?,1
+3.0,male,4.0,4.0,2.0,'347082',31.275,?,S,?,?,'Sweden Winnipeg MN',0
+3.0,female,6.0,4.0,2.0,'347082',31.275,?,S,?,?,'Sweden Winnipeg MN',0
+3.0,female,2.0,4.0,2.0,'347082',31.275,?,S,?,?,'Sweden Winnipeg MN',0
+3.0,female,17.0,4.0,2.0,'3101281',7.925,?,S,D,?,'Ruotsinphyhtaa Finland New York',1
+3.0,female,38.0,4.0,2.0,'347091',7.775,?,S,?,?,'Vadsbro Sweden Ministee',0
+3.0,female,9.0,4.0,2.0,'347082',31.275,?,S,?,?,'Sweden Winnipeg MN',0
+3.0,female,11.0,4.0,2.0,'347082',31.275,?,S,?,?,'Sweden Winnipeg MN',0
+3.0,male,39.0,1.0,5.0,'347082',31.275,?,S,?,?,'Sweden Winnipeg MN',0
+3.0,male,27.0,0.0,0.0,'350043',7.7958,?,S,A,?,?,1
+3.0,male,26.0,0.0,0.0,'347075',7.775,?,S,?,?,'Hartford CT',0
+3.0,female,39.0,1.0,5.0,'347082',31.275,?,S,?,?,'Sweden Winnipeg MN',0
+3.0,male,20.0,0.0,0.0,'347466',7.8542,?,S,?,?,'Sweden Chicago IL',0
+3.0,male,26.0,0.0,0.0,'349202',7.8958,?,S,?,?,'Bulgaria Chicago IL',0
+3.0,male,25.0,1.0,0.0,'349237',17.8,?,S,?,?,'Altdorf Switzerland',0
+3.0,female,18.0,1.0,0.0,'349237',17.8,?,S,?,?,'Altdorf Switzerland',0
+3.0,male,24.0,0.0,0.0,'349911',7.775,?,S,?,?,'Sweden Joliet IL',0
+3.0,male,35.0,0.0,0.0,'SOTON/O.Q. 3101310',07.05,?,S,?,?,?,0
+3.0,male,5.0,4.0,2.0,'347077',31.3875,?,S,?,?,'Sweden Worcester MA',0
+3.0,male,9.0,4.0,2.0,'347077',31.3875,?,S,?,?,'Sweden Worcester MA',0
+3.0,male,3.0,4.0,2.0,'347077',31.3875,?,S,15,?,'Sweden Worcester MA',1
+3.0,male,13.0,4.0,2.0,'347077',31.3875,?,S,?,?,'Sweden Worcester MA',0
+3.0,female,5.0,4.0,2.0,'347077',31.3875,?,S,15,?,'Sweden Worcester MA',1
+3.0,male,40.0,1.0,5.0,'347077',31.3875,?,S,?,142.0,'Sweden Worcester MA',0
+3.0,male,23.0,0.0,0.0,'350054',7.7958,?,S,13,?,'Oskarshamn Sweden Minneapolis',1
+3.0,female,38.0,1.0,5.0,'347077',31.3875,?,S,15,?,'Sweden Worcester MA',1
+3.0,female,45.0,0.0,0.0,'2696',7.225,?,C,C,?,'Ottawa ON',1
+3.0,male,21.0,0.0,0.0,'2692',7.225,?,C,?,?,'Ottawa ON',0
+3.0,male,23.0,0.0,0.0,'SOTON/O.Q. 3101309',07.05,?,S,?,?,?,0
+3.0,female,17.0,0.0,0.0,'2627',14.4583,?,C,?,?,?,0
+3.0,male,30.0,0.0,0.0,'2694',7.225,?,C,?,?,'Ottawa ON',0
+3.0,male,23.0,0.0,0.0,'347468',7.8542,?,S,?,?,'Krakoryd Sweden Bloomington',0
+3.0,female,13.0,0.0,0.0,'2687',7.2292,?,C,C,?,'Syria Youngstown OH',1
+3.0,male,20.0,0.0,0.0,'2679',7.225,?,C,?,?,?,0
+3.0,male,32.0,1.0,0.0,'3101278',15.85,?,S,D,?,'Ruotsinphytaa Finland New York',0
+3.0,female,33.0,3.0,0.0,'3101278',15.85,?,S,?,?,'Ruotsinphytaa Finland New York',1
+3.0,female,0.75,2.0,1.0,'2666',19.2583,?,C,C,?,'Syria New York NY',1
+3.0,female,0.75,2.0,1.0,'2666',19.2583,?,C,C,?,'Syria New York NY',1
+3.0,female,5.0,2.0,1.0,'2666',19.2583,?,C,C,?,'Syria New York NY',1
+3.0,female,24.0,0.0,3.0,'2666',19.2583,?,C,C,?,'Syria New York NY',1
+3.0,female,18.0,0.0,0.0,'A/4 31416',08.05,?,S,C,?,'London Skanteales NY',1
+3.0,male,40.0,0.0,0.0,'2623',7.225,?,C,?,?,?,0
+3.0,male,26.0,0.0,0.0,'349248',7.8958,?,S,?,?,?,0
+3.0,male,20.0,0.0,0.0,'2663',7.2292,?,C,15,?,?,1
+3.0,female,18.0,0.0,1.0,'2691',14.4542,?,C,?,?,'Syria Ottawa ON',0
+3.0,female,45.0,0.0,1.0,'2691',14.4542,?,C,?,?,'Syria Ottawa ON',0
+3.0,female,27.0,0.0,0.0,'330844',7.8792,?,Q,?,?,'New York NY',0
+3.0,male,22.0,0.0,0.0,'324669',08.05,?,S,?,?,'England New York NY',0
+3.0,male,19.0,0.0,0.0,'323951',08.05,?,S,?,?,'England',0
+3.0,male,26.0,0.0,0.0,'347068',7.775,?,S,?,?,'Krakudden Sweden Moune',0
+3.0,male,22.0,0.0,0.0,'PP 4348',9.35,?,S,?,?,'Tranvik Finland New York',0
+3.0,male,?,0.0,0.0,'2622',7.2292,?,C,?,?,?,0
+3.0,male,20.0,0.0,0.0,'2648',4.0125,?,C,?,?,'Syria',0
+3.0,male,32.0,0.0,0.0,'1601',56.4958,?,S,C,?,'Hong Kong New York NY',1
+3.0,male,21.0,0.0,0.0,'312992',7.775,?,S,?,?,'Brennes Norway New York',0
+3.0,male,18.0,0.0,0.0,'347090',7.75,?,S,?,?,'Stockholm Sweden New York',0
+3.0,male,26.0,0.0,0.0,'349224',7.8958,?,S,?,?,'Bulgaria Chicago IL',0
+3.0,male,6.0,1.0,1.0,'2678',15.2458,?,C,?,?,'Syria Kent ON',0
+3.0,female,9.0,1.0,1.0,'2678',15.2458,?,C,?,?,'Syria Kent ON',0
+3.0,male,?,0.0,0.0,'2664',7.225,?,C,?,?,'Syria',0
+3.0,female,?,0.0,2.0,'2678',15.2458,?,C,?,?,'Syria Kent ON',0
+3.0,female,?,0.0,2.0,'364848',7.75,?,Q,?,?,'Ireland Chicago IL',0
+3.0,male,40.0,1.0,1.0,'364849',15.5,?,Q,?,?,'Ireland Chicago IL',0
+3.0,female,32.0,1.0,1.0,'364849',15.5,?,Q,?,?,'Ireland Chicago IL',0
+3.0,male,21.0,0.0,0.0,'54636',16.1,?,S,?,?,'Treherbert Cardiff',0
+3.0,female,22.0,0.0,0.0,'334914',7.725,?,Q,13,?,'Kingwilliamstown Co Cork',1
+3.0,female,20.0,0.0,0.0,'347471',7.8542,?,S,?,?,'Medeltorp Sweden Chicago',0
+3.0,male,29.0,1.0,0.0,'3460',7.0458,?,S,?,?,'Bridgerule Devon',0
+3.0,male,22.0,1.0,0.0,'A/5 21171',7.25,?,S,?,?,'Bridgerule Devon',0
+3.0,male,22.0,0.0,0.0,'350045',7.7958,?,S,?,?,'Sweden Worcester MA',0
+3.0,male,35.0,0.0,0.0,'364512',08.05,?,S,?,?,'Broomfield Chelmsford',0
+3.0,female,18.5,0.0,0.0,'329944',7.2833,?,Q,?,299.0,'Co Cork Ireland Roxbury',0
+3.0,male,21.0,0.0,0.0,'330920',7.8208,?,Q,13,?,'Kingwilliamstown Co Cork',1
+3.0,male,19.0,0.0,0.0,'365222',6.75,?,Q,?,?,'Co Cork Ireland Charlestown',0
+3.0,female,18.0,0.0,0.0,'330963',7.8792,?,Q,?,?,'Co Sligo Ireland New York',0
+3.0,female,21.0,0.0,0.0,'315087',8.6625,?,S,?,?,?,0
+3.0,female,30.0,0.0,0.0,'315084',8.6625,?,S,?,?,?,0
+3.0,male,18.0,0.0,0.0,'315091',8.6625,?,S,?,?,?,0
+3.0,male,38.0,0.0,0.0,'315089',8.6625,?,S,?,?,'Croatia',0
+3.0,male,17.0,0.0,0.0,'315093',8.6625,?,S,?,?,?,0
+3.0,male,17.0,0.0,0.0,'315086',8.6625,?,S,?,?,?,0
+3.0,female,21.0,0.0,0.0,'364846',7.75,?,Q,?,?,?,0
+3.0,male,21.0,0.0,0.0,'364858',7.75,?,Q,?,?,'Ireland Philadelphia PA',0
+3.0,male,21.0,0.0,0.0,'A./5. 2152',08.05,?,S,?,?,?,0
+3.0,male,?,1.0,0.0,'2689',14.4583,?,C,?,?,'Ottawa ON',0
+3.0,female,?,1.0,0.0,'2689',14.4583,?,C,?,?,'Ottawa ON',0
+3.0,male,28.0,0.0,0.0,'350042',7.7958,?,S,?,?,'Dagsas Sweden Fower',0
+3.0,male,24.0,0.0,0.0,'350409',7.8542,?,S,?,?,'Goteborg Sweden Huntley',0
+3.0,female,16.0,0.0,0.0,'367231',7.75,?,Q,16,?,'Co Longford Ireland New York',1
+3.0,female,37.0,0.0,0.0,'368364',7.75,?,Q,?,?,'Co Sligo Ireland Hartford',0
+3.0,male,28.0,0.0,0.0,'392095',7.25,?,S,?,?,'St Denys Southampton',0
+3.0,male,24.0,0.0,0.0,'343275',08.05,?,S,?,?,'London',0
+3.0,male,21.0,0.0,0.0,'A/5. 13032',7.7333,?,Q,?,?,'Ireland New York NY',0
+3.0,male,32.0,0.0,0.0,'1601',56.4958,?,S,C,?,'Hong Kong New York NY',1
+3.0,male,29.0,0.0,0.0,'343276',08.05,?,S,?,?,?,0
+3.0,male,26.0,1.0,0.0,'2680',14.4542,?,C,?,?,'Greece',0
+3.0,male,18.0,1.0,0.0,'2680',14.4542,?,C,?,?,'Greece',0
+3.0,male,20.0,0.0,0.0,'SOTON/O.Q. 3101307',07.05,?,S,?,?,'Portugal',0
+3.0,male,18.0,0.0,0.0,'A/5 3540',08.05,?,S,12,?,'London Brooklyn NY',1
+3.0,male,24.0,0.0,0.0,'371109',7.25,?,Q,?,?,'Co Limerick Ireland Sherbrooke',0
+3.0,male,36.0,0.0,0.0,'349210',7.4958,?,S,?,?,'Bulgaria Chicago IL',0
+3.0,male,24.0,0.0,0.0,'349209',7.4958,?,S,?,?,?,0
+3.0,male,31.0,0.0,0.0,'21332',7.7333,?,Q,?,?,'Philadelphia PA',0
+3.0,male,31.0,0.0,0.0,'335097',7.75,?,Q,?,?,'Ireland Brooklyn NY',0
+3.0,female,22.0,0.0,0.0,'370373',7.75,?,Q,13,?,'Ireland',1
+3.0,female,30.0,0.0,0.0,'330972',7.6292,?,Q,?,?,'Ireland',0
+3.0,male,70.5,0.0,0.0,'370369',7.75,?,Q,?,171.0,?,0
+3.0,male,43.0,0.0,0.0,'A/5 3536',08.05,?,S,?,?,?,0
+3.0,male,35.0,0.0,0.0,'349230',7.8958,?,S,?,?,'Austria',0
+3.0,male,27.0,0.0,0.0,'349229',7.8958,?,S,?,?,'Austria',0
+3.0,male,19.0,0.0,0.0,'349231',7.8958,?,S,?,?,'Austria',0
+3.0,male,30.0,0.0,0.0,'SOTON/OQ 392090',08.05,?,S,?,?,'London',0
+3.0,male,9.0,1.0,1.0,'C.A. 37671',15.9,?,S,2,?,'England Brooklyn NY',1
+3.0,male,3.0,1.0,1.0,'C.A. 37671',15.9,?,S,2,?,'England Brooklyn NY',1
+3.0,female,36.0,0.0,2.0,'C.A. 37671',15.9,?,S,2,?,'England Brooklyn NY',1
+3.0,male,59.0,0.0,0.0,'364500',7.25,?,S,?,?,'Merrill WI',0
+3.0,male,19.0,0.0,0.0,'S.P. 3464',8.1583,?,S,?,?,'Bristol England Cleveland',0
+3.0,female,17.0,0.0,1.0,'371362',16.1,?,S,12,?,'Bournemouth England Newark',1
+3.0,male,44.0,0.0,1.0,'371362',16.1,?,S,?,?,'Bournemouth England Newark',0
+3.0,male,17.0,0.0,0.0,'315090',8.6625,?,S,?,?,'Austria-Hungary',0
+3.0,male,22.5,0.0,0.0,'2698',7.225,?,C,?,9.0,?,0
+3.0,male,45.0,0.0,0.0,'7598',08.05,?,S,15,?,'Australia Fingal ND',1
+3.0,female,22.0,0.0,0.0,'7552',10.5167,?,S,?,?,'Norrlot Sweden Chicago',0
+3.0,male,19.0,0.0,0.0,'349228',10.1708,?,S,?,?,'Austria',0
+3.0,female,30.0,0.0,0.0,'382650',6.95,?,Q,15,?,'Co Athlone Ireland New York',1
+3.0,male,29.0,0.0,0.0,'382651',7.75,?,Q,'13 15 B',?,'Co Athlone Ireland New York',1
+3.0,male,0.3333,0.0,2.0,'347080',14.4,?,S,?,?,'Stanton IA',0
+3.0,male,34.0,1.0,1.0,'347080',14.4,?,S,?,197.0,'Stanton IA',0
+3.0,female,28.0,1.0,1.0,'347080',14.4,?,S,?,?,'Stanton IA',0
+3.0,male,27.0,0.0,0.0,'349219',7.8958,?,S,?,?,'Bulgaria Chicago IL',0
+3.0,male,25.0,0.0,0.0,'349203',7.8958,?,S,?,?,'Bulgaria Chicago IL',0
+3.0,male,24.0,2.0,0.0,'A/4 48871',24.15,?,S,?,?,'West Bromwich England Pontiac',0
+3.0,male,22.0,0.0,0.0,'SC/A4 23568',08.05,?,S,?,?,?,0
+3.0,male,21.0,2.0,0.0,'A/4 48871',24.15,?,S,?,?,'West Bromwich England Pontiac',0
+3.0,male,17.0,2.0,0.0,'A/4 48873',08.05,?,S,?,?,'West Bromwich England Pontiac',0
+3.0,male,?,1.0,0.0,'386525',16.1,?,S,?,?,'Liverpool England Bedford',0
+3.0,female,?,1.0,0.0,'386525',16.1,?,S,16,?,'Liverpool England Bedford',1
+3.0,male,36.5,1.0,0.0,'345572',17.4,?,S,15,?,'Tampico MT',1
+3.0,female,36.0,1.0,0.0,'345572',17.4,?,S,13,?,'Tampico MT',1
+3.0,male,30.0,0.0,0.0,'345774',9.5,?,S,11,?,'Belgium Detroit MI',1
+3.0,male,16.0,0.0,0.0,'345778',9.5,?,S,?,?,?,0
+3.0,male,1.0,1.0,2.0,'C.A. 2315',20.575,?,S,10,?,'Devon England Wichita',1
+3.0,female,0.1667,1.0,2.0,'C.A. 2315',20.575,?,S,10,?,'Devon England Wichita',1
+3.0,male,26.0,1.0,2.0,'C.A. 2315',20.575,?,S,?,?,'Devon England Wichita',0
+3.0,female,33.0,1.0,2.0,'C.A. 2315',20.575,?,S,10,?,'Devon England Wichita',1
+3.0,male,25.0,0.0,0.0,'349250',7.8958,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'349238',7.8958,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'349225',7.8958,?,S,?,?,'Bulgaria Coon Rapids IA',0
+3.0,male,22.0,0.0,0.0,'A/5 21172',7.25,?,S,?,?,?,0
+3.0,male,36.0,0.0,0.0,'A/5 21175',7.25,?,S,?,?,?,0
+3.0,female,19.0,0.0,0.0,'330958',7.8792,?,Q,C,?,'Kilmacowen Co Sligo',1
+3.0,male,17.0,0.0,0.0,'349232',7.8958,?,S,?,?,?,0
+3.0,male,42.0,0.0,0.0,'315088',8.6625,?,S,?,?,?,0
+3.0,male,43.0,0.0,0.0,'349226',7.8958,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'2686',7.2292,?,C,?,?,?,0
+3.0,male,32.0,0.0,0.0,'370376',7.75,?,Q,?,?,'Ireland New York NY',0
+3.0,male,19.0,0.0,0.0,'A/5. 10482',08.05,?,S,B,?,'England Oglesby IL',1
+3.0,female,30.0,0.0,0.0,'364516',12.475,?,S,13,?,'Union Hill NJ',1
+3.0,female,24.0,0.0,0.0,'368702',7.75,?,Q,?,?,'Ireland New York NY',0
+3.0,female,23.0,0.0,0.0,'SOTON/OQ 392083',08.05,?,S,?,?,'London New York NY',1
+3.0,male,33.0,0.0,0.0,'349241',7.8958,?,C,?,51.0,'Austria Niagara Falls NY',0
+3.0,male,65.0,0.0,0.0,'336439',7.75,?,Q,?,?,?,0
+3.0,male,24.0,0.0,0.0,'S.O./P.P. 752',7.55,?,S,D,?,'England Albion NY',1
+3.0,male,23.0,1.0,0.0,'347072',13.9,?,S,?,?,'West Haven CT',0
+3.0,female,22.0,1.0,0.0,'347072',13.9,?,S,16,?,'West Haven CT',1
+3.0,male,18.0,0.0,0.0,'349912',7.775,?,S,?,?,'Tofta Sweden Joliet',0
+3.0,male,16.0,0.0,0.0,'347074',7.775,?,S,?,?,'Karberg Sweden Jerome Junction',0
+3.0,male,45.0,0.0,0.0,'347061',6.975,?,S,?,?,'Effington Rut SD',0
+3.0,male,?,0.0,0.0,'2674',7.225,?,C,?,?,?,0
+3.0,male,39.0,0.0,2.0,'2675',7.2292,?,C,?,?,'Syria Ottawa ON',0
+3.0,male,17.0,1.0,1.0,'2690',7.2292,?,C,?,?,?,0
+3.0,male,15.0,1.0,1.0,'2695',7.2292,?,C,?,?,'Syria',0
+3.0,male,47.0,0.0,0.0,'A/5 3902',7.25,?,S,?,?,'Illinois USA',0
+3.0,female,5.0,0.0,0.0,'364516',12.475,?,S,13,?,'New York NY',1
+3.0,male,?,0.0,0.0,'2631',7.225,?,C,?,?,?,0
+3.0,male,40.5,0.0,0.0,'C.A. 6212',15.1,?,S,?,187.0,?,0
+3.0,male,40.5,0.0,0.0,'367232',7.75,?,Q,?,68.0,'Aughnacliff Co Longford',0
+3.0,male,?,0.0,0.0,'SOTON/O.Q. 3101308',07.05,?,S,15,?,'Italy Philadelphia PA',1
+3.0,male,18.0,0.0,0.0,'350036',7.7958,?,S,?,?,?,0
+3.0,female,?,0.0,0.0,'364859',7.75,?,Q,?,?,?,0
+3.0,male,?,0.0,0.0,'364851',7.75,?,Q,?,?,?,0
+3.0,male,?,0.0,0.0,'368323',6.95,?,Q,?,?,?,0
+3.0,male,26.0,0.0,0.0,'330910',7.8792,?,Q,?,?,'Ireland Chicago IL',0
+3.0,male,?,0.0,0.0,'365235',7.75,?,Q,?,?,'Ireland',0
+3.0,male,?,0.0,0.0,'1601',56.4958,?,S,13,?,'Hong Kong New York NY',1
+3.0,female,21.0,2.0,2.0,'W./C. 6608',34.375,?,S,?,?,'Rotherfield Sussex',0
+3.0,female,9.0,2.0,2.0,'W./C. 6608',34.375,?,S,?,?,'Rotherfield Sussex',0
+3.0,male,?,0.0,0.0,'A/5 1478',08.05,?,S,?,?,'Bridgwater Somerset',0
+3.0,male,18.0,2.0,2.0,'W./C. 6608',34.375,?,S,?,?,'Rotherfield Sussex',0
+3.0,male,16.0,1.0,3.0,'W./C. 6608',34.375,?,S,?,?,'Rotherfield Sussex',0
+3.0,female,48.0,1.0,3.0,'W./C. 6608',34.375,?,S,?,?,'Rotherfield Sussex',0
+3.0,male,?,0.0,0.0,'368573',7.75,?,Q,?,?,'Ireland New York NY',0
+3.0,male,?,0.0,0.0,'SOTON/O.Q. 3101314',7.25,?,S,?,?,?,0
+3.0,male,25.0,0.0,0.0,'36864',7.7417,?,Q,?,?,'New York NY',0
+3.0,male,?,0.0,0.0,'358585',14.5,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'349254',7.8958,?,C,?,?,?,0
+3.0,male,22.0,0.0,0.0,'14973',08.05,?,S,?,47.0,?,0
+3.0,female,16.0,0.0,0.0,'35851',7.7333,?,Q,16,?,'Co Longford Ireland New York',1
+3.0,female,?,0.0,0.0,'335677',7.75,?,Q,13,?,'Co Clare Ireland Washington',1
+3.0,male,9.0,0.0,2.0,'363291',20.525,?,S,'C D',?,'Strood Kent',1
+3.0,male,33.0,1.0,1.0,'363291',20.525,?,S,?,?,'Strood Kent',0
+3.0,male,41.0,0.0,0.0,'SOTON/O.Q. 3101263',7.85,?,S,?,?,'Philadelphia PA',0
+3.0,female,31.0,1.0,1.0,'363291',20.525,?,S,'C D',?,'Strood Kent',1
+3.0,male,38.0,0.0,0.0,'SOTON/O.Q. 3101306',07.05,?,S,?,?,'Portugal',0
+3.0,male,9.0,5.0,2.0,'CA 2144',46.9,?,S,?,?,'Wiltshire England Niagara Falls',0
+3.0,male,1.0,5.0,2.0,'CA 2144',46.9,?,S,?,?,'Wiltshire England Niagara Falls',0
+3.0,male,11.0,5.0,2.0,'CA 2144',46.9,?,S,?,?,'Wiltshire England Niagara Falls',0
+3.0,female,10.0,5.0,2.0,'CA 2144',46.9,?,S,?,?,'Wiltshire England Niagara Falls',0
+3.0,female,16.0,5.0,2.0,'CA 2144',46.9,?,S,?,?,'Wiltshire England Niagara Falls',0
+3.0,male,14.0,5.0,2.0,'CA 2144',46.9,?,S,?,?,'Wiltshire England Niagara Falls',0
+3.0,male,40.0,1.0,6.0,'CA 2144',46.9,?,S,?,?,'Wiltshire England Niagara Falls',0
+3.0,female,43.0,1.0,6.0,'CA 2144',46.9,?,S,?,?,'Wiltshire England Niagara Falls',0
+3.0,male,51.0,0.0,0.0,'21440',08.05,?,S,?,?,'Dorking Surrey',0
+3.0,male,32.0,0.0,0.0,'8471',8.3625,?,S,?,?,'Foresvik Norway Portland',0
+3.0,male,?,0.0,0.0,'376563',08.05,?,S,?,?,?,0
+3.0,male,20.0,0.0,0.0,'7534',9.8458,?,S,?,?,'Waukegan Chicago',0
+3.0,male,37.0,2.0,0.0,'3101276',7.925,?,S,?,98.0,'Ruotsinphytaa Finland New York',0
+3.0,male,28.0,2.0,0.0,'3101277',7.925,?,S,?,?,'Ruotsinphytaa Finland New York',0
+3.0,male,19.0,0.0,0.0,'347069',7.775,?,S,?,?,'Myren Sweden New York',0
+3.0,female,24.0,0.0,0.0,'349236',8.85,?,S,?,?,?,0
+3.0,female,17.0,0.0,0.0,'AQ/3. 30631',7.7333,?,Q,?,?,?,0
+3.0,male,?,1.0,0.0,'65303',19.9667,?,S,?,?,?,0
+3.0,male,?,1.0,0.0,'65304',19.9667,?,S,?,?,?,0
+3.0,male,28.0,1.0,0.0,'STON/O2. 3101279',15.85,?,S,?,?,?,0
+3.0,female,24.0,1.0,0.0,'STON/O2. 3101279',15.85,?,S,15,?,?,1
+3.0,male,20.0,0.0,0.0,'345769',9.5,?,S,?,?,?,0
+3.0,male,23.5,0.0,0.0,'2693',7.2292,?,C,?,188.0,?,0
+3.0,male,41.0,2.0,0.0,'350026',14.1083,?,S,?,?,?,0
+3.0,male,26.0,1.0,0.0,'350025',7.8542,?,S,?,?,?,0
+3.0,male,21.0,0.0,0.0,'350029',7.8542,?,S,?,69.0,?,0
+3.0,female,45.0,1.0,0.0,'350026',14.1083,?,S,11,?,?,1
+3.0,female,?,0.0,0.0,'W./C. 6609',7.55,?,S,?,?,?,0
+3.0,male,25.0,0.0,0.0,'374887',7.25,?,S,B,?,?,0
+3.0,male,?,0.0,0.0,'394140',6.8583,?,Q,?,?,?,0
+3.0,male,11.0,0.0,0.0,'2699',18.7875,?,C,?,?,?,0
+3.0,female,?,0.0,0.0,'370375',7.75,?,Q,16,?,?,1
+3.0,male,27.0,0.0,0.0,'347089',6.975,?,S,15,?,?,1
+3.0,male,?,0.0,0.0,'1601',56.4958,?,S,C,?,?,1
+3.0,female,18.0,0.0,0.0,'365226',6.75,?,Q,?,?,?,0
+3.0,female,26.0,0.0,0.0,'STON/O2. 3101282',7.925,?,S,?,?,?,1
+3.0,female,23.0,0.0,0.0,'STON/O2. 3101290',7.925,?,S,?,?,?,0
+3.0,female,22.0,0.0,0.0,'7548',8.9625,?,S,C,?,?,1
+3.0,male,28.0,0.0,0.0,'349243',7.8958,?,S,?,306.0,?,0
+3.0,female,28.0,0.0,0.0,'347086',7.775,?,S,?,?,?,0
+3.0,female,?,0.0,0.0,'382649',7.75,?,Q,?,?,?,0
+3.0,female,2.0,0.0,1.0,'3101298',12.2875,?,S,15,?,?,1
+3.0,female,22.0,1.0,1.0,'3101298',12.2875,?,S,15,?,?,1
+3.0,male,43.0,0.0,0.0,'C 7075',6.45,?,S,?,?,?,0
+3.0,male,28.0,0.0,0.0,'C 4001',22.525,?,S,?,?,?,0
+3.0,female,27.0,0.0,0.0,'STON/O2. 3101283',7.925,?,S,?,?,?,1
+3.0,male,?,0.0,0.0,'370377',7.75,?,Q,?,?,?,0
+3.0,female,?,0.0,0.0,'A. 2. 39186',08.05,?,S,C,?,?,1
+3.0,male,42.0,0.0,0.0,'348121',7.65,'F G63',S,?,120.0,?,0
+3.0,male,?,0.0,0.0,'3470',7.8875,?,S,C,?,?,1
+3.0,male,30.0,0.0,0.0,'2685',7.2292,?,C,?,?,?,0
+3.0,male,?,0.0,0.0,'349220',7.8958,?,S,?,?,?,0
+3.0,female,27.0,1.0,0.0,'STON/O2. 3101270',7.925,?,S,?,?,?,0
+3.0,female,25.0,1.0,0.0,'STON/O2. 3101271',7.925,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'349201',7.8958,?,S,?,?,?,0
+3.0,male,29.0,0.0,0.0,'349240',7.8958,?,C,15,?,?,1
+3.0,male,21.0,0.0,0.0,'350034',7.7958,?,S,A,?,?,1
+3.0,male,?,0.0,0.0,'SOTON/O.Q. 3101305',07.05,?,S,?,?,?,0
+3.0,male,20.0,0.0,0.0,'350050',7.8542,?,S,?,?,?,0
+3.0,male,48.0,0.0,0.0,'350047',7.8542,?,S,?,?,?,0
+3.0,male,17.0,1.0,0.0,'350048',7.0542,?,S,?,?,?,0
+3.0,female,?,0.0,0.0,'14313',7.75,?,Q,D,?,?,1
+3.0,male,?,0.0,0.0,'65306',8.1125,?,S,13,?,?,1
+3.0,male,34.0,0.0,0.0,'3101264',6.4958,?,S,?,143.0,?,0
+3.0,male,26.0,0.0,0.0,'347070',7.775,?,S,15,?,?,1
+3.0,male,22.0,0.0,0.0,'350052',7.7958,?,S,?,156.0,?,0
+3.0,male,33.0,0.0,0.0,'7540',8.6542,?,S,?,285.0,?,0
+3.0,male,31.0,0.0,0.0,'347063',7.775,?,S,?,?,?,0
+3.0,male,29.0,0.0,0.0,'347467',7.8542,?,S,?,?,?,0
+3.0,male,4.0,1.0,1.0,'347742',11.1333,?,S,15,?,?,1
+3.0,female,1.0,1.0,1.0,'347742',11.1333,?,S,15,?,?,1
+3.0,male,49.0,0.0,0.0,'LINE',0.0,?,S,?,?,?,0
+3.0,male,33.0,0.0,0.0,'347062',7.775,?,S,?,37.0,?,0
+3.0,male,19.0,0.0,0.0,'LINE',0.0,?,S,?,?,?,0
+3.0,female,27.0,0.0,2.0,'347742',11.1333,?,S,15,?,?,1
+3.0,male,?,1.0,2.0,'W./C. 6607',23.45,?,S,?,?,?,0
+3.0,female,?,1.0,2.0,'W./C. 6607',23.45,?,S,?,?,?,0
+3.0,male,?,1.0,2.0,'W./C. 6607',23.45,?,S,?,?,?,0
+3.0,female,?,1.0,2.0,'W./C. 6607',23.45,?,S,?,?,?,0
+3.0,male,23.0,0.0,0.0,'349204',7.8958,?,S,?,?,?,0
+3.0,male,32.0,0.0,0.0,'350417',7.8542,?,S,15,?,?,1
+3.0,male,27.0,0.0,0.0,'350408',7.8542,?,S,?,?,?,0
+3.0,female,20.0,1.0,0.0,'4136',9.825,?,S,?,?,?,0
+3.0,female,21.0,1.0,0.0,'4137',9.825,?,S,?,?,?,0
+3.0,male,32.0,0.0,0.0,'STON/O 2. 3101286',7.925,?,S,15,?,?,1
+3.0,male,17.0,0.0,0.0,'STON/O 2. 3101274',7.125,?,S,?,?,?,0
+3.0,male,21.0,0.0,0.0,'8475',8.4333,?,S,?,?,?,0
+3.0,male,30.0,0.0,0.0,'349246',7.8958,?,S,?,?,?,0
+3.0,male,21.0,0.0,0.0,'350053',7.7958,?,S,13,?,?,1
+3.0,male,33.0,0.0,0.0,'347465',7.8542,?,S,?,?,?,0
+3.0,male,22.0,0.0,0.0,'350060',7.5208,?,S,?,?,?,0
+3.0,female,4.0,0.0,1.0,'349256',13.4167,?,C,15,?,?,1
+3.0,male,39.0,0.0,1.0,'349256',13.4167,?,C,15,?,?,1
+3.0,male,?,0.0,0.0,'2700',7.2292,?,C,?,?,?,0
+3.0,male,18.5,0.0,0.0,'2682',7.2292,?,C,?,58.0,?,0
+3.0,male,?,0.0,0.0,'12460',7.75,?,Q,?,?,?,0
+3.0,male,?,0.0,0.0,'323592',7.25,?,S,A,?,?,0
+3.0,female,?,0.0,0.0,'9234',7.75,?,Q,16,?,?,1
+3.0,female,?,0.0,0.0,'14312',7.75,?,Q,D,?,?,1
+3.0,male,34.5,0.0,0.0,'330911',7.8292,?,Q,?,70.0,?,0
+3.0,male,44.0,0.0,0.0,'363592',08.05,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'368783',7.75,?,Q,?,?,?,1
+3.0,male,?,1.0,0.0,'2660',14.4542,?,C,?,?,?,0
+3.0,female,?,1.0,0.0,'2660',14.4542,?,C,?,?,?,0
+3.0,male,?,1.0,0.0,'367227',7.75,?,Q,?,?,?,0
+3.0,male,?,1.0,0.0,'367229',7.75,?,Q,?,?,?,0
+3.0,male,?,0.0,0.0,'36865',7.7375,?,Q,?,?,?,0
+3.0,female,22.0,2.0,0.0,'315152',8.6625,?,S,?,?,?,0
+3.0,male,26.0,2.0,0.0,'315151',8.6625,?,S,?,?,?,0
+3.0,female,4.0,0.0,2.0,'315153',22.025,?,S,2,?,?,1
+3.0,male,29.0,3.0,1.0,'315153',22.025,?,S,2,?,?,1
+3.0,female,26.0,1.0,1.0,'315153',22.025,?,S,2,?,?,1
+3.0,female,1.0,1.0,1.0,'350405',12.1833,?,S,?,?,?,0
+3.0,male,18.0,1.0,1.0,'350404',7.8542,?,S,?,?,?,0
+3.0,female,36.0,0.0,2.0,'350405',12.1833,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'349253',7.8958,?,C,?,?,?,0
+3.0,male,25.0,0.0,0.0,'2654',7.2292,'F E57',C,10,?,?,1
+3.0,male,?,0.0,0.0,'2624',7.225,?,C,?,?,?,0
+3.0,female,37.0,0.0,0.0,'4135',9.5875,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'349217',7.8958,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'1601',56.4958,?,S,C,?,?,1
+3.0,male,?,0.0,0.0,'1601',56.4958,?,S,?,?,?,0
+3.0,female,22.0,0.0,0.0,'C 7077',7.25,?,S,13,?,?,1
+3.0,male,?,0.0,0.0,'7935',7.75,?,Q,?,?,?,0
+3.0,male,26.0,0.0,0.0,'1601',56.4958,?,S,14,?,?,1
+3.0,male,29.0,0.0,0.0,'7545',9.4833,?,S,?,?,?,0
+3.0,male,29.0,0.0,0.0,'347067',7.775,?,S,?,?,?,0
+3.0,male,22.0,0.0,0.0,'347065',7.775,?,S,?,?,?,0
+3.0,male,22.0,0.0,0.0,'2620',7.225,?,C,6,?,?,1
+3.0,male,?,3.0,1.0,'4133',25.4667,?,S,?,?,?,0
+3.0,female,?,3.0,1.0,'4133',25.4667,?,S,?,?,?,0
+3.0,female,?,3.0,1.0,'4133',25.4667,?,S,?,?,?,0
+3.0,female,?,3.0,1.0,'4133',25.4667,?,S,?,?,?,0
+3.0,female,?,0.0,4.0,'4133',25.4667,?,S,?,?,?,0
+3.0,male,32.0,0.0,0.0,'STON/O 2. 3101292',7.925,?,S,?,?,?,0
+3.0,male,34.5,0.0,0.0,'2683',6.4375,?,C,?,196.0,?,0
+3.0,female,?,1.0,0.0,'370371',15.5,?,Q,?,?,?,0
+3.0,male,?,1.0,0.0,'370371',15.5,?,Q,?,?,?,0
+3.0,male,36.0,0.0,0.0,'LINE',0.0,?,S,?,?,?,0
+3.0,male,39.0,0.0,0.0,'A/4 48871',24.15,?,S,?,?,?,0
+3.0,male,24.0,0.0,0.0,'345781',9.5,?,S,?,?,?,0
+3.0,female,25.0,0.0,0.0,'347071',7.775,?,S,?,?,?,0
+3.0,female,45.0,0.0,0.0,'347073',7.75,?,S,?,?,?,0
+3.0,male,36.0,1.0,0.0,'349910',15.55,?,S,A,?,?,0
+3.0,female,30.0,1.0,0.0,'349910',15.55,?,S,A,?,?,0
+3.0,male,20.0,1.0,0.0,'STON/O 2. 3101285',7.925,?,S,15,?,?,1
+3.0,male,?,0.0,0.0,'330971',7.8792,?,Q,?,?,?,0
+3.0,male,28.0,0.0,0.0,'1601',56.4958,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'S.O./P.P. 251',7.55,?,S,?,?,?,0
+3.0,male,30.0,1.0,0.0,'A/5. 3336',16.1,?,S,?,?,?,0
+3.0,female,26.0,1.0,0.0,'A/5. 3336',16.1,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'1222',7.8792,?,S,?,153.0,?,0
+3.0,male,20.5,0.0,0.0,'A/5 21173',7.25,?,S,?,?,?,0
+3.0,male,27.0,0.0,0.0,'315098',8.6625,?,S,15,?,?,1
+3.0,male,51.0,0.0,0.0,'347743',7.0542,?,S,?,?,?,0
+3.0,female,23.0,0.0,0.0,'347469',7.8542,?,S,10,?,?,1
+3.0,male,32.0,0.0,0.0,'350403',7.5792,?,S,15,?,?,1
+3.0,male,?,0.0,0.0,'349235',7.8958,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'C.A. 42795',7.55,?,S,?,?,?,0
+3.0,female,?,0.0,0.0,'370370',7.75,?,Q,15,?,?,1
+3.0,male,24.0,0.0,0.0,'C 17369',7.1417,?,S,13,?,?,1
+3.0,male,22.0,0.0,0.0,'STON/O 2. 3101275',7.125,?,S,?,?,?,0
+3.0,female,?,0.0,0.0,'330924',7.8792,?,Q,?,?,?,0
+3.0,male,?,0.0,0.0,'AQ/4 3130',7.75,?,Q,?,?,?,0
+3.0,male,?,0.0,0.0,'A/S 2816',08.05,?,S,?,?,?,0
+3.0,male,29.0,0.0,0.0,'STON/O 2. 3101268',7.925,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'2677',7.2292,?,C,15,?,?,1
+3.0,female,30.5,0.0,0.0,'364850',7.75,?,Q,?,61.0,?,0
+3.0,female,?,0.0,0.0,'36866',7.7375,?,Q,16,?,?,1
+3.0,male,?,0.0,0.0,'2655',7.2292,'F E46',C,?,?,?,0
+3.0,male,35.0,0.0,0.0,'349213',7.8958,?,C,?,?,?,0
+3.0,male,33.0,0.0,0.0,'349257',7.8958,?,S,?,?,?,0
+3.0,female,?,0.0,0.0,'2649',7.225,?,C,C,?,?,1
+3.0,male,?,0.0,0.0,'349255',7.8958,?,C,?,?,?,0
+3.0,female,?,0.0,0.0,'383123',7.75,?,Q,'15 16',?,?,1
+3.0,male,?,0.0,0.0,'367228',7.75,?,Q,?,?,?,1
+3.0,female,?,2.0,0.0,'367226',23.25,?,Q,16,?,?,1
+3.0,female,?,2.0,0.0,'367226',23.25,?,Q,16,?,?,1
+3.0,male,?,2.0,0.0,'367226',23.25,?,Q,16,?,?,1
+3.0,female,?,0.0,0.0,'330932',7.7875,?,Q,13,?,?,1
+3.0,male,?,0.0,0.0,'36568',15.5,?,Q,?,?,?,0
+3.0,female,?,0.0,0.0,'330931',7.8792,?,Q,13,?,?,1
+3.0,female,15.0,0.0,0.0,'330923',8.0292,?,Q,?,?,?,1
+3.0,female,35.0,0.0,0.0,'9232',7.75,?,Q,?,?,?,0
+3.0,male,?,0.0,0.0,'370372',7.75,?,Q,?,?,?,0
+3.0,male,24.0,1.0,0.0,'376566',16.1,?,S,?,?,?,0
+3.0,female,19.0,1.0,0.0,'376566',16.1,?,S,?,53.0,?,0
+3.0,female,?,0.0,0.0,'370368',7.75,?,Q,?,?,?,0
+3.0,female,?,0.0,0.0,'SOTON/O.Q. 392087',08.05,?,S,?,?,?,0
+3.0,female,?,0.0,0.0,'343095',08.05,?,S,?,?,?,0
+3.0,male,55.5,0.0,0.0,'A.5. 11206',08.05,?,S,?,201.0,?,0
+3.0,male,?,0.0,0.0,'368703',7.75,?,Q,?,?,?,0
+3.0,male,21.0,0.0,0.0,'345501',7.775,?,S,15,?,?,1
+3.0,male,?,0.0,0.0,'359306',08.05,?,S,?,?,?,0
+3.0,male,24.0,0.0,0.0,'349233',7.8958,?,S,?,?,?,0
+3.0,male,21.0,0.0,0.0,'349211',7.8958,?,S,?,?,?,0
+3.0,male,28.0,0.0,0.0,'349207',7.8958,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'349221',7.8958,?,S,?,?,?,0
+3.0,female,?,0.0,0.0,'330980',7.8792,?,Q,16,?,?,1
+3.0,male,25.0,0.0,0.0,'348123',7.65,'F G73',S,?,309.0,?,0
+3.0,male,6.0,0.0,1.0,'392096',12.475,E121,S,14,?,?,1
+3.0,female,27.0,0.0,1.0,'392096',12.475,E121,S,14,?,?,1
+3.0,male,?,0.0,0.0,'A4. 54510',08.05,?,S,?,?,?,0
+3.0,female,?,1.0,0.0,'371110',24.15,?,Q,16,?,?,1
+3.0,male,?,1.0,0.0,'371110',24.15,?,Q,?,?,?,0
+3.0,male,?,0.0,0.0,'330877',8.4583,?,Q,?,?,?,0
+3.0,male,34.0,0.0,0.0,'364506',08.05,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'372622',7.75,?,Q,?,?,?,0
+3.0,male,?,0.0,0.0,'312991',7.775,?,S,B,?,?,1
+3.0,male,?,1.0,1.0,'2661',15.2458,?,C,C,?,?,1
+3.0,male,?,1.0,1.0,'2661',15.2458,?,C,C,?,?,1
+3.0,female,?,0.0,2.0,'2661',15.2458,?,C,C,?,?,1
+3.0,female,?,0.0,0.0,'2626',7.2292,?,C,?,?,?,1
+3.0,male,?,0.0,0.0,'374746',08.05,?,S,?,?,?,0
+3.0,female,?,0.0,0.0,'35852',7.7333,?,Q,16,?,?,1
+3.0,female,24.0,0.0,0.0,'382653',7.75,?,Q,15,?,?,1
+3.0,male,?,0.0,0.0,'A./5. 3235',08.05,?,S,?,?,?,0
+3.0,female,?,1.0,0.0,'367230',15.5,?,Q,16,?,?,1
+3.0,female,?,1.0,0.0,'367230',15.5,?,Q,16,?,?,1
+3.0,female,?,0.0,0.0,'36568',15.5,?,Q,16,?,?,1
+3.0,male,18.0,0.0,0.0,'347078',7.75,?,S,?,?,?,0
+3.0,male,22.0,0.0,0.0,'349206',7.8958,?,S,?,?,?,0
+3.0,female,15.0,0.0,0.0,'2667',7.225,?,C,C,?,?,1
+3.0,female,1.0,0.0,2.0,'2653',15.7417,?,C,C,?,?,1
+3.0,male,20.0,1.0,1.0,'2653',15.7417,?,C,C,?,?,1
+3.0,female,19.0,1.0,1.0,'2653',15.7417,?,C,C,?,?,1
+3.0,male,33.0,0.0,0.0,'A./5. 3338',08.05,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'349218',7.8958,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'2652',7.2292,?,C,?,?,?,0
+3.0,female,?,0.0,0.0,'365237',7.75,?,Q,?,?,?,0
+3.0,male,?,0.0,0.0,'349234',7.8958,?,S,?,?,?,0
+3.0,male,12.0,1.0,0.0,'2651',11.2417,?,C,C,?,?,1
+3.0,female,14.0,1.0,0.0,'2651',11.2417,?,C,C,?,?,1
+3.0,female,29.0,0.0,0.0,'3101297',7.925,?,S,?,?,?,0
+3.0,male,28.0,0.0,0.0,'363611',08.05,?,S,?,?,?,0
+3.0,female,18.0,0.0,0.0,'347066',7.775,?,S,D,?,?,1
+3.0,female,26.0,0.0,0.0,'347470',7.8542,?,S,13,?,?,1
+3.0,male,21.0,0.0,0.0,'350410',7.8542,?,S,?,?,?,0
+3.0,male,41.0,0.0,0.0,'SOTON/O2 3101272',7.125,?,S,?,?,'Finland Sudbury ON',0
+3.0,male,39.0,0.0,0.0,'STON/O 2. 3101289',7.925,?,S,9,?,?,1
+3.0,male,21.0,0.0,0.0,'A/4. 39886',7.8,?,S,?,?,?,0
+3.0,male,28.5,0.0,0.0,'2697',7.2292,?,C,?,181.0,?,0
+3.0,female,22.0,0.0,0.0,'347081',7.75,?,S,13,?,?,1
+3.0,male,61.0,0.0,0.0,'345364',6.2375,?,S,?,?,?,0
+3.0,male,?,1.0,0.0,'370365',15.5,?,Q,?,?,?,0
+3.0,male,?,0.0,0.0,'330979',7.8292,?,Q,?,?,?,0
+3.0,female,?,1.0,0.0,'370365',15.5,?,Q,?,?,?,1
+3.0,male,?,0.0,0.0,'334912',7.7333,?,Q,?,?,?,0
+3.0,male,?,0.0,0.0,'371060',7.75,?,Q,?,?,?,0
+3.0,male,?,0.0,0.0,'366713',7.75,?,Q,?,?,?,0
+3.0,male,23.0,0.0,0.0,'7267',9.225,?,S,?,?,?,0
+3.0,female,?,0.0,0.0,'364856',7.75,?,Q,?,?,?,0
+3.0,female,?,0.0,0.0,'14311',7.75,?,Q,D,?,?,1
+3.0,female,?,0.0,0.0,'330959',7.8792,?,Q,?,?,?,1
+3.0,female,22.0,0.0,0.0,'347085',7.775,?,S,C,?,?,1
+3.0,male,?,0.0,0.0,'368402',7.75,?,Q,B,?,?,1
+3.0,female,?,0.0,0.0,'330919',7.8292,?,Q,13,?,?,1
+3.0,male,9.0,0.0,1.0,'C 17368',3.1708,?,S,13,?,?,1
+3.0,male,28.0,0.0,0.0,'C 4001',22.525,?,S,?,173.0,?,0
+3.0,male,42.0,0.0,1.0,'4579',8.4042,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'Fa 265302',7.3125,?,S,?,?,?,0
+3.0,female,31.0,0.0,0.0,'350407',7.8542,?,S,?,?,?,0
+3.0,male,28.0,0.0,0.0,'347464',7.8542,?,S,?,?,?,0
+3.0,male,32.0,0.0,0.0,'347079',7.775,?,S,A,?,?,1
+3.0,male,20.0,0.0,0.0,'6563',9.225,?,S,?,89.0,'Oslo Norway Cameron',0
+3.0,female,23.0,0.0,0.0,'315085',8.6625,?,S,?,?,?,0
+3.0,female,20.0,0.0,0.0,'315096',8.6625,?,S,?,?,?,0
+3.0,male,20.0,0.0,0.0,'315094',8.6625,?,S,?,?,?,0
+3.0,male,16.0,0.0,0.0,'7534',9.2167,?,S,?,?,?,0
+3.0,female,31.0,0.0,0.0,'349244',8.6833,?,S,?,?,?,1
+3.0,female,?,0.0,0.0,'330909',7.6292,?,Q,?,?,?,0
+3.0,male,2.0,3.0,1.0,'349909',21.075,?,S,?,4.0,?,0
+3.0,male,6.0,3.0,1.0,'349909',21.075,?,S,?,?,?,0
+3.0,female,3.0,3.0,1.0,'349909',21.075,?,S,?,?,?,0
+3.0,female,8.0,3.0,1.0,'349909',21.075,?,S,?,?,?,0
+3.0,female,29.0,0.0,4.0,'349909',21.075,?,S,?,206.0,?,0
+3.0,male,1.0,4.0,1.0,'3101295',39.6875,?,S,?,?,?,0
+3.0,male,7.0,4.0,1.0,'3101295',39.6875,?,S,?,?,?,0
+3.0,male,2.0,4.0,1.0,'3101295',39.6875,?,S,?,?,?,0
+3.0,male,16.0,4.0,1.0,'3101295',39.6875,?,S,?,?,?,0
+3.0,male,14.0,4.0,1.0,'3101295',39.6875,?,S,?,?,?,0
+3.0,female,41.0,0.0,5.0,'3101295',39.6875,?,S,?,?,?,0
+3.0,male,21.0,0.0,0.0,'315097',8.6625,?,S,?,?,?,0
+3.0,male,19.0,0.0,0.0,'358585',14.5,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'3411',8.7125,?,C,?,?,?,0
+3.0,male,32.0,0.0,0.0,'349242',7.8958,?,S,?,?,?,0
+3.0,male,0.75,1.0,1.0,'SOTON/O.Q. 3101315',13.775,?,S,?,?,?,0
+3.0,female,3.0,1.0,1.0,'SOTON/O.Q. 3101315',13.775,?,S,?,?,?,0
+3.0,female,26.0,0.0,2.0,'SOTON/O.Q. 3101315',13.775,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'343271',7.0,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'345498',7.775,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'A/5 2817',08.05,?,S,?,?,?,0
+3.0,male,21.0,0.0,0.0,'STON/O 2. 3101294',7.925,?,S,?,?,?,0
+3.0,male,25.0,0.0,0.0,'STON/O 2. 3101291',7.925,?,S,?,?,?,0
+3.0,male,22.0,0.0,0.0,'A/5 21174',7.25,?,S,?,?,?,0
+3.0,male,25.0,1.0,0.0,'347083',7.775,?,S,15,?,?,1
+3.0,male,?,1.0,1.0,'2668',22.3583,?,C,C,?,?,1
+3.0,female,?,1.0,1.0,'2668',22.3583,'F E69',C,D,?,?,1
+3.0,female,?,0.0,2.0,'2668',22.3583,?,C,D,?,?,1
+3.0,female,?,0.0,0.0,'330935',8.1375,?,Q,?,?,?,0
+3.0,male,24.0,0.0,0.0,'342441',08.05,?,S,?,?,?,0
+3.0,female,28.0,0.0,0.0,'349245',7.8958,?,S,?,?,?,0
+3.0,male,19.0,0.0,0.0,'349212',7.8958,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'349215',7.8958,?,S,?,?,?,0
+3.0,male,25.0,1.0,0.0,'347076',7.775,?,S,?,?,?,0
+3.0,female,18.0,0.0,0.0,'347087',7.775,?,S,?,?,?,0
+3.0,male,32.0,0.0,0.0,'SOTON/O.Q. 392078',08.05,E10,S,9,?,?,1
+3.0,male,?,0.0,0.0,'349227',7.8958,?,S,?,?,?,0
+3.0,male,17.0,0.0,0.0,'315095',8.6625,?,S,?,?,?,0
+3.0,male,24.0,0.0,0.0,'315092',8.6625,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'349223',7.8958,?,S,?,?,?,0
+3.0,female,?,0.0,0.0,'65305',8.1125,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'2629',7.2292,?,C,?,?,?,0
+3.0,male,?,0.0,0.0,'362316',7.25,?,S,?,?,?,0
+3.0,male,38.0,0.0,0.0,'349249',7.8958,?,S,?,?,?,0
+3.0,male,21.0,0.0,0.0,'342684',08.05,?,S,?,?,?,0
+3.0,male,10.0,4.0,1.0,'382652',29.125,?,Q,?,?,?,0
+3.0,male,4.0,4.0,1.0,'382652',29.125,?,Q,?,?,?,0
+3.0,male,7.0,4.0,1.0,'382652',29.125,?,Q,?,?,?,0
+3.0,male,2.0,4.0,1.0,'382652',29.125,?,Q,?,?,?,0
+3.0,male,8.0,4.0,1.0,'382652',29.125,?,Q,?,?,?,0
+3.0,female,39.0,0.0,5.0,'382652',29.125,?,Q,?,327.0,?,0
+3.0,female,22.0,0.0,0.0,'3101295',39.6875,?,S,?,?,?,0
+3.0,male,35.0,0.0,0.0,'STON/O 2. 3101273',7.125,?,S,?,?,?,0
+3.0,female,?,0.0,0.0,'334915',7.7208,?,Q,13,?,?,1
+3.0,male,?,0.0,0.0,'364498',14.5,?,S,?,?,?,0
+3.0,female,?,0.0,0.0,'364498',14.5,?,S,?,?,?,0
+3.0,male,50.0,1.0,0.0,'A/5. 3337',14.5,?,S,?,119.0,?,0
+3.0,female,47.0,1.0,0.0,'A/5. 3337',14.5,?,S,?,7.0,?,0
+3.0,male,?,0.0,0.0,'S.C./A.4. 23567',08.05,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'312993',7.775,?,S,?,?,?,0
+3.0,female,2.0,1.0,1.0,'370129',20.2125,?,S,?,?,?,0
+3.0,male,18.0,1.0,1.0,'370129',20.2125,?,S,?,?,?,0
+3.0,female,41.0,0.0,2.0,'370129',20.2125,?,S,?,?,?,0
+3.0,female,?,0.0,0.0,'342712',08.05,?,S,C,?,?,1
+3.0,male,50.0,0.0,0.0,'A/5 3594',08.05,?,S,?,?,?,0
+3.0,male,16.0,0.0,0.0,'A/4. 20589',08.05,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'383162',7.75,?,Q,14,?,?,1
+3.0,male,?,0.0,0.0,'371110',24.15,?,Q,?,?,?,0
+3.0,male,?,0.0,0.0,'2671',7.2292,?,C,?,?,?,0
+3.0,male,25.0,0.0,0.0,'2672',7.225,?,C,?,?,?,0
+3.0,male,?,0.0,0.0,'2676',7.225,?,C,?,?,?,0
+3.0,male,?,0.0,0.0,'367655',7.7292,?,Q,?,?,?,0
+3.0,male,?,0.0,0.0,'LP 1588',7.575,?,S,?,?,?,0
+3.0,male,38.5,0.0,0.0,'SOTON/O.Q. 3101262',7.25,?,S,?,32.0,?,0
+3.0,male,?,8.0,2.0,'CA. 2343',69.55,?,S,?,?,?,0
+3.0,male,14.5,8.0,2.0,'CA. 2343',69.55,?,S,?,67.0,?,0
+3.0,female,?,8.0,2.0,'CA. 2343',69.55,?,S,?,?,?,0
+3.0,female,?,8.0,2.0,'CA. 2343',69.55,?,S,?,?,?,0
+3.0,female,?,8.0,2.0,'CA. 2343',69.55,?,S,?,?,?,0
+3.0,female,?,8.0,2.0,'CA. 2343',69.55,?,S,?,?,?,0
+3.0,male,?,8.0,2.0,'CA. 2343',69.55,?,S,?,?,?,0
+3.0,male,?,8.0,2.0,'CA. 2343',69.55,?,S,?,?,?,0
+3.0,male,?,8.0,2.0,'CA. 2343',69.55,?,S,?,?,?,0
+3.0,male,?,1.0,9.0,'CA. 2343',69.55,?,S,?,?,?,0
+3.0,female,?,1.0,9.0,'CA. 2343',69.55,?,S,?,?,?,0
+3.0,male,24.0,0.0,0.0,'7266',9.325,?,S,?,?,?,0
+3.0,female,21.0,0.0,0.0,'343120',7.65,?,S,C,?,?,1
+3.0,male,39.0,0.0,0.0,'3101296',7.925,?,S,?,?,?,0
+3.0,male,?,2.0,0.0,'2662',21.6792,?,C,?,?,?,0
+3.0,male,?,2.0,0.0,'2662',21.6792,?,C,?,?,?,0
+3.0,male,?,2.0,0.0,'2662',21.6792,?,C,?,?,?,0
+3.0,female,1.0,1.0,1.0,'PP 9549',16.7,G6,S,13,?,?,1
+3.0,female,24.0,0.0,2.0,'PP 9549',16.7,G6,S,13,?,?,1
+3.0,female,4.0,1.0,1.0,'PP 9549',16.7,G6,S,13,?,?,1
+3.0,male,25.0,0.0,0.0,'345768',9.5,?,S,11,?,?,1
+3.0,male,20.0,0.0,0.0,'A/5. 2151',08.05,?,S,?,?,?,0
+3.0,male,24.5,0.0,0.0,'342826',08.05,?,S,?,284.0,?,0
+3.0,male,?,0.0,0.0,'36209',7.725,?,Q,?,?,?,0
+3.0,male,?,0.0,0.0,'349222',7.8958,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'370374',7.75,?,Q,?,?,?,0
+3.0,male,29.0,0.0,0.0,'345779',9.5,?,S,11,?,?,1
+3.0,male,?,0.0,0.0,'C.A. 6212',15.1,?,S,?,?,?,0
+3.0,female,?,0.0,0.0,'330968',7.7792,?,Q,?,?,?,1
+3.0,male,?,0.0,0.0,'374910',08.05,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'SOTON/OQ 392082',08.05,?,S,?,?,?,0
+3.0,male,22.0,0.0,0.0,'2669',7.2292,?,C,?,?,?,0
+3.0,male,?,0.0,0.0,'392092',08.05,?,S,?,?,?,0
+3.0,male,40.0,0.0,0.0,'349251',7.8958,?,S,?,?,?,0
+3.0,male,21.0,0.0,0.0,'STON/O 2. 3101280',7.925,?,S,?,?,?,0
+3.0,female,18.0,0.0,0.0,'3101265',7.4958,?,S,16,?,?,1
+3.0,male,4.0,3.0,2.0,'347088',27.9,?,S,?,?,?,0
+3.0,male,10.0,3.0,2.0,'347088',27.9,?,S,?,?,?,0
+3.0,female,9.0,3.0,2.0,'347088',27.9,?,S,?,?,?,0
+3.0,female,2.0,3.0,2.0,'347088',27.9,?,S,?,?,?,0
+3.0,male,40.0,1.0,4.0,'347088',27.9,?,S,?,?,?,0
+3.0,female,45.0,1.0,4.0,'347088',27.9,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'349214',7.8958,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'SOTON/OQ 392086',08.05,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'315037',8.6625,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'384461',7.75,?,Q,?,?,?,0
+3.0,female,?,0.0,0.0,'335432',7.7333,?,Q,13,?,?,1
+3.0,male,19.0,0.0,0.0,'348124',7.65,'F G73',S,?,?,?,0
+3.0,male,30.0,0.0,0.0,'A.5. 18509',08.05,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'A.5. 3236',08.05,?,S,?,?,?,0
+3.0,male,32.0,0.0,0.0,'STON/OQ. 369943',08.05,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'349208',7.8958,?,S,?,?,?,0
+3.0,male,33.0,0.0,0.0,'349239',8.6625,?,C,?,?,?,0
+3.0,female,23.0,0.0,0.0,'CA. 2314',7.55,?,S,C,?,?,1
+3.0,male,21.0,0.0,0.0,'A/4 45380',08.05,?,S,?,?,?,0
+3.0,male,60.5,0.0,0.0,'3701',?,?,S,?,261.0,?,0
+3.0,male,19.0,0.0,0.0,'349205',7.8958,?,S,?,?,?,0
+3.0,female,22.0,0.0,0.0,'7553',9.8375,?,S,?,?,?,0
+3.0,male,31.0,0.0,0.0,'STON/O 2. 3101288',7.925,?,S,9,?,?,1
+3.0,male,27.0,0.0,0.0,'315083',8.6625,?,S,?,?,?,0
+3.0,female,2.0,0.0,1.0,'347054',10.4625,G6,S,?,?,?,0
+3.0,female,29.0,1.0,1.0,'347054',10.4625,G6,S,?,?,?,0
+3.0,male,16.0,0.0,0.0,'SOTON/OQ 392089',08.05,?,S,B,?,?,1
+3.0,male,44.0,0.0,0.0,'STON/O 2. 3101269',7.925,?,S,15,?,?,1
+3.0,male,25.0,0.0,0.0,'SOTON/OQ 392076',07.05,?,S,?,?,?,0
+3.0,male,74.0,0.0,0.0,'347060',7.775,?,S,?,?,?,0
+3.0,male,14.0,0.0,0.0,'7538',9.225,?,S,13,?,?,1
+3.0,male,24.0,0.0,0.0,'350035',7.7958,?,S,?,?,?,0
+3.0,male,25.0,0.0,0.0,'350033',7.7958,?,S,'13 15',?,?,1
+3.0,male,34.0,0.0,0.0,'363294',08.05,?,S,?,176.0,?,0
+3.0,male,0.4167,0.0,1.0,'2625',8.5167,?,C,16,?,?,1
+3.0,male,?,1.0,0.0,'2621',6.4375,?,C,?,?,?,0
+3.0,male,?,0.0,0.0,'2681',6.4375,?,C,?,?,?,0
+3.0,male,?,0.0,0.0,'2684',7.225,?,C,?,?,?,0
+3.0,female,16.0,1.0,1.0,'2625',8.5167,?,C,14,?,?,1
+3.0,male,?,0.0,0.0,'32302',08.05,?,S,?,?,?,0
+3.0,male,?,1.0,0.0,'376564',16.1,?,S,?,?,?,0
+3.0,female,?,1.0,0.0,'376564',16.1,?,S,10,?,?,1
+3.0,male,32.0,0.0,0.0,'STON/O 2. 3101293',7.925,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'383121',7.75,F38,Q,?,?,?,0
+3.0,male,?,0.0,0.0,'349216',7.8958,?,S,?,?,?,0
+3.0,male,30.5,0.0,0.0,'364499',08.05,?,S,?,50.0,?,0
+3.0,male,44.0,0.0,0.0,'364511',08.05,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'2673',7.2292,?,C,?,?,?,0
+3.0,male,25.0,0.0,0.0,'LINE',0.0,?,S,15,?,?,1
+3.0,male,?,0.0,0.0,'2641',7.2292,?,C,?,?,?,0
+3.0,male,7.0,1.0,1.0,'2650',15.2458,?,C,C,?,?,1
+3.0,female,9.0,1.0,1.0,'2650',15.2458,?,C,C,?,?,1
+3.0,female,29.0,0.0,2.0,'2650',15.2458,?,C,C,?,?,1
+3.0,male,36.0,0.0,0.0,'349247',7.8958,?,S,?,?,?,0
+3.0,female,18.0,0.0,0.0,'4138',9.8417,?,S,15,?,?,1
+3.0,female,63.0,0.0,0.0,'4134',9.5875,?,S,15,?,?,1
+3.0,male,?,1.0,1.0,'A/5. 851',14.5,?,S,?,?,?,0
+3.0,male,11.5,1.0,1.0,'A/5. 851',14.5,?,S,?,1.0,?,0
+3.0,male,40.5,0.0,2.0,'A/5. 851',14.5,?,S,?,255.0,?,0
+3.0,female,10.0,0.0,2.0,'345773',24.15,?,S,?,?,?,0
+3.0,male,36.0,1.0,1.0,'345773',24.15,?,S,?,?,?,0
+3.0,female,30.0,1.0,1.0,'345773',24.15,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'345777',9.5,?,S,?,?,?,0
+3.0,male,33.0,0.0,0.0,'345780',9.5,?,S,?,?,?,0
+3.0,male,28.0,0.0,0.0,'345770',9.5,?,S,?,?,?,0
+3.0,male,28.0,0.0,0.0,'345783',9.5,?,S,?,?,?,0
+3.0,male,47.0,0.0,0.0,'345765',9.0,?,S,?,?,?,0
+3.0,female,18.0,2.0,0.0,'345764',18.0,?,S,?,?,?,0
+3.0,male,31.0,3.0,0.0,'345763',18.0,?,S,?,?,?,0
+3.0,male,16.0,2.0,0.0,'345764',18.0,?,S,?,?,?,0
+3.0,female,31.0,1.0,0.0,'345763',18.0,?,S,?,?,?,0
+3.0,male,22.0,0.0,0.0,'2658',7.225,?,C,'13 15',?,?,1
+3.0,male,20.0,0.0,0.0,'350416',7.8542,?,S,?,?,?,0
+3.0,female,14.0,0.0,0.0,'350406',7.8542,?,S,?,?,?,0
+3.0,male,22.0,0.0,0.0,'349252',7.8958,?,S,?,?,?,0
+3.0,male,22.0,0.0,0.0,'345767',9.0,?,S,?,?,'Antwerp Belgium / Stanton',0
+3.0,male,?,0.0,0.0,'359309',08.05,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'C.A. 49867',7.55,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'SOTON/OQ 3101316',08.05,?,S,?,?,?,0
+3.0,male,32.5,0.0,0.0,'345775',9.5,?,S,?,298.0,?,0
+3.0,female,38.0,0.0,0.0,'2688',7.2292,?,C,C,?,?,1
+3.0,male,51.0,0.0,0.0,'347064',7.75,?,S,?,?,?,0
+3.0,male,18.0,1.0,0.0,'3101267',6.4958,?,S,?,314.0,?,0
+3.0,male,21.0,1.0,0.0,'3101266',6.4958,?,S,?,?,?,0
+3.0,female,47.0,1.0,0.0,'363272',7.0,?,S,?,?,?,1
+3.0,male,?,0.0,0.0,'3410',8.7125,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'S.O./P.P. 751',7.55,?,S,?,?,?,0
+3.0,male,?,0.0,0.0,'A/5 2466',08.05,?,S,?,?,?,0
+3.0,male,28.5,0.0,0.0,'54636',16.1,?,S,?,14.0,?,0
+3.0,male,21.0,0.0,0.0,'SOTON/OQ 3101317',7.25,?,S,?,?,?,0
+3.0,male,27.0,0.0,0.0,'315154',8.6625,?,S,?,131.0,?,0
+3.0,male,?,0.0,0.0,'A/4. 34244',7.25,?,S,?,?,?,0
+3.0,male,36.0,0.0,0.0,'345771',9.5,?,S,?,?,?,0
+3.0,male,27.0,1.0,0.0,'2659',14.4542,?,C,C,?,?,0
+3.0,female,15.0,1.0,0.0,'2659',14.4542,?,C,?,?,?,1
+3.0,male,45.5,0.0,0.0,'2628',7.225,?,C,?,312.0,?,0
+3.0,male,?,0.0,0.0,'2647',7.225,?,C,?,?,?,0
+3.0,male,?,0.0,0.0,'2627',14.4583,?,C,?,?,?,0
+3.0,female,14.5,1.0,0.0,'2665',14.4542,?,C,?,328.0,?,0
+3.0,female,?,1.0,0.0,'2665',14.4542,?,C,?,?,?,0
+3.0,male,26.5,0.0,0.0,'2656',7.225,?,C,?,304.0,?,0
+3.0,male,27.0,0.0,0.0,'2670',7.225,?,C,?,?,?,0
+3.0,male,29.0,0.0,0.0,'315082',7.875,?,S,?,?,?,0

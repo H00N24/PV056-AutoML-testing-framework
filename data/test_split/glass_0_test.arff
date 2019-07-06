@@ -1,0 +1,164 @@
+% 1. Title: Glass Identification Database
+%
+% 2. Sources:
+%     (a) Creator: B. German
+%         -- Central Research Establishment
+%            Home Office Forensic Science Service
+%            Aldermaston, Reading, Berkshire RG7 4PN
+%     (b) Donor: Vina Spiehler, Ph.D., DABFT
+%                Diagnostic Products Corporation
+%                (213) 776-0180 (ext 3014)
+%     (c) Date: September, 1987
+%
+% 3. Past Usage:
+%     -- Rule Induction in Forensic Science
+%        -- Ian W. Evett and Ernest J. Spiehler
+%        -- Central Research Establishment
+%           Home Office Forensic Science Service
+%           Aldermaston, Reading, Berkshire RG7 4PN
+%        -- Unknown technical note number (sorry, not listed here)
+%        -- General Results: nearest neighbor held its own with respect to the
+%              rule-based system
+%
+% 4. Relevant Information:n
+%       Vina conducted a comparison test of her rule-based system, BEAGLE, the
+%       nearest-neighbor algorithm, and discriminant analysis.  BEAGLE is
+%       a product available through VRS Consulting, Inc.; 4676 Admiralty Way,
+%       Suite 206; Marina Del Ray, CA 90292 (213) 827-7890 and FAX: -3189.
+%       In determining whether the glass was a type of "float" glass or not,
+%       the following results were obtained (# incorrect answers):
+%
+%              Type of Sample                            Beagle   NN    DA
+%              Windows that were float processed (87)     10      12    21
+%              Windows that were not:            (76)     19      16    22
+%
+%       The study of classification of types of glass was motivated by
+%       criminological investigation.  At the scene of the crime, the glass left
+%       can be used as evidence...if it is correctly identified!
+%
+% 5. Number of Instances: 214
+%
+% 6. Number of Attributes: 10 (including an Id#) plus the class attribute
+%    -- all attributes are continuously valued
+%
+% 7. Attribute Information:
+%    1. Id number: 1 to 214
+%    2. RI: refractive index
+%    3. Na: Sodium (unit measurement: weight percent in corresponding oxide, as
+%                   are attributes 4-10)
+%    4. Mg: Magnesium
+%    5. Al: Aluminum
+%    6. Si: Silicon
+%    7. K: Potassium
+%    8. Ca: Calcium
+%    9. Ba: Barium
+%   10. Fe: Iron
+%   11. Type of glass: (class attribute)
+%       -- 1 building_windows_float_processed
+%       -- 2 building_windows_non_float_processed
+%       -- 3 vehicle_windows_float_processed
+%       -- 4 vehicle_windows_non_float_processed (none in this database)
+%       -- 5 containers
+%       -- 6 tableware
+%       -- 7 headlamps
+%
+% 8. Missing Attribute Values: None
+%
+% Summary Statistics:
+% Attribute:   Min     Max      Mean     SD      Correlation with class
+%  2. RI:       1.5112  1.5339   1.5184  0.0030  -0.1642
+%  3. Na:      10.73   17.38    13.4079  0.8166   0.5030
+%  4. Mg:       0       4.49     2.6845  1.4424  -0.7447
+%  5. Al:       0.29    3.5      1.4449  0.4993   0.5988
+%  6. Si:      69.81   75.41    72.6509  0.7745   0.1515
+%  7. K:        0       6.21     0.4971  0.6522  -0.0100
+%  8. Ca:       5.43   16.19     8.9570  1.4232   0.0007
+%  9. Ba:       0       3.15     0.1750  0.4972   0.5751
+% 10. Fe:       0       0.51     0.0570  0.0974  -0.1879
+%
+% 9. Class Distribution: (out of 214 total instances)
+%     -- 163 Window glass (building windows and vehicle windows)
+%        -- 87 float processed
+%           -- 70 building windows
+%           -- 17 vehicle windows
+%        -- 76 non-float processed
+%           -- 76 building windows
+%           -- 0 vehicle windows
+%     -- 51 Non-window glass
+%        -- 13 containers
+%        -- 9 tableware
+%        -- 29 headlamps
+%
+%
+%
+%
+%
+%
+%
+% Relabeled values in attribute 'Type'
+%    From: '1'                     To: 'build wind float'
+%    From: '2'                     To: 'build wind non-float'
+%    From: '3'                     To: 'vehic wind float'
+%    From: '4'                     To: 'vehic wind non-float'
+%    From: '5'                     To: containers
+%    From: '6'                     To: tableware
+%    From: '7'                     To: headlamps
+%
+@RELATION glass
+
+@ATTRIBUTE ID NUMERIC
+@ATTRIBUTE RI REAL
+@ATTRIBUTE Na REAL
+@ATTRIBUTE Mg REAL
+@ATTRIBUTE Al REAL
+@ATTRIBUTE Si REAL
+@ATTRIBUTE K REAL
+@ATTRIBUTE Ca REAL
+@ATTRIBUTE Ba REAL
+@ATTRIBUTE Fe REAL
+@ATTRIBUTE Type {'build wind float', 'build wind non-float', 'vehic wind float', 'vehic wind non-float', containers, tableware, headlamps}
+
+@DATA
+9,1.51789,13.19,3.9,1.3,72.33,0.55,8.44,0.0,0.28,'build wind non-float'
+15,1.51707,13.48,3.48,1.71,72.52,0.62,7.99,0.0,0.0,'build wind non-float'
+16,1.51719,14.75,0.0,2.0,73.02,0.0,8.53,1.59,0.08,headlamps
+18,1.51994,13.27,0.0,1.76,73.03,0.47,11.32,0.0,0.0,containers
+25,1.51569,13.24,3.49,1.47,73.25,0.38,8.03,0.0,0.0,'build wind non-float'
+30,1.51674,12.87,3.56,1.64,73.14,0.65,7.99,0.0,0.0,'build wind non-float'
+45,1.51755,12.71,3.42,1.2,73.2,0.59,8.64,0.0,0.0,'build wind float'
+55,1.51735,13.02,3.54,1.69,72.73,0.54,8.44,0.0,0.07,'build wind float'
+60,1.51848,13.64,3.87,1.27,71.96,0.54,8.32,0.0,0.32,'build wind non-float'
+66,1.51926,13.2,3.33,1.28,72.36,0.6,9.14,0.0,0.11,'build wind float'
+69,1.52152,13.05,3.65,0.87,72.32,0.19,9.85,0.0,0.17,'build wind float'
+73,1.51829,13.24,3.9,1.41,72.33,0.55,8.31,0.0,0.1,'build wind non-float'
+75,1.51652,13.56,3.57,1.47,72.45,0.64,7.96,0.0,0.0,'build wind non-float'
+84,1.52171,11.56,1.88,1.56,72.86,0.47,11.41,0.0,0.0,containers
+86,1.52777,12.64,0.0,0.67,72.02,0.06,14.4,0.0,0.0,'build wind non-float'
+93,1.51937,13.79,2.41,1.19,72.76,0.0,9.77,0.0,0.0,tableware
+97,1.5202,13.98,1.35,1.63,71.76,0.39,10.56,0.0,0.18,'build wind non-float'
+98,1.51605,12.9,3.44,1.45,73.06,0.44,8.27,0.0,0.0,'build wind non-float'
+101,1.51673,13.3,3.64,1.53,72.53,0.65,8.03,0.0,0.29,'build wind non-float'
+104,1.51658,14.8,0.0,1.99,73.11,0.0,8.28,1.71,0.0,headlamps
+111,1.51617,14.95,0.0,2.27,73.3,0.0,8.71,0.67,0.0,headlamps
+117,1.51838,14.32,3.26,2.22,71.25,1.46,5.79,1.63,0.0,headlamps
+138,1.5221,13.73,3.84,0.72,71.76,0.17,9.74,0.0,0.0,'build wind float'
+141,1.51909,13.89,3.53,1.32,71.81,0.51,8.78,0.11,0.0,'build wind float'
+144,1.51631,13.34,3.57,1.57,72.87,0.61,7.89,0.0,0.0,'build wind non-float'
+148,1.51574,14.86,3.67,1.74,71.87,0.16,7.36,0.0,0.12,'build wind non-float'
+152,1.52614,13.7,0.0,1.36,71.24,0.19,13.44,0.0,0.1,'build wind non-float'
+158,1.51966,14.77,3.75,0.29,72.02,0.03,9.0,0.0,0.0,'build wind float'
+167,1.51839,12.85,3.67,1.24,72.57,0.62,8.68,0.0,0.35,'build wind non-float'
+170,1.51667,12.94,3.61,1.26,72.75,0.56,8.6,0.0,0.0,'build wind non-float'
+171,1.51588,13.12,3.41,1.58,73.26,0.07,8.39,0.0,0.19,'build wind non-float'
+175,1.51613,13.88,1.78,1.79,73.1,0.0,8.67,0.76,0.0,headlamps
+178,1.52151,11.03,1.71,1.56,73.44,0.58,11.62,0.0,0.0,containers
+182,1.51796,13.5,3.36,1.63,71.94,0.57,8.81,0.0,0.09,'vehic wind float'
+184,1.51783,12.69,3.54,1.34,72.95,0.57,8.75,0.0,0.0,'build wind float'
+190,1.519,13.49,3.48,1.35,71.95,0.55,9.0,0.0,0.0,'build wind float'
+191,1.51778,13.21,2.81,1.29,72.98,0.51,9.02,0.0,0.09,'build wind float'
+195,1.51841,13.02,3.62,1.06,72.34,0.64,9.13,0.0,0.15,'build wind non-float'
+197,1.51593,13.25,3.45,1.43,73.17,0.61,7.86,0.0,0.0,'build wind non-float'
+200,1.5169,13.33,3.54,1.61,72.54,0.68,8.11,0.0,0.0,'build wind non-float'
+203,1.51775,12.85,3.48,1.23,72.97,0.61,8.56,0.09,0.22,'build wind float'
+209,1.5161,13.42,3.4,1.22,72.69,0.59,8.32,0.0,0.0,'vehic wind float'
+211,1.51613,13.92,3.52,1.25,72.88,0.37,7.94,0.0,0.14,'build wind non-float'

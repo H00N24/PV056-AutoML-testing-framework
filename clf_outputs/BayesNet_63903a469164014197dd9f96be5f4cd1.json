@@ -1,0 +1,15 @@
+{
+    "model_config":{
+        "class_name":"weka.classifiers.bayes.BayesNet",
+        "args":[],
+        "filters":[]
+    },
+    "ad_config":{
+        "name":"COR",
+        "parameters":{
+            "alpha":1,
+            "beta":0.5,
+            "ranking":"sum"
+        }
+    }
+}

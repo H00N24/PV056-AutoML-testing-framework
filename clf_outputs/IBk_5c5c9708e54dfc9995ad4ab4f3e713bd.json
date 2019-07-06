@@ -1,0 +1,18 @@
+{
+    "model_config":{
+        "class_name":"weka.classifiers.lazy.IBk",
+        "args":[
+            "-K",
+            "5"
+        ],
+        "filters":[]
+    },
+    "ad_config":{
+        "name":"COR",
+        "parameters":{
+            "alpha":0,
+            "beta":1,
+            "ranking":"sum"
+        }
+    }
+}

@@ -1,0 +1,45 @@
+inst#,actual,predicted,error,prediction,ID
+1,6:tableware,6:tableware,,1,3
+2,1:'build wind float',2:build wind non-float,+,0.7,7
+3,7:headlamps,7:headlamps,,0.875,8
+4,3:'vehic wind float',1:build wind float,+,0.88,13
+5,2:'build wind non-float',2:build wind non-float,,0.846,17
+6,1:'build wind float',2:build wind non-float,+,0.824,23
+7,1:'build wind float',1:build wind float,,0.88,34
+8,2:'build wind non-float',2:build wind non-float,,0.846,39
+9,1:'build wind float',1:build wind float,,0.88,40
+10,2:'build wind non-float',2:build wind non-float,,0.846,43
+11,3:'vehic wind float',1:build wind float,+,0.88,44
+12,1:'build wind float',2:build wind non-float,+,0.824,47
+13,2:'build wind non-float',1:build wind float,+,0.88,49
+14,2:'build wind non-float',2:build wind non-float,,0.846,53
+15,2:'build wind non-float',2:build wind non-float,,0.824,59
+16,1:'build wind float',1:build wind float,,0.88,64
+17,6:tableware,5:containers,+,1,72
+18,1:'build wind float',2:build wind non-float,+,0.824,80
+19,1:'build wind float',2:build wind non-float,+,0.824,81
+20,1:'build wind float',1:build wind float,,0.88,83
+21,2:'build wind non-float',2:build wind non-float,,0.7,89
+22,1:'build wind float',1:build wind float,,0.88,91
+23,7:headlamps,7:headlamps,,0.875,94
+24,5:containers,2:build wind non-float,+,0.846,105
+25,2:'build wind non-float',2:build wind non-float,,0.7,110
+26,2:'build wind non-float',2:build wind non-float,,0.7,123
+27,2:'build wind non-float',2:build wind non-float,,0.846,131
+28,1:'build wind float',1:build wind float,,0.88,133
+29,5:containers,2:build wind non-float,+,0.846,134
+30,2:'build wind non-float',2:build wind non-float,,0.846,139
+31,2:'build wind non-float',2:build wind non-float,,0.846,147
+32,7:headlamps,7:headlamps,,0.875,156
+33,5:containers,2:build wind non-float,+,0.846,163
+34,1:'build wind float',1:build wind float,,0.88,166
+35,2:'build wind non-float',1:build wind float,+,0.88,168
+36,2:'build wind non-float',2:build wind non-float,,0.7,183
+37,1:'build wind float',2:build wind non-float,+,0.824,186
+38,5:containers,5:containers,,1,189
+39,7:headlamps,7:headlamps,,0.875,193
+40,6:tableware,5:containers,+,1,194
+41,2:'build wind non-float',2:build wind non-float,,0.846,198
+42,1:'build wind float',2:build wind non-float,+,0.846,207
+43,2:'build wind non-float',2:build wind non-float,,0.846,212
+

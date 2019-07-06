@@ -1,0 +1,8 @@
+{
+    "model_config":{
+        "class_name":"weka.classifiers.trees.RandomTree",
+        "args":[],
+        "filters":[]
+    },
+    "ad_config":{}
+}

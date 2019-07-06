@@ -1,0 +1,18 @@
+{
+    "model_config":{
+        "class_name":"weka.classifiers.lazy.LWL",
+        "args":[
+            "-W",
+            "weka.classifiers.trees.J48"
+        ],
+        "filters":[]
+    },
+    "ad_config":{
+        "name":"COR",
+        "parameters":{
+            "alpha":0.5,
+            "beta":1,
+            "ranking":"sum"
+        }
+    }
+}

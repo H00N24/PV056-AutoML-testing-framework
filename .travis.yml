@@ -1,0 +1,14 @@
+language: python
+python:
+  - "3.7"
+install:
+  - pip install -r requirements-dev.txt
+jobs:
+  include:
+    - stage: "Tests"
+      name: flake8
+      script: flake8 pv056_2019
+    - script: black --check pv056_2019
+      name: black
+    - script: mypy pv056_2019
+      name: mypy

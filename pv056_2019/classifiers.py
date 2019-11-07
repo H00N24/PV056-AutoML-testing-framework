@@ -98,13 +98,13 @@ class ClassifierManager:
             run_args += ["-T", test_path]  # input dataset
             run_args += [
                 "-classifications",
-                "weka.classifiers.evaluation.output.prediction.CSV -p first -file {0} -suppress".format(
+                "weka.classifiers.evaluation.output.prediction.CSV -p first -file {0} -suppress".format(  # noqa
                     predict_file_path
                 ),
             ]
 
             # Add Weka filters
-            str_filters = '-F "weka.filters.unsupervised.attribute.RemoveByName -E ^{}$"'.format(
+            str_filters = '-F "weka.filters.unsupervised.attribute.RemoveByName -E ^{}$"'.format(  # noqa
                 ID_NAME
             ) + ' -F "weka.filters.unsupervised.attribute.RemoveByName -E ^{}$"'.format(
                 OD_VALUE_NAME

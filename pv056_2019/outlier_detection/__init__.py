@@ -90,8 +90,10 @@ class KDN(AbstractDetector):
 
 
 @detector
-# Disjunct size: The number of instances covered by a disjunct that the investigated instance
-# belongs to divided by the number of instances covered by the largest disjunct in an
+# Disjunct size: The number of instances covered
+# by a disjunct that the investigated instance
+# belongs to divided by the number of instances
+# covered by the largest disjunct in an
 # unpruned decision tree
 class DS(AbstractDetector):
     name = "DS"
@@ -106,8 +108,10 @@ class DS(AbstractDetector):
 
 
 @detector
-# Disjunct class percentage: The number of instances in a disjunct that have the same class
-# label as the investigated instance divided by the total number of instances in the disjunct in a
+# Disjunct class percentage: The number of instances
+# in a disjunct that have the same class
+# label as the investigated instance divided by the
+# total number of instances in the disjunct in a
 # pruned decision tree
 class DCP(AbstractDetector):
     name = "DCP"
@@ -123,7 +127,8 @@ class DCP(AbstractDetector):
 
 
 @detector
-# Tree depth: The depth of the leaf node that classifies an instance in an induced decision tree without prunning
+# Tree depth: The depth of the leaf node that classifies an
+# instance in an induced decision tree without prunning
 class TD(AbstractDetector):
     name = "TD"
     data_type = "REAL"
@@ -137,7 +142,8 @@ class TD(AbstractDetector):
 
 
 @detector
-# Tree depth: The depth of the leaf node that classifies an instance in an induced decision tree with prunning
+# Tree depth: The depth of the leaf node that classifies an
+# instance in an induced decision tree with prunning
 class TDWithPrunning(AbstractDetector):
     name = "TDWithPrunning"
     data_type = "REAL"

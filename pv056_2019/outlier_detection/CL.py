@@ -34,7 +34,8 @@ class CLMetric:
 
                 # If the attribute is a float it is a continuous variable
                 # so Kernel Density is used to determine probability
-                # if not isinstance(attributes_dict[attr],(list,)) and attributes_dict[attr].lower() in {"numeric", "real", "integer"}:
+                # if not isinstance(attributes_dict[attr],(list,)) and
+                # attributes_dict[attr].lower() in {"numeric", "real", "integer"}:
 
                 if attr[1].lower() in {"numeric", "real", "integer"}:
 

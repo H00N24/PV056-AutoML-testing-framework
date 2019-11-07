@@ -31,7 +31,9 @@ $ pip install .
 ### Downloading datasets
 All data files are from [OpenML](https://www.openml.org).
 
-Data files are compressed in `data/datasets/openML-datasets.zip` (you have to unzip it). Because this file is larger than 50mb we are using git lfs (large file storage). You can read the documentation [here](https://git-lfs.github.com).
+Data link: [link](https://mega.nz/#!9xtl2Y7b!N9dMwi0T-4ZVEv39Bfle2qQwfKQYz04s3Xv2sB-vbCY)
+
+Download the compressed datasets to `data/datasets/openML-datasets.zip` (you have to unzip it).
 
 #### TL;DR
 Run commands below in the root folder of this repo.

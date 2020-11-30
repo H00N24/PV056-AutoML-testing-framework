@@ -1,4 +1,4 @@
-# This repository is archived! We designed and developed this application ONLY to help other students finish the project effectively (Weka's usage was mandatory). Consider it before further use.
+# This repository is archived! We designed and developed this application ONLY to help other students finish the project effectively (Weka's usage was mandatory).  Please contact us before further use.
 
 
 # PV056-AutoML-testing-framework
